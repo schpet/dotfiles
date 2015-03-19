@@ -1,9 +1,15 @@
+# https://github.com/thoughtbot/dotfiles/blob/master/zshrc
+
 
 export PATH="$HOME/.bin:$PATH"
 
 # Initialize completion
 autoload -U compinit
 compinit
+
+# makes color constants available
+autoload -U colors
+colors
 
 # recommended by brew doctor
 export PATH="/usr/local/bin:$PATH"
@@ -13,14 +19,16 @@ alias gs='git status'
 alias gb='git branch'
 alias gc='git commit -v'
 alias gca='git commit --all -v'
+alias gco='git checkout'
 alias ga='git add'
+
 alias vi=vim
 
 # modify the prompt to contain git branch name if applicable
 git_prompt_info() {
   current_branch=$(git current-branch 2> /dev/null)
   if [[ -n $current_branch ]]; then
-    echo " %{$fg_bold[green]%}$current_branch%{$reset_color%}"
+    echo " %{$fg[yellow]%}$current_branch%{$reset_color%}"
   fi
 }
 setopt promptsubst

@@ -1,2 +1,4 @@
 [user]
 	email = peter@peterschilling.org
+[alias]
+  current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
