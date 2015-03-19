@@ -1,6 +1,10 @@
 
 export PATH="$HOME/.bin:$PATH"
 
+# Initialize completion
+autoload -U compinit
+compinit
+
 # recommended by brew doctor
 export PATH="/usr/local/bin:$PATH"
 eval "$(rbenv init - zsh --no-rehash)"
@@ -9,6 +13,7 @@ alias gs='git status'
 alias gb='git branch'
 alias gc='git commit -v'
 alias gca='git commit --all -v'
+alias ga='git add'
 alias vi=vim
 
 # modify the prompt to contain git branch name if applicable
@@ -19,7 +24,7 @@ git_prompt_info() {
   fi
 }
 setopt promptsubst
-export PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%c%{$reset_color%}$(git_prompt_info) %# '
+export PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%c%{$reset_color%}$(git_prompt_info) \$ '
 
 # Colorize terminal
 alias ls='ls -G'
@@ -32,3 +37,4 @@ export GREP_OPTIONS="--color"
 export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
+
