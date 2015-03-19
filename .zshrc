@@ -7,6 +7,8 @@ eval "$(rbenv init - zsh --no-rehash)"
 
 alias gs='git status'
 alias gb='git branch'
+alias gc='git commit -v'
+alias gca='git commit --all -v'
 alias vi=vim
 
 # modify the prompt to contain git branch name if applicable
@@ -30,6 +32,3 @@ export GREP_OPTIONS="--color"
 export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
-
-# Use vim as the editor
-export EDITOR=vi
