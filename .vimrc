@@ -1,3 +1,5 @@
+execute pathogen#infect()
+
 set nocompatible
 set hidden
 set history=10000
@@ -12,3 +14,4 @@ set incsearch
 set hlsearch
 
 syntax on
+filetype plugin indent on
