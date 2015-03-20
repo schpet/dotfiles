@@ -38,6 +38,8 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+map Y y$
+
 
 " rspec, tmux
 " TODO fix the bin/rspec garb
