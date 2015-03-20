@@ -3,9 +3,9 @@
 [alias]
   current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
 [push]
-	default = current
+  default = current
 [diff]
-	algorithm = patience
+  algorithm = patience
 [grep]
   extendRegexp = true
   lineNumber = true
