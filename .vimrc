@@ -17,16 +17,19 @@ set autoindent
 set showmatch
 set incsearch
 set hlsearch
-
-let mapleader = " "
-
-" Split in a more normal way
+set ignorecase smartcase
+set nobackup
+set nowritebackup
 set splitbelow
 set splitright
+set clipboard=unnamed
+set autoread
 
 set t_Co=256 " 256 colors
 set background=light
-set clipboard=unnamed
+
+
+let mapleader = " "
 
 " pane movement
 nnoremap <c-j> <c-w>j
