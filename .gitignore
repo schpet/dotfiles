@@ -9,6 +9,7 @@
 .history
 .lesshst
 .netrc
+.npm
 .pow
 .pry_history
 .psql_history
