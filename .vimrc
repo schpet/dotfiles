@@ -3,6 +3,9 @@
 " https://github.com/tpope/tpope/blob/master/.vimrc 
 execute pathogen#infect()
 
+syntax on
+filetype plugin indent on
+
 set nocompatible
 set hidden
 set history=10000
@@ -11,13 +14,9 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set autoindent
-set laststatus=2
 set showmatch
 set incsearch
 set hlsearch
-
-syntax on
-filetype plugin indent on
 
 let mapleader = " "
 
@@ -29,9 +28,6 @@ set t_Co=256 " 256 colors
 set background=light
 set clipboard=unnamed
 
-" Fix slow O inserts
-set timeout timeoutlen=1000 ttimeoutlen=100
-
 " pane movement
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -39,7 +35,6 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 map Y y$
-
 
 " rspec, tmux
 " TODO fix the bin/rspec garb
