@@ -31,15 +31,14 @@ set background=light
 
 let mapleader = " "
 
+map Y y$
+
 " pane movement
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-map Y y$
-
-" rspec, tmux
 " TODO fix the bin/rspec garb
 let g:rspec_command = 'call Send_to_Tmux(" bin/rspec {spec}\n")'
 
@@ -51,6 +50,7 @@ map <Leader>a :call RunAllSpecs()<CR>
 let g:syntastic_check_on_wq = 0
 let g:syntastic_scss_checkers = ['scss_lint']
 
+nnoremap <leader>o :OverCommandLine<cr>
 
 " SELECTA (<leader>f)
 
