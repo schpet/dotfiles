@@ -21,6 +21,10 @@ filetype plugin indent on
 
 let mapleader = " "
 
+" Split in a more normal way
+set splitbelow
+set splitright
+
 set t_Co=256 " 256 colors
 set background=light
 set clipboard=unnamed

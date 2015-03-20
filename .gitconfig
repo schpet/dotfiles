@@ -2,3 +2,14 @@
 	email = peter@peterschilling.org
 [alias]
   current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
+[push]
+	default = current
+[diff]
+	algorithm = patience
+[grep]
+  extendRegexp = true
+  lineNumber = true
+[web]
+  browser = open
+[merge]
+  tool = vimdiff
