@@ -1,8 +1,11 @@
 .CFUserTextEncoding
 .DS_Store
 .Trash/
+.adobe/
 .bash_history
 .bundle/
+.config/
+.cups/
 .dropbox/
 .gem/
 .heroku/
