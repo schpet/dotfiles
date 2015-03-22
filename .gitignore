@@ -4,6 +4,7 @@
 .adobe/
 .bash_history
 .bundle/
+.cache/
 .config/
 .cups/
 .dropbox/
