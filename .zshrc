@@ -21,6 +21,7 @@ alias gc='git commit -v'
 alias gca='git commit --all -v'
 alias gco='git checkout'
 alias ga='git add'
+alias gbdm='git branch --merged | grep -v "\*" | grep -v master | xargs -n 1 git branch -d'
 
 alias vi=vim
 

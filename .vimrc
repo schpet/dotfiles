@@ -20,6 +20,10 @@ set hlsearch
 set ignorecase smartcase
 set nobackup
 set nowritebackup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set undofile 
+set undodir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set splitbelow
 set splitright
 set clipboard=unnamed
@@ -32,6 +36,7 @@ set background=light
 let mapleader = " "
 
 map Y y$
+map Q <Nop> 
 
 " pane movement
 nnoremap <c-j> <c-w>j
@@ -39,8 +44,25 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+nnoremap <silent> k gk
+nnoremap <silent> j gj
+
+" reselect block after indentation
+vnoremap < <gv
+vnoremap > >gv
+
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Wq wq
+cnoreabbrev WQ wq
+cnoreabbrev E e
+
+" map <silent> w <Plug>CamelCaseMotion_w
+" map <silent> b <Plug>CamelCaseMotion_b
+" map <silent> e <Plug>CamelCaseMotion_e
+
 " TODO fix the bin/rspec garb
-let g:rspec_command = 'call Send_to_Tmux(" bin/rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("bin/rspec {spec}\n")'
 
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
@@ -49,6 +71,7 @@ map <Leader>a :call RunAllSpecs()<CR>
 
 let g:syntastic_check_on_wq = 0
 let g:syntastic_scss_checkers = ['scss_lint']
+let g:syntastic_html_checkers = []
 
 nnoremap <leader>o :OverCommandLine<cr>
 

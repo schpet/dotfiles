@@ -1,3 +1,5 @@
+.hgignore_global
+.aws/
 .CFUserTextEncoding
 .DS_Store
 .Trash/
@@ -24,6 +26,7 @@
 .tmux.conf
 .vim/.netrwhist
 .viminfo
+.vim-tmp
 .zcompdump
 Applications/
 Desktop/
