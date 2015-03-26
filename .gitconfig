@@ -1,7 +1,15 @@
 [user]
 	email = peter@peterschilling.org
 [alias]
+  b = branch
+  c = commit --verbose
+  ca = commit --all --verbose
+  co = checkout
   current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
+  di = diff
+  s = status
+  dmb = "!git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
 [push]
   default = current
 [diff]
@@ -13,3 +21,8 @@
   browser = open
 [merge]
   tool = vimdiff
+[core]
+	excludesfile = ~/.cvsignore
+	pager = less -S
+[merge]
+	summary = true
