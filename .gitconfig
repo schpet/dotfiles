@@ -1,6 +1,8 @@
 [user]
 	email = peter@peterschilling.org
 [alias]
+  a = add
+  aa = add --all
   b = branch
   c = commit --verbose
   ca = commit --all --verbose
