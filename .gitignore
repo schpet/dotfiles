@@ -1,5 +1,6 @@
 .hgignore_global
 .aws/
+.byebug_hist
 .CFUserTextEncoding
 .DS_Store
 .Trash/

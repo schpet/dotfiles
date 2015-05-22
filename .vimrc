@@ -62,6 +62,11 @@ cnoreabbrev E e
 " map <silent> b <Plug>CamelCaseMotion_b
 " map <silent> e <Plug>CamelCaseMotion_e
 
+
+function! InSpecFile()
+  return match(expand("%"), "_spec.rb$") != -1 || match(expand("%"), ".feature$") != -1
+endfunction
+
 " TODO fix the bin/rspec garb
 let g:rspec_command = 'call Send_to_Tmux("bin/rspec {spec}\n")'
 
@@ -71,7 +76,7 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 let g:syntastic_check_on_wq = 0
-let g:syntastic_scss_checkers = ['scss_lint']
+let g:syntastic_scss_checkers = []
 let g:syntastic_html_checkers = []
 
 nnoremap <leader>o :OverCommandLine<cr>
