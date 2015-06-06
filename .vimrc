@@ -76,8 +76,9 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 let g:syntastic_check_on_wq = 0
-let g:syntastic_scss_checkers = []
+let g:syntastic_scss_checkers = ['scss_lint']
 let g:syntastic_html_checkers = []
+let g:syntastic_ruby_checkers = ['rubocop']
 
 nnoremap <leader>o :OverCommandLine<cr>
 
