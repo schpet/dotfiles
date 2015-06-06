@@ -28,5 +28,6 @@
 [core]
 	excludesfile = ~/.cvsignore
 	pager = less -S
+	editor = vim
 [merge]
 	summary = true
