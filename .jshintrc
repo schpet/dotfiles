@@ -1,0 +1,10 @@
+{
+  "browser"  : true,
+  "eqeqeq"   : true,
+  "eqnull"   : true,
+  "jquery"   : true,
+  "expr"     : true,
+  "strict"   : true,
+  "undef"    : true,
+  "unused"   : true
+}
