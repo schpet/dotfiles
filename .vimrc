@@ -62,11 +62,6 @@ cnoreabbrev E e
 " map <silent> b <Plug>CamelCaseMotion_b
 " map <silent> e <Plug>CamelCaseMotion_e
 
-
-function! InSpecFile()
-  return match(expand("%"), "_spec.rb$") != -1 || match(expand("%"), ".feature$") != -1
-endfunction
-
 " TODO fix the bin/rspec garb
 let g:rspec_command = 'call Send_to_Tmux("bin/rspec {spec}\n")'
 
