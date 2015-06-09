@@ -16,6 +16,7 @@
 .history
 .lesshst
 .netrc
+.node-gyp/
 .npm
 .pow
 .pry_history
