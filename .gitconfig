@@ -12,7 +12,7 @@
   current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
   di = diff
   s = status
-  dmb = "!git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  dmb = "!git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d && git remote prune origin"
 
 [push]
   default = current
