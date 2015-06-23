@@ -15,6 +15,7 @@
 .heroku/
 .history
 .lesshst
+.local/
 .netrc
 .node-gyp/
 .npm
