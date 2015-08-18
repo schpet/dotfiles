@@ -18,6 +18,7 @@ eval "$(rbenv init - zsh --no-rehash)"
 alias vi=vim
 alias v=vim
 alias g=git
+alias commithelp="echo 'If applied, this commit will ...'"
 
 # modify the prompt to contain git branch name if applicable
 git_prompt_info() {

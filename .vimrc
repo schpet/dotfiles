@@ -85,8 +85,6 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
   try
     let selection = system(a:choice_command . " | selecta " . a:selecta_args)
   catch /Vim:Interrupt/
-    " Swallow the ^C so that the redraw below happens; otherwise there will be
-    " leftovers from selecta on the screen
     redraw!
     return
   endtry
@@ -94,10 +92,16 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
   exec a:vim_command . " " . selection
 endfunction
 
+let g:selecta_command = 'find * ' .
+                      \ '-type f ' .
+                      \ '-not -wholename "*node_modules*" ' .
+                      \ '-not -wholename "*vendor*" ' .
+                      \ '-not -wholename "*tmp*" '
+
 
 " Find all files in all non-dot directories starting in the working directory.
 " " Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
+nnoremap <leader>f :call SelectaCommand(g:selecta_command, "", ":e")<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

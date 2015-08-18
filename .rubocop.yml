@@ -45,6 +45,11 @@ Style/EmptyLinesAroundClassBody:
 Style/ClassAndModuleChildren:
  Enabled: false
 
+Style/WordArray:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  Enabled: false
 
 # copied all defaults below for convenience
 
