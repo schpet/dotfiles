@@ -3,7 +3,7 @@
 [alias]
   a = add
   aa = add --all
-  amend = commit --amend
+  amend = commit --amend --verbose
   b = branch
   bo = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
   c = commit --verbose
