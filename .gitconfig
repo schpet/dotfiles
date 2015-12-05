@@ -11,8 +11,11 @@
   co = checkout
   current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
   di = diff
+  dis = diff --staged
+  dia = diff HEAD
   s = status
-  dmb = "!git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d && git remote prune origin"
+  unstage = reset HEAD
+  dmb = "!git co master && git branch --merged | grep -v '\\*' | grep -v 'production' | xargs -n 1 git branch -d && git remote prune origin"
 
 [push]
   default = current
