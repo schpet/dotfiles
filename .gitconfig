@@ -14,9 +14,9 @@
   dis = diff --staged
   dia = diff HEAD
   s = status
+  us = reset HEAD
   unstage = reset HEAD
   dmb = "!git co master && git branch --merged | grep -v '\\*' | grep -v 'production' | xargs -n 1 git branch -d && git remote prune origin"
-
 [push]
   default = current
 [diff]
@@ -29,8 +29,8 @@
 [merge]
   tool = vimdiff
 [core]
-	excludesfile = ~/.cvsignore
-	pager = less -S
-	editor = vim
+  excludesfile = ~/.cvsignore
+  pager = less -S
+  editor = vim
 [merge]
-	summary = true
+  summary = true
