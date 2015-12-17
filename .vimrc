@@ -58,9 +58,28 @@ cnoreabbrev Wq wq
 cnoreabbrev WQ wq
 cnoreabbrev E e
 
+
 " map <silent> w <Plug>CamelCaseMotion_w
 " map <silent> b <Plug>CamelCaseMotion_b
 " map <silent> e <Plug>CamelCaseMotion_e
+"
+
+" FILETYPE GARBAGE
+" ----------------
+
+
+au BufNewFile,BufRead *.es6 set filetype=javascript
+
+
+
+
+" PLUGIN JUNK
+" -----------
+
+" https://github.com/stefanoverna/vim-i18n
+vmap <Leader>z :call I18nTranslateString()<CR>
+vmap <Leader>dt :call I18nDisplayTranslation()<CR>
+
 
 " TODO fix the bin/rspec garb
 let g:rspec_command = 'call Send_to_Tmux("bin/rspec {spec}\n")'
@@ -73,9 +92,14 @@ map <Leader>a :call RunAllSpecs()<CR>
 let g:syntastic_check_on_wq = 0
 let g:syntastic_scss_checkers = ['scss_lint']
 let g:syntastic_html_checkers = []
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['rubocop']
 
 nnoremap <leader>o :OverCommandLine<cr>
+
+
+" CUSTOM FUNCTION TRASH
+" ---------------------
 
 " SELECTA (<leader>f)
 
