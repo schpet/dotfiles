@@ -46,3 +46,6 @@
 [submodule ".vim/bundle/vim-rails"]
 	path = .vim/bundle/vim-rails
 	url = https://github.com/tpope/vim-rails.git
+[submodule ".vim/bundle/vim-i18n"]
+	path = .vim/bundle/vim-i18n
+	url = https://github.com/stefanoverna/vim-i18n.git
