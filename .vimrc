@@ -69,6 +69,7 @@ cnoreabbrev E e
 
 
 au BufNewFile,BufRead *.es6 set filetype=javascript
+au BufNewFile,BufRead *.haml.deface set filetype=haml
 
 
 

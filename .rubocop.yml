@@ -469,8 +469,8 @@ Style/BracesAroundHashParameters:
 
 # # `MinBodyLength` defines the number of lines of the a body of an if / unless
 # # needs to have to trigger this cop
-# Style/GuardClause:
-#   MinBodyLength: 1
+Style/GuardClause:
+  MinBodyLength: 3
 
 # Style/HashSyntax:
 #   EnforcedStyle: ruby19
