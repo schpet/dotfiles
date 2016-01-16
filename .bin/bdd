@@ -2,6 +2,7 @@
 grep -v "\s*end\s*" | 
 grep -v "\s*let.*" | 
 grep -v "\s*context.*" | 
+gsed -r "s/\s*\+(.*)/\1/" |
 gsed "s/\s*scenario\s*['\"]\(.*\)['\"].*/Scenario: \1/" | 
 gsed "s/\s*\(.*\)\"\(.*\)\"\(.*\)/  \1 \2 \3/"
 gsed "s/\s*\(.*\)'\(.*\)'\(.*\)/  \1 \2 \3/"
