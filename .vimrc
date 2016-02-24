@@ -93,7 +93,7 @@ map <Leader>a :call RunAllSpecs()<CR>
 let g:syntastic_check_on_wq = 0
 let g:syntastic_scss_checkers = ['scss_lint']
 let g:syntastic_html_checkers = []
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_ruby_checkers = ['rubocop']
 
 nnoremap <leader>o :OverCommandLine<cr>
