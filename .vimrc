@@ -58,6 +58,7 @@ cnoreabbrev Wq wq
 cnoreabbrev WQ wq
 cnoreabbrev E e
 
+let &colorcolumn="80,".join(range(100,999),",")
 
 " map <silent> w <Plug>CamelCaseMotion_w
 " map <silent> b <Plug>CamelCaseMotion_b
