@@ -4,6 +4,10 @@
 execute pathogen#infect()
 
 syntax on
+
+set background=light
+colorscheme solarized
+
 filetype plugin indent on
 
 set nocompatible
@@ -58,6 +62,7 @@ cnoreabbrev Wq wq
 cnoreabbrev WQ wq
 cnoreabbrev E e
 
+" highlight 80th column, and 100+
 let &colorcolumn="80,".join(range(100,999),",")
 
 " map <silent> w <Plug>CamelCaseMotion_w

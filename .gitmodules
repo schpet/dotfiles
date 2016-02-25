@@ -49,3 +49,6 @@
 [submodule ".vim/bundle/vim-i18n"]
 	path = .vim/bundle/vim-i18n
 	url = https://github.com/stefanoverna/vim-i18n.git
+[submodule ".vim/bundle/vim-colors-solarized"]
+	path = .vim/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
