@@ -49,3 +49,9 @@
 [submodule ".vim/bundle/vim-i18n"]
 	path = .vim/bundle/vim-i18n
 	url = https://github.com/stefanoverna/vim-i18n.git
+[submodule ".vim/bundle/vim-colors-pencil.git"]
+	path = .vim/bundle/vim-colors-pencil.git
+	url = https://github.com/reedes/vim-colors-pencil.git
+[submodule ".vim/bundle/vim-haml"]
+	path = .vim/bundle/vim-haml
+	url = https://github.com/tpope/vim-haml.git

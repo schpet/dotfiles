@@ -6,7 +6,7 @@ execute pathogen#infect()
 syntax on
 
 set background=light
-colorscheme solarized
+colorscheme pencil
 
 filetype plugin indent on
 
