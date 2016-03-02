@@ -182,5 +182,4 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " make ctrl-p overwrite the default register with the last yanked text, and
 " paste it.
 nnoremap <C-p> :let @*=@0<CR>p
-nnoremap <C-P> :let @*=@0<CR>P
 
