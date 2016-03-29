@@ -84,8 +84,11 @@ au BufNewFile,BufRead *.haml.deface set filetype=haml
 " -----------
 
 " https://github.com/stefanoverna/vim-i18n
-vmap <Leader>z :call I18nTranslateString()<CR>
-vmap <Leader>dt :call I18nDisplayTranslation()<CR>
+map <Leader>z :call I18nTranslateString()<CR>
+map <Leader>dt :call I18nDisplayTranslation()<CR>
+
+map <Leader>b :Tab bdd<CR>
+map <Leader>g :s/^\s\+/  /<CR>:noh<CR>:SimpleBDD<CR>
 
 
 " TODO fix the bin/rspec garb
