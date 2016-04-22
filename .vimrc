@@ -33,6 +33,7 @@ set splitbelow
 set splitright
 set clipboard=unnamed
 set autoread
+au CursorHold * checktime
 
 set t_Co=256 " 256 colors
 set background=light
@@ -90,6 +91,8 @@ map <Leader>dt :call I18nDisplayTranslation()<CR>
 map <Leader>b :Tab bdd<CR>
 map <Leader>g :s/^\s\+/  /<CR>:noh<CR>:SimpleBDD<CR>
 
+map <Leader>, :s/\(\w\+\)/:\1,/<CR>:noh<CR>
+
 
 " TODO fix the bin/rspec garb
 let g:rspec_command = 'call Send_to_Tmux("bin/rspec {spec}\n")'
@@ -100,7 +103,8 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 let g:syntastic_check_on_wq = 0
-let g:syntastic_scss_checkers = ['scss_lint']
+let g:syntastic_css_checkers = ['stylelint']
+let g:syntastic_scss_checkers = ['stylelint']
 let g:syntastic_html_checkers = []
 let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_ruby_checkers = ['rubocop']

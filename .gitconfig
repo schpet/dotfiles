@@ -16,7 +16,7 @@
   s = status
   us = reset HEAD
   unstage = reset HEAD
-  dmb = "!git co master && git branch --merged | grep -v '\\*' | grep -v 'production' | xargs -n 1 git branch -d && git remote prune origin"
+  dmb = "!git co master && git branch --merged | grep -v '\\*' | grep -v 'production' | xargs -n 1 git branch -D && git remote prune origin"
 [push]
   default = current
 [diff]
