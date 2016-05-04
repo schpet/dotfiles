@@ -104,7 +104,7 @@ map <Leader>a :call RunAllSpecs()<CR>
 
 let g:syntastic_check_on_wq = 0
 let g:syntastic_css_checkers = ['stylelint']
-let g:syntastic_scss_checkers = ['stylelint']
+let g:syntastic_scss_checkers = ['scss_lint']
 let g:syntastic_html_checkers = []
 let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_ruby_checkers = ['rubocop']
@@ -190,3 +190,8 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " paste it.
 nnoremap <C-p> :let @*=@0<CR>p
 
+function Inc(...)
+  let result = g:i
+  let g:i += a:0 > 0 ? a:1 : 1
+  return result
+endfunction
