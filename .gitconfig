@@ -47,3 +47,4 @@
 	required = true
 [pretty]
 	summary = - %s
+	summaryd = - %ad %s
