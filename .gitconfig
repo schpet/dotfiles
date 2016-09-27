@@ -19,11 +19,11 @@
 	dmb = "!git co master && git branch --merged | grep -v '\\*' | grep -v 'production' | xargs -n 1 git branch -D && git remote prune origin"
 
 	yesterday = "!git log --format=summary \
-												--after $(date -v -1d -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z) \
-												--before $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
+		--after $(date -v -1d -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z) \
+		--before $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
 
 	today = "!git log --format=summary \
-												--after $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
+		--after $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
 	ctags = "!.git/hooks/ctags"
 [push]
 	default = current
