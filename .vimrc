@@ -38,7 +38,6 @@ au CursorHold * checktime
 set t_Co=256 " 256 colors
 set background=light
 
-
 let mapleader = " "
 
 map Y y$
@@ -57,6 +56,7 @@ nnoremap <silent> j gj
 vnoremap < <gv
 vnoremap > >gv
 
+" allow inadvertant shift holding
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Wq wq
@@ -71,32 +71,41 @@ let &colorcolumn="80,".join(range(100,999),",")
 " map <silent> e <Plug>CamelCaseMotion_e
 "
 
-" FILETYPE GARBAGE
-" ----------------
-
+" WEIRD FILE EXTENSIONS
+" ---------------------
 
 au BufNewFile,BufRead *.es6 set filetype=javascript
 au BufNewFile,BufRead *.haml.deface set filetype=haml
 
 
+" SHORTCUTS
+" ---------
 
-
-" PLUGIN JUNK
-" -----------
-
-" https://github.com/stefanoverna/vim-i18n
+" i18n shortcuts from https://github.com/stefanoverna/vim-i18n
 map <Leader>z :call I18nTranslateString()<CR>
 map <Leader>dt :call I18nDisplayTranslation()<CR>
 
 map <Leader>b :Tab bdd<CR>
-map <Leader>g :s/^\s\+/  /<CR>:noh<CR>:SimpleBDD<CR>
 
+" define_method shortcut
+map <Leader>g :s/^\s*\w*\s\+\(.*\)/  define_method \1 do\r  end\r/<CR>:noh<CR>
+
+" turn a word into a ruby symbol, followed by a comma
 map <Leader>, :s/\(\w\+\)/:\1,/<CR>:noh<CR>
 
+" refresh syntax
+map <Leader>r <Esc>:syntax sync fromstart<CR>
 
-" TODO fix the bin/rspec garb
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" make ctrl-p overwrite the default register with the last yanked text, and
+" paste it.
+nnoremap <C-p> :let @*=@0<CR>p
+
+
+" vim-rspec mappings: https://github.com/thoughtbot/vim-rspec
 let g:rspec_command = 'call Send_to_Tmux("bin/rspec {spec}\n")'
-
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
@@ -104,7 +113,8 @@ map <Leader>a :call RunAllSpecs()<CR>
 
 let g:syntastic_check_on_wq = 0
 let g:syntastic_css_checkers = ['stylelint']
-let g:syntastic_scss_checkers = ['scss_lint']
+" let g:syntastic_scss_checkers = ['scss_lint']
+let g:syntastic_scss_checkers = []
 let g:syntastic_html_checkers = []
 let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_ruby_checkers = ['rubocop']
@@ -142,9 +152,7 @@ let g:selecta_command = 'find * ' .
 nnoremap <leader>f :call SelectaCommand(g:selecta_command, "", ":e")<cr>
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SWITCH BETWEEN TEST AND PRODUCTION CODE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" switch between app/spec
 function! OpenTestAlternate()
   let new_file = AlternateForCurrentFile()
   exec ':e ' . new_file
@@ -168,9 +176,7 @@ endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Silver searcher hell ya
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
@@ -182,13 +188,6 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-
-" make ctrl-p overwrite the default register with the last yanked text, and
-" paste it.
-nnoremap <C-p> :let @*=@0<CR>p
 
 function Inc(...)
   let result = g:i
