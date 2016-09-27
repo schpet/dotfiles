@@ -1,47 +1,47 @@
 [user]
 	email = peter@peterschilling.org
 [alias]
-  a = add
-  aa = add --all
-  amend = commit --amend --verbose
-  b = branch
-  bo = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
-  c = commit --verbose
-  ca = commit --all --verbose
-  co = checkout
-  current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
-  di = diff
-  dis = diff --staged
-  dia = diff HEAD
-  s = status
-  us = reset HEAD
-  unstage = reset HEAD
-  dmb = "!git co master && git branch --merged | grep -v '\\*' | grep -v 'production' | xargs -n 1 git branch -D && git remote prune origin"
+	a = add
+	aa = add --all
+	amend = commit --amend --verbose
+	b = branch
+	bo = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+	c = commit --verbose
+	ca = commit --all --verbose
+	co = checkout
+	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
+	di = diff
+	dis = diff --staged
+	dia = diff HEAD
+	s = status
+	us = reset HEAD
+	unstage = reset HEAD
+	dmb = "!git co master && git branch --merged | grep -v '\\*' | grep -v 'production' | xargs -n 1 git branch -D && git remote prune origin"
 
-  yesterday = "!git log --format=summary \
-                        --after $(date -v -1d -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z) \
-                        --before $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
+	yesterday = "!git log --format=summary \
+												--after $(date -v -1d -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z) \
+												--before $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
 
-  today     = "!git log --format=summary \
-                        --after $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
+	today = "!git log --format=summary \
+												--after $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
 	ctags = "!.git/hooks/ctags"
 [push]
-  default = current
+	default = current
 [diff]
-  algorithm = patience
+	algorithm = patience
 [grep]
-  extendRegexp = true
-  lineNumber = true
+	extendRegexp = true
+	lineNumber = true
 [web]
-  browser = open
+	browser = open
 [merge]
-  tool = vimdiff
+	tool = vimdiff
 [core]
-  excludesfile = ~/.cvsignore
-  pager = less -S
-  editor = vim
+	excludesfile = ~/.cvsignore
+	pager = less -S
+	editor = vim
 [merge]
-  summary = true
+	summary = true
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
