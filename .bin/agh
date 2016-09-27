@@ -1,9 +1,0 @@
-#!/bin/bash
-
-ag "$@"
-read -p "run a command on one of these files? (default: vim) " cmd
-if [ "$cmd" == "" ] ;then
-  vim $(ag -l "$@" | selecta)
-else 
-  $cmd `ag -l "$@" | selecta`
-fi
