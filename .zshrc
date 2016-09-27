@@ -1,26 +1,23 @@
-# https://github.com/thoughtbot/dotfiles/blob/master/zshrc
+# make tools in ~/.bin available
+export PATH="$HOME/.bin:$PATH"     
 
+# recommended by brew doctor
+export PATH="/usr/local/bin:$PATH" 
 
-export PATH="$HOME/.bin:$PATH"
-
-# Initialize completion
+# completion
 autoload -U compinit
 compinit
 
-# makes color constants available
-autoload -U colors
-colors
-
-# recommended by brew doctor
-export PATH="/usr/local/bin:$PATH"
+# ruby 
 eval "$(rbenv init - zsh --no-rehash)"
 
+# shortcuts
 alias vi=vim
 alias v=vim
 alias g=git
-alias commithelp="echo 'If applied, this commit will ...'"
+alias fs='find . -type f -not -wholename "*tmp*" | selecta'
 
-# modify the prompt to contain git branch name if applicable
+# prompt
 git_prompt_info() {
   current_branch=$(git current-branch 2> /dev/null)
   if [[ -n $current_branch ]]; then
@@ -30,17 +27,16 @@ git_prompt_info() {
 setopt promptsubst
 export PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%c%{$reset_color%}$(git_prompt_info) \$ '
 
-# Colorize terminal
+# makes color constants available
+autoload -U colors
+colors
+
+# use colors
 alias ls='ls -Gh'
 alias ll='ls -lGh'
 export GREP_OPTIONS="--color"
 
-
-# selecta shortcuts
-alias fs='find . -type f -not -wholename "*tmp*" | selecta'
-
-
-# Nicer history
+# history
 export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
