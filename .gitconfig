@@ -24,6 +24,7 @@
 
   today     = "!git log --format=summary \
                         --after $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
+	ctags = "!.git/hooks/ctags"
 [push]
   default = current
 [diff]
@@ -48,3 +49,5 @@
 [pretty]
 	summary = - %s
 	summaryd = - %ad %s
+[init]
+	templatedir = ~/.git_template
