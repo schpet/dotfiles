@@ -1,0 +1,11 @@
+#!/bin/bash
+
+git status
+LIST_FILES='git status --porcelain | sed s/^...//'
+
+read -p "run a command on one of these files? (default: $EDITOR) " cmd
+if [ "$cmd" == "" ] ;then
+  $EDITOR $(eval $LIST_FILES | selecta)
+else 
+  $cmd $(eval $LIST_FILES | selecta)
+fi

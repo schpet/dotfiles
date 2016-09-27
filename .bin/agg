@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ag "$@"
+LIST_FILES='ag -l "$@"'
+
+read -p "run a command on one of these files? (default: $EDITOR) " cmd
+
+if [ "$cmd" == "" ] ;then
+  $EDITOR $(eval $LIST_FILES | selecta)
+else 
+  $cmd $(eval $LIST_FILES | selecta)
+fi

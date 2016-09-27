@@ -76,7 +76,8 @@ let &colorcolumn="80,".join(range(100,999),",")
 
 au BufNewFile,BufRead *.es6 set filetype=javascript
 au BufNewFile,BufRead *.haml.deface set filetype=haml
-
+au BufRead,BufNewFile *.md setlocal textwidth=80
+au FileType gitcommit set tw=72
 
 " SHORTCUTS
 " ---------

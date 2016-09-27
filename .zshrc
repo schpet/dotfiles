@@ -8,11 +8,10 @@ export PATH="/usr/local/bin:$PATH"
 autoload -U compinit
 compinit
 
-# ruby 
+# ruby's rbenv
 eval "$(rbenv init - zsh --no-rehash)"
 
 # shortcuts
-alias vi=vim
 alias v=vim
 alias g=git
 alias fs='find . -type f -not -wholename "*tmp*" | selecta'
@@ -41,3 +40,5 @@ export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 
+# set editor
+export EDITOR=vi
