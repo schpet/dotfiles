@@ -36,6 +36,10 @@ alias ll='ls -lGh'
 export GREP_OPTIONS="--color"
 
 
+# selecta shortcuts
+alias fs='find . -type f -not -wholename "*tmp*" | selecta'
+
+
 # Nicer history
 export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
