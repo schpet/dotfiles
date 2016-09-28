@@ -1,6 +1,10 @@
 " mostly copied from
 " https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
 " https://github.com/tpope/tpope/blob/master/.vimrc 
+"
+" see also:
+" .vim/after/plugin/tabular_patterns.vim
+"
 execute pathogen#infect()
 
 syntax on
@@ -81,15 +85,14 @@ au FileType gitcommit set tw=72
 
 " SHORTCUTS
 " ---------
+"
 
 " i18n shortcuts from https://github.com/stefanoverna/vim-i18n
 map <Leader>z :call I18nTranslateString()<CR>
 map <Leader>dt :call I18nDisplayTranslation()<CR>
 
-map <Leader>b :Tab bdd<CR>
-
 " define_method shortcut
-map <Leader>g :s/^\s*\w*\s\+\(.*\)/  define_method \1 do\r  end\r/<CR>:noh<CR>
+map <Leader>g :s/^\s*\w*\s*\(.*\)/  define_method \1 do\r  end\r/<CR>:noh<CR>
 
 " turn a word into a ruby symbol, followed by a comma
 map <Leader>, :s/\(\w\+\)/:\1,/<CR>:noh<CR>

@@ -3,5 +3,4 @@ if !exists(':Tabularize')
 endif
 
 AddTabularPattern symbol /:/l1c0
-AddTabularPattern bdd /['"].*/l1
-
+AddTabularPattern \" /['"].*/l1
