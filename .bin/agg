@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# this would be better if it was more generic
+# e.g. 
+#   agg ag my_search  (repeats ag my_search -l)
+#   agg g s (repeats git status --porcelain | sed s/^...//')
+
 ag "$@"
 LIST_FILES='ag -l "$@"'
 
