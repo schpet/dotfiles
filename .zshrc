@@ -42,3 +42,6 @@ export SAVEHIST=$HISTSIZE
 
 # set editor
 export EDITOR=vi
+
+# makes ctrl-a, ctrl-e work as expected in tmux
+bindkey -e
