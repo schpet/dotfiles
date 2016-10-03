@@ -67,3 +67,6 @@
 [submodule ".vim/bundle/vim-ruby-refactoring"]
 	path = .vim/bundle/vim-ruby-refactoring
 	url = https://github.com/ecomba/vim-ruby-refactoring
+[submodule ".vim/bundle/vim-unimpaired"]
+	path = .vim/bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
