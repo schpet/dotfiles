@@ -45,3 +45,5 @@ export EDITOR=vi
 
 # makes ctrl-a, ctrl-e work as expected in tmux
 bindkey -e
+
+export PATH="$HOME/.yarn/bin:$PATH"

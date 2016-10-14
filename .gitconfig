@@ -15,6 +15,7 @@
 	dis = diff --staged
 	dia = diff HEAD
 	s = status
+  ls = "!git status --porcelain | sed s/^...//"
 	us = reset HEAD
 	unstage = reset HEAD
 	dmb = "!git co master && git branch --merged | grep -v '\\*' | grep -v 'production' | xargs -n 1 git branch -D && git remote prune origin"
