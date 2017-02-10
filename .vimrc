@@ -120,8 +120,12 @@ let g:syntastic_css_checkers = ['stylelint']
 " let g:syntastic_scss_checkers = ['scss_lint']
 let g:syntastic_scss_checkers = []
 let g:syntastic_html_checkers = []
-let g:syntastic_javascript_checkers = ['standard']
+" let g:syntastic_javascript_checkers = ['standard']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['rubocop']
+
+" jsx plugin
+let g:jsx_ext_required = 0
 
 nnoremap <leader>o :OverCommandLine<cr>
 
