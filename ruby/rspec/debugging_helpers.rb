@@ -7,10 +7,11 @@ module DebuggingHelpers
     path = Rails.root.join("tmp",
                            "capybara",
                            "#{Time.now.strftime('%Y-%m-%d_%H-%M-%S')}.png")
-    save_screenshot(path, full: false)
+
+    save_screenshot(path, full: false) if respond_to?(:save_screenshot)
     puts `#{cmd} "#{path}"`
     puts "Saved image to: #{path}"
-    save_and_open_page if html
+    save_and_open_page if html && respond_to?(:save_and_open_page)
   end
 end
 
