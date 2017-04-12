@@ -3,10 +3,10 @@
 [alias]
 	a = add
 	aa = add --all
-  agg = !agg-git
+	agg = !agg-git
 	amend = commit --amend --verbose
 	b = branch
-  br = for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:yellow)%(objectname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
+	br = for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:yellow)%(objectname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
 	bo = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
 	c = commit --verbose
 	ca = commit --all --verbose
@@ -16,7 +16,7 @@
 	dis = diff --staged
 	dia = diff HEAD
 	s = status
-  ls = "!git status --porcelain | sed s/^...//"
+	ls = "!git status --porcelain | sed s/^...//"
 	us = reset HEAD
 	unstage = reset HEAD
 	dmb = "!git co master && git branch --merged | grep -v '\\*' | grep -v 'production' | xargs -n 1 git branch -D && git remote prune origin"
