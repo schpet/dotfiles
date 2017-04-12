@@ -6,6 +6,7 @@
   agg = !agg-git
 	amend = commit --amend --verbose
 	b = branch
+  br = for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:yellow)%(objectname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
 	bo = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
 	c = commit --verbose
 	ca = commit --all --verbose
