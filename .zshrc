@@ -1,8 +1,11 @@
 # make tools in ~/.bin available
-export PATH="$HOME/.bin:$PATH"     
+export PATH="$HOME/.bin:$PATH"
 
 # recommended by brew doctor
-export PATH="/usr/local/bin:$PATH" 
+export PATH="/usr/local/bin:$PATH"
+
+# yarn: `yarn global bin`
+export PATH="/usr/local/Cellar/node/7.9.0/bin:$PATH"
 
 # completion
 autoload -U compinit
