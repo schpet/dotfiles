@@ -31,36 +31,24 @@
 [submodule ".vim/bundle/vim-coffee-script"]
 	path = .vim/bundle/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script.git
-[submodule ".vim/bundle/vim-simple-bdd"]
-	path = .vim/bundle/vim-simple-bdd
-	url = https://github.com/mdelillo/vim-simple-bdd.git
 [submodule ".vim/bundle/vim-bundler"]
 	path = .vim/bundle/vim-bundler
 	url = https://github.com/tpope/vim-bundler.git
 [submodule ".vim/bundle/vim-rails"]
 	path = .vim/bundle/vim-rails
 	url = https://github.com/tpope/vim-rails.git
-[submodule ".vim/bundle/vim-i18n"]
-	path = .vim/bundle/vim-i18n
-	url = https://github.com/stefanoverna/vim-i18n.git
 [submodule ".vim/bundle/vim-colors-pencil.git"]
 	path = .vim/bundle/vim-colors-pencil.git
 	url = https://github.com/reedes/vim-colors-pencil.git
 [submodule ".vim/bundle/tabular"]
 	path = .vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
-[submodule ".vim/bundle/splitjoin"]
-	path = .vim/bundle/splitjoin
-	url = https://github.com/AndrewRadev/splitjoin.vim
 [submodule ".vim/bundle/vim-abolish"]
 	path = .vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish
 [submodule ".vim/bundle/matchit"]
 	path = .vim/bundle/matchit
 	url = https://github.com/tmhedberg/matchit
-[submodule ".vim/bundle/vim-ruby-refactoring"]
-	path = .vim/bundle/vim-ruby-refactoring
-	url = https://github.com/ecomba/vim-ruby-refactoring
 [submodule ".vim/bundle/vim-unimpaired"]
 	path = .vim/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired
