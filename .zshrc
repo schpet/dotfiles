@@ -18,6 +18,7 @@ eval "$(rbenv init - zsh --no-rehash)"
 alias v=vim
 alias g=git
 alias fs='find . -type f -not -wholename "*tmp*" | selecta'
+alias rn='react-native'
 
 # prompt
 git_prompt_info() {
@@ -34,8 +35,9 @@ autoload -U colors
 colors
 
 # use colors
-alias ls='ls -Gh'
-alias ll='ls -lGh'
+alias ls='gls -Gh'
+alias ll='gls -lGh'
+export TIME_STYLE=long-iso
 export GREP_OPTIONS="--color"
 
 # history
