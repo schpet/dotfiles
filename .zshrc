@@ -51,4 +51,8 @@ export EDITOR=vi
 # makes ctrl-a, ctrl-e work as expected in tmux
 bindkey -e
 
+# put yarn globals on my path
 export PATH="$HOME/.yarn/bin:$PATH"
+
+# https://twitter.com/tpope/status/165631968996900865
+export PATH=".git/safe/../../bin:$PATH"
