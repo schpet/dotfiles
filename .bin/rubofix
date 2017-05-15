@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+rubocop -a
+
+git add --all
+git commit -m "Automatically fix rubocop errors via \`rubocop -a\`"
+
