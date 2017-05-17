@@ -37,9 +37,6 @@
 [submodule ".vim/bundle/vim-abolish"]
 	path = .vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish
-[submodule ".vim/bundle/matchit"]
-	path = .vim/bundle/matchit
-	url = https://github.com/tmhedberg/matchit
 [submodule ".vim/bundle/vim-unimpaired"]
 	path = .vim/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired
