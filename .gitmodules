@@ -31,9 +31,6 @@
 [submodule ".vim/bundle/vim-bundler"]
 	path = .vim/bundle/vim-bundler
 	url = https://github.com/tpope/vim-bundler.git
-[submodule ".vim/bundle/vim-rails"]
-	path = .vim/bundle/vim-rails
-	url = https://github.com/tpope/vim-rails.git
 [submodule ".vim/bundle/vim-colors-pencil.git"]
 	path = .vim/bundle/vim-colors-pencil.git
 	url = https://github.com/reedes/vim-colors-pencil.git
