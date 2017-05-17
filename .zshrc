@@ -55,4 +55,4 @@ bindkey -e
 export PATH="$HOME/.yarn/bin:$PATH"
 
 # https://twitter.com/tpope/status/165631968996900865
-export PATH=".git/safe/../../bin:$PATH"
+# export PATH=".git/safe/../../bin:$PATH"
