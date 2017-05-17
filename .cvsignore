@@ -7,3 +7,5 @@ REMAINING_WORK.txt
 hidden_examples
 
 .ruby-version
+.env
+.env.*
