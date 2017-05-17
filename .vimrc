@@ -110,10 +110,22 @@ nnoremap <C-p> :let @*=@0<CR>p
 
 " vim-rspec mappings: https://github.com/thoughtbot/vim-rspec
 " let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+" map <Leader>t :call RunCurrentSpecFile()<CR>
+" map <Leader>s :call RunNearestSpec()<CR>
+" map <Leader>l :call RunLastSpec()<CR>
+" map <Leader>a :call RunAllSpecs()<CR>
+nmap <silent> <leader>t :TestFile<CR>
+nmap <silent> <leader>s :TestNearest<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>v :TestVisit<CR>
+let g:test#javascript#tap#reporters = ['faucet']
+
+" function! test#ruby#rspec#executable() abort
+"   return 'rspec'
+" endfunction
+
+cnoremap <expr> %% expand('%:h').'/'
 
 
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
@@ -178,7 +190,7 @@ function! AlternateForCurrentFile()
   let in_spec = match(current_file, '^spec/') != -1
   let going_to_spec = !in_spec
   " consider changing this to detect app
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<presenters\>') != -1 || match(current_file, '\<services\>') != -1
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<presenters\>') != -1 || match(current_file, '\<services\>') != -1 || match(current_file, '\<jobs\>') != -1 || match(current_file, '\<pages\>') != -1 || match(current_file, '\<workers\>') != -1
   if going_to_spec
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
@@ -210,7 +222,7 @@ if executable('ag')
 endif
 
 
-function Inc(...)
+function! Inc(...)
   let result = g:i
   let g:i += a:0 > 0 ? a:1 : 1
   return result
