@@ -1,2 +1,3 @@
 --color
 --require "~/ruby/rspec/debugging_helpers"
+--format documentation
