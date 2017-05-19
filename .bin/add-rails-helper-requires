@@ -2,4 +2,4 @@
 
 # finds all specs that do not have require 'rails_helper' in them
 # and adds it
-grep -rL 'rails_helper' . | grep ".*_spec.rb$" | xargs gsed -i '1s/^/require "rails_helper"\n/'
+grep -rL 'rails_helper' . | grep ".*_spec.rb$" | xargs gsed -i '1s/^/require "rails_helper"\n\n/'
