@@ -39,6 +39,11 @@ set clipboard=unnamed
 set autoread
 au CursorHold * checktime
 
+" use emacs-style tab completion when selecting files, etc
+set wildmode=longest,list
+" make tab completion for files/buffers act like bash
+set wildmenu
+
 set t_Co=256 " 256 colors
 set background=light
 
@@ -108,12 +113,7 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap <C-p> :let @*=@0<CR>p
 
 
-" vim-rspec mappings: https://github.com/thoughtbot/vim-rspec
-" let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
-" map <Leader>t :call RunCurrentSpecFile()<CR>
-" map <Leader>s :call RunNearestSpec()<CR>
-" map <Leader>l :call RunLastSpec()<CR>
-" map <Leader>a :call RunAllSpecs()<CR>
+" test runners (rspec, etc)
 nmap <silent> <leader>t :TestFile<CR>
 nmap <silent> <leader>s :TestNearest<CR>
 nmap <silent> <leader>l :TestLast<CR>
@@ -121,11 +121,24 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>v :TestVisit<CR>
 let g:test#javascript#tap#reporters = ['faucet']
 
+" use plain rspec?
 " function! test#ruby#rspec#executable() abort
 "   return 'rspec'
 " endfunction
 
+" expand %% to the directory of the current file
 cnoremap <expr> %% expand('%:h').'/'
+
+" turn ruby assignemnts into rspec let
+function! PromoteToLet()
+  :normal! dd
+  " :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:map <leader>p :PromoteToLet<cr>
 
 
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
@@ -208,6 +221,16 @@ function! AlternateForCurrentFile()
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-n>
 
 " Silver searcher hell ya
 if executable('ag')
