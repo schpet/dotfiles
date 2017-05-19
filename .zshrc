@@ -19,6 +19,7 @@ alias v=vim
 alias g=git
 alias fs='find . -type f -not -wholename "*tmp*" | selecta'
 alias rn='react-native'
+alias r='bin/rails'
 
 # prompt
 git_prompt_info() {
@@ -37,6 +38,7 @@ colors
 # use colors
 alias ls='gls -Gh'
 alias ll='gls -lGh'
+alias find='gfind'
 export TIME_STYLE=long-iso
 export GREP_OPTIONS="--color"
 
