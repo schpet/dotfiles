@@ -1,0 +1,5 @@
+--database=postgresql
+--skip-turbolinks
+--webpacker
+--skip-sprockets
+--skip-javascript
