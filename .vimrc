@@ -120,6 +120,8 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>v :TestVisit<CR>
 let g:test#javascript#tap#reporters = ['faucet']
 
+nnoremap <leader>u :TestNearest -u<cr>
+
 " use plain rspec?
 " function! test#ruby#rspec#executable() abort
 "   return 'rspec'
