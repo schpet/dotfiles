@@ -98,9 +98,6 @@ au FileType gitcommit set tw=72
 map <Leader>z :call I18nTranslateString()<CR>
 map <Leader>dt :call I18nDisplayTranslation()<CR>
 
-" define_method shortcut
-map <Leader>g :s/^\s*\w*\s*\(.*\)/  define_method \1 do\r  end\r/<CR>:noh<CR>
-
 " turn a word into a ruby symbol, followed by a comma
 map <Leader>, :s/\(\w\+\)/:\1,/<CR>:noh<CR>
 
