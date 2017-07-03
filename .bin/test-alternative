@@ -1,0 +1,143 @@
+#!/usr/bin/env ruby
+
+# script for switching between test and production code.
+# meant to be used with vim.
+#
+# $ test-alternative app/models/user.rb
+# spec/models/user_spec.rb
+#
+# $ test-alternative lib/foo/bar.rb
+# spec/lib/foo/bar_spec.rb
+#
+# $ test-alternative src/index.js
+# __tests__/src/index-test.js
+#
+# $ test-alternative app/javascript/components/Profile.js
+# app/javascript/__tests__/components/Profile-test.js
+#
+# code aint pretty ¯\_(ツ)_/¯
+#
+#
+# add this to your .vimrc for <leader>. to switch between test/prod code:
+#
+# function! OpenTestAlternate()
+#   let current_file = expand("%")
+#   let new_file = system("test-alternative " . current_file)
+#   exec ':e ' . new_file
+# endfunction
+# nnoremap <leader>. :call OpenTestAlternate()<cr>
+
+class Alternator
+  attr_reader :current_file
+
+  def initialize(current_file)
+    @current_file = current_file
+  end
+
+  def alternative
+    test? ? production : test
+  end
+
+  def basename
+    File.basename(current_file)
+  end
+
+  def extension
+    File.extname(current_file)
+  end
+
+  def test?
+    basename.end_with?("_test#{extension}")
+  end
+
+  def production
+    prod_file = current_file
+    prod_file = prod_file.gsub(/_test#{extension}$/, extension)
+    prod_file = prod_file.gsub('test/', '')
+    "#{prod_file}"
+  end
+
+  def test
+    test_file = current_file
+    test_file = test_file.gsub(/#{extension}$/, "_test#{extension}")
+    "test/#{test_file}"
+  end
+end
+
+class RubyAlternator < Alternator
+  def test?
+    current_file.end_with?("_spec.rb")
+  end
+
+  def production
+    prod_file = current_file
+    prod_file = prod_file.gsub(/_spec.rb$/, '.rb')
+    prod_file = prod_file.gsub('spec/', '')
+    prod_file = "app/#{prod_file}" unless prod_file =~ /lib\//
+    "#{prod_file}"
+  end
+
+  def test
+    test_file = current_file
+    test_file = test_file.gsub(/.rb$/, '_spec.rb')
+    test_file = test_file.gsub('app/', '')
+    "spec/#{test_file}"
+  end
+end
+
+class JavascriptAlternator < Alternator
+  def test?
+    current_file.end_with?("-test.js")
+  end
+
+  def rails_app_javascript?
+    current_file.start_with?("app/javascript")
+  end
+
+  def production
+    prod_file = current_file
+
+    prod_file = prod_file.gsub(/-test.js$/, '.js')
+    prod_file = if rails_app_javascript?
+                  prod_file.gsub('app/javascript/__tests__/', 'app/javascript/')
+                else
+                  prod_file.gsub('__tests__/', '')
+                end
+
+    "#{prod_file}"
+  end
+
+  def test
+    test_file = current_file
+    test_file = test_file.gsub(/.js$/, '-test.js')
+    if rails_app_javascript?
+      test_file.gsub('app/javascript', 'app/javascript/__tests__')
+    else
+      "__tests__/#{test_file}"
+    end
+  end
+end
+
+class TestAlternative
+  attr_reader :alternator
+
+  ALTERNATORS = {
+    ".rb" => RubyAlternator,
+    ".js" => JavascriptAlternator
+  }.freeze
+
+  def self.alternator(current_file)
+    extension = File.extname(current_file)
+    ALTERNATORS.fetch(extension, Alternator).new(current_file)
+  end
+end
+
+
+if ARGV.empty?
+  puts "usage: test-alternative <file>"
+  exit
+end
+
+current_file = ARGV[0]
+
+puts TestAlternative.alternator(current_file).alternative

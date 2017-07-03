@@ -190,35 +190,10 @@ let g:selecta_command = 'find * ' .
 " " Fuzzy select one of those. Open the selected file with :e.
 nnoremap <leader>f :call SelectaCommand(g:selecta_command, "", ":e")<cr>
 
-
-" switch between app/spec
-" https://github.com/garybernhardt/dotfiles/blob/master/.vimrc#L289
 function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-function! AlternateForCurrentFile()
   let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-
-  let in_lib = match(current_file, '\<lib\>') != -1
-
-  if going_to_spec
-    if !in_lib
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if !in_lib
-      let new_file = 'app/' . new_file
-    end
-  endif
-  return new_file
+  let new_file = system("test-alternative " . current_file)
+  exec ':e ' . new_file
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
