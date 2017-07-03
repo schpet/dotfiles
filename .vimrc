@@ -185,7 +185,8 @@ let g:selecta_command = 'find * ' .
                       \ '-type f ' .
                       \ '-not -wholename "*node_modules*" ' .
                       \ '-not -wholename "*vendor*" ' .
-                      \ '-not -wholename "*tmp*" '
+                      \ '-not -wholename "*tmp*" ' .
+                      \ '-not -wholename "*public*" '
 
 
 " Find all files in all non-dot directories starting in the working directory.
