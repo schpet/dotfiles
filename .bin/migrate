@@ -1,1 +1,1 @@
-bin/rake db:migrate db:rollback && bin/rake db:migrate && bin/rails db:test:prepare
+bin/rake db:migrate db:rollback && bin/rake db:migrate && bin/rake db:test:prepare
