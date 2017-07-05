@@ -34,6 +34,7 @@
 	default = current
 [diff]
 	algorithm = patience
+	noprefix = true
 [grep]
 	extendRegexp = true
 	lineNumber = true
