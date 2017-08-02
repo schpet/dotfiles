@@ -222,9 +222,4 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-
-function! Inc(...)
-  let result = g:i
-  let g:i += a:0 > 0 ? a:1 : 1
-  return result
-endfunction
+autocmd BufNewFile,BufRead *.inky   set syntax=haml
