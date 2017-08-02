@@ -1,5 +1,8 @@
 --database=postgresql
 --skip-turbolinks
---webpacker
+--webpack=react
 --skip-sprockets
 --skip-javascript
+--skip-test
+--skip-keeps
+--skip-action-cable
