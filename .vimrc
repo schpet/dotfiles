@@ -122,10 +122,11 @@ let g:test#javascript#tap#reporters = ['faucet']
 
 nnoremap <leader>u :TestNearest -u<cr>
 
-" use plain rspec?
-" function! test#ruby#rspec#executable() abort
-"   return 'rspec'
-" endfunction
+" runs rspec without rails if there's no require 'rails_helper'
+" see ~/.bin/rrspec
+function! test#ruby#rspec#executable() abort
+  return 'rrspec'
+endfunction
 
 " expand %% to the directory of the current file
 cnoremap <expr> %% expand('%:h').'/'

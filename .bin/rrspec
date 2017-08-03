@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# https://gist.github.com/cstrahan/2065903
+
+set -e
+
+NEED_RAILS=1
+
+if [ $# -gt 0 ]; then
+  FILENAME=$1
+  GREP_FILENAME=`echo $FILENAME | sed 's/:.*$//g'`
+
+  set +e
+
+  grep -r 'rails_helper' $GREP_FILENAME > /dev/null
+  if [ $? -eq 1 ]; then
+    NEED_RAILS=''
+  fi
+
+  set -e
+else
+  FILENAME='spec'
+fi
+
+COMMAND="rspec"
+
+if [ $NEED_RAILS ]; then
+  COMMAND="bin/$COMMAND"
+fi
+
+
+$COMMAND $FILENAME
