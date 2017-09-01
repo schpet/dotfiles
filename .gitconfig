@@ -22,7 +22,7 @@
 	unstage = reset HEAD
 	dmb = "!git co master && git branch --merged | grep -v '\\*' | grep -v 'production' | xargs -n 1 git branch -D && git remote prune origin"
   track = "!git commit --allow-empty -m \"Tagging tracker [$1]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
-  deliver = "!git commit --allow-empty -m \"Delivering tracker story [delivers $1]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
+  deliver = "!git commit --allow-empty -m \"Deliver tracker story [delivers $1]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
 
 	yesterday = "!git log --format=summary \
 		--after $(date -v -1d -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z) \
