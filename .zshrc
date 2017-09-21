@@ -1,25 +1,14 @@
-# make tools in ~/.bin available
-export PATH="$HOME/.bin:$PATH"
-
-# recommended by brew doctor
-export PATH="/usr/local/bin:$PATH"
-
-# yarn: `yarn global bin`
-export PATH="/usr/local/Cellar/node/7.9.0/bin:$PATH"
-
 # completion
 autoload -U compinit
 compinit
 
 # ruby's rbenv
-eval "$(rbenv init - zsh --no-rehash)"
+eval "$(rbenv init - --no-rehash zsh)"
+
 
 # shortcuts
 alias v=vim
 alias g=git
-alias fs='find . -type f -not -wholename "*tmp*" | selecta'
-alias rn='react-native'
-alias r='bin/rails'
 
 # prompt
 git_prompt_info() {
@@ -47,14 +36,18 @@ export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 
-# set editor
 export EDITOR=vi
 
 # makes ctrl-a, ctrl-e work as expected in tmux
 bindkey -e
 
-# make yarn packages available, via `yarn global bin`
-export PATH="/usr/local/Cellar/node/7.9.0/bin:$PATH"
+# PATH
 
-# https://twitter.com/tpope/status/165631968996900865
-# export PATH=".git/safe/../../bin:$PATH"
+# ~/.bin
+export PATH="$HOME/.bin:$PATH"
+
+# brew
+export PATH="/usr/local/bin:$PATH"
+
+# npm packages
+export PATH="/usr/local/Cellar/node/8.4.0/bin:$PATH"
