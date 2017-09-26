@@ -31,6 +31,7 @@
 	today = "!git log --format=summary \
 		--after $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
 	ctags = "!.git/hooks/ctags"
+  rebase = rebase --keep-empty
 [push]
 	default = current
 [diff]
@@ -43,18 +44,19 @@
 	browser = open
 [merge]
 	tool = vimdiff
+	summary = true
 [core]
 	excludesfile = ~/.cvsignore
 	pager = less -S
 	editor = vim
-[merge]
-	summary = true
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
 [pretty]
 	summary = - %s
 	summaryd = - %ad %s
 [init]
 	templatedir = ~/.git_template
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[diff "exif"]
+	textconv = exiftool
