@@ -1,4 +1,2 @@
 --color
---require "~/ruby/rspec/debugging_helpers"
---require "awesome_print"
 --format documentation
