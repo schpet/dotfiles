@@ -2,10 +2,6 @@
 autoload -U compinit
 compinit
 
-# ruby's rbenv
-eval "$(rbenv init - --no-rehash zsh)"
-
-
 # shortcuts
 alias v=vim
 alias g=git
@@ -51,3 +47,19 @@ export PATH="/usr/local/bin:$PATH"
 
 # npm packages
 export PATH="/usr/local/Cellar/node/8.4.0/bin:$PATH"
+
+# corey's gist has info on chruby https://gist.github.com/csuhta/80ea33d74fc9b90ece13
+# Activate chruby and the .ruby-version auto-switcher
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+
+function chruby-install {
+  set -e
+  ruby-install --src-dir /tmp --cleanup --no-install-deps ruby $1
+  source ~/.zshrc
+  chruby $1
+  gem update --system
+  gem install --no-ri --no-rdoc rails rake bundler foreman
+}
+
+chruby ruby-2.4.2
