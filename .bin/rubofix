@@ -2,7 +2,7 @@
 
 set -e
 
-rubocop -a
+bundle exec rubocop -a
 
 git add --all
 git commit -m "Automatically fix rubocop errors via \`rubocop -a\`"
