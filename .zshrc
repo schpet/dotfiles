@@ -24,6 +24,7 @@ colors
 alias ls='gls -Gh'
 alias ll='gls -lGh'
 alias find='gfind'
+alias b='bundle exec'
 export TIME_STYLE=long-iso
 export GREP_OPTIONS="--color"
 
@@ -36,6 +37,9 @@ export EDITOR=vi
 
 # makes ctrl-a, ctrl-e work as expected in tmux
 bindkey -e
+
+# allows `rake my:task[an_argument]` to work
+unsetopt nomatch
 
 # PATH
 

@@ -140,7 +140,7 @@ function! PromoteToLet()
   :normal ==
 endfunction
 :command! PromoteToLet :call PromoteToLet()
-:map <leader>l :PromoteToLet<cr>
+:map <leader>o :PromoteToLet<cr>
 
 
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
@@ -159,8 +159,6 @@ map <Leader>l :SyntasticToggleMode<CR>:SyntasticCheck<CR>
 
 " jsx plugin
 let g:jsx_ext_required = 0
-
-nnoremap <leader>o :OverCommandLine<cr>
 
 
 " CUSTOM FUNCTION TRASH
