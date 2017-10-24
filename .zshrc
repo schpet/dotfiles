@@ -67,3 +67,6 @@ function chruby-install {
 }
 
 chruby ruby-2.4.2
+
+export FZF_DEFAULT_COMMAND='ag -g ""'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
