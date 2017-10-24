@@ -127,6 +127,9 @@ nnoremap <leader>u :TestNearest -u<cr>
 function! test#ruby#rspec#executable() abort
   return 'rrspec'
 endfunction
+let test#strategy = "dispatch"
+
+let g:dispatch_compilers = { 'rrspec': 'rspec'}
 
 " expand %% to the directory of the current file
 cnoremap <expr> %% expand('%:h').'/'
