@@ -52,3 +52,6 @@
 [submodule ".vim/bundle/vim-prettier"]
 	path = .vim/bundle/vim-prettier
 	url = https://github.com/prettier/vim-prettier.git
+[submodule "/Users/schpet/.vim/bundle/fzf"]
+	path = /Users/schpet/.vim/bundle/fzf
+	url = https://github.com/junegunn/fzf.git
