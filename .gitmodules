@@ -55,3 +55,6 @@
 [submodule "/Users/schpet/.vim/bundle/fzf"]
 	path = /Users/schpet/.vim/bundle/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "/Users/schpet/.vim/bundle/vim-dispatch"]
+	path = /Users/schpet/.vim/bundle/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git
