@@ -4,17 +4,18 @@ compinit
 
 # shortcuts
 alias v=vim
+alias vi=vim
 alias g=git
 
+# prompt
 git_prompt_info() {
   current_branch=$(git current-branch 2> /dev/null)
   if [[ -n $current_branch ]]; then
-    echo " %{$fg_bold[green]%}$current_branch%{$reset_color%}"
+    echo " %{$fg[yellow]%}$current_branch%{$reset_color%}"
   fi
 }
 setopt promptsubst
-PS1='%{$fg_bold[blue]%}%c%{$reset_color%}$(git_prompt_info) %# '
-
+PS1='%{$fg[blue]%}%c%{$reset_color%}$(git_prompt_info) $ '
 
 # makes color constants available
 autoload -U colors
