@@ -49,7 +49,7 @@ set wildmenu
 set t_Co=256 " 256 colors
 set background=light
 
-let mapleader = " "
+let mapleader=" "
 
 map Y y$
 map Q <Nop>
@@ -74,43 +74,16 @@ cnoreabbrev Wq wq
 cnoreabbrev WQ wq
 cnoreabbrev E e
 
-" highlight 80th column, and 100+
-let &colorcolumn="80,".join(range(100,999),",")
+" highlight 80th column
+let &colorcolumn="80,100"
 
-" map <silent> w <Plug>CamelCaseMotion_w
-" map <silent> b <Plug>CamelCaseMotion_b
-" map <silent> e <Plug>CamelCaseMotion_e
-"
-
-" WEIRD FILE EXTENSIONS
-" ---------------------
-
-au BufNewFile,BufRead *.es6 set filetype=javascript
-au BufNewFile,BufRead *.haml.deface set filetype=haml
+" weird file extensions
 au BufRead,BufNewFile *.md setlocal textwidth=80
 au FileType gitcommit set tw=72
-
-" SHORTCUTS
-" ---------
-"
-
-" i18n shortcuts from https://github.com/stefanoverna/vim-i18n
-map <Leader>z :call I18nTranslateString()<CR>
-map <Leader>dt :call I18nDisplayTranslation()<CR>
-
-" turn a word into a ruby symbol, followed by a comma
-map <Leader>, :s/\(\w\+\)/:\1,/<CR>:noh<CR>
-
-" refresh syntax
-map <Leader>r <Esc>:syntax sync fromstart<CR>
-
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " make ctrl-p overwrite the default register with the last yanked text, and
 " paste it.
 nnoremap <C-p> :let @*=@0<CR>p
-
 
 " test runners (rspec, etc)
 nmap <silent> <leader>t :TestFile<CR>
@@ -120,6 +93,7 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>v :TestVisit<CR>
 let g:test#javascript#tap#reporters = ['faucet']
 
+" for updating jest snapshots
 nnoremap <leader>u :TestNearest -u<cr>
 
 " runs rspec without rails if there's no require 'rails_helper'
@@ -127,7 +101,7 @@ nnoremap <leader>u :TestNearest -u<cr>
 function! test#ruby#rspec#executable() abort
   return 'rrspec'
 endfunction
-let test#strategy = "dispatch"
+" let test#strategy = "dispatch"
 
 let g:dispatch_compilers = { 'rrspec': 'rspec'}
 
@@ -146,6 +120,7 @@ endfunction
 :map <leader>o :PromoteToLet<cr>
 
 
+" todo: replace this with ale
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 " let g:syntastic_check_on_wq = 0
 let g:syntastic_css_checkers = ['stylelint']
@@ -159,13 +134,11 @@ let g:syntastic_ruby_checkers = ['rubocop']
 " :SyntasticCheck
 map <Leader>l :SyntasticToggleMode<CR>:SyntasticCheck<CR>
 
-
 " jsx plugin
 let g:jsx_ext_required = 0
 
 " fuzzy searching
 map <leader>f :FZF<cr>
-
 
 function! OpenTestAlternate()
   let current_file = expand("%")
@@ -185,16 +158,9 @@ endfunction
 inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
 
-" Silver searcher hell ya
+" Use ag over grep
 if executable('ag')
-  " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 autocmd BufNewFile,BufRead *.inky   set syntax=haml
