@@ -1,8 +1,7 @@
 .DS_Store
 
-REMAINING_WORK.txt
-hidden_examples
-feature.txt
+*.untracked.*
+untracked
 
 .ruby-version
 .env
