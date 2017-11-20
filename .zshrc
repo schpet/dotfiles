@@ -21,9 +21,9 @@ PS1='%{$fg[blue]%}%c%{$reset_color%}$(git_prompt_info) $ '
 autoload -U colors
 colors
 
-# use colors
-alias ls='gls -Gh'
-alias ll='gls -lGh'
+alias ls='gls --human-readable --color'
+alias ll='gls --human-readable --color -l'
+
 alias find='gfind'
 alias b='bundle exec'
 export TIME_STYLE=long-iso
