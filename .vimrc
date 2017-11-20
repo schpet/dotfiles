@@ -108,7 +108,7 @@ let g:dispatch_compilers = { 'rrspec': 'rspec'}
 " expand %% to the directory of the current file
 cnoremap <expr> %% expand('%:h').'/'
 
-" turn ruby assignemnts into rspec let
+" turn ruby assignments into rspec let
 function! PromoteToLet()
   :normal! dd
   " :exec '?^\s*it\>'
