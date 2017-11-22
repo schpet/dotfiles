@@ -88,9 +88,8 @@ nnoremap <C-p> :let @*=@0<CR>p
 " test runners (rspec, etc)
 nmap <silent> <leader>t :TestFile<CR>
 nmap <silent> <leader>s :TestNearest<CR>
-nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>r :TestLast<CR>
 nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>v :TestVisit<CR>
 let g:test#javascript#tap#reporters = ['faucet']
 
 " for updating jest snapshots
