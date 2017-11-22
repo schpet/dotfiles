@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+echo "🚔  rubocoppin"
+CHANGED_FILES=$(git diff master... --name-only)
+
+if bundle exec rubocop $CHANGED_FILES &> /dev/null; then
+  exit
+else
+  bundle exec rubocop -a $CHANGED_FILES
+
+  if bundle exec rubocop $CHANGED_FILES &> /dev/null; then
+    echo
+    echo "⚠️  Automatically corrected rubocop errors. commit changes and push again."
+  else
+    echo
+    echo "‼️  Could not automatically fix all errors. fix them manually, commit and push again."
+    echo
+    echo "ensure rubocop will succeed with the following:"
+    echo "bundle exec rubocop \$(git diff master... --name-only)"
+  fi
+
+  exit 1
+fi
