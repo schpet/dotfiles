@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# depends on https://github.com/thoughtbot/parity
+#
+# assumes dyno metadata hero is set up:
+# https://devcenter.heroku.com/articles/dyno-metadata
+
+PRODUCTION_HASH=$(production config | grep HEROKU_SLUG_COMMIT | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
+STAGING_HASH=$(staging config | grep HEROKU_SLUG_COMMIT | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
+
+ORIGIN=$(git config --get remote.origin.url)
+
+USER=$(echo $ORIGIN | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
+REPO=$(basename $ORIGIN | sed -e "s/\.git$//")
+
+echo "production: $PRODUCTION_HASH"
+echo "staging: $STAGING_HASH"
+echo
+echo "https://github.com/$USER/$REPO/compare/$PRODUCTION_HASH...$STAGING_HASH"
