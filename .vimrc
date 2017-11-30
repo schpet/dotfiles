@@ -118,6 +118,29 @@ endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>o :PromoteToLet<cr>
 
+" ~/.vimrc
+"
+" allows <leader>v to swap from this:
+"
+"     it "runs a test", :vcr do ...
+"
+" to this:
+"
+"     it "runs a test", vcr: { record: :all } do ...
+"
+function! RecordWithVcr()
+  normal! yy
+
+  if @" =~# '.*:vcr.*'
+    :.s/:vcr/vcr: { record: :all }/
+  endif
+
+  if @" =~# '.*vcr: { record: :all }.*'
+    :.s/vcr: { record: :all }/:vcr/
+  endif
+endfunction
+:command! RecordWithVcr :call RecordWithVcr()
+map <leader>v :RecordWithVcr<cr>
 
 " todo: replace this with ale
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
