@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 echo "🚔  rubocoppin"
-CHANGED_FILES=$(git diff master... --name-only --diff-filter=ACMRTUXB)
+CHANGED_FILES=$(git diff master... --name-only --diff-filter=ACMRTUXB | xargs)
 
-if bundle exec rubocop $CHANGED_FILES &> /dev/null; then
+if bundle exec rubocop --force-exclusion $CHANGED_FILES &> /dev/null; then
   exit
 else
-  bundle exec rubocop -a $CHANGED_FILES
+  bundle exec rubocop --force-exclusion -a $CHANGED_FILES
 
-  if bundle exec rubocop $CHANGED_FILES &> /dev/null; then
+  if bundle exec rubocop --force-exclusion $CHANGED_FILES &> /dev/null; then
     echo
     echo "⚠️  Automatically corrected rubocop errors. commit changes and push again."
   else
@@ -16,7 +16,10 @@ else
     echo "‼️  Could not automatically fix all errors. fix them manually, commit and push again."
     echo
     echo "ensure rubocop will succeed with the following:"
-    echo "bundle exec rubocop \$(git diff master... --name-only)"
+    echo
+    echo "bundle exec rubocop --force-exclusion $CHANGED_FILES"
+    echo
+    echo "or, skip it and run git push --no-verify"
   fi
   echo
 
