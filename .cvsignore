@@ -8,3 +8,4 @@ untracked
 .env
 .env.*
 .DS_Store
+.pt
