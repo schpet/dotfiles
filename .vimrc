@@ -189,3 +189,4 @@ autocmd BufNewFile,BufRead *.inky   set syntax=haml
 
 let g:prettier#config#semi = 'false'
 let g:prettier#config#trailing_comma = 'es5'
+let g:prettier#config#single_quote = 'false'

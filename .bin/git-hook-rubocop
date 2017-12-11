@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "🚔  rubocoppin"
+
 CHANGED_FILES=$(git diff master... --name-only --diff-filter=ACMRTUXB | xargs)
 
 if bundle exec rubocop --force-exclusion $CHANGED_FILES &> /dev/null; then
