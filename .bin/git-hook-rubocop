@@ -10,9 +10,11 @@ else
   bundle exec rubocop --force-exclusion -a $CHANGED_FILES
 
   if bundle exec rubocop --force-exclusion $CHANGED_FILES &> /dev/null; then
+    osascript -e 'display notification "Stuff was fixed, commit it 🙌" with title "Rubocop"'
     echo
     echo "⚠️  Automatically corrected rubocop errors. commit changes and push again."
   else
+    osascript -e 'display notification "You need to manually fix some stuff 🔧" with title "Rubocop"'
     echo
     echo "‼️  Could not automatically fix all errors. fix them manually, commit and push again."
     echo
@@ -23,6 +25,7 @@ else
     echo "or, skip it and run git push --no-verify"
   fi
   echo
+
 
   exit 1
 fi
