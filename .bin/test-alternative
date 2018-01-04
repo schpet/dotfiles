@@ -74,7 +74,7 @@ class RubyAlternator < Alternator
     prod_file = prod_file.gsub(/_spec.rb$/, '.rb')
     prod_file = prod_file.gsub('spec/', '')
     prod_file = "app/#{prod_file}" unless prod_file =~ /lib\//
-    "#{prod_file}"
+    prod_file
   end
 
   def test
@@ -123,6 +123,7 @@ class TestAlternative
 
   ALTERNATORS = {
     ".rb" => RubyAlternator,
+    ".haml" => RubyAlternator,
     ".js" => JavascriptAlternator
   }.freeze
 
