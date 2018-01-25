@@ -95,14 +95,7 @@ let g:test#javascript#tap#reporters = ['faucet']
 " for updating jest snapshots
 nnoremap <leader>u :TestNearest -u<cr>
 
-" runs rspec without rails if there's no require 'rails_helper'
-" see ~/.bin/rrspec
-function! test#ruby#rspec#executable() abort
-  return 'rrspec'
-endfunction
-" let test#strategy = "dispatch"
-
-let g:dispatch_compilers = { 'rrspec': 'rspec'}
+let test#ruby#rspec#executable = 'rrspec'
 
 " expand %% to the directory of the current file
 cnoremap <expr> %% expand('%:h').'/'
