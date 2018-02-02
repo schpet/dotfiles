@@ -51,7 +51,7 @@ export PATH="$HOME/.bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 
 # npm packages
-export PATH="/usr/local/Cellar/node/8.4.0/bin:$PATH"
+export PATH="/usr/local/Cellar/node/9.4.0/bin:$PATH"
 
 # corey's gist has info on chruby https://gist.github.com/csuhta/80ea33d74fc9b90ece13
 # Activate chruby and the .ruby-version auto-switcher

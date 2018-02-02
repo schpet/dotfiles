@@ -111,6 +111,8 @@ endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>o :PromoteToLet<cr>
 
+map <leader>h :s/\s*\"\(\w\+\)\".*/export const \1 = "\1"/<cr>
+
 " ~/.vimrc
 "
 " allows <leader>v to swap from this:
