@@ -87,7 +87,7 @@ end
 
 class JavascriptAlternator < Alternator
   def test?
-    current_file.end_with?("-test.js")
+    current_file.end_with?(".spec.js")
   end
 
   def rails_app_javascript?
@@ -95,25 +95,24 @@ class JavascriptAlternator < Alternator
   end
 
   def production
-    prod_file = current_file
-
-    prod_file = prod_file.gsub(/-test.js$/, '.js')
+    prod_file = current_file.gsub(/\.spec\.js$/, '.js')
     prod_file = if rails_app_javascript?
-                  prod_file.gsub('app/javascript/__tests__/', 'app/javascript/')
+                  prod_file.gsub('app/javascript/test/', 'app/javascript/')
                 else
-                  prod_file.gsub('__tests__/', '')
+                  prod_file.gsub('test/', 'src/')
                 end
 
-    "#{prod_file}"
+    prod_file
   end
 
   def test
     test_file = current_file
-    test_file = test_file.gsub(/.js$/, '-test.js')
+    test_file = test_file.gsub(/\.js$/, '.spec.js')
     if rails_app_javascript?
-      test_file.gsub('app/javascript', 'app/javascript/__tests__')
+      test_file.gsub('app/javascript', 'app/javascript/test')
     else
-      "__tests__/#{test_file}"
+      "test/#{test_file}"
+      test_file.gsub('src/', 'test/')
     end
   end
 end
