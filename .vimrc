@@ -52,7 +52,7 @@ set background=light
 let mapleader=" "
 
 map Y y$
-map Q <Nop>
+"noremap Q <Nop> deleteme
 
 " pane movement
 nnoremap <c-j> <c-w>j
@@ -78,18 +78,20 @@ cnoreabbrev E e
 let &colorcolumn="80,100"
 
 " weird file extensions
-au BufRead,BufNewFile *.md setlocal textwidth=80
-au FileType gitcommit set tw=72
+autocmd BufNewFile,BufRead *.md setlocal textwidth=80 syn=off
+autocmd BufNewFile,BufRead *.inky set syntax=haml
 
-" make ctrl-p overwrite the default register with the last yanked text, and
+autocmd FileType gitcommit set tw=72
+
+" make ctrl-p overwrite the default register with the last *yanked* text, and
 " paste it.
 nnoremap <C-p> :let @*=@0<CR>p
 
 " test runners (rspec, etc)
-nmap <silent> <leader>t :TestFile<CR>
-nmap <silent> <leader>s :TestNearest<CR>
-nmap <silent> <leader>r :TestLast<CR>
-nmap <silent> <leader>a :TestSuite<CR>
+nnoremap <silent> <leader>t :TestFile<CR>
+nnoremap <silent> <leader>s :TestNearest<CR>
+nnoremap <silent> <leader>r :TestLast<CR>
+nnoremap <silent> <leader>a :TestSuite<CR>
 let g:test#javascript#tap#reporters = ['faucet']
 
 " for updating jest snapshots
@@ -108,10 +110,11 @@ function! PromoteToLet()
   :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
   :normal ==
 endfunction
-:command! PromoteToLet :call PromoteToLet()
-:map <leader>o :PromoteToLet<cr>
+command! PromoteToLet :call PromoteToLet()
+nnoremap <leader>o :PromoteToLet<cr>
 
-map <leader>h :s/\s*\"\(\w\+\)\".*/export const \1 = "\1"/<cr>
+" turn string into exported constant (redux)
+nnoremap <leader>h :s/\s*\"\(\w\+\)\".*/export const \1 = "\1"/<cr>
 
 " ~/.vimrc
 "
@@ -134,10 +137,10 @@ function! RecordWithVcr()
     :.s/vcr: { record: :all }/:vcr/
   endif
 endfunction
-:command! RecordWithVcr :call RecordWithVcr()
-map <leader>v :RecordWithVcr<cr>
+command! RecordWithVcr :call RecordWithVcr()
+nnoremap <leader>v :RecordWithVcr<cr>
 
-" todo: replace this with ale
+" todo: replace this with ale?
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 " let g:syntastic_check_on_wq = 0
 let g:syntastic_css_checkers = ['stylelint']
@@ -146,16 +149,18 @@ let g:syntastic_scss_checkers = []
 let g:syntastic_html_checkers = []
 " let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 let g:syntastic_ruby_checkers = ['rubocop']
 
+
 " :SyntasticCheck
-map <Leader>l :SyntasticToggleMode<CR>:SyntasticCheck<CR>
+nnoremap <Leader>l :SyntasticToggleMode<CR>:SyntasticCheck<CR>
 
 " jsx plugin
 let g:jsx_ext_required = 0
 
 " fuzzy searching
-map <leader>f :FZF<cr>
+nnoremap <leader>f :FZF<cr>
 
 function! OpenTestAlternate()
   let current_file = expand("%")
@@ -164,6 +169,17 @@ function! OpenTestAlternate()
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
+function! OpenStyleAlternate()
+  if (expand("%:e") == "js")
+    exec ':e ' . expand("%:r") . ".css"
+  else
+    exec ':e ' . expand("%:r") . ".js"
+  endif
+endfunction
+nnoremap <leader>, :call OpenStyleAlternate()<cr>
+
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
@@ -175,12 +191,13 @@ endfunction
 inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
 
+inoremap \fn <C-R>=expand("%:t:r")<CR>
+
 " Use ag over grep
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-autocmd BufNewFile,BufRead *.inky   set syntax=haml
 
 let g:prettier#config#semi = 'false'
 let g:prettier#config#trailing_comma = 'es5'
