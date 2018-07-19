@@ -1,7 +1,7 @@
 --database=postgresql
 --skip-turbolinks
---skip-sprockets
 --skip-javascript
---skip-test
+--skip-coffee
 --skip-keeps
 --skip-action-cable
+--skip-active-storage
