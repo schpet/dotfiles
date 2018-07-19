@@ -98,6 +98,7 @@ let g:test#javascript#tap#reporters = ['faucet']
 nnoremap <leader>u :TestNearest -u<cr>
 
 let test#ruby#rspec#executable = 'rrspec'
+" let test#ruby#minitest#file_pattern = '_spec\.rb' " the default is '_test\.rb'
 
 " expand %% to the directory of the current file
 cnoremap <expr> %% expand('%:h').'/'
@@ -151,6 +152,7 @@ let g:syntastic_html_checkers = []
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_always_populate_loc_list = 1
 
 
 " :SyntasticCheck
