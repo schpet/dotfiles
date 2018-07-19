@@ -10,5 +10,7 @@ untracked
 .DS_Store
 .pt
 
+.ignore
+
 # https://github.com/facebook/watchman/issues/415
 .watchmanconfig
