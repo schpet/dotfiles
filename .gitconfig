@@ -1,38 +1,43 @@
 [user]
 	email = peter@peterschilling.org
+[color]
+	ui = auto
 [alias]
 	a = add
 	aa = add --all
-	agg = !agg-git
 	amend = commit --amend --verbose
 	b = branch
-	br = for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:yellow)%(objectname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
-	bo = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+	br = for-each-ref --count 10 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
 	c = commit --verbose
 	ca = commit --all --verbose
 	co = checkout
-	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
+	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
+	da = diff HEAD
+	dc = diff --cached
 	di = diff
-	dic = diff --cached
-	dia = diff HEAD
+	ls = !git status --porcelain | sed s/^...//
+	lsv = !$EDITOR $(git ls | selecta)
 	s = status
-	ls = "! git status --porcelain | sed s/^...//"
-	lsv = "! $EDITOR $(git ls | selecta)"
-	us = reset HEAD
 	unstage = reset HEAD
-	dmb = "!git co master && git branch --merged | grep -v '\\*' | grep -v 'production' | xargs -n 1 git branch -D && git remote prune origin"
-  track = "!git commit --allow-empty -m \"Tagging tracker story [#${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
-  deliver = "!git commit --allow-empty -m \"Deliver tracker story [delivers #${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
-  finish = "!git commit --allow-empty -m \"Finish tracker story [finishes #${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
+	us = reset HEAD
+	fa = fetch --all
+	l = log
 
-	yesterday = "!git log --format=summary \
+	ff = merge --ff-only
+	noff = merge --no-ff
+
+	track = "!git commit --allow-empty -m \"Tagging tracker story [#${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
+	deliver = "!git commit --allow-empty -m \"Deliver tracker story [delivers #${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
+	finish = "!git commit --allow-empty -m \"Finish tracker story [finishes #${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
+
+	today = !git log --format=summary \
+		--after $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)
+
+	yesterday = !git log --format=summary \
 		--after $(date -v -1d -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z) \
-		--before $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
+		--before $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)
 
-	today = "!git log --format=summary \
-		--after $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)"
 	ctags = "!.git/hooks/ctags"
-  rebase = rebase --keep-empty
 [push]
 	default = current
 [diff]
@@ -53,6 +58,7 @@
 [pretty]
 	summary = - %C(yellow)%an%Creset %s
 	summaryd = - %ad %C(yellow)%an%Creset %s
+
 [init]
 	templatedir = ~/.git_template
 [diff "exif"]
