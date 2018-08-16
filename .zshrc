@@ -25,6 +25,9 @@ alias ls='gls --human-readable --color'
 alias ll='gls --human-readable --color -l'
 
 alias find='gfind'
+alias wc='gwc'
+alias sed='gsed'
+
 alias b='bundle exec'
 export TIME_STYLE=long-iso
 export GREP_OPTIONS="--color"
