@@ -1,5 +1,6 @@
 [user]
 	email = peter@peterschilling.org
+  name = Peter Schilling
 [color]
 	ui = auto
 [alias]
@@ -57,8 +58,6 @@
 	editor = vim
 [pretty]
 	summary = - %C(yellow)%an%Creset %s
-	summaryd = - %ad %C(yellow)%an%Creset %s
-
 [init]
 	templatedir = ~/.git_template
 [diff "exif"]
