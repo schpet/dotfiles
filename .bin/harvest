@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+require 'date'
+require 'active_support/core_ext/date'
+
+def main
+  date_start = Date.today
+  date_end = Date.today - 6
+
+  (date_end..date_start).each do |date|
+    time_start = date.beginning_of_day
+    time_end = (date + 1).beginning_of_day
+
+
+    me = %x(git config user.email).strip
+
+    cmd = "git log --author=\"#{me}\" --format=\"%s\" " \
+          "--after '#{time_start}' " \
+          "--before '#{time_end}'"
+
+    log = `#{cmd}`.strip
+
+    title =  "#{date.strftime("%A, %b %d")}" + (Date.today == date ? " (today)" : "")
+
+    if log.empty?
+      puts "#{title} (none)"
+    else
+      puts title
+      puts "-" * title.size
+      puts
+      puts log.split("\n").map { |s| remove_github_pr(s) }.join(", \n")
+    end
+    puts
+  end
+end
+
+def remove_github_pr commit_message
+  commit_message.gsub(/ \(#\d+.*\)$/, '')
+end
+
+main
