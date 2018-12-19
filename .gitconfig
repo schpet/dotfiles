@@ -8,7 +8,7 @@
 	aa = add --all
 	amend = commit --amend --verbose
 	b = branch
-	br = for-each-ref --count 10 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
+	br = for-each-ref --count 20 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
 	c = commit --verbose
 	ca = commit --all --verbose
 	co = checkout
@@ -62,3 +62,8 @@
 	templatedir = ~/.git_template
 [diff "exif"]
 	textconv = exiftool
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
