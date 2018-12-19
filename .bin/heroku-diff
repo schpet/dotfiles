@@ -5,6 +5,7 @@
 # assumes dyno metadata hero is set up:
 # https://devcenter.heroku.com/articles/dyno-metadata
 
+LOCAL_HASH=$(git rev-parse HEAD)
 PRODUCTION_HASH=$(production config | grep HEROKU_SLUG_COMMIT | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
 STAGING_HASH=$(staging config | grep HEROKU_SLUG_COMMIT | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
 
@@ -13,8 +14,9 @@ ORIGIN=$(git config --get remote.origin.url)
 USER=$(echo $ORIGIN | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
 REPO=$(basename $ORIGIN | sed -e "s/\.git$//")
 
+echo "local:      $LOCAL_HASH"
 echo "production: $PRODUCTION_HASH"
-echo "staging: $STAGING_HASH"
+echo "staging:    $STAGING_HASH"
 echo
 echo "https://github.com/$USER/$REPO/compare/$PRODUCTION_HASH...$STAGING_HASH"
 echo "https://github.com/$USER/$REPO/compare/$PRODUCTION_HASH...master"
