@@ -9,9 +9,6 @@ execute pathogen#infect()
 
 syntax on
 
-set background=light
-colorscheme pencil
-
 filetype plugin indent on
 
 set nocompatible
@@ -37,7 +34,6 @@ set splitbelow
 set splitright
 set clipboard=unnamed
 set autoread
-set number
 set showcmd
 au CursorHold * checktime
 
