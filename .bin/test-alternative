@@ -99,7 +99,7 @@ class JavascriptAlternator < Alternator
     prod_file = if rails_app_javascript?
                   prod_file.gsub('app/javascript/test/', 'app/javascript/')
                 else
-                  prod_file.gsub('test/', 'src/')
+                  prod_file.gsub('__test__/', 'src/')
                 end
 
     prod_file
@@ -112,7 +112,7 @@ class JavascriptAlternator < Alternator
       test_file.gsub('app/javascript', 'app/javascript/test')
     else
       "test/#{test_file}"
-      test_file.gsub('src/', 'test/')
+      test_file.gsub('src/', '__test__/')
     end
   end
 end
