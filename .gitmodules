@@ -64,3 +64,6 @@
 [submodule ".vim/bundle/vim-rsi"]
 	path = .vim/bundle/vim-rsi
 	url = git@github.com:tpope/vim-rsi.git
+[submodule ".vim/bundle/typescript-vim"]
+	path = .vim/bundle/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
