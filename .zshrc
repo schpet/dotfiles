@@ -56,6 +56,9 @@ export PATH="/usr/local/bin:$PATH"
 # npm packages
 export PATH="/usr/local/Cellar/node/9.4.0/bin:$PATH"
 
+# vs code
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
 # corey's gist has info on chruby https://gist.github.com/csuhta/80ea33d74fc9b90ece13
 # Activate chruby and the .ruby-version auto-switcher
 source /usr/local/opt/chruby/share/chruby/chruby.sh
@@ -74,3 +77,16 @@ chruby ruby-2.4.2
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# https://superuser.com/q/313650
+# Set Apple Terminal.app resume directory
+if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
+  function chpwd {
+    local SEARCH=' '
+    local REPLACE='%20'
+    local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
+    printf '\e]7;%s\a' "$PWD_URL"
+  }
+
+  chpwd
+}
