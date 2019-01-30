@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'active_support/inflector/transliterate'
+
+include ActiveSupport::Inflector
+puts parameterize(ARGF.read)
