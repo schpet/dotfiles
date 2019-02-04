@@ -28,7 +28,7 @@ def main
       puts title
       puts "-" * title.size
       puts
-      puts log.split("\n").map { |s| remove_github_pr(s) }.join(", \n")
+      puts log.split("\n").map { |s| remove_github_pr(s) }.reverse.join(", \n")
     end
     puts
   end
