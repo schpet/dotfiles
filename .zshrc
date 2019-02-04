@@ -90,3 +90,6 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 
   chpwd
 }
+
+export AWS_PROFILE=personal
+export AWS_REGION=us-west-1
