@@ -2,13 +2,8 @@
 
 *.untracked
 *.untracked.*
-untracked
 
-.ruby-version
-.env
-.env.*
 .DS_Store
-.pt
 
 .ignore
 
