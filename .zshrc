@@ -92,4 +92,4 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 }
 
 export AWS_PROFILE=personal
-export AWS_REGION=us-west-1
+export AWS_REGION=us-west-2
