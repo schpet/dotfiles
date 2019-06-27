@@ -93,3 +93,7 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 
 export AWS_PROFILE=personal
 export AWS_REGION=us-west-2
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/schpet/.sdkman"
+[[ -s "/Users/schpet/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/schpet/.sdkman/bin/sdkman-init.sh"
