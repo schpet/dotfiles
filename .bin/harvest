@@ -5,7 +5,7 @@ require 'active_support/core_ext/date'
 
 def main
   date_start = Date.today
-  date_end = Date.today - 6
+  date_end = Date.today - 10
 
   (date_end..date_start).each do |date|
     time_start = date.beginning_of_day
@@ -14,7 +14,7 @@ def main
 
     me = %x(git config user.email).strip
 
-    cmd = "git log --author=\"#{me}\" --format=\"%s\" " \
+    cmd = "git log --author=\"peter@\" --format=\"%s\" " \
           "--after '#{time_start}' " \
           "--before '#{time_end}'"
 
@@ -23,11 +23,11 @@ def main
     title =  "#{date.strftime("%A, %b %d")}" + (Date.today == date ? " (today)" : "")
 
     if log.empty?
-      puts "#{title} (none)"
+      puts title
+      puts "-" * title.size
     else
       puts title
       puts "-" * title.size
-      puts
       puts log.split("\n").map { |s| remove_github_pr(s) }.reverse.join(", \n")
     end
     puts
