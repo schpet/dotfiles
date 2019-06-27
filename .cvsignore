@@ -9,3 +9,6 @@
 
 # https://github.com/facebook/watchman/issues/415
 .watchmanconfig
+.pt
+.env.development
+.vscode
