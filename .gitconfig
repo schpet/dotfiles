@@ -13,7 +13,7 @@
 	ca = commit --all --verbose
 	co = checkout
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
-	ft = "!f() { git checkout -b $(echo $@ | branch-name); }; f"
+	ft = "!f() { git checkout -b $(echo $@ | slugger); }; f"
 
 	da = diff HEAD
 	dc = diff --cached
