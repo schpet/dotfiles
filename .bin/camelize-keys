@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+require 'json'
+require 'active_support'
+require 'active_support/all'
+
+def camelize(val)
+  raise "expected hash, got #{val.inspect}" unless val.is_a? Hash
+  val.deep_dup.deep_transform_keys! { |key| key.camelize(:lower) }
+end
+
+data = JSON.parse(STDIN.read)
+camel_data = case data
+             when Array
+               data.map { |d| camelize(d) }
+             when Hash
+               camelize(data)
+             else
+               data
+             end
+
+puts JSON.pretty_generate(camel_data)

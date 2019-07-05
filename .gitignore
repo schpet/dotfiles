@@ -1,1 +1,9 @@
 *
+!/.bin/
+!/.bin/*
+!/.vim
+!/.vim/*
+
+.vim/.netrwhist
+
+.DS_Store

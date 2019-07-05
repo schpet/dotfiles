@@ -1,0 +1,2 @@
+#!/bin/sh
+cat $HISTFILE | gcut -d' ' -f1 | sort | uniq -c | sort -n -r | head -n 15
