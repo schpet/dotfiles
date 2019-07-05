@@ -6,6 +6,7 @@ compinit
 alias v=vim
 alias vi=vim
 alias g=git
+alias h=heroku
 
 # prompt
 git_prompt_info() {
