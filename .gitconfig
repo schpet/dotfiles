@@ -1,72 +1,77 @@
 [user]
-	email = peter@peterschilling.org
+  email = peter@peterschilling.org
   name = Peter Schilling
 [color]
-	ui = auto
+  ui = auto
 [alias]
-	a = add
-	aa = add --all
-	amend = commit --amend --verbose
-	b = branch
-	br = for-each-ref --count 20 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
-	c = commit --verbose
-	ca = commit --all --verbose
-	co = checkout
-	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
-	ft = "!f() { git checkout -b $(echo $@ | slugger); }; f"
+  a = add
+  aa = add --all
+  amend = commit --amend --verbose
+  b = branch
+  br = for-each-ref --count 20 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
+  c = commit --verbose
+  ca = commit --all --verbose
+  co = checkout
+  current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
+  ft = "!f() { git checkout -b $(echo $@ | slugger); }; f"
 
-	da = diff HEAD
-	dc = diff --cached
-	di = diff
+  da = diff HEAD
+  dc = diff --cached
+  di = diff
 
-	ls = !git status --porcelain | sed s/^...//
-	lsv = !$EDITOR $(git ls | selecta)
-	s = status
-	unstage = reset HEAD
-	us = reset HEAD
-	fa = fetch --all
-	l = log
+  ls = !git status --porcelain | sed s/^...//
+  lsv = !$EDITOR $(git ls | selecta)
+  s = status
+  unstage = reset HEAD
+  us = reset HEAD
+  fa = fetch --all
+  l = log
 
-	ff = merge --ff-only
-	noff = merge --no-ff
+  ff = merge --ff-only
+  noff = merge --no-ff
 
-	track = "!git commit --allow-empty -m \"Tagging tracker story [#${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
-	deliver = "!git commit --allow-empty -m \"Deliver tracker story [delivers #${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
-	finish = "!git commit --allow-empty -m \"Finish tracker story [finishes #${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
+  track = "!git commit --allow-empty -m \"Tagging tracker story [#${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
+  deliver = "!git commit --allow-empty -m \"Deliver tracker story [delivers #${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
+  finish = "!git commit --allow-empty -m \"Finish tracker story [finishes #${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
 
-	today = !git log --format=summary \
-		--after $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)
+  today = !git log --format=summary \
+    --after $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)
 
-	yesterday = !git log --format=summary \
-		--after $(date -v -1d -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z) \
-		--before $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)
+  yesterday = !git log --format=summary \
+    --after $(date -v -1d -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z) \
+    --before $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)
 
-	ctags = "!.git/hooks/ctags"
+  ctags = "!.git/hooks/ctags"
+
+  main = !git checkout $(default-branch) && git pull --rebase
+
+  pr = !hub pull-request -b $(default-branch)
+  pro = !hub pr show
 [push]
-	default = current
+  default = current
 [diff]
-	algorithm = patience
-	noprefix = true
+  algorithm = patience
+  noprefix = true
 [grep]
-	extendRegexp = true
-	lineNumber = true
+  extendRegexp = true
+  lineNumber = true
 [web]
-	browser = open
+  browser = open
 [merge]
-	tool = vimdiff
-	summary = true
+  tool = vimdiff
+  summary = true
 [core]
-	excludesfile = ~/.cvsignore
-	pager = less -S
-	editor = vim
+  excludesfile = ~/.cvsignore
+  pager = less -S
+  editor = vim
 [pretty]
-	summary = - %C(yellow)%an%Creset %s
+  summary = - %C(yellow)%an%Creset %s
 [init]
-	templatedir = ~/.git_template
+  templatedir = ~/.git_template
 [diff "exif"]
-	textconv = exiftool
+  textconv = exiftool
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
