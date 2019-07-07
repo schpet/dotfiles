@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+branch_names=("primary" "master")
+for branch_name in "${branch_names[@]}"; do
+  if [[ -n `git branch --list $branch_name` ]]; then
+     echo "$branch_name"
+     exit
+  fi
+done
+
+echo "default branch not found"
+exit 1
