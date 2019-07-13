@@ -13,16 +13,14 @@
   ca = commit --all --verbose
   co = checkout
   current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
-  ft = "!f() { git checkout -b $(echo $@ | slugger); }; f"
+  ft = !sh -c 'git checkout -b $(echo $@ | slugger)'
 
   da = diff HEAD
   dc = diff --cached
   di = diff
 
   ls = !git status --porcelain | sed s/^...//
-  lsv = !$EDITOR $(git ls | selecta)
   s = status
-  unstage = reset HEAD
   us = reset HEAD
   fa = fetch --all
   l = log
