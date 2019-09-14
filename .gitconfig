@@ -11,9 +11,10 @@
   br = for-each-ref --count 20 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
   c = commit --verbose
   ca = commit --all --verbose
-  co = checkout
+  co = ! echo "🚨 use restore or switch instead, or cof if you must"
+  cof = checkout
   current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
-  ft = !sh -c 'git checkout -b $(echo $@ | slugger)'
+  ft = "!f() { git switch -c $(echo $@ | slugger); }; f"
 
   da = diff HEAD
   dc = diff --cached
@@ -21,6 +22,7 @@
 
   ls = !git status --porcelain | sed s/^...//
   s = status
+  sv = status -v -v
   us = reset HEAD
   fa = fetch --all
   l = log
@@ -41,10 +43,11 @@
 
   ctags = "!.git/hooks/ctags"
 
-  main = !git checkout $(default-branch) && git pull --rebase
+  main = !git switch $(default-branch) && git pull --rebase
 
   pr = !hub pull-request -b $(default-branch)
   pro = !hub pr show
+  issues = !hub browse -- issues
 [push]
   default = current
 [diff]
@@ -62,6 +65,7 @@
   excludesfile = ~/.cvsignore
   pager = less -S
   editor = vim
+  # editor = code --wait
 [pretty]
   summary = - %C(yellow)%an%Creset %s
 [init]
