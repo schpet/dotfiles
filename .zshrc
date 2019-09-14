@@ -7,23 +7,26 @@ alias v=vim
 alias vi=vim
 alias g=git
 alias h=heroku
+alias t=tanooki
 
 # prompt
-git_prompt_info() {
-  current_branch=$(git current-branch 2> /dev/null)
-  if [[ -n $current_branch ]]; then
-    echo " %{$fg[yellow]%}$current_branch%{$reset_color%}"
-  fi
-}
-setopt promptsubst
-PS1='%{$fg[blue]%}%c%{$reset_color%}$(git_prompt_info) $ '
+# git_prompt_info() {
+#   current_branch=$(git current-branch 2> /dev/null)
+#   if [[ -n $current_branch ]]; then
+#     echo " %{$fg[yellow]%}$current_branch%{$reset_color%}"
+#   fi
+# }
+# setopt promptsubst
+# PS1='%{$fg[blue]%}%c%{$reset_color%}$(git_prompt_info) $ '
+
+eval "$(starship init zsh)"
 
 # makes color constants available
 autoload -U colors
 colors
 
 alias ls='gls --human-readable --color'
-alias ll='gls --human-readable --color -l'
+alias ll='gls --human-readable --color -la'
 
 alias find='gfind'
 alias wc='gwc'
@@ -60,6 +63,9 @@ export PATH="/usr/local/Cellar/node/9.4.0/bin:$PATH"
 # vs code
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
+# go
+export PATH=$PATH:$(go env GOPATH)/bin
+
 # corey's gist has info on chruby https://gist.github.com/csuhta/80ea33d74fc9b90ece13
 # Activate chruby and the .ruby-version auto-switcher
 source /usr/local/opt/chruby/share/chruby/chruby.sh
@@ -93,7 +99,7 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 }
 
 export AWS_PROFILE=personal
-export AWS_REGION=us-west-2
+# export AWS_REGION=us-west-2
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/schpet/.sdkman"
