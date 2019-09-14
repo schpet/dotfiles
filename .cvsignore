@@ -12,3 +12,4 @@
 .pt
 .env.development
 .vscode
+.agignore
