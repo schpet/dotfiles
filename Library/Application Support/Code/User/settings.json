@@ -1,4 +1,3 @@
-// Place your settings in this file to overwrite the default settings
 {
   "editor.tabSize": 2,
   "typescript.updateImportsOnFileMove.enabled": "always",
@@ -32,11 +31,23 @@
     },
     {
       "before": ["<leader>", "t"],
-      "commands": ["extension.runFileSpecs"],
+      "commands": ["extension.runFileSpecs"]
     },
     {
       "before": ["<leader>", "."],
       "commands": ["alternate.alternateFile"]
+    },
+    {
+      "before": ["<leader>", "c", "r", "s"],
+      "commands": ["extension.changeCase.snake"]
+    },
+    {
+      "before": ["<leader>", "c", "r", "c"],
+      "commands": ["extension.changeCase.camel"]
+    },
+    {
+      "before": ["<leader>", "c", "r", "p"],
+      "commands": ["extension.changeCase.pascal"]
     }
   ],
   "javascript.updateImportsOnFileMove.enabled": "always",
@@ -48,12 +59,7 @@
   "typescript.autoClosingTags": false,
   "window.zoomLevel": 0,
   "editor.acceptSuggestionOnCommitCharacter": false,
-  "emmet.excludeLanguages": [
-    "js",
-    "jsx",
-    "ts",
-    "tsx"
-  ],
+  "emmet.excludeLanguages": ["js", "jsx", "ts", "tsx"],
   "workbench.startupEditor": "newUntitledFile",
   "[ruby]": {
     "editor.formatOnSave": false
@@ -86,7 +92,7 @@
   "ruby.intellisense": "rubyLocate",
   "ruby.lint": {
     "rubocop": {
-      "command": "bin/rubocop",
+      "command": "bin/rubocop"
     }
   },
   "ruby.specCommand": "rrspec",
@@ -100,5 +106,4 @@
   },
   "files.insertFinalNewline": true,
   "terminal.integrated.fontFamily": "Fira Code"
-
 }
