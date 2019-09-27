@@ -26,6 +26,7 @@
   us = reset HEAD
   fa = fetch --all
   l = log
+  r = restore -s HEAD
 
   ff = merge --ff-only
   noff = merge --no-ff
@@ -68,8 +69,6 @@
   # editor = code --wait
 [pretty]
   summary = - %C(yellow)%an%Creset %s
-[init]
-  templatedir = ~/.git_template
 [diff "exif"]
   textconv = exiftool
 [filter "lfs"]
