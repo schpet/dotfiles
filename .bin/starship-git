@@ -1,0 +1,13 @@
+#!/bin/sh
+cat << EOF
+= — conflicting changes
+⇡ — ahead of remote branch
+⇣ — behind of remote branch
+⇕ — diverged changes
+? — untracked changes
+$ — stashed changes
+! — modified files
++ — added files
+» — renamed files
+✘ — deleted files
+EOF
