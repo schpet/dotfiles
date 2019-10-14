@@ -1,0 +1,12 @@
+#!/bin/sh
+# https://gist.github.com/sebmck/bbf4fa4ab7b4814b1a1e56a4f5f85e80
+OUT=$(yarn tsc --noEmit)
+MATCH_LINES=$(echo "$OUT" | grep -E ".(tsx|ts|js|jsx)\(")
+ERRORED_FILES=$(echo "$MATCH_LINES" | cut -f1 -d"(" | uniq)
+if [ "$ERRORED_FILES" = "" ]; then
+  echo "No errors"
+else
+  echo "$ERRORED_FILES"
+  code $ERRORED_FILES
+  tsc --noEmit
+fi
