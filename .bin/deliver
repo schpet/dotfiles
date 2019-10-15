@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -e
+
+# assume something like
+#
+#   https://www.pivotaltracker.com/story/show/123
+#   https://www.pivotaltracker.com/story/show/456
+#
+# is piped in, output
+#
+#   https://www.pivotaltracker.com/story/show/123 [delivers #123]
+#   https://www.pivotaltracker.com/story/show/456 [delivers #456]
+
+
+gsed -E "s/pivotaltracker.com\/(.*)\/([0-9]+)/pivotaltracker.com\/\1\/\2 [delivers #\2]/g"
