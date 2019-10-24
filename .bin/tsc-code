@@ -8,5 +8,5 @@ if [ "$ERRORED_FILES" = "" ]; then
 else
   echo "$ERRORED_FILES"
   code $ERRORED_FILES
-  tsc --noEmit
+  yarn tsc --noEmit
 fi
