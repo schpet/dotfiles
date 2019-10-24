@@ -89,8 +89,8 @@
   "eslint.validate": [
     "javascript",
     "javascriptreact",
-    "typescript",
-    "typescriptreact"
+    { "language": "typescript", "autoFix": true },
+    { "language": "typescriptreact", "autoFix": true }
   ],
   "ruby.format": "rufo",
   "ruby.intellisense": "rubyLocate",
