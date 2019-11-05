@@ -80,7 +80,7 @@ function chruby-install {
   gem install --no-ri --no-rdoc rails rake bundler foreman
 }
 
-chruby ruby-2.6.3
+chruby ruby-2.6.5
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -98,7 +98,7 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
   chpwd
 }
 
-export AWS_PROFILE=personal
+# export AWS_PROFILE=personal
 # export AWS_REGION=us-west-2
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
