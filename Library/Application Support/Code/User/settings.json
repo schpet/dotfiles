@@ -112,5 +112,6 @@
   "terminal.integrated.fontFamily": "Fira Code",
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "explorer.confirmDragAndDrop": false
 }
