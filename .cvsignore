@@ -13,3 +13,4 @@
 .env.development
 .vscode
 .agignore
+.projections.json
