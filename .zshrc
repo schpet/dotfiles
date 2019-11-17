@@ -8,6 +8,7 @@ alias vi=vim
 alias g=git
 alias h=heroku
 alias t=tanooki
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 # prompt
 # git_prompt_info() {
