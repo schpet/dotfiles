@@ -1,117 +1,142 @@
 {
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[ruby]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "rebornix.ruby"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "breadcrumbs.enabled": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingQuotes": "never",
+  "editor.minimap.enabled": false,
+  "editor.rulers": [80],
   "editor.tabSize": 2,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "workbench.editor.enablePreviewFromQuickOpen": false,
-  "vim.insertModeKeyBindingsNonRecursive": [],
-  "vim.leader": "<space>",
-  "vim.handleKeys": {},
-  "vim.useSystemClipboard": true,
-  "vim.visualModeKeyBindingsNonRecursive": [
+  "editor.wordBasedSuggestions": false,
+  "emmet.excludeLanguages": ["js", "jsx", "ts", "tsx"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
     {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
+      "autoFix": true,
+      "language": "typescript"
     },
     {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
+      "autoFix": true,
+      "language": "typescriptreact"
     }
   ],
+  "explorer.confirmDragAndDrop": false,
+  "files.associations": {
+    "*.tmp": "markdown"
+  },
+  "files.insertFinalNewline": true,
+  "html.autoClosingTags": false,
+  "javascript.autoClosingTags": false,
+  "javascript.suggest.completeJSDocs": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "jestrunner.jestCommand": "yarn test",
+  "ruby.format": "standard",
+  "ruby.intellisense": "rubyLocate",
+  "ruby.lint": {
+    "standard": true
+  },
+  "ruby.specCommand": "rrspec",
+  "ruby.specFocusTerminal": false,
+  "terminal.integrated.fontFamily": "Fira Code",
+  "typescript.autoClosingTags": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "vim.handleKeys": {},
+  "vim.insertModeKeyBindingsNonRecursive": [],
+  "vim.leader": "<space>",
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["Y"],
       "after": ["y", "$"]
     },
     {
-      "before": ["<leader>", "p"],
-      "commands": ["editor.action.formatDocument"]
-    },
-    {
-      "before": ["<leader>", "s"],
-      "commands": ["extension.runSpecLine"]
-    },
-    {
-      "before": ["<leader>", "t"],
-      "commands": ["extension.runFileSpecs"]
-    },
-    {
-      "before": ["<leader>", "j"],
-      "commands": ["extension.runJestFile"]
-    },
-    {
       "before": ["<leader>", "."],
       "commands": ["alternate.alternateFile"]
+    },
+    {
+      "before": ["<leader>", "c","r",  "c"],
+      "commands": ["extension.changeCase.camel"]
+    },
+    {
+      "before": ["<leader>", "c","r",  "p"],
+      "commands": ["extension.changeCase.pascal"]
     },
     {
       "before": ["<leader>", "c", "r", "s"],
       "commands": ["extension.changeCase.snake"]
     },
     {
-      "before": ["<leader>", "c", "r", "c"],
-      "commands": ["extension.changeCase.camel"]
+      "before": ["<leader>", "p"],
+      "commands": ["editor.action.formatDocument"]
     },
     {
-      "before": ["<leader>", "c", "r", "p"],
-      "commands": ["extension.changeCase.pascal"]
+      "before": ["<leader>", "r"],
+      "commands": ["tromp.runPreviousCommand"]
+    },
+    {
+      "before": ["<leader>", "s"],
+      "commands": ["tromp.runCommandWithLine"]
+    },
+    {
+      "before": ["<leader>", "t"],
+      "commands": ["tromp.runCommandWithFile"]
+    },
+    {
+      "before": ["<leader>", "a"],
+      "commands": ["tromp.runCommand"]
     }
   ],
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "editor.minimap.enabled": false,
-  "editor.autoClosingBrackets": "never",
-  "editor.autoClosingQuotes": "never",
-  "html.autoClosingTags": false,
-  "javascript.autoClosingTags": false,
-  "typescript.autoClosingTags": false,
-  "window.zoomLevel": 0,
-  "editor.acceptSuggestionOnCommitCharacter": false,
-  "emmet.excludeLanguages": ["js", "jsx", "ts", "tsx"],
-  "workbench.startupEditor": "newUntitledFile",
-  "[ruby]": {
-    "editor.formatOnSave": false
-  },
-  "workbench.colorTheme": "GitHub Plus",
-  "breadcrumbs.enabled": false,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "workbench.editor.enablePreview": false,
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    { "language": "typescript", "autoFix": true },
-    { "language": "typescriptreact", "autoFix": true }
-  ],
-  "ruby.format": "rufo",
-  "ruby.intellisense": "rubyLocate",
-  "ruby.lint": {
-    "rubocop": {
-      "command": "bin/rubocop"
+  "vim.useSystemClipboard": true,
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    },
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
     }
-  },
-  "ruby.specCommand": "rrspec",
-  "ruby.specFocusTerminal": false,
+  ],
   "window.title": "${activeEditorMedium}${separator}${rootName}",
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  "window.zoomLevel": 0,
   "workbench.colorCustomizations": {
-    "focusBorder": "#ff9100"
+    "focusBorder": "#ff9100",
+    "statusBar.background": "#444444"
   },
-  "files.insertFinalNewline": true,
-  "terminal.integrated.fontFamily": "Fira Code",
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "explorer.confirmDragAndDrop": false
+  "workbench.colorTheme": "Visual Studio Dark",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "prettier.semi": false,
+  "prettier.trailingComma": "es5",
+  "prettier.quoteProps": "consistent",
+  "editor.accessibilitySupport": "off",
+  "ruby.useLanguageServer": true,
+  "prettier.proseWrap": "always",
+  "editor.fontSize": 13,
+  "files.defaultLanguage": "javascriptreact"
 }
