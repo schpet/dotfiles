@@ -99,7 +99,7 @@
     },
     {
       "before": ["<leader>", "s"],
-      "commands": ["tromp.runCommandWithLine"]
+      "commands": ["tromp.runCommandWithNearest"]
     },
     {
       "before": ["<leader>", "t"],
@@ -137,6 +137,5 @@
   "editor.accessibilitySupport": "off",
   "ruby.useLanguageServer": true,
   "prettier.proseWrap": "always",
-  "editor.fontSize": 13,
-  "files.defaultLanguage": "javascriptreact"
+  "editor.fontSize": 13
 }
