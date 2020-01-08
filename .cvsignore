@@ -11,8 +11,9 @@
 .watchmanconfig
 .pt
 .env.development
-.vscode
 .agignore
 .projections.json
 tanooki.toml
 tromp.json
+todo.txt
+.vscode
