@@ -50,6 +50,8 @@ Commands are one of
 		fmt.Println("opening ", url)
 	case "url":
 		fmt.Println(url)
+	case "id":
+		fmt.Println(match)
 	default:
 		fmt.Println("unknown action")
 	}
