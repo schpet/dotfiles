@@ -47,6 +47,7 @@
   main = !git switch $(default-branch) && git pull --rebase
 
   pr = !hub pull-request -b $(default-branch)
+  prt = !hub pull-request -b $(default-branch) -m "$(tracker-title $(tracker id))\n\n$(tracker url)" -e
   pro = !hub pr show
   issues = !hub browse -- issues
 [push]
