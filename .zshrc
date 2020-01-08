@@ -10,16 +10,6 @@ alias h=heroku
 alias t=tanooki
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
-# prompt
-# git_prompt_info() {
-#   current_branch=$(git current-branch 2> /dev/null)
-#   if [[ -n $current_branch ]]; then
-#     echo " %{$fg[yellow]%}$current_branch%{$reset_color%}"
-#   fi
-# }
-# setopt promptsubst
-# PS1='%{$fg[blue]%}%c%{$reset_color%}$(git_prompt_info) $ '
-
 eval "$(starship init zsh)"
 
 # makes color constants available
@@ -57,9 +47,6 @@ export PATH="$HOME/.bin:$PATH"
 
 # brew
 export PATH="/usr/local/bin:$PATH"
-
-# npm packages
-export PATH="/usr/local/Cellar/node/9.4.0/bin:$PATH"
 
 # vs code
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
@@ -102,6 +89,4 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 # export AWS_PROFILE=personal
 # export AWS_REGION=us-west-2
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/schpet/.sdkman"
-[[ -s "/Users/schpet/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/schpet/.sdkman/bin/sdkman-init.sh"
+eval "$(direnv hook zsh)"

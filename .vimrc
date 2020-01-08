@@ -153,7 +153,7 @@ let g:syntastic_always_populate_loc_list = 1
 
 
 " :SyntasticCheck
-nnoremap <Leader>l :SyntasticToggleMode<CR>:SyntasticCheck<CR>
+" nnoremap <Leader>l :SyntasticToggleMode<CR>:SyntasticCheck<CR>
 
 " jsx plugin
 let g:jsx_ext_required = 0
