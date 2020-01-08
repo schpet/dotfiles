@@ -14,6 +14,10 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "files.trimTrailingWhitespace": true,
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
+  },
   "[ruby]": {
     "editor.formatOnSave": false,
     "editor.defaultFormatter": "rebornix.ruby"
@@ -108,6 +112,10 @@
     {
       "before": ["<leader>", "a"],
       "commands": ["tromp.runCommand"]
+    },
+    {
+      "before": ["<leader>", "o"],
+      "commands": ["tromp.openBookmark"]
     }
   ],
   "vim.useSystemClipboard": true,
@@ -137,5 +145,7 @@
   "editor.accessibilitySupport": "off",
   "ruby.useLanguageServer": true,
   "prettier.proseWrap": "always",
-  "editor.fontSize": 13
+  "editor.fontSize": 13,
+  "openInGitHub.repositoryType": "github",
+  "editor.trimAutoWhitespace": false
 }
