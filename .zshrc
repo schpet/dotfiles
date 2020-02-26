@@ -88,5 +88,9 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 
 # export AWS_PROFILE=personal
 # export AWS_REGION=us-west-2
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
-eval "$(direnv hook zsh)"
+  autoload -Uz compinit
+  compinit
+fi
