@@ -94,3 +94,6 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 fi
+
+GPG_TTY=$(tty)
+export GPG_TTY
