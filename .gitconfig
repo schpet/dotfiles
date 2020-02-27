@@ -10,6 +10,7 @@
   amend = commit --amend --verbose
   b = branch
   br = for-each-ref --count 20 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
+  bra = for-each-ref --count 20 --sort=-committerdate refs/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
   c = commit --verbose
   ca = commit --all --verbose
   co = ! echo "🚨 use restore or switch instead, or cof if you must"
@@ -66,7 +67,7 @@
   summary = true
 [core]
   excludesfile = ~/.cvsignore
-  pager = less -S
+	pager = less -r
   editor = vim
   # editor = code --wait
 [pretty]
