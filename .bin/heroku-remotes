@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "heroku git:remote -a $1-staging --remote staging"
+echo "heroku git:remote -a $1-production --remote production"
+echo "git config heroku.remote staging"
+
