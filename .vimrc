@@ -159,6 +159,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:jsx_ext_required = 0
 
 " fuzzy searching
+set rtp+=/usr/local/opt/fzf
 nnoremap <leader>f :FZF<cr>
 
 function! OpenTestAlternate()
