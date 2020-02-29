@@ -24,6 +24,7 @@ alias wc='gwc'
 alias sed='gsed'
 
 alias b='bundle exec'
+
 export TIME_STYLE=long-iso
 export GREP_OPTIONS="--color"
 
@@ -68,6 +69,11 @@ function chruby-install {
   gem install --no-ri --no-rdoc rails rake bundler foreman
 }
 
+function co {
+  cd ~/code/$(find ~/code -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | fzf)
+}
+
+
 chruby ruby-2.6.5
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
@@ -102,3 +108,4 @@ export GPG_TTY
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
