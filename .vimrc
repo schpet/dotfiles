@@ -79,6 +79,7 @@ autocmd BufNewFile,BufRead *.md setlocal textwidth=80 syn=off
 autocmd BufNewFile,BufRead *.inky set syntax=haml
 
 autocmd FileType gitcommit set tw=72
+autocmd BufNewFile,BufRead .gitconfig setlocal noexpandtab
 
 " make ctrl-p overwrite the default register with the last *yanked* text, and
 " paste it.
