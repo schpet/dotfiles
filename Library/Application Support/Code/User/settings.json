@@ -147,5 +147,6 @@
   "prettier.proseWrap": "always",
   "editor.fontSize": 13,
   "openInGitHub.repositoryType": "github",
-  "editor.trimAutoWhitespace": false
+  "editor.trimAutoWhitespace": false,
+  "explorer.confirmDelete": false
 }
