@@ -6,8 +6,8 @@
 # https://devcenter.heroku.com/articles/dyno-metadata
 
 LOCAL_HASH=$(git rev-parse HEAD)
-PRODUCTION_HASH=$(production config | grep HEROKU_SLUG_COMMIT | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
-STAGING_HASH=$(staging config | grep HEROKU_SLUG_COMMIT | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
+PRODUCTION_HASH=$(heroku config -r production | grep HEROKU_SLUG_COMMIT | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
+STAGING_HASH=$(heroku config -r staging | grep HEROKU_SLUG_COMMIT | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
 
 ORIGIN=$(git config --get remote.origin.url)
 
