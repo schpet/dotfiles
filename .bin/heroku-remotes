@@ -2,6 +2,12 @@
 
 set -e
 
+if [ -z "$1" ]
+then
+  echo "usage: heroku-remotes my-cool-app"
+  exit
+fi
+
 echo "heroku git:remote -a $1-staging --remote staging"
 echo "heroku git:remote -a $1-production --remote production"
 echo "git config heroku.remote staging"

@@ -7,7 +7,6 @@ alias v=vim
 alias vi=vim
 alias g=git
 alias h=heroku
-alias t=tanooki
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias tree='tree -I "node_modules|tmp|dist|build"'
 
@@ -70,10 +69,6 @@ function chruby-install {
   gem install --no-ri --no-rdoc rails rake bundler foreman
 }
 
-function co {
-  cd ~/code/$(find ~/code -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | fzf)
-}
-
 
 chruby ruby-2.6.5
 
@@ -95,6 +90,8 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 
 # export AWS_PROFILE=personal
 # export AWS_REGION=us-west-2
+
+# homebrew zsh tab auto-complete
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
@@ -102,12 +99,22 @@ if type brew &>/dev/null; then
   compinit
 fi
 
+# fix for gpg
 GPG_TTY=$(tty)
 export GPG_TTY
 
-
+# install node with n – https://github.com/tj/n
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
+# yarn global modules
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# androird tools, e.g. adb
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 
+# jump to project in ~/code
+function co {
+  cd ~/code/$(find ~/code -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | fzf)
+}
+
+eval "$(direnv hook zsh)"

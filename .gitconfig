@@ -17,6 +17,7 @@
 	cof = checkout
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
 	ft = "!f() { git switch -c $(echo $@ | slugger); }; f"
+	pru = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
 
 	da = diff HEAD
 	dc = diff --cached
