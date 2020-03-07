@@ -66,11 +66,11 @@ function chruby-install {
   source ~/.zshrc
   chruby $1
   gem update --system
-  gem install --no-ri --no-rdoc rails rake bundler foreman
+  gem install rails rake bundler foreman
 }
 
 
-chruby ruby-2.6.5
+chruby ruby-2.7.0
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -109,8 +109,9 @@ export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PR
 # yarn global modules
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# androird tools, e.g. adb
+# android tools, e.g. adb
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
 
 # jump to project in ~/code
 function co {

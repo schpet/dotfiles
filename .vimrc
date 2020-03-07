@@ -35,6 +35,7 @@ set splitright
 set clipboard=unnamed
 set autoread
 set showcmd
+set backspace=indent,eol,start
 au CursorHold * checktime
 
 " use emacs-style tab completion when selecting files, etc
