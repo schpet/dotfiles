@@ -1,11 +1,6 @@
 " mostly copied from
 " https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
 " https://github.com/tpope/tpope/blob/master/.vimrc
-"
-" see also:
-" .vim/after/plugin/tabular_patterns.vim
-"
-execute pathogen#infect()
 
 syntax on
 
