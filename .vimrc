@@ -116,50 +116,6 @@ nnoremap <leader>o :PromoteToLet<cr>
 " turn string into exported constant (redux)
 nnoremap <leader>h :s/\s*\"\(\w\+\)\".*/export const \1 = "\1"/<cr>
 
-" ~/.vimrc
-"
-" allows <leader>v to swap from this:
-"
-"     it "runs a test", :vcr do ...
-"
-" to this:
-"
-"     it "runs a test", vcr: { record: :all } do ...
-"
-function! RecordWithVcr()
-  normal! yy
-
-  if @" =~# '.*:vcr.*'
-    :.s/:vcr/vcr: { record: :all }/
-  endif
-
-  if @" =~# '.*vcr: { record: :all }.*'
-    :.s/vcr: { record: :all }/:vcr/
-  endif
-endfunction
-command! RecordWithVcr :call RecordWithVcr()
-nnoremap <leader>v :RecordWithVcr<cr>
-
-" todo: replace this with ale?
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-" let g:syntastic_check_on_wq = 0
-let g:syntastic_css_checkers = ['stylelint']
-" let g:syntastic_scss_checkers = ['scss_lint']
-let g:syntastic_scss_checkers = []
-let g:syntastic_html_checkers = []
-" let g:syntastic_javascript_checkers = ['standard']
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_always_populate_loc_list = 1
-
-
-" :SyntasticCheck
-" nnoremap <Leader>l :SyntasticToggleMode<CR>:SyntasticCheck<CR>
-
-" jsx plugin
-let g:jsx_ext_required = 0
-
 " fuzzy searching
 set rtp+=/usr/local/opt/fzf
 nnoremap <leader>f :FZF<cr>
@@ -170,15 +126,6 @@ function! OpenTestAlternate()
   exec ':e ' . new_file
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
-
-function! OpenStyleAlternate()
-  if (expand("%:e") == "js")
-    exec ':e ' . expand("%:r") . ".css"
-  else
-    exec ':e ' . expand("%:r") . ".js"
-  endif
-endfunction
-nnoremap <leader>, :call OpenStyleAlternate()<cr>
 
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
@@ -199,7 +146,6 @@ inoremap \fn <C-R>=expand("%:t:r")<CR>
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
-
 
 let g:prettier#config#semi = 'false'
 let g:prettier#config#trailing_comma = 'es5'
