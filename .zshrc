@@ -24,6 +24,7 @@ alias wc='gwc'
 alias sed='gsed'
 
 alias b='bundle exec'
+alias pi='(cd ios && pod install)'
 
 export TIME_STYLE=long-iso
 export GREP_OPTIONS="--color"
