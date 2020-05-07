@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+tracker-title $(tracker id)
+echo
+echo "$(tracker url) [delivers #$(tracker id)]"
