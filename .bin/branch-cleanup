@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -e
+
+BRANCH_LIST=$(git branch --format='%(refname:short)')
+CHECKBOX_CMD=""
+for b in $BRANCH_LIST; do
+  CHECKBOX_CMD+="$b off "
+done
+
+# open the checkbox list
+TO_BE_DELETED=()
+for b in $(dialog --separate-output --noitem \
+  --checklist "Select branches to be deleted:" \
+  30 70 23 $CHECKBOX_CMD 3>&1 1>&2 2>&3); do
+  TO_BE_DELETED+=($b)
+done
+
+echo
+if [ ${#TO_BE_DELETED[@]} -eq 0 ]; then
+    echo "No branches to delete"
+else
+    echo "to delete:"
+    CMD="git branch -D ${TO_BE_DELETED[*]}"
+    echo "$CMD"
+    eval "$CMD"
+fi
