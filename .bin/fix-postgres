@@ -1,5 +1,7 @@
 #!/bin/sh
 
-# rm /usr/local/var/postgres/postmaster.pid
-rm /usr/local/var/postgresql@10/postmaster.pid
+set -e
+
+# rm /usr/local/var/postgresql@10/postmaster.pid
+rm /usr/local/var/postgres/postmaster.pid
 brew services start postgresql
