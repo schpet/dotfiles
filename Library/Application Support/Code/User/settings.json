@@ -37,18 +37,7 @@
   "editor.tabSize": 2,
   "editor.wordBasedSuggestions": false,
   "emmet.excludeLanguages": ["js", "jsx", "ts", "tsx"],
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    {
-      "autoFix": true,
-      "language": "typescript"
-    },
-    {
-      "autoFix": true,
-      "language": "typescriptreact"
-    }
-  ],
+  "eslint.validate": ["javascript", "javascriptreact"],
   "explorer.confirmDragAndDrop": false,
   "files.associations": {
     "*.tmp": "markdown"
@@ -58,14 +47,11 @@
   "javascript.autoClosingTags": false,
   "javascript.suggest.completeJSDocs": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "jestrunner.jestCommand": "yarn test",
-  "ruby.format": "standard",
+  "ruby.format": "rubocop",
   "ruby.intellisense": "rubyLocate",
   "ruby.lint": {
-    "standard": true
+    "rubocop": true
   },
-  "ruby.specCommand": "rrspec",
-  "ruby.specFocusTerminal": false,
   "terminal.integrated.fontFamily": "Fira Code",
   "typescript.autoClosingTags": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
@@ -82,11 +68,11 @@
       "commands": ["alternate.alternateFile"]
     },
     {
-      "before": ["<leader>", "c","r",  "c"],
+      "before": ["<leader>", "c", "r", "c"],
       "commands": ["extension.changeCase.camel"]
     },
     {
-      "before": ["<leader>", "c","r",  "p"],
+      "before": ["<leader>", "c", "r", "p"],
       "commands": ["extension.changeCase.pascal"]
     },
     {
@@ -129,13 +115,15 @@
       "commands": ["editor.action.indentLines"]
     }
   ],
-  "window.title": "${activeEditorMedium}${separator}${rootName}",
+  "window.title": "${rootName}${separator}${activeEditorMedium}",
   "window.zoomLevel": 0,
   "workbench.colorCustomizations": {
     "focusBorder": "#ff9100",
-    "statusBar.background": "#444444"
+    "statusBar.background": "#555555",
+    "editor.lineHighlightBackground": "#111111",
+    "tab.activeBackground": "#523500",
+    "list.focusBackground": "#3F4045"
   },
-  "workbench.colorTheme": "Visual Studio Dark",
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.startupEditor": "newUntitledFile",
@@ -146,7 +134,6 @@
   "ruby.useLanguageServer": true,
   "prettier.proseWrap": "always",
   "editor.fontSize": 13,
-  "openInGitHub.repositoryType": "github",
   "editor.trimAutoWhitespace": false,
   "explorer.confirmDelete": false
 }
