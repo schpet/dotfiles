@@ -34,7 +34,12 @@ export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 
-export EDITOR=vi
+export EDITOR=vim
+
+# 2 width tab indentation
+tabs -2
+export LESS="--tabs=2 -R"
+export MORE="--tabs=2 -R"
 
 # makes ctrl-a, ctrl-e work as expected in tmux
 bindkey -e
