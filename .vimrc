@@ -9,7 +9,7 @@ filetype plugin indent on
 set nocompatible
 set hidden
 set history=10000
-set expandtab
+set noexpandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -76,6 +76,7 @@ autocmd BufNewFile,BufRead *.inky set syntax=haml
 
 autocmd FileType gitcommit set tw=72
 autocmd BufNewFile,BufRead .gitconfig setlocal noexpandtab
+autocmd FileType gitcommit  setl ts=2
 
 " make ctrl-p overwrite the default register with the last *yanked* text, and
 " paste it.
