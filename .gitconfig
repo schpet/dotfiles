@@ -7,12 +7,12 @@
 [alias]
 	a = add
 	aa = add --all
-	amend = commit --amend --verbose
+	amend = commit --amend
 	b = branch
 	br = for-each-ref --count 20 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
 	bra = ! git remote prune origin && git for-each-ref --count 20 --sort=-committerdate refs/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
-	c = commit --verbose
-	ca = commit --all --verbose
+	c = commit
+	ca = commit --all
 	co = ! echo "🚨 use restore or switch instead, or cof if you must"
 	cof = checkout
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
@@ -73,7 +73,6 @@
 	summary = true
 [core]
 	excludesfile = ~/.cvsignore
-	pager = less -r
 	editor = vim
 	ignorecase = false
 	# editor = code --wait
@@ -88,5 +87,8 @@
 	required = true
 [commit]
 	gpgsign = true
+	verbose = true
 [rerere]
 	enabled = true
+[pull]
+	ff = only
