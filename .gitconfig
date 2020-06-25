@@ -9,7 +9,7 @@
 	aa = add --all
 	amend = commit --amend
 	b = branch
-	br = for-each-ref --count 20 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
+	br = for-each-ref --count 20 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative)) %(objectname:short)'
 	bra = ! git remote prune origin && git for-each-ref --count 20 --sort=-committerdate refs/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
 	c = commit
 	ca = commit --all
