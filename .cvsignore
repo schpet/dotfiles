@@ -18,3 +18,5 @@ tromp.json
 todo.txt
 .vscode
 .envrc
+
+.rubocop.yml
