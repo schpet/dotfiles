@@ -25,6 +25,7 @@ alias sed='gsed'
 
 alias b='bundle exec'
 alias pi='(cd ios && pod install)'
+alias gs="echo 'did you mean g s?'"
 
 export TIME_STYLE=long-iso
 export GREP_OPTIONS="--color"
@@ -122,6 +123,10 @@ export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
 # jump to project in ~/code
 function co {
   cd ~/code/$(find ~/code -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | fzf)
+}
+
+function rails-psql {
+	psql $(cat config/database.yml | yq .development.database -r)
 }
 
 eval "$(direnv hook zsh)"
