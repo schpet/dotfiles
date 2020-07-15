@@ -78,6 +78,7 @@
 	# editor = code --wait
 [pretty]
 	summary = - %C(yellow)%an%Creset %s
+	info = - %ad %C(yellow)%an%Creset %d %s
 [diff "exif"]
 	textconv = exiftool
 [filter "lfs"]
@@ -92,3 +93,6 @@
 	enabled = true
 [pull]
 	ff = only
+[url "git@github.com:"]
+	insteadOf = http://github.com/
+	insteadOf = https://github.com/
