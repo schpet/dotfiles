@@ -67,9 +67,6 @@ cnoreabbrev Wq wq
 cnoreabbrev WQ wq
 cnoreabbrev E e
 
-" highlight 80th column
-let &colorcolumn="80,100"
-
 " weird file extensions
 autocmd BufNewFile,BufRead *.md setlocal textwidth=80 syn=off
 autocmd BufNewFile,BufRead *.inky set syntax=haml
