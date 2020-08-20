@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+require 'net/http'
+require 'uri'
+require 'json'
+
+ptenv = File.open(File.join(Dir.home, ".ptenv")).readlines[0]
+api_token = ptenv.scan(/TRACKER_API_TOKEN=(.*)/)[0][0]
+
+branch = `git branch --show-current`.strip
+tracker_ids = branch.scan(/\d+/).select { |num| num.size > 6 }
+
+if tracker_ids.empty?
+	puts "no ids in branch \"%s\"" % branch
+	exit 
+end
+
+message = tracker_ids.map { |tracker_id|
+	uri = URI("https://www.pivotaltracker.com/services/v5/stories/%s" % tracker_id)
+	http = Net::HTTP.new(uri.host, uri.port)
+	http.use_ssl = true
+
+	req = Net::HTTP::Get.new(uri)
+	req['X-TrackerToken'] = api_token
+	res = http.request(req)
+
+  if res.code != "200"
+    raise "Unexpected status #{res.code} for #{uri}"
+  end
+  
+	data = JSON.parse(res.body)
+
+	<<~MESSAGE
+		<details>
+			<summary>#{data.fetch("name").strip}</summary>
+			<pre>#{data.fetch("description", "No description")}</pre>
+		</details>
+
+		https://www.pivotaltracker.com/story/show/#{tracker_id} [delivers ##{tracker_id}]
+	MESSAGE
+}.join("\n\n")
+
+puts message

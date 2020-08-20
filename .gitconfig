@@ -55,7 +55,7 @@
 	main = !git switch $(default-branch) && git pull --rebase
 
 	pr = !gh pr create -B $(default-branch)
-	prt = "!gh pr create -B $(default-branch) --title \"$(tracker-title $(tracker id))\" --body \"$(tracker url) [delivers #$(tracker id)]\" --web"
+	prt = "!gh pr create -B $(default-branch) --title \"$(tracker-title $(tracker id))\" --body \"$(tracker-pr-body)\" --web"
 	pro = !hub pr show
 	issues = !hub browse -- issues
 [push]
@@ -93,6 +93,6 @@
 	enabled = true
 [pull]
 	ff = only
-[url "git@github.com:"]
-	insteadOf = http://github.com/
-	insteadOf = https://github.com/
+; [url "git@github.com:"]
+; 	insteadOf = http://github.com/
+; 	insteadOf = https://github.com/
