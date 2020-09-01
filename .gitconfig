@@ -27,6 +27,7 @@
 	da = diff HEAD
 	dc = diff --cached
 	di = diff
+	me = log --author="peter"
 
 	ls = !git status --porcelain | sed s/^...//
 	s = status
