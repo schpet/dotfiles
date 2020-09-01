@@ -33,7 +33,7 @@ message = tracker_ids.map { |tracker_id|
 	<<~MESSAGE
 		<details>
 			<summary>#{data.fetch("name").strip}</summary>
-			<pre>#{data.fetch("description", "No description")}</pre>
+			<pre>#{data.fetch("description", "No description")}#{"\n"}</pre>
 		</details>
 
 		https://www.pivotaltracker.com/story/show/#{tracker_id} [delivers ##{tracker_id}]
