@@ -2,6 +2,7 @@
 
 *.untracked
 *.untracked.*
+untracked
 
 .DS_Store
 
