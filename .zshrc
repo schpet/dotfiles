@@ -76,7 +76,6 @@ function chruby-install {
   gem install rails rake bundler foreman
 }
 
-
 chruby ruby-2.7.0
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
@@ -123,10 +122,6 @@ export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
 # jump to project in ~/code
 function co {
   cd ~/code/$(find ~/code -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | fzf)
-}
-
-function rails-psql {
-	psql $(cat config/database.yml | yq .development.database -r)
 }
 
 eval "$(direnv hook zsh)"
