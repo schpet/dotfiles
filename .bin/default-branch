@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-branch_names=("primary" "staging" "master")
+branch_names=("primary" "staging" "develop" "master")
 for branch_name in "${branch_names[@]}"; do
   if [[ -n `git branch --list $branch_name` ]]; then
      echo "$branch_name"
