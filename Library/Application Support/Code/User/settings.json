@@ -136,5 +136,6 @@
   "prettier.proseWrap": "always",
   "editor.fontSize": 13,
   "editor.trimAutoWhitespace": false,
-  "explorer.confirmDelete": false
+  "explorer.confirmDelete": false,
+  "extensions.ignoreRecommendations": true
 }
