@@ -137,5 +137,8 @@
   "editor.fontSize": 13,
   "editor.trimAutoWhitespace": false,
   "explorer.confirmDelete": false,
-  "extensions.ignoreRecommendations": true
+  "extensions.ignoreRecommendations": true,
+  "gitlens.codeLens.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line"
 }
