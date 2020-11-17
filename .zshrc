@@ -76,7 +76,7 @@ function chruby-install {
   gem install rails rake bundler foreman
 }
 
-chruby ruby-2.7.0
+chruby ruby-2.7.2
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
