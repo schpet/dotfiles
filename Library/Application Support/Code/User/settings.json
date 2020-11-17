@@ -48,10 +48,11 @@
   "javascript.autoClosingTags": false,
   "javascript.suggest.completeJSDocs": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "ruby.format": "rubocop",
+  "ruby.format": "standard",
   "ruby.intellisense": "rubyLocate",
   "ruby.lint": {
-    "rubocop": true
+    "standard": true,
+    "rubocop": false
   },
   "terminal.integrated.fontFamily": "Fira Code",
   "typescript.autoClosingTags": false,
@@ -140,5 +141,6 @@
   "extensions.ignoreRecommendations": true,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
-  "gitlens.hovers.currentLine.over": "line"
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.hovers.enabled": false
 }
