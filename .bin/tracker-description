@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+tracker-body | jq -r .description

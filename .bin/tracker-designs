@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+open $(tracker-body | jq -r .description |  grep -Eo "(http|https)://www.figma.com[a-zA-Z0-9./?=_%:-]*" | sort -u)
