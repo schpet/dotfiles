@@ -10,3 +10,6 @@
 .agignore
 
 tromp.json
+
+.env
+.env.local
