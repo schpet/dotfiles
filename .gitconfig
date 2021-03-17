@@ -19,6 +19,7 @@
 	ft = "!f() { git switch -c $(echo $@ | slugger); }; f"
 	pru = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
 	cleanup = !branch-cleanup
+	conflicts = diff --name-only --diff-filter=U
 
 	# use push -u the first time you push
 	# https://stackoverflow.com/a/19021888/692224
