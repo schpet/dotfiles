@@ -29,7 +29,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "breadcrumbs.enabled": false,
-  "editor.snippetSuggestions": "none",
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
@@ -118,7 +117,6 @@
     }
   ],
   "window.title": "${rootName}${separator}${activeEditorMedium}",
-  "window.zoomLevel": 0,
   "workbench.colorCustomizations": {
     "focusBorder": "#ff9100",
     "statusBar.background": "#555555",
@@ -142,5 +140,9 @@
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
-  "gitlens.hovers.enabled": false
+  "gitlens.hovers.enabled": false,
+  "workbench.colorTheme": "Visual Studio 2019 Dark",
+  "omnisharp.useGlobalMono": "always",
+  "diffEditor.codeLens": true,
+  "csharp.referencesCodeLens.enabled": false
 }
