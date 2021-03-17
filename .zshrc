@@ -98,12 +98,12 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 # export AWS_REGION=us-west-2
 
 # homebrew zsh tab auto-complete
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+# if type brew &>/dev/null; then
+#   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
-  autoload -Uz compinit
-  compinit
-fi
+#   autoload -Uz compinit
+#   compinit
+# fi
 
 # fix for gpg
 GPG_TTY=$(tty)
@@ -118,10 +118,14 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # android tools, e.g. adb
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
+export PATH=$(pyenv root)/shims:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 # jump to project in ~/code
 function co {
   cd ~/code/$(find ~/code -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | fzf)
 }
 
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
+
+source /Users/schpet/.config/broot/launcher/bash/br
