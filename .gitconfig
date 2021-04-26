@@ -13,7 +13,7 @@
 	bra = ! git remote prune origin && git for-each-ref --count 20 --sort=-committerdate refs/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
 	c = commit
 	ca = commit --all
-	cc = commit -m "various updates $(date '+%Y-%m-%d')"
+	cc = !git commit -m 'Various updates $(date "+%Y-%m-%d")'
 	co = ! echo "🚨 use restore or switch instead, or cof if you must"
 	cof = checkout
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
