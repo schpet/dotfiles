@@ -4,8 +4,6 @@
 *.untracked.*
 untracked
 
-.DS_Store
-
 .ignore
 
 # https://github.com/facebook/watchman/issues/415

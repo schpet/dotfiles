@@ -19,4 +19,4 @@ echo "production: $PRODUCTION_HASH"
 echo "staging:    $STAGING_HASH"
 echo
 echo "https://github.com/$USER/$REPO/compare/$PRODUCTION_HASH...$STAGING_HASH"
-echo "https://github.com/$USER/$REPO/compare/$PRODUCTION_HASH...master"
+echo "https://github.com/$USER/$REPO/compare/$PRODUCTION_HASH...$(default-branch)"
