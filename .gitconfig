@@ -14,17 +14,10 @@
 	c = commit
 	ca = commit --all
 	cc = !git commit -m \"Various updates `date '+%Y-%m-%d'`\"
-	co = ! echo "🚨 use restore or switch instead, or cof if you must"
-	cof = checkout
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
 	ft = "!f() { git switch -c $(echo $@ | slugger); }; f"
-	pru = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
 	cleanup = !branch-cleanup
 	conflicts = diff --name-only --diff-filter=U
-
-	# use push -u the first time you push
-	# https://stackoverflow.com/a/19021888/692224
-	pu = "![[ $(git config \"branch.$(git rev-parse --abbrev-ref HEAD).merge\") = '' ]] && git push -u || git push"
 
 	da = diff HEAD
 	dc = diff --cached
@@ -42,10 +35,6 @@
 	ff = merge --ff-only
 	noff = merge --no-ff
 
-	track = "!git commit --allow-empty -m \"Tagging tracker story [#${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
-	deliver = "!git commit --allow-empty -m \"Deliver tracker story [delivers #${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
-	finish = "!git commit --allow-empty -m \"Finish tracker story [finishes #${1#'#'}]\n\nhttps://www.pivotaltracker.com/story/show/${1#'#'}\" #"
-
 	today = !git log --format=summary \
 	  --after $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)
 
@@ -60,7 +49,6 @@
 	pr = !gh pr create -B $(default-branch)
 	prt = "!gh pr create -B $(default-branch) --title \"$(tracker-title $(tracker id))\" --body \"$(tracker-pr-body)\" --web"
 	pro = !hub pr show
-	issues = !hub browse -- issues
 [push]
 	default = current
 [diff]
@@ -101,8 +89,5 @@
 	enabled = true
 [pull]
 	ff = only
-; [url "git@github.com:"]
-; 	insteadOf = http://github.com/
-; 	insteadOf = https://github.com/
 [init]
 	defaultBranch = main
