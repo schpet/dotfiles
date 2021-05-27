@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# depends on https://github.com/thoughtbot/parity
-#
 # assumes dyno metadata hero is set up:
 # https://devcenter.heroku.com/articles/dyno-metadata
+#
+# and that heroku is setup to staging / production remotes (https://github.com/schpet/dotfiles/blob/dotfiles/.bin/heroku-remotes)
 
 LOCAL_HASH=$(git rev-parse HEAD)
-PRODUCTION_HASH=$(heroku config -r production | grep HEROKU_SLUG_COMMIT | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
-STAGING_HASH=$(heroku config -r staging | grep HEROKU_SLUG_COMMIT | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
+PRODUCTION_HASH=$(heroku config:get HEROKU_SLUG_COMMIT -r production | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
+STAGING_HASH=$(heroku config:get HEROKU_SLUG_COMMIT -r staging | sed -e "s/HEROKU_SLUG_COMMIT:[[:space:]]*//")
 
 ORIGIN=$(git config --get remote.origin.url)
 
