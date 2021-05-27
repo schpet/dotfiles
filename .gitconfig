@@ -44,11 +44,13 @@
 
 	ctags = "!.git/hooks/ctags"
 
-	main = !git switch $(default-branch) && git pull --rebase
+	main = !git fetch && git switch $(default-branch) && git merge --ff-only origin/$(git rev-parse --abbrev-ref HEAD)
 
 	pr = !gh pr create -B $(default-branch)
 	prt = "!gh pr create -B $(default-branch) --title \"$(tracker-title $(tracker id))\" --body \"$(tracker-pr-body)\" --web"
 	pro = !hub pr show
+
+	work = config user.email "peter@tanookilabs.com"
 [push]
 	default = current
 [diff]
