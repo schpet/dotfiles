@@ -45,15 +45,18 @@
 	  --after $(date -v -1d -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z) \
 	  --before $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)
 
-	ctags = "!.git/hooks/ctags"
-
-	main = !git fetch && git switch $(default-branch) && git merge --ff-only origin/$(git rev-parse --abbrev-ref HEAD)
 
 	pr = !gh pr create -B $(default-branch)
 	prt = "!gh pr create -B $(default-branch) --title \"$(tracker-title $(tracker id))\" --body \"$(tracker-pr-body)\" --web"
 	pro = !hub pr show
 
+	pull-please = !git pull --set-upstream origin $(git symbolic-ref --short HEAD)
+
 	work = config user.email "peter@tanookilabs.com"
+
+	default-branch = !git switch $(git rev-parse --abbrev-ref origin/HEAD | sed 's/^origin\\///')
+	sync-default-branch = remote set-head origin -a
+	main = !git fetch && git default-branch && git pull
 [push]
 	default = current
 [diff]
@@ -72,7 +75,6 @@
 	excludesfile = ~/.cvsignore
 	editor = vim
 	ignorecase = false
-	# editor = code --wait
 	pager = delta
 [interactive]
 	diffFilter = delta --color-only
