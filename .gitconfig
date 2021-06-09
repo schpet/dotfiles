@@ -18,7 +18,7 @@
 
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
 
-	ft = "!f() { git switch -c $(echo $@ | slugger); }; f"
+	ft = "!f() { git switch -c $(echo $@ | sluggy); }; f"
 	cleanup = !branch-cleanup
 	conflicts = diff --name-only --diff-filter=U
 
