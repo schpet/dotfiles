@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# usage:
+#   cd ~/code/dotfiles
+#   add-vim-plugin vim-fugitive git@github.com:tpope/vim-fugitive.git master
+git subtree add --prefix .vim/pack/bundle/start/$1 $2 $3 --squash
