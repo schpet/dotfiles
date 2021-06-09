@@ -11,10 +11,13 @@
 	b = branch
 	br = for-each-ref --count 20 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative)) %(objectname:short)'
 	bra = ! git remote prune origin && git for-each-ref --count 20 --sort=-committerdate refs/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset) - %(color:magenta)%(authorname)%(color:reset) (%(committerdate:relative))'
+
 	c = commit
 	ca = commit --all
 	cc = !git commit -m \"Various updates `date '+%Y-%m-%d'`\"
+
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
+
 	ft = "!f() { git switch -c $(echo $@ | slugger); }; f"
 	cleanup = !branch-cleanup
 	conflicts = diff --name-only --diff-filter=U
@@ -64,6 +67,7 @@
 [merge]
 	tool = vimdiff
 	summary = true
+	ff = only
 [core]
 	excludesfile = ~/.cvsignore
 	editor = vim
