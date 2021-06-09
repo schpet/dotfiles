@@ -95,43 +95,9 @@ let test#ruby#rspec#executable = 'rrspec'
 " expand %% to the directory of the current file
 cnoremap <expr> %% expand('%:h').'/'
 
-" turn ruby assignments into rspec let
-function! PromoteToLet()
-  :normal! dd
-  " :exec '?^\s*it\>'
-  :normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
-endfunction
-command! PromoteToLet :call PromoteToLet()
-nnoremap <leader>o :PromoteToLet<cr>
-
-" turn string into exported constant (redux)
-nnoremap <leader>h :s/\s*\"\(\w\+\)\".*/export const \1 = "\1"/<cr>
-
 " fuzzy searching
 set rtp+=/usr/local/opt/fzf
 nnoremap <leader>f :FZF<cr>
-
-function! OpenTestAlternate()
-  let current_file = expand("%")
-  let new_file = system("test-alternative " . current_file)
-  exec ':e ' . new_file
-endfunction
-nnoremap <leader>. :call OpenTestAlternate()<cr>
-
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <expr> <tab> InsertTabWrapper()
-inoremap <s-tab> <c-n>
 
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
