@@ -33,7 +33,7 @@
   "editor.autoClosingQuotes": "never",
   "editor.minimap.enabled": false,
   "editor.rulers": [80],
-  "editor.tabSize": 2,
+  "editor.tabSize": 8,
   "editor.wordBasedSuggestions": false,
   "emmet.excludeLanguages": ["js", "jsx", "ts", "tsx"],
   "eslint.validate": ["javascript", "javascriptreact"],
@@ -143,5 +143,10 @@
   "workbench.colorTheme": "Visual Studio 2019 Dark",
   "omnisharp.useGlobalMono": "always",
   "diffEditor.codeLens": true,
-  "csharp.referencesCodeLens.enabled": false
+  "csharp.referencesCodeLens.enabled": false,
+  "editor.cursorStyle": "line",
+  "editor.insertSpaces": false,
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off"
 }
