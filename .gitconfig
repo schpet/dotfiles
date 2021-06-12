@@ -56,7 +56,7 @@
 
 	default-branch = !git switch $(git rev-parse --abbrev-ref origin/HEAD | sed 's/^origin\\///')
 	sync-default-branch = remote set-head origin -a
-	main = !git fetch && git default-branch && git pull
+	main = !git default-branch && git pull
 [push]
 	default = current
 [diff]
