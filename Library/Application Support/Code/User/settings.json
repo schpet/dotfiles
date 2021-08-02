@@ -33,15 +33,10 @@
   "editor.autoClosingQuotes": "never",
   "editor.minimap.enabled": false,
   "editor.rulers": [80],
-  "editor.tabSize": 8,
   "editor.wordBasedSuggestions": false,
   "emmet.excludeLanguages": ["js", "jsx", "ts", "tsx"],
   "eslint.validate": ["javascript", "javascriptreact"],
   "explorer.confirmDragAndDrop": false,
-  "files.associations": {
-    "*.tmp": "markdown"
-  },
-  "files.insertFinalNewline": true,
   "html.autoClosingTags": false,
   "javascript.autoClosingTags": false,
   "javascript.suggest.completeJSDocs": true,
@@ -141,12 +136,17 @@
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.hovers.enabled": false,
   "workbench.colorTheme": "Visual Studio 2019 Dark",
-  "omnisharp.useGlobalMono": "always",
   "diffEditor.codeLens": true,
-  "csharp.referencesCodeLens.enabled": false,
   "editor.cursorStyle": "line",
   "editor.insertSpaces": false,
   "editor.lineNumbers": "on",
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-  "editor.wordWrap": "off"
+  "editor.wordWrap": "off",
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": false,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": false
+  }
 }
