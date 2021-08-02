@@ -48,7 +48,7 @@
 
 	pr = !gh pr create -B $(default-branch)
 	prt = "!gh pr create -B $(default-branch) --title \"$(tracker-title $(tracker id))\" --body \"$(tracker-pr-body)\" --web"
-	pro = !hub pr show
+	pro = !gh pr view --web
 
 	pull-please = !git pull --set-upstream origin $(git symbolic-ref --short HEAD)
 
@@ -79,7 +79,7 @@
 [interactive]
 	diffFilter = delta --color-only
 [delta]
-	features = line-numbers decorations
+	features = line-numbers
 [pretty]
 	summary = - %C(yellow)%an%Creset %s
 	info = - %ad %C(yellow)%an%Creset %d %s

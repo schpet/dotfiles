@@ -127,5 +127,3 @@ function co {
 }
 
 # eval "$(direnv hook zsh)"
-
-source /Users/schpet/.config/broot/launcher/bash/br
