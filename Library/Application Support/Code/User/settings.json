@@ -143,5 +143,8 @@
     "markdown": false
   },
   "vscode-graphql.showExecCodelens": false,
-  "editor.semanticHighlighting.enabled": true
+  "editor.semanticHighlighting.enabled": true,
+  "[prisma]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
