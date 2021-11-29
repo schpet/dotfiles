@@ -31,9 +31,10 @@ export TIME_STYLE=long-iso
 export GREP_OPTIONS="--color"
 
 # history
-export HISTSIZE=100000
+export HISTSIZE=1000000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
+setopt SHARE_HISTORY
 
 export EDITOR=vim
 
