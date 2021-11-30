@@ -2,14 +2,6 @@
 
 set -e
 
-# later: use stow, figure out how to deal with conflicts
-if test -f ~/.gitconfig; then
-	echo "moving existing gitconfig to ~/.gitconfig.orig"
-	mv ~/.gitconfig ~/.gitconfig.orig
-fi
-
-cp .gitconfig ~/.gitconfig
-
 # TODO: following stuff is all linux, need to figure out mac
 case "$(uname -s)" in
 
@@ -18,6 +10,8 @@ case "$(uname -s)" in
 		;;
 
 	Linux)
+		echo "installing linux deps!"
+
 		sudo apt-get update
 		export DEBIAN_FRONTEND=noninteractive
 		sudo apt-get -y install --no-install-recommends bat vim stow
@@ -35,6 +29,11 @@ case "$(uname -s)" in
 
 		# heroku cli
 		curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+
+		# starship
+		curl -fsSL https://starship.rs/install.sh > starship.sh
+		sh starship.sh -f
+		rm starship.sh
      ;;
 
    CYGWIN*|MINGW32*|MSYS*|MINGW*)
@@ -46,3 +45,11 @@ case "$(uname -s)" in
      ;;
 esac
 
+# later: use stow, figure out how to deal with conflicts
+if test -f ~/.gitconfig; then
+	echo "moving existing gitconfig to ~/.gitconfig.orig"
+	mv ~/.gitconfig ~/.gitconfig.orig
+fi
+
+
+stow . -t $HOME -v 2

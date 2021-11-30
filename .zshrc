@@ -11,6 +11,8 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias tree='tree -I "node_modules|tmp|dist|build"'
 alias rg='rg --smart-case'
 
+command -v batcat &> /dev/null && alias bat=batcat
+
 eval "$(starship init zsh)"
 
 # makes color constants available
@@ -59,29 +61,30 @@ export PATH="$HOME/.bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 
 # vs code
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+test -f "/Applications/Visual Studio Code.app/" && export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # go
 export PATH=$PATH:$(go env GOPATH)/bin
 
-# corey's gist has info on chruby https://gist.github.com/csuhta/80ea33d74fc9b90ece13
-# Activate chruby and the .ruby-version auto-switcher
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+if test -f /usr/local/opt/chruby/share/chruby/chruby.sh; then
+  # corey's gist has info on chruby https://gist.github.com/csuhta/80ea33d74fc9b90ece13
+  # Activate chruby and the .ruby-version auto-switcher
+  source /usr/local/opt/chruby/share/chruby/chruby.sh
+  source /usr/local/opt/chruby/share/chruby/auto.sh
 
-function chruby-install {
-  set -e
-  ruby-install --src-dir /tmp --cleanup --no-install-deps ruby $1
-  source ~/.zshrc
-  chruby $1
-  gem update --system
-  gem install rails rake bundler foreman
-}
+  function chruby-install {
+    set -e
+    ruby-install --src-dir /tmp --cleanup --no-install-deps ruby $1
+    source ~/.zshrc
+    chruby $1
+    gem update --system
+    gem install rails rake bundler foreman
+  }
 
-chruby ruby-2.7.3
+  chruby ruby-2.7.3
+fi
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 
 # https://superuser.com/q/313650
 # Set Apple Terminal.app resume directory
@@ -96,17 +99,6 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
   chpwd
 }
 
-# export AWS_PROFILE=personal
-# export AWS_REGION=us-west-2
-
-# homebrew zsh tab auto-complete
-# if type brew &>/dev/null; then
-#   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-#   autoload -Uz compinit
-#   compinit
-# fi
-
 # fix for gpg
 GPG_TTY=$(tty)
 export GPG_TTY
@@ -120,7 +112,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # android tools, e.g. adb
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
-export PATH=$(pyenv root)/shims:$PATH
+
+command -v pyenv &> /dev/null && export PATH=$(pyenv root)/shims:$PATH
+
 export PATH="$HOME/.local/bin:$PATH"
 
 # jump to project in ~/code
