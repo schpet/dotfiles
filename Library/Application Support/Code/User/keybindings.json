@@ -1,0 +1,18 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "f9",
+    "command": "-editor.debug.action.toggleBreakpoint",
+    "when": "debuggersAvailable && editorTextFocus"
+  },
+  {
+    "key": "f9",
+    "command": "merge-conflict.next"
+  },
+  { "key": "cmd+j", "command": "workbench.action.terminal.focus" },
+  {
+    "key": "cmd+j",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  }
+]

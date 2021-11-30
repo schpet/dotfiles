@@ -146,5 +146,6 @@
   "editor.semanticHighlighting.enabled": true,
   "[prisma]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "terminal.integrated.defaultProfile.linux": "zsh"
 }
