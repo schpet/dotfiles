@@ -9,6 +9,7 @@ alias g=git
 alias h=heroku
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias tree='tree -I "node_modules|tmp|dist|build"'
+alias rg='rg --smart-case'
 
 eval "$(starship init zsh)"
 
