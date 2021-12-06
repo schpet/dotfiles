@@ -10,6 +10,18 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   alias sed='gsed'
 
   alias pi='(cd ios && pod install)'
+
+
+  # vs code
+  test -f "/Applications/Visual Studio Code.app/" && export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+  # brew
+  export PATH="/usr/local/bin:$PATH"
+
+  # fix for gpg
+  GPG_TTY=$(tty)
+  export GPG_TTY
+
 fi
 
 # shortcuts
@@ -47,7 +59,7 @@ export LESS="--tabs=2 -R"
 export MORE="--tabs=2 -R"
 
 # makes ctrl-a, ctrl-e work as expected in tmux
-bindkey -e
+# bindkey -e
 
 # allows `rake my:task[an_argument]` to work
 unsetopt nomatch
@@ -55,16 +67,10 @@ unsetopt nomatch
 # PATH
 
 # ~/bin
-export PATH="$HOME/bin:$PATH"
+# note! .profile maybe has this? need to put it in here
+# export PATH="$HOME/bin:$PATH"
 
-# brew
-export PATH="/usr/local/bin:$PATH"
-
-# vs code
-test -f "/Applications/Visual Studio Code.app/" && export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-
-# go
-export PATH=$PATH:$(go env GOPATH)/bin
+command -v go &> /dev/null && export PATH=$PATH:$(go env GOPATH)/bin
 
 if test -f /usr/local/opt/chruby/share/chruby/chruby.sh; then
   # corey's gist has info on chruby https://gist.github.com/csuhta/80ea33d74fc9b90ece13
@@ -99,27 +105,16 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
   chpwd
 }
 
-# fix for gpg
-GPG_TTY=$(tty)
-export GPG_TTY
-
 # install node with n – https://github.com/tj/n
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
-# yarn global modules
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 # android tools, e.g. adb
-export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
-export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
-
-command -v pyenv &> /dev/null && export PATH=$(pyenv root)/shims:$PATH
-
-export PATH="$HOME/.local/bin:$PATH"
+if test -f "$HOME/Library/Android/sdk/"; then
+  export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+  export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
+fi
 
 # jump to project in ~/code
 function co {
   cd ~/code/$(find ~/code -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | fzf)
 }
-
-# eval "$(direnv hook zsh)"
