@@ -54,8 +54,8 @@ unsetopt nomatch
 
 # PATH
 
-# ~/.bin
-export PATH="$HOME/.bin:$PATH"
+# ~/bin
+export PATH="$HOME/bin:$PATH"
 
 # brew
 export PATH="/usr/local/bin:$PATH"
