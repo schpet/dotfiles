@@ -45,11 +45,17 @@ case "$(uname -s)" in
      ;;
 esac
 
-# later: use stow, figure out how to deal with conflicts
-if test -f ~/.gitconfig; then
-	echo "moving existing gitconfig to ~/.gitconfig.orig"
-	mv ~/.gitconfig ~/.gitconfig.orig
-fi
+
+# codespaces comes with a few defaults that i don't want to clobber blindly
+files_to_backup=(".gitconfig" ".zshrc")
+for file in ${files_to_backup[@]}; do
+	original_path="$HOME/$file"
+	if test -f $original_path; then
+		new_destination="$HOME/$file.orig"
+		echo "moving existing $original_path to $new_destination"
+		mv "$original_path" "$new_destination"
+	fi
+done
 
 
 stow . -t $HOME -v 2

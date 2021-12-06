@@ -3,3 +3,5 @@
 ^/README.*
 .DS_Store
 \setup
+install.sh
+toolbox
