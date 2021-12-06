@@ -2,14 +2,26 @@
 autoload -U compinit
 compinit
 
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  # prefer gnu stuff on mac
+  alias ls='gls --human-readable --color'
+  alias find='gfind'
+  alias wc='gwc'
+  alias sed='gsed'
+
+  alias pi='(cd ios && pod install)'
+fi
+
 # shortcuts
 alias v=vim
 alias vi=vim
 alias g=git
 alias h=heroku
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias tree='tree -I "node_modules|tmp|dist|build"'
 alias rg='rg --smart-case'
+alias ll='ls -la'
+alias b='bundle exec'
+alias gs="echo 'did you mean g s?'"
 
 command -v batcat &> /dev/null && alias bat=batcat
 
@@ -18,19 +30,6 @@ eval "$(starship init zsh)"
 # makes color constants available
 autoload -U colors
 colors
-
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  alias ls='gls --human-readable --color'
-fi
-alias ll='ls -la'
-
-alias find='gfind'
-alias wc='gwc'
-alias sed='gsed'
-
-alias b='bundle exec'
-alias pi='(cd ios && pod install)'
-alias gs="echo 'did you mean g s?'"
 
 export TIME_STYLE=long-iso
 
