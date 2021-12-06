@@ -14,7 +14,7 @@ case "$(uname -s)" in
 
 		sudo apt-get update
 		export DEBIAN_FRONTEND=noninteractive
-		sudo apt-get -y install --no-install-recommends bat vim stow
+		sudo apt-get -y install --no-install-recommends bat stow
 
 		# gh cli
 		curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
