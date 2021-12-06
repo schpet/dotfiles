@@ -1,4 +1,3 @@
-// Place your key bindings in this file to override the defaultsauto[]
 [
   {
     "key": "f9",
@@ -9,11 +8,9 @@
     "key": "f9",
     "command": "merge-conflict.next"
   },
-  { "key": "cmd+j", "command": "workbench.action.terminal.focus" },
   {
-    "key": "cmd+j",
-    "command": "workbench.action.focusActiveEditorGroup",
-    "when": "terminalFocus"
-  },
-  { "key": "cmd+m", "command": "workbench.action.toggleMaximizedPanel" }
+    "key": "cmd+n",
+    "when": "terminalFocus",
+    "command": "workbench.action.terminal.newInActiveWorkspace"
+  }
 ]

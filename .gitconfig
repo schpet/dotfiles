@@ -80,6 +80,7 @@
 	diffFilter = delta --color-only
 [delta]
 	features = line-numbers
+	line-numbers = false
 [pretty]
 	summary = - %C(yellow)%an%Creset %s
 	info = - %ad %C(yellow)%an%Creset %d %s
