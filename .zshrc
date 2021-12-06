@@ -19,8 +19,10 @@ eval "$(starship init zsh)"
 autoload -U colors
 colors
 
-alias ls='gls --human-readable --color'
-alias ll='gls --human-readable --color -la'
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  alias ls='gls --human-readable --color'
+fi
+alias ll='ls -la'
 
 alias find='gfind'
 alias wc='gwc'
@@ -31,7 +33,6 @@ alias pi='(cd ios && pod install)'
 alias gs="echo 'did you mean g s?'"
 
 export TIME_STYLE=long-iso
-export GREP_OPTIONS="--color"
 
 # history
 export HISTSIZE=1000000
