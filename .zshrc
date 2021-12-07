@@ -109,10 +109,11 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
 # android tools, e.g. adb
-if test -f "$HOME/Library/Android/sdk/"; then
-  export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
-  export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
-fi
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # jump to project in ~/code
 function co {
