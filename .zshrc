@@ -13,7 +13,7 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
 
 
   # vs code
-  test -f "/Applications/Visual Studio Code.app/" && export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  test -d "/Applications/Visual Studio Code.app" && export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
   # brew
   export PATH="/usr/local/bin:$PATH"
