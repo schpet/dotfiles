@@ -58,4 +58,4 @@ for file in ${files_to_backup[@]}; do
 done
 
 
-stow . -t $HOME -v 2
+stow . -t $HOME -v 2 --adopt
