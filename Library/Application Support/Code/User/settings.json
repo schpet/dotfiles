@@ -97,6 +97,14 @@
     {
       "before": ["<leader>", "o"],
       "commands": ["tromp.openBookmark"]
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "r"],
+      "commands": ["workbench.action.toggleActivityBarVisibility"]
     }
   ],
   "vim.useSystemClipboard": true,
@@ -149,5 +157,7 @@
   },
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.scrollback": 20000,
-  "workbench.panel.opensMaximized": "always"
+  "workbench.panel.opensMaximized": "always",
+  "editor.find.seedSearchStringFromSelection": "never",
+  "workbench.activityBar.visible": false
 }

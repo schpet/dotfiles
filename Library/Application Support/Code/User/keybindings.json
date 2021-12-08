@@ -12,5 +12,9 @@
     "key": "cmd+n",
     "when": "terminalFocus",
     "command": "workbench.action.terminal.newInActiveWorkspace"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "workbench.action.toggleSidebarVisibility"
   }
 ]
