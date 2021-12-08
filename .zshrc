@@ -68,7 +68,7 @@ unsetopt nomatch
 
 # ~/bin
 # note! .profile maybe has this? need to put it in here
-# export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 command -v go &> /dev/null && export PATH=$PATH:$(go env GOPATH)/bin
 
