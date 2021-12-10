@@ -58,8 +58,8 @@ tabs -2
 export LESS="--tabs=2 -R"
 export MORE="--tabs=2 -R"
 
-# makes ctrl-a, ctrl-e work as expected in tmux
-# bindkey -e
+# makes ctrl-a, ctrl-e work as expected in tmux, vscode terminal, elsewhere?
+bindkey -e
 
 # allows `rake my:task[an_argument]` to work
 unsetopt nomatch
