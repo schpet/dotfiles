@@ -6,3 +6,5 @@ untracked
 
 .ignore
 .vscode
+
+.code-workspace
