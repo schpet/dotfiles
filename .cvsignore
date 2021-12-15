@@ -7,4 +7,4 @@ untracked
 .ignore
 .vscode
 
-.code-workspace
+*.code-workspace
