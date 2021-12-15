@@ -163,5 +163,5 @@
   "editor.find.seedSearchStringFromSelection": "never",
   "terminal.integrated.fontSize": 13,
   "editor.fontLigatures": true,
-  "workbench.activityBar.visible": false
+  "git.autofetch": true
 }
