@@ -1,5 +1,3 @@
-# Peter's dotfiles
-
 ```bash
-./install
+./install.sh
 ```
