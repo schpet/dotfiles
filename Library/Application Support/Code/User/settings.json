@@ -107,6 +107,14 @@
     {
       "before": ["<leader>", "r"],
       "commands": ["workbench.action.toggleActivityBarVisibility"]
+    },
+    {
+      "before": ["%"],
+      "commands": [
+        {
+          "command": "editor.emmet.action.matchTag"
+        }
+      ]
     }
   ],
   "vim.useSystemClipboard": true,
@@ -158,10 +166,18 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "terminal.integrated.defaultProfile.linux": "zsh",
-  "terminal.integrated.scrollback": 20000,
+  "terminal.integrated.scrollback": 5000,
   "workbench.panel.opensMaximized": "always",
   "editor.find.seedSearchStringFromSelection": "never",
   "terminal.integrated.fontSize": 13,
   "editor.fontLigatures": true,
-  "git.autofetch": true
+  "git.autofetch": true,
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  },
+  "javascript.preferences.jsxAttributeCompletionStyle": "none",
+  "typescript.preferences.jsxAttributeCompletionStyle": "none",
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "editor.snippetSuggestions": "bottom",
+  "editor.gotoLocation.multipleDefinitions": "goto"
 }
