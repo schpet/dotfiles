@@ -1,6 +1,16 @@
 # completion
-autoload -U compinit
-compinit
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
+if type fnm &>/dev/null
+then
+	eval "$(fnm env --use-on-cd)"
+fi
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
   # prefer gnu stuff on mac
@@ -8,6 +18,7 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   alias find='gfind'
   alias wc='gwc'
   alias sed='gsed'
+	alias readlink='greadlink'
 
   alias pi='(cd ios && pod install)'
 
@@ -72,22 +83,12 @@ export PATH="$HOME/bin:$PATH"
 
 command -v go &> /dev/null && export PATH=$PATH:$(go env GOPATH)/bin
 
-if test -f /usr/local/opt/chruby/share/chruby/chruby.sh; then
-  # corey's gist has info on chruby https://gist.github.com/csuhta/80ea33d74fc9b90ece13
-  # Activate chruby and the .ruby-version auto-switcher
-  source /usr/local/opt/chruby/share/chruby/chruby.sh
-  source /usr/local/opt/chruby/share/chruby/auto.sh
+# chruby
+if test -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh; then
+	source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
+	source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
 
-  function chruby-install {
-    set -e
-    ruby-install --src-dir /tmp --cleanup --no-install-deps ruby $1
-    source ~/.zshrc
-    chruby $1
-    gem update --system
-    gem install rails rake bundler foreman
-  }
-
-  chruby ruby-2.7.3
+  chruby ruby-3.1.0
 fi
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
@@ -106,7 +107,6 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 }
 
 # install node with n – https://github.com/tj/n
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
 # android tools, e.g. adb
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -188,3 +188,8 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the end of this file.
+[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
