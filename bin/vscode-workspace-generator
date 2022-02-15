@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+
+directories=$(find ~/code -maxdepth 1 -mindepth 1 -type d)
+
+for dir in $directories
+do
+	bn=$(basename $dir)
+	json=$(jo folders=$(jo -a $(jo path=".")) settings={})
+
+	output_file="$dir/$bn.code-workspace"
+	echo "$json" | jq > "$dir/$bn.code-workspace"
+done
+
