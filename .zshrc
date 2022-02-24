@@ -7,11 +7,6 @@ then
   compinit
 fi
 
-if type fnm &>/dev/null
-then
-	eval "$(fnm env --use-on-cd)"
-fi
-
 if [[ "$(uname -s)" == "Darwin" ]]; then
   # prefer gnu stuff on mac
   alias ls='gls --human-readable --color'
@@ -189,7 +184,8 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the end of this file.
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
+if type fnm &>/dev/null
+then
+	eval "$(fnm env --use-on-cd)"
+fi
+
