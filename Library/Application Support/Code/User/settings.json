@@ -179,5 +179,9 @@
   "typescript.preferences.jsxAttributeCompletionStyle": "none",
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
   "editor.snippetSuggestions": "bottom",
-  "editor.gotoLocation.multipleDefinitions": "goto"
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "zenMode.fullScreen": false,
+  "zenMode.centerLayout": false,
+  "zenMode.hideTabs": false,
+  "files.insertFinalNewline": true
 }
