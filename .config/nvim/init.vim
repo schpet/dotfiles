@@ -19,7 +19,18 @@ nmap gcc <Plug>VSCodeCommentaryLine
 
 " vscode fly thru refs
 nmap <Leader>t <Cmd>call VSCodeCall('editor.action.wordHighlight.next')<CR>
+
+" vscode run prettier or whatever formatter
 nmap <Leader>p <Cmd>call VSCodeCall('editor.action.formatDocument')<CR>
+
+" vscode zen mode
+nmap <Leader>z <Cmd>call VSCodeCall('workbench.action.toggleZenMode')<CR>
+
+" vscode tromp
+nmap <Leader>r <Cmd>call VSCodeCall('tromp.runPreviousCommand')<CR>
+nmap <Leader>s <Cmd>call VSCodeCall('tromp.runCommandWithNearest')<CR>
+nmap <Leader>t <Cmd>call VSCodeCall('tromp.runCommandWithFile')<CR>
+nmap <Leader>a <Cmd>call VSCodeCall('tromp.runCommand')<CR>
 
 " vscode formatting
 nnoremap <Leader>p <Cmd>call VSCodeCall('editor.action.formatDocument')<CR>
