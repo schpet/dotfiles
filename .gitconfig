@@ -22,6 +22,9 @@
 	cleanup = !branch-cleanup
 	conflicts = diff --name-only --diff-filter=U
 
+	# no origin/HEAD? fix it with this
+	update-origin = remote set-head origin -a
+
 	da = diff HEAD
 	dc = diff --cached
 	di = diff
@@ -30,6 +33,7 @@
 	ls = !git status --porcelain | sed s/^...//
 	s = status
 	sv = status -v -v
+	sw = switch
 	us = reset HEAD
 	fa = fetch --all
 	l = log
@@ -56,6 +60,7 @@
 
 	default-branch = !git switch $(git rev-parse --abbrev-ref origin/HEAD | sed 's/^origin\\///')
 	sync-default-branch = remote set-head origin -a
+	sync = !git fetch origin $(default-branch):$(default-branch)
 	main = !git default-branch && git pull
 	open = !gh repo view --web
 [push]
