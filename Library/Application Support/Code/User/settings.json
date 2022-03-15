@@ -183,5 +183,16 @@
   "zenMode.fullScreen": false,
   "zenMode.centerLayout": false,
   "zenMode.hideTabs": false,
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "editor.semanticTokenColorCustomizations": {
+    "rules": {
+      "*.async": {},
+      "enum": {
+        "underline": true
+      },
+      "type": {
+        "italic": true
+      }
+    }
+  }
 }
