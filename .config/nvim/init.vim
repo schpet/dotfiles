@@ -11,6 +11,10 @@ set clipboard+=unnamedplus
 set ignorecase
 set smartcase
 
+" reselect block after indentation
+vnoremap < <gv
+vnoremap > >gv
+
 " vscode commenting
 xmap gc  <Plug>VSCodeCommentary
 nmap gc  <Plug>VSCodeCommentary
@@ -35,6 +39,4 @@ nmap <Leader>a <Cmd>call VSCodeCall('tromp.runCommand')<CR>
 " vscode formatting
 nnoremap <Leader>p <Cmd>call VSCodeCall('editor.action.formatDocument')<CR>
 
-" reselect block after indentation
-vnoremap < <gv
-vnoremap > >gv
+nmap <Leader>. <Cmd>call VSCodeCall('alternate.alternateFile')<CR>
