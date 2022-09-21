@@ -9,3 +9,5 @@ untracked
 
 *.code-workspace
 tromp.json
+.projections.json
+Procfile.dev
