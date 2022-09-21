@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'date'
-require 'active_support/core_ext/date'
+require 'active_support/all'
 
 def main
   date_start = Date.today
