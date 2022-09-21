@@ -63,11 +63,13 @@
 	sync = !git fetch origin $(default-branch):$(default-branch)
 	main = !git default-branch && git pull
 	open = !gh repo view --web
+	hs = log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --graph --date=format:'%a %Y-%m-%d' --date-order
 [push]
 	default = current
 [diff]
 	algorithm = patience
 	noprefix = true
+	; external = difft
 [grep]
 	extendRegexp = true
 	lineNumber = true
@@ -82,6 +84,8 @@
 	editor = vim
 	ignorecase = false
 	pager = delta
+	quotePath = false
+	precomposeunicode = true
 [interactive]
 	diffFilter = delta --color-only
 [delta]
