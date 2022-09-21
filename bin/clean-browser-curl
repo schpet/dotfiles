@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+rg -v -i "  \-H '(authority|accept-language|cache-control|dnt|origin|pragma|referer|sec-.*|user-agent):" | rg -v "  \-\-compressed"
