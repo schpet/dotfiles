@@ -35,11 +35,14 @@ alias v=vim
 alias vi=vim
 alias g=git
 alias h=heroku
+alias f=flyctl
 alias tree='tree -I "node_modules|tmp|dist|build"'
 alias rg='rg --smart-case'
-alias ll='ls -la'
+# alias ls='exa'
+alias ll='exa -la'
 alias b='bundle exec'
 alias gs="echo 'did you mean g s?'"
+alias curl="curl --no-progress-meter"
 
 command -v batcat &> /dev/null && alias bat=batcat
 
@@ -50,6 +53,12 @@ autoload -U colors
 colors
 
 export TIME_STYLE=long-iso
+
+
+# vscode seems to want to set my history to ~/.zsh_history which is annoying!!!
+if [[ "$(uname -s)" == "Darwin" ]]; then
+	test -f "$HOME/.zsh_history" && rm "$HOME/.zsh_history"
+fi
 
 # history
 export HISTSIZE=1000000
@@ -104,16 +113,18 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 # install node with n – https://github.com/tj/n
 
 # android tools, e.g. adb
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+
 
 # jump to project in ~/code
 function co {
   cd ~/code/$(find ~/code -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | fzf)
 }
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
@@ -189,3 +200,13 @@ then
 	eval "$(fnm env --use-on-cd)"
 fi
 
+# ??
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
+function minimal-ps1 {
+  export PS1=$(printf "\n$ ")
+}
+
+
+# python
+export PATH=$(pyenv root)/shims:$PATH
