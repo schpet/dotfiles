@@ -105,14 +105,10 @@
       "commands": ["workbench.action.toggleSidebarVisibility"]
     },
     {
-      "before": ["<leader>", "r"],
-      "commands": ["workbench.action.toggleActivityBarVisibility"]
-    },
-    {
       "before": ["%"],
       "commands": [
         {
-          "command": "editor.emmet.action.matchTag"
+          "command": "editor.action.jumpToBracket"
         }
       ]
     }
@@ -151,7 +147,7 @@
   "gitlens.hovers.enabled": false,
   "diffEditor.codeLens": true,
   "editor.cursorStyle": "line",
-  "editor.insertSpaces": false,
+  "editor.insertSpaces": true,
   "editor.lineNumbers": "on",
   "editor.wordWrap": "off",
   "github.copilot.enable": {
@@ -194,5 +190,26 @@
         "italic": true
       }
     }
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "githubPullRequests.pullBranch": "never",
+  "[toml]": {
+    "editor.defaultFormatter": "bodil.prettier-toml"
+  },
+  "redhat.telemetry.enabled": true,
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[erb]": {
+    "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
+  },
+  "styco.objectSyntax": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
   }
 }
