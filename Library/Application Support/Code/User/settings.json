@@ -211,5 +211,9 @@
   "styco.objectSyntax": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
-  }
+  },
+  "css.enabledLanguages": [
+    "html",
+    "erb"
+  ]
 }
