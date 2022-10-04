@@ -14,7 +14,7 @@
 
 	c = commit
 	ca = commit --all
-	cc = !git commit -m \"Various updates `date '+%Y-%m-%d'`\"
+	cc = commit --allow-empty-message -m ""
 
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
 
@@ -79,6 +79,7 @@
 	tool = vimdiff
 	summary = true
 	ff = only
+	conflictstyle = zdiff3
 [core]
 	excludesfile = ~/.cvsignore
 	editor = vim
