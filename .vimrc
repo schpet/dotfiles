@@ -9,7 +9,7 @@ filetype plugin indent on
 set nocompatible
 set hidden
 set history=10000
-set noexpandtab
+set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
