@@ -1,5 +1,63 @@
 #!/usr/bin/env bash
 
+# dependencies: jq, glow
+#
+# example ~/.ptenv file:
+# TRACKER_API_TOKEN=12345
+#
+# get an api token here: https://www.pivotaltracker.com/profile
+
 set -e
 
-tracker-body | jq -r .description
+source ~/.ptenv
+
+branch=$(git branch --show-current)
+branch_id=$(echo "$branch" | grep -o -E '[0-9]+' | head -1)
+if [[ -z "$branch_id" ]]
+then
+  echo "No id found in branch name '$branch'" >&2
+  exit 1
+fi
+
+body=$(curl -s -X GET -H "X-TrackerToken: $TRACKER_API_TOKEN" "https://www.pivotaltracker.com/services/v5/stories/$branch_id" | jq .)
+name=$(echo "$body" | jq -r .name)
+description=$(echo "$body" | jq -r .description)
+current_state=$(echo "$body" | jq -r .current_state)
+url=$(echo "$body" | jq -r .url)
+labels=$(echo "$body" | jq -r '.labels | map(.name) | join(", ")')
+
+project_id=$(echo "$body" | jq -r .project_id)
+links=$(echo "$description" | grep -oE 'http.?://\S+' | sed "s/^/  └── /")
+if [[ -z "$links" ]]
+then
+  links="  └── (none)"
+fi
+
+
+
+document=$(cat <<EOF
+# $name
+
+$description
+
+&nbsp;
+
+EOF
+)
+
+
+echo "$document" | glow -
+
+cat <<EOF
+--------------------------------------------------------------------------------
+URL    
+  └── $url
+STATE
+  └── $current_state
+LABELS
+  └── $labels
+LINKS
+$links
+--------------------------------------------------------------------------------
+
+EOF
