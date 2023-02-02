@@ -43,6 +43,7 @@ alias ll='exa -la'
 alias b='bundle exec'
 alias gs="echo 'did you mean g s?'"
 alias curl="curl --no-progress-meter"
+alias td="tracker-description"
 
 command -v batcat &> /dev/null && alias bat=batcat
 
