@@ -3,10 +3,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "rome.rome"
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "rome.rome"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -20,10 +20,10 @@
   },
   "[ruby]": {
     "editor.formatOnSave": false,
-    "editor.defaultFormatter": "rebornix.ruby"
+    "editor.rulers": [120]
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "rome.rome"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -41,7 +41,7 @@
   "javascript.autoClosingTags": false,
   "javascript.suggest.completeJSDocs": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "ruby.format": "standard",
+  "ruby.format": "rubyfmt",
   "ruby.intellisense": "rubyLocate",
   "ruby.lint": {
     "standard": true,
@@ -125,13 +125,13 @@
     }
   ],
   "window.title": "${rootName}${separator}${activeEditorMedium}",
-  "workbench.colorCustomizations": {
-    "focusBorder": "#ff9100",
-    "statusBar.background": "#555555",
-    "editor.lineHighlightBackground": "#111111",
-    "tab.activeBackground": "#523500",
-    "list.focusBackground": "#3F4045"
-  },
+  // "workbench.colorCustomizations": {
+  //   "focusBorder": "#ff9100",
+  //   "statusBar.background": "#555555",
+  //   "editor.lineHighlightBackground": "#111111",
+  //   "tab.activeBackground": "#523500",
+  //   "list.focusBackground": "#3F4045"
+  // },
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.startupEditor": "newUntitledFile",
@@ -149,7 +149,7 @@
   "editor.cursorStyle": "line",
   "editor.insertSpaces": true,
   "editor.lineNumbers": "on",
-  "editor.wordWrap": "off",
+  "editor.wordWrap": "on",
   "github.copilot.enable": {
     "*": false,
     "yaml": false,
@@ -212,8 +212,20 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
   },
-  "css.enabledLanguages": [
-    "html",
-    "erb"
-  ]
+  "css.enabledLanguages": ["html", "erb"],
+  "railsI18n.loadAllTranslations": true,
+  "markdown.validate.enabled": true,
+  "tailwindCSS.colorDecorators": false,
+  "files.associations": {
+    "*.inky": "erb"
+  },
+  "rust-analyzer.inlayHints.typeHints.enable": false,
+  "rust-analyzer.inlayHints.parameterHints.enable": false,
+  "rust-analyzer.inlayHints.chainingHints.enable": false,
+  "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+  "vscode-erb-beautify.useBundler": false,
+  "workbench.preferredLightColorTheme": "Solarized Light",
+  "window.autoDetectColorScheme": true,
+  "terminal.integrated.fontWeight": "normal",
+  "workbench.colorTheme": "Solarized Light"
 }
