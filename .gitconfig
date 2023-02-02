@@ -15,6 +15,7 @@
 	c = commit
 	ca = commit --all
 	cc = commit --allow-empty-message -m ""
+	cce = commit  --allow-empty --allow-empty-message -m ""
 
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
 
@@ -51,7 +52,7 @@
 
 
 	pr = !gh pr create -B $(default-branch)
-	prt = "!gh pr create -B $(default-branch) --title \"$(tracker-title $(tracker id))\" --body \"$(tracker-pr-body)\" --web"
+	prt = "!gh pr create -B $(default-branch) --title \"$(tracker-title)\" --body \"$(tracker-pr-message)\" --web"
 	pro = !gh pr view --web
 
 	pull-please = !git pull --set-upstream origin $(git symbolic-ref --short HEAD)
@@ -78,20 +79,26 @@
 [merge]
 	tool = vimdiff
 	summary = true
-	ff = only
 	conflictstyle = zdiff3
 [core]
 	excludesfile = ~/.cvsignore
 	editor = vim
 	ignorecase = false
-	pager = delta
+	pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
+
 	quotePath = false
 	precomposeunicode = true
+	hooksPath = /Users/schpet/.config/git-hooks
 [interactive]
 	diffFilter = delta --color-only
 [delta]
 	features = line-numbers
 	line-numbers = false
+	light = true
+[delta "light-mode"]
+	light = true
+[delta "dark-mode"]
+	light = false
 [pretty]
 	summary = - %C(yellow)%an%Creset %s
 	info = - %ad %C(yellow)%an%Creset %d %s
@@ -111,3 +118,5 @@
 	ff = only
 [init]
 	defaultBranch = main
+; [sequence]
+; 	editor = interactive-rebase-tool
