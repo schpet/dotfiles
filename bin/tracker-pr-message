@@ -4,4 +4,4 @@ set -e
 
 tracker-title $(tracker id)
 echo
-echo "$(tracker url) [delivers #$(tracker id)]"
+echo "PT-$(tracker id) [delivers #$(tracker id)]"
