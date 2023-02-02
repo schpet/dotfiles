@@ -98,6 +98,7 @@ cnoremap <expr> %% expand('%:h').'/'
 " fuzzy searching
 set rtp+=/usr/local/opt/fzf
 nnoremap <leader>f :FZF<cr>
+nnoremap <leader>c :execute "!git show " . split(getline("."), " ")[1]<cr>
 
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
