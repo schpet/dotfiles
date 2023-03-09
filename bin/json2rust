@@ -1,0 +1,2 @@
+#!/bin/sh
+quicktype --lang rust --visibility public --derive-debug "$@"
