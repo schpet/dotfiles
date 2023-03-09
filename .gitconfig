@@ -35,6 +35,7 @@
 	s = status
 	sv = status -v -v
 	sw = switch
+	swf = !git switch $(git branch | fzf)
 	us = reset HEAD
 	fa = fetch --all
 	l = log
@@ -51,9 +52,8 @@
 	  --before $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)
 
 
-	pr = !gh pr create -B $(default-branch)
-	prt = "!gh pr create -B $(default-branch) --title \"$(tracker-title)\" --body \"$(tracker-pr-message)\" --web"
-	pro = !gh pr view --web
+	prt = "!echo \"retired! use 'gh prt'\""
+	pro = "!echo \"retired! use 'gh pro'\""
 
 	pull-please = !git pull --set-upstream origin $(git symbolic-ref --short HEAD)
 
