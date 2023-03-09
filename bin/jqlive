@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo '' | fzf --print-query --preview "jq ${jq_color_opt} {q} $1"
