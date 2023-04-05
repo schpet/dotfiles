@@ -11,3 +11,7 @@ untracked
 tromp.json
 .projections.json
 Procfile.dev
+stories.json
+justfile
+.obsidian
+clockhand.json
