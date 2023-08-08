@@ -1,0 +1,1 @@
+/Users/schpet/.fig/shell/post.fish
