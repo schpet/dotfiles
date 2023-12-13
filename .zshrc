@@ -24,10 +24,14 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   # brew
   export PATH="/usr/local/bin:$PATH"
 
+  # TODO: don't hardcode version here (how?)
+  export PATH="/opt/homebrew/Cellar/git/2.39.2/share/git-core/contrib/git-jump:$PATH"
+
   # fix for gpg
   GPG_TTY=$(tty)
   export GPG_TTY
 
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
 
 # shortcuts
@@ -41,9 +45,14 @@ alias rg='rg --smart-case'
 # alias ls='exa'
 alias ll='exa -la'
 alias b='bundle exec'
+alias c=cargo
 alias gs="echo 'did you mean g s?'"
 alias curl="curl --no-progress-meter"
 alias td="tracker-description"
+alias s="stories"
+alias st="stories"
+alias rgg="rg --no-heading -n"
+alias j=just
 
 command -v batcat &> /dev/null && alias bat=batcat
 
@@ -86,7 +95,11 @@ unsetopt nomatch
 # note! .profile maybe has this? need to put it in here
 export PATH="$HOME/bin:$PATH"
 
+# go
 command -v go &> /dev/null && export PATH=$PATH:$(go env GOPATH)/bin
+
+# prefer homebrew's unzip
+export PATH="/opt/homebrew/opt/unzip/bin:$PATH"
 
 # chruby
 if test -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh; then
@@ -211,3 +224,9 @@ function minimal-ps1 {
 
 # python
 export PATH=$(pyenv root)/shims:$PATH
+
+eval "$(github-copilot-cli alias -- "$0")"
+
+# fnm
+export PATH="/Users/schpet/Library/Application Support/fnm:$PATH"
+eval "`fnm env`"
