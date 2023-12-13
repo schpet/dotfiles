@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+    echo "Please provide a date argument in the format: YYYY-MM-DD"
+    exit 1
+fi
+
+# Get the start date
+start_date=$1
+
+# Calculate the next day
+next_date=$(gdate -I -d "$start_date + 1 day")
+
+# Run git log for the specified day
+git log --after="$start_date 00:00:00" --before="$next_date 00:00:00" --date=local --author="<$(git config user.email)>" --format="%ad %s" origin/main
