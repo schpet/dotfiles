@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -euo pipefail
+
+
+tempfile=$(mktemp /tmp/llme-XXXXX)
+
+vim "$tempfile"
+
+# check if the file was written by vim
+if [ ! -s "$tempfile" ]
+then
+  exit 1
+fi
+
+echo "Prompt"
+echo "======"
+cat "$tempfile"
+echo
+
+echo "Response"
+echo "========"
+cat "$tempfile" | llm
+
+echo
+echo "Path"
+echo "===="
+echo "$tempfile"
