@@ -2,27 +2,43 @@
 
 set -euo pipefail
 
+# Check if an argument was provided
+if [[ $# -gt 0 ]]
+then
+  tempdir=$1
+else
+  tempdir=$(mktemp -d /tmp/llme-XXXXX)
+fi
 
-tempfile=$(mktemp /tmp/llme-XXXXX)
+prompt_file="${tempdir}/prompt.txt"
+chat_file="${tempdir}/llm-chat.markdown"
 
-vim "$tempfile"
+vim "$prompt_file"
 
 # check if the file was written by vim
-if [ ! -s "$tempfile" ]
+if [ ! -s "$prompt_file" ]
 then
   exit 1
 fi
 
-echo "Prompt"
-echo "======"
-cat "$tempfile"
-echo
+# write the outputs to both the markdown file and stdout
+echo "Prompt" | tee -a "$chat_file"
+echo "================================================================================" | tee -a "$chat_file"
+echo | tee -a "$chat_file"
+cat "$prompt_file" | tee -a "$chat_file"
+echo | tee -a "$chat_file"
 
-echo "Response"
-echo "========"
-cat "$tempfile" | llm
+echo "Response" | tee -a "$chat_file"
+echo "================================================================================" | tee -a "$chat_file"
+echo | tee -a "$chat_file"
+cat "$prompt_file" | llm | tee -a "$chat_file"
 
-echo
+echo 
 echo "Path"
-echo "===="
-echo "$tempfile"
+echo "================================================================================"
+echo 
+echo "$tempdir"
+echo "$prompt_file"
+echo "$chat_file"
+
+
