@@ -22,20 +22,17 @@ then
 fi
 
 # write the outputs to both the markdown file and stdout
-echo "Prompt" | tee -a "$chat_file"
-echo "================================================================================" | tee -a "$chat_file"
+echo "## Prompt" | tee -a "$chat_file"
 echo | tee -a "$chat_file"
 cat "$prompt_file" | tee -a "$chat_file"
 echo | tee -a "$chat_file"
 
-echo "Response" | tee -a "$chat_file"
-echo "================================================================================" | tee -a "$chat_file"
+echo "## Response" | tee -a "$chat_file"
 echo | tee -a "$chat_file"
 cat "$prompt_file" | llm | tee -a "$chat_file"
 
 echo 
-echo "Path"
-echo "================================================================================"
+echo "## Paths"
 echo 
 echo "$tempdir"
 echo "$prompt_file"
