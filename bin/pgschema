@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # dumps a schema description (postgres' \d) for every table into plaintext files
 
 
@@ -22,3 +24,6 @@ TABLE_NAMES=$(psql -d $DB_NAME -t -c "SELECT table_name FROM information_schema.
 for TABLE_NAME in $TABLE_NAMES; do
     psql -d $DB_NAME -c "\d $TABLE_NAME" > "pgschema/$TABLE_NAME.txt"
 done
+
+# Dump the whole schema as well
+pg_dump -d $DB_NAME -s -f pgschema/schema.sql
