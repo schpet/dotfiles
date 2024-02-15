@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# dumps a schema description (postgres' \d) for every table into plaintext files
+
+
+# Check if DB_NAME was supplied as an argument
+if [ $# -eq 0 ]; then
+    echo "No arguments supplied. Please provide the database name."
+    exit 1
+fi
+
+# Get the db name from the first argument
+DB_NAME=$1
+
+# Create 'pgschema' directory if not exists
+[ ! -d "pgschema" ] && mkdir "pgschema"
+
+# Fetch all table names from the public schema
+TABLE_NAMES=$(psql -d $DB_NAME -t -c "SELECT table_name FROM information_schema.tables WHERE table_schema='public'")
+
+# Loop over each table name and dump its structure (\d) into a plaintext file inside 'pgschema' directory
+for TABLE_NAME in $TABLE_NAMES; do
+    psql -d $DB_NAME -c "\d $TABLE_NAME" > "pgschema/$TABLE_NAME.txt"
+done
