@@ -2,38 +2,31 @@
 
 function usage() {
     echo "Usage: $0 <command> <sub-command>"
-    echo "commands:"
+    echo "Commands:"
     echo "  v|view         View the linear issue linked to the current git branch"
-    echo "  pr             Write the Pull Request, sub-commands:"
-    echo "    title        Print 'example title'"
-    echo "    body         Print 'example body'"
+    echo "  id             Print the issue id in the current git branch"
     exit 1;
 }
 
 function view() {
-    gitBranch=$(git symbolic-ref --short HEAD)
-    issueId=$(echo $gitBranch | ggrep -oP '[a-zA-Z]{2,5}-[1-9][0-9]*')
+    issueId=$(id)
 
     if [ "$issueId" ]; then
-        open "https://linear.app/tanookilabs/issue/$issueId"
+        url="https://linear.app/tanookilabs/issue/$issueId"
+        echo "Opening $url in your browser"
+        open "$url"
     else
         echo "The current branch does not contain a valid linear issue id."
     fi
 }
 
-function pr() {
-    SUB_CMD=$1
-    case $SUB_CMD in
-        title)
-            echo "example title"
-            ;;
-        body)
-            echo "example body"
-            ;;
-        *)
-            usage
-            ;;
-    esac
+function id() {
+    gitBranch=$(git symbolic-ref --short HEAD)
+    issueId=$(echo $gitBranch | ggrep -oP '[a-zA-Z]{2,5}-[1-9][0-9]*')
+
+    if [ "$issueId" ]; then
+        echo $issueId | awk '{print toupper($0)}'
+    fi
 }
 
 CMD=${1:-""}
@@ -41,8 +34,8 @@ case $CMD in
     v | view)
         view
         ;;
-    pr)
-        pr $2
+    id)
+        id
         ;;
     *)
         usage
