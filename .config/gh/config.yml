@@ -9,7 +9,7 @@ pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
     co: pr checkout
-    autolink-tracker: api repos/{owner}/{repo}/autolinks -f key_prefix="PT-" -f url_template="https://www.pivotaltracker.com/story/show/<num>"
+    autolink-linear: api repos/{owner}/{repo}/autolinks -f key_prefix="$1-" -f url_template="https://linear.app/tanookilabs/issue/<num>"
     squash: pr merge -sd
     cw: '!gh pr checks --watch -i 2 && say ''Tests passed'' || say ''Tests failed'''
     prl: '!gh pr create --title "$(linear id)" --body "$(linear id)" --web'
