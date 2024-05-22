@@ -12,10 +12,11 @@ aliases:
     autolink-tracker: api repos/{owner}/{repo}/autolinks -f key_prefix="PT-" -f url_template="https://www.pivotaltracker.com/story/show/<num>"
     squash: pr merge -sd
     cw: '!gh pr checks --watch -i 2 && say ''Tests passed'' || say ''Tests failed'''
-    prt: '!gh pr create --title "$(stories pr title --summarize)" --body "$(stories pr body)" --web'
+    prl: '!gh pr create --title "$(linear id)" --body "$(linear id)" --web'
     pro: pr view --web
     configure-repo: api repos/{owner}/{repo} --method PATCH -f allow_squash_merge=true -f allow_merge_commit=false -f allow_rebase_merge=false -f delete_branch_on_merge=true -f squash_merge_commit_title=PR_TITLE -f squash_merge_commit_message=PR_BODY
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
 browser:
+version: "1"
