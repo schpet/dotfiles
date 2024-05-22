@@ -68,7 +68,7 @@
 [push]
 	default = current
 [diff]
-	algorithm = patience
+	algorithm = histogram
 	noprefix = true
 	; external = difft
 [grep]
