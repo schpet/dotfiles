@@ -1,1 +1,2 @@
+#!/usr/bin/env bash
 llm logs list -t -n 50 --json | jq '[.[] | {id, system, prompt: .prompt | gsub("\n"; " ⏎ ") }]' | dasel -r json -w csv | xsv table -c 50
