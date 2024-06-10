@@ -12,7 +12,7 @@ function view() {
     issueId=$(id)
 
     if [ "$issueId" ]; then
-        url="https://linear.app/tanookilabs/issue/$issueId"
+        url="https://linear.app/issue/$issueId"
         echo "Opening $url in Linear.app"
         open -a /Applications/Linear.app "$url"
     else
