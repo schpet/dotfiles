@@ -13,8 +13,8 @@ function view() {
 
     if [ "$issueId" ]; then
         url="https://linear.app/tanookilabs/issue/$issueId"
-        echo "Opening $url in your browser"
-        open "$url"
+        echo "Opening $url in Linear.app"
+        open -a /Applications/Linear.app "$url"
     else
         echo "The current branch does not contain a valid linear issue id."
     fi
