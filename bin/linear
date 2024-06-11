@@ -17,6 +17,7 @@ function view() {
         open -a /Applications/Linear.app "$url"
     else
         echo "The current branch does not contain a valid linear issue id."
+        exit 1
     fi
 }
 
@@ -29,6 +30,20 @@ function id() {
     fi
 }
 
+function team() {
+    dir=$(basename $(git rev-parse --show-toplevel))
+    # given your directory name starts with the team id, e.g.
+    # exmpl-platform -> exmpl
+    teamId=$(echo $dir | ggrep -oP '^[a-zA-Z]{2,5}' | awk '{print toupper($0)}')
+
+    if [ "$teamId" ]; then
+        open -a /Applications/Linear.app "https://linear.app/team/$teamId"
+    else
+        echo "Could not determine team id from directory name."
+        exit 1
+    fi
+}
+
 CMD=${1:-""}
 case $CMD in
     v | view)
@@ -36,6 +51,9 @@ case $CMD in
         ;;
     id)
         id
+        ;;
+    t | team)
+        team
         ;;
     *)
         usage
