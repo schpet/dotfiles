@@ -3,12 +3,12 @@
 function usage() {
     echo "Usage: $0 <command> <sub-command>"
     echo "Commands:"
-    echo "  v|view         View the linear issue linked to the current git branch"
-    echo "  id             Print the issue id in the current git branch"
+    echo "  i|issue         View the linear issue linked to the current git branch"
+    echo "  id              Print the issue id in the current git branch"
     exit 1;
 }
 
-function view() {
+function issue() {
     issueId=$(id)
 
     if [ "$issueId" ]; then
@@ -46,8 +46,8 @@ function team() {
 
 CMD=${1:-""}
 case $CMD in
-    v | view)
-        view
+    i | issue)
+        issue
         ;;
     id)
         id
