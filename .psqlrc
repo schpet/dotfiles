@@ -1,0 +1,7 @@
+\set QUIET on
+\pset null '(null)'
+\x auto
+\timing
+\set HISTFILE ~/.psql_history-:DBNAME
+\set HISTCONTROL ignoredups
+\set QUIET off
