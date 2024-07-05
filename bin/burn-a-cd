@@ -1,0 +1,28 @@
+#!/bin/bash
+set -euxo pipefail
+
+# directory provided as an argument
+dir="$1"
+
+# creates a temp directory for wav files
+temp_dir=$(mktemp -d)
+
+if [[ ! -d "${temp_dir}" ]]; then
+    echo "Could not create temp directory"
+    exit 1
+fi
+
+# converts flac files to wav
+for file in "${dir}"/*.flac
+do
+    fname=$(basename "$file" .flac)
+    ffmpeg -i "$file" "${temp_dir}/${fname}.wav"
+done
+
+# burns files to a CD as audio tracks
+cdrecord -v dev=1,0,0 -audio -pad "${temp_dir}"/*.wav
+
+# remove temp directory
+rm -r "${temp_dir}"
+
+echo "Done. Burned the audio tracks to a CD."
