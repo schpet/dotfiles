@@ -10,8 +10,10 @@ untracked
 *.code-workspace
 tromp.json
 .projections.json
-Procfile.dev
 stories.json
 justfile
 .obsidian
 clockhand.json
+/.yardoc
+todo.markdown
+todo.diff
