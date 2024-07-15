@@ -1,39 +1,36 @@
 {
+  "vim.statusBarColorControl": false,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "rome.rome"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "rome.rome"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascriptreact]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[jsonc]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "files.trimTrailingWhitespace": true,
   "[markdown]": {
-    "files.trimTrailingWhitespace": false
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "files.trimTrailingWhitespace": false,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 100,
+    "editor.rulers": [100]
   },
   "[ruby]": {
     "editor.formatOnSave": false,
-    "editor.rulers": [120]
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "rome.rome"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.rulers": [
+      120
+    ],
+    "editor.defaultFormatter": "Shopify.ruby-lsp"
   },
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
   "editor.minimap.enabled": false,
   "editor.rulers": [80],
-  "editor.wordBasedSuggestions": false,
+  "editor.wordBasedSuggestions": "off",
   "emmet.excludeLanguages": ["js", "jsx", "ts", "tsx"],
   "eslint.validate": ["javascript", "javascriptreact"],
   "explorer.confirmDragAndDrop": false,
@@ -65,6 +62,10 @@
       "commands": ["alternate.alternateFile"]
     },
     {
+      "before": ["<leader>", "c"],
+      "commands": ["editor.action.inlineSuggest.trigger"]
+    },
+    {
       "before": ["<leader>", "c", "r", "c"],
       "commands": ["extension.changeCase.camel"]
     },
@@ -79,6 +80,15 @@
     {
       "before": ["<leader>", "p"],
       "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["<leader>", "["],
+      "commands": [
+        {
+          "command": "workbench.action.tasks.runTask",
+          "args": "rubyfmt"
+        }
+      ]
     },
     {
       "before": ["<leader>", "r"],
@@ -111,6 +121,18 @@
           "command": "editor.action.jumpToBracket"
         }
       ]
+    },
+    {
+      "before": ["&"],
+      "commands": [
+        {
+          "command": "editor.emmet.action.matchTag"
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "l"],
+      "commands": ["linear-open-issue.openIssue"]
     }
   ],
   "vim.useSystemClipboard": true,
@@ -151,10 +173,7 @@
   "editor.lineNumbers": "on",
   "editor.wordWrap": "on",
   "github.copilot.enable": {
-    "*": false,
-    "yaml": false,
-    "plaintext": false,
-    "markdown": false
+    "*": true
   },
   "vscode-graphql.showExecCodelens": false,
   "editor.semanticHighlighting.enabled": true,
@@ -175,10 +194,8 @@
   "typescript.preferences.jsxAttributeCompletionStyle": "none",
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
   "editor.snippetSuggestions": "bottom",
-  "editor.gotoLocation.multipleDefinitions": "goto",
   "zenMode.fullScreen": false,
   "zenMode.centerLayout": false,
-  "zenMode.hideTabs": false,
   "files.insertFinalNewline": true,
   "editor.semanticTokenColorCustomizations": {
     "rules": {
@@ -191,41 +208,73 @@
       }
     }
   },
-  "[scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "githubPullRequests.pullBranch": "never",
-  "[toml]": {
-    "editor.defaultFormatter": "bodil.prettier-toml"
-  },
   "redhat.telemetry.enabled": true,
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[erb]": {
-    "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
-  },
   "styco.objectSyntax": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    // "source.organizeImports": true
+    // "quickfix.rome": true
   },
-  "css.enabledLanguages": ["html", "erb"],
+  "css.enabledLanguages": ["html", "erb", "ruby"],
   "railsI18n.loadAllTranslations": true,
   "markdown.validate.enabled": true,
   "tailwindCSS.colorDecorators": false,
   "files.associations": {
     "*.inky": "erb"
   },
-  "rust-analyzer.inlayHints.typeHints.enable": false,
-  "rust-analyzer.inlayHints.parameterHints.enable": false,
-  "rust-analyzer.inlayHints.chainingHints.enable": false,
-  "rust-analyzer.inlayHints.closingBraceHints.enable": false,
   "vscode-erb-beautify.useBundler": false,
   "workbench.preferredLightColorTheme": "Solarized Light",
   "window.autoDetectColorScheme": true,
   "terminal.integrated.fontWeight": "normal",
-  "workbench.colorTheme": "Solarized Light"
+  "rust-analyzer.lens.enable": false,
+  "[rust]": {
+    "editor.inlayHints.enabled": "offUnlessPressed"
+  },
+  "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+  // "editor.inlineSuggest.enabled": false,
+  "editor.tabSize": 2,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "Cargo.toml": "Cargo.lock",
+    "*.ts": "${capture}.typegen.ts",
+    "*.tsx": "${capture}.typegen.ts",
+    "*.mts": "${capture}.typegen.ts",
+    "*.cts": "${capture}.typegen.ts"
+  },
+  "yard.spacers.beforeDescription": false,
+  "yard.spacers.afterTags": false,
+  "yard.spacers.separateTags": false,
+  "css.styleSheets": [],
+  "github.copilot.advanced": {},
+  "editor.inlineSuggest.enabled": true,
+  "terminal.integrated.defaultProfile.osx": "fish",
+  "rubyLsp.rubyVersionManager": {
+    "identifier": "chruby"
+  },
+  "rubyLsp.formatter": "rubyfmt",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "git.openRepositoryInParentFolders": "never",
+  "window.zoomLevel": -1,
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "workbench.colorTheme": "Solarized Light",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "github.copilot.editor.enableAutoCompletions": true,
+  "openInDesktopApp": true,
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "workbench.preferredHighContrastLightColorTheme": "Solarized Light",
+  "editor.gotoLocation.multipleDeclarations": "goto",
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "workbench.preferredDarkColorTheme": "Default Dark+",
+  "workbench.preferredHighContrastColorTheme": "Default Dark+",
+  "terminal.integrated.macOptionIsMeta": true,
 }
