@@ -1,6 +1,6 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
     starship init fish | source
+    atuin init fish --disable-up-arrow | source
 end
 
 set -gx EDITOR vim
@@ -11,3 +11,6 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+abbr --add cw cd ~/tanooki
+abbr --add cc cd ~/code
