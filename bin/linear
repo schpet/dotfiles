@@ -7,6 +7,8 @@ function usage() {
     echo "Commands:"
     echo "  i|issue         View the linear issue linked to the current git branch"
     echo "  id              Print the issue id in the current git branch"
+    echo "  t|team          Open the team page in Linear.app"
+    echo "  it|issue-title  Fetch and display the title of the current issue"
     exit 1;
 }
 
@@ -37,9 +39,42 @@ function team() {
     teamId=$(echo $dir | ggrep -oP '^[a-zA-Z]{2,5}' | awk '{print toupper($0)}')
 
     if [ "$teamId" ]; then
-        open -a /Applications/Linear.app "https://linear.app/team/$teamId/active?filter=eyJhbmQiOlt7ImFzc2lnbmVlIjp7Im9yIjpbeyJpc01lIjp7ImVxIjp0cnVlfX1dfX1dfQ"
+        open -a /Applications/Linear.app "https://linear.app/$LINEAR_WORKSPACE/team/$teamId/active?filter=eyJhbmQiOlt7ImFzc2lnbmVlIjp7Im9yIjpbeyJpc01lIjp7ImVxIjp0cnVlfX1dfX1dfQ"
     else
         echo "Could not determine team id from directory name."
+        exit 1
+    fi
+}
+
+function issue_title() {
+    issueId=$(id)
+
+    if [ -z "$LINEAR_API_KEY" ]; then
+        echo "LINEAR_API_KEY environment variable is not set."
+        exit 1
+    fi
+
+    if [ "$issueId" ]; then
+        query='query($id: String!) { issue(id: $id) { title } }'
+        variables=$(jo id="$issueId")
+        data=$(jo query="$query" variables="$variables")
+
+        response=$(curl -s -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: $LINEAR_API_KEY" \
+            --data "$data" \
+            https://api.linear.app/graphql)
+
+        title=$(echo $response | jq -r '.data.issue.title')
+
+        if [ "$title" != "null" ]; then
+            echo "$title"
+        else
+            echo "Failed to fetch issue title. Make sure the issue ID is correct and you have the necessary permissions."
+            exit 1
+        fi
+    else
+        echo "The current branch does not contain a valid linear issue id."
         exit 1
     fi
 }
@@ -54,6 +89,9 @@ case $CMD in
         ;;
     t | team)
         team
+        ;;
+    it | issue-title)
+        issue_title
         ;;
     *)
         usage
