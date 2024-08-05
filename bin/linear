@@ -129,7 +129,8 @@ function standup() {
     if [ "$issues" = "[]" ]; then
         echo "No issues found with status changes for the date: $date"
     else
-        echo $response | jq -r '.data.issues.nodes[] | "Issue: \(.title)\nID: \(.id)\nCurrent Status: \(.state.name)\n"'
+        echo -e "ID\tTitle\tCurrent Status"
+        echo $response | jq -r '.data.issues.nodes[] | [.id, .title, .state.name] | @tsv'
     fi
 }
 
