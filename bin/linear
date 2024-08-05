@@ -25,20 +25,22 @@ function issue() {
     fi
 }
 
-function id() {
+ function id() {
     gitBranch=$(git symbolic-ref --short HEAD)
-    issueId=$(echo $gitBranch | ggrep -oP '[a-zA-Z]{2,5}-[1-9][0-9]*')
+    issueId=$(echo $gitBranch | ggrep -oP '[a-zA-Z]{2,5}-[1-9][0-9]*' | tail -n 1)
 
     if [ "$issueId" ]; then
         echo $issueId | awk '{print toupper($0)}'
     fi
-}
+ }
 
 function team() {
     dir=$(basename $(git rev-parse --show-toplevel))
     teamId=$(echo $dir | ggrep -oP '^[a-zA-Z]{2,5}' | awk '{print toupper($0)}')
 
     if [ "$teamId" ]; then
+        # filter is equivalent to
+        # {"and":[{"assignee":{"or":[{"isMe":{"eq":true}}]}}]
         open -a /Applications/Linear.app "https://linear.app/$LINEAR_WORKSPACE/team/$teamId/active?filter=eyJhbmQiOlt7ImFzc2lnbmVlIjp7Im9yIjpbeyJpc01lIjp7ImVxIjp0cnVlfX1dfX1dfQ"
     else
         echo "Could not determine team id from directory name."
