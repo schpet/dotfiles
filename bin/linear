@@ -91,24 +91,20 @@ function standup() {
     date=${1:-$(date +%Y-%m-%d)}
 
     query='
-    query($date: Date!) {
+    query($date: DateTime!) {
       issues(
         filter: {
           and: [
             { assignee: { isMe: { eq: true } } },
-            { history: { updatedAt: { gte: $date } } }
+            { updatedAt: { gte: $date } }
           ]
         }
       ) {
         nodes {
           id
           title
-          history(first: 1, filter: { updatedAt: { gte: $date } }) {
-            nodes {
-              toStatus {
-                name
-              }
-            }
+          state {
+            name
           }
         }
       }
@@ -133,7 +129,7 @@ function standup() {
     if [ "$issues" = "[]" ]; then
         echo "No issues found with status changes for the date: $date"
     else
-        echo $response | jq -r '.data.issues.nodes[] | "Issue: \(.title)\nID: \(.id)\nStatus Change: \(.history.nodes[0].toStatus.name)\n"'
+        echo $response | jq -r '.data.issues.nodes[] | "Issue: \(.title)\nID: \(.id)\nCurrent Status: \(.state.name)\n"'
     fi
 }
 
