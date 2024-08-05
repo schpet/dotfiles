@@ -91,7 +91,7 @@ function standup() {
     date=${1:-$(date +%Y-%m-%d)}
 
     query='
-    query($date: DateTime!) {
+    query($date: DateTimeOrDuration!) {
       issues(
         filter: {
           and: [
