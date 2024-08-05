@@ -123,7 +123,18 @@ function standup() {
         --data "$data" \
         https://api.linear.app/graphql)
 
-    echo $response | jq -r '.data.issues.nodes[] | "Issue: \(.title)\nID: \(.id)\nStatus Change: \(.history.nodes[0].toStatus.name)\n"'
+    if [ "$(echo $response | jq '.data')" = "null" ]; then
+        echo "Error: Received null data from Linear API"
+        echo "API Response: $response"
+        exit 1
+    fi
+
+    issues=$(echo $response | jq -r '.data.issues.nodes')
+    if [ "$issues" = "[]" ]; then
+        echo "No issues found with status changes for the date: $date"
+    else
+        echo $response | jq -r '.data.issues.nodes[] | "Issue: \(.title)\nID: \(.id)\nStatus Change: \(.history.nodes[0].toStatus.name)\n"'
+    fi
 }
 
 CMD=${1:-""}
