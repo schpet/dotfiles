@@ -12,6 +12,6 @@ prompt_prefix="summarize the following git log tersely so that it fits into less
 # prompt_prefix + stdin
 prompt="$prompt_prefix$input"
 
-llm "$prompt" -m 4o
+llm "$prompt" -m 4o | tr '[:upper:]' '[:lower:]'
 
 
