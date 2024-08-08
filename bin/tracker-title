@@ -2,4 +2,5 @@
 
 set -e
 source ~/.ptenv
-curl -s -X GET -H "X-TrackerToken: $TRACKER_API_TOKEN" "https://www.pivotaltracker.com/services/v5/stories/$1" | jq .name -r
+
+tracker-body | jq .name -r

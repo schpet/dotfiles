@@ -1,2 +1,0 @@
-#!/bin/sh
-quicktype --lang ts --just-types --no-enums

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-afplay -v 0.2 ~/.config/git-hooks/bird-creak.wav > /dev/null 2>&1 &

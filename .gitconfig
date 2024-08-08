@@ -1,7 +1,6 @@
 [user]
-	email = peter@peterschilling.org
+	email = git@schpet.com
 	name = Peter Schilling
-	signingkey = 199EE0567FA86B48
 [color]
 	ui = auto
 [alias]
@@ -16,6 +15,7 @@
 	ca = commit --all
 	cc = commit --allow-empty-message -m ""
 	cce = commit  --allow-empty --allow-empty-message -m ""
+	cs = !aider --commit
 
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1
 
@@ -51,13 +51,7 @@
 	  --after $(date -v -1d -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z) \
 	  --before $(date -v0M -v0S -v0H +%Y-%m-%dT%H:%M:%S%z)
 
-
-	prt = "!echo \"retired! use 'gh prt'\""
-	pro = "!echo \"retired! use 'gh pro'\""
-
 	pull-please = !git pull --set-upstream origin $(git symbolic-ref --short HEAD)
-
-	work = config user.email "peter@tanookilabs.com"
 
 	default-branch = !git switch $(git rev-parse --abbrev-ref origin/HEAD | sed 's/^origin\\///')
 	sync-default-branch = remote set-head origin -a
@@ -65,6 +59,7 @@
 	main = !git default-branch && git pull
 	open = !gh repo view --web
 	hs = log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --graph --date=format:'%a %Y-%m-%d' --date-order
+	res = restore
 [push]
 	default = current
 [diff]
@@ -84,7 +79,7 @@
 	excludesfile = ~/.cvsignore
 	editor = vim
 	ignorecase = false
-	pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
+	pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)" --tabs 2
 
 	quotePath = false
 	precomposeunicode = true
@@ -121,3 +116,5 @@
 ; 	editor = interactive-rebase-tool
 [status]
 	showUntrackedFiles = all
+[includeIf "gitdir:~/tanooki/"]
+	path = ~/tanooki/.gitconfig-tanooki

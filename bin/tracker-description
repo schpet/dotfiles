@@ -25,12 +25,16 @@ description=$(echo "$body" | jq -r .description)
 current_state=$(echo "$body" | jq -r .current_state)
 url=$(echo "$body" | jq -r .url)
 labels=$(echo "$body" | jq -r '.labels | map(.name) | join(", ")')
+if [[ -z "$labels" ]]
+then
+  labels="(none)"
+fi
 
 project_id=$(echo "$body" | jq -r .project_id)
-links=$(echo "$description" | grep -oE 'http.?://\S+' | sed "s/^/  └── /")
+links=$(echo "$description" | grep -oE 'http.?://\S+' | sed "s/^/│   └── /")
 if [[ -z "$links" ]]
 then
-  links="  └── (none)"
+  links="│   └── (none)"
 fi
 
 
@@ -40,8 +44,6 @@ document=$(cat <<EOF
 
 $description
 
-&nbsp;
-
 EOF
 )
 
@@ -49,15 +51,16 @@ EOF
 echo "$document" | glow -
 
 cat <<EOF
---------------------------------------------------------------------------------
-URL    
-  └── $url
-STATE
-  └── $current_state
-LABELS
-  └── $labels
-LINKS
+╭┈┈┈┈┈┈┈┈┈┈╮
+│ metadata │
+├┈┈┈┈┈┈┈┈┈┈┴┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+│ URL    
+│   └── $url
+│ STATE
+│   └── $current_state
+│ LABELS
+│   └── $labels
+│ LINKS
 $links
---------------------------------------------------------------------------------
 
 EOF

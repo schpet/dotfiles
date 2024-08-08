@@ -1,16 +1,27 @@
 #!/bin/bash
 
+# Function to calculate date
+calculate_date() {
+    local input=$1
+    if [[ $input =~ ^-?[0-9]+$ ]]; then
+        # If input is a number (positive or negative), treat it as days relative to today
+        gdate -d "$input days" '+%Y-%m-%d'
+    else
+        # Otherwise, assume it's a date string
+        gdate -d "$input" '+%Y-%m-%d'
+    fi
+}
+
+# If no argument is provided, use today's date. Else use the provided date.
 if [ $# -ne 1 ]
 then
-    echo "Please provide a date argument in the format: YYYY-MM-DD"
-    exit 1
+    start_date=$(date '+%Y-%m-%d')
+else
+    start_date=$(calculate_date "$1")
 fi
-
-# Get the start date
-start_date=$1
 
 # Calculate the next day
 next_date=$(gdate -I -d "$start_date + 1 day")
 
 # Run git log for the specified day
-git log --after="$start_date 00:00:00" --before="$next_date 00:00:00" --date=local --author="<$(git config user.email)>" --format="%ad %s" origin/main
+git log --after="$start_date 00:00:00" --before="$next_date 00:00:00" --date=local --author="<$(git config user.email)>" --format="%ad %s"

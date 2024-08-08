@@ -3,7 +3,8 @@
 set -euo pipefail
 
 
-tempdir=$(mktemp -d /tmp/llme-XXXXX)
+mkdir -p /tmp/llme
+tempdir=$(mktemp -d /tmp/llme/llme-XXXXX)
 
 # Check if an argument was provided
 if [[ $# -gt 0 ]]
@@ -23,6 +24,16 @@ then
   exit 1
 fi
 
+cleanup() {
+    echo "## Paths"
+    echo
+    echo "$tempdir"
+    echo "$prompt_file"
+}
+
+# Trap SIGINT (Ctrl+C) and call cleanup()
+trap cleanup SIGINT
+
 # write the outputs to both the markdown file and stdout
 echo "## Prompt" | tee -a "$chat_file"
 echo | tee -a "$chat_file"
@@ -33,9 +44,9 @@ echo "## Response" | tee -a "$chat_file"
 echo | tee -a "$chat_file"
 cat "$prompt_file" | llm | tee -a "$chat_file"
 
-echo 
+echo
 echo "## Paths"
-echo 
+echo
 echo "$tempdir"
 echo "$prompt_file"
 echo "$chat_file"

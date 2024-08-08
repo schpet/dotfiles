@@ -18,7 +18,7 @@
     }
   },
   "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[jsonc]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "files.trimTrailingWhitespace": true,
   "[markdown]": {
@@ -30,9 +30,7 @@
   },
   "[ruby]": {
     "editor.formatOnSave": false,
-    "editor.rulers": [
-      120
-    ],
+    "editor.rulers": [120],
     "editor.defaultFormatter": "Shopify.ruby-lsp"
   },
   "editor.acceptSuggestionOnCommitCharacter": false,
@@ -124,14 +122,14 @@
       "before": ["<leader>", "f"],
       "commands": ["workbench.action.toggleSidebarVisibility"]
     },
-    {
-      "before": ["%"],
-      "commands": [
-        {
-          "command": "editor.action.jumpToBracket"
-        }
-      ]
-    },
+    // {
+    //   "before": ["%"],
+    //   "commands": [
+    //     {
+    //       "command": "editor.action.jumpToBracket"
+    //     }
+    //   ]
+    // },
     {
       "before": ["&"],
       "commands": [
@@ -183,7 +181,10 @@
   "editor.lineNumbers": "on",
   "editor.wordWrap": "on",
   "github.copilot.enable": {
-    "*": true
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
   },
   "vscode-graphql.showExecCodelens": false,
   "editor.semanticHighlighting.enabled": true,
@@ -287,4 +288,5 @@
   "workbench.preferredDarkColorTheme": "Default Dark+",
   "workbench.preferredHighContrastColorTheme": "Default Dark+",
   "terminal.integrated.macOptionIsMeta": true,
+  "continue.pauseTabAutocompleteOnBattery": true
 }
