@@ -21,22 +21,16 @@ nmap gc  <Plug>VSCodeCommentary
 omap gc  <Plug>VSCodeCommentary
 nmap gcc <Plug>VSCodeCommentaryLine
 
-" vscode fly thru refs
+" vscode built in commands
 nmap <Leader>t <Cmd>call VSCodeCall('editor.action.wordHighlight.next')<CR>
-
-" vscode run prettier or whatever formatter
 nmap <Leader>p <Cmd>call VSCodeCall('editor.action.formatDocument')<CR>
+nnoremap <Leader>f <Cmd>call VSCodeCall('copyRelativeFilePath')<CR>
 
-" vscode tromp
+" vscode tromp extension
 nmap <Leader>r <Cmd>call VSCodeCall('tromp.runPreviousCommand')<CR>
 nmap <Leader>s <Cmd>call VSCodeCall('tromp.runCommandWithNearest')<CR>
 nmap <Leader>t <Cmd>call VSCodeCall('tromp.runCommandWithFile')<CR>
 nmap <Leader>a <Cmd>call VSCodeCall('tromp.runCommand')<CR>
 
-" vscode other
-nnoremap <Leader>p <Cmd>call VSCodeCall('editor.action.formatDocument')<CR>
-nnoremap <Leader>f <Cmd>call VSCodeCall('copyRelativeFilePath')<CR>
-
-
-
+" switch between code and tests (maybe switch to https://github.com/tpope/vim-projectionist ?)
 nmap <Leader>. <Cmd>call VSCodeCall('alternate.alternateFile')<CR>
