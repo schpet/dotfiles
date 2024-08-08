@@ -132,7 +132,6 @@ case $CMD in
         ;;
     view)
         view
-        view
         ;;
     *)
         usage
