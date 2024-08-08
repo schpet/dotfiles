@@ -10,6 +10,7 @@ function usage() {
     echo "  t|team          Open the team page in Linear.app"
     echo "  it|issue-title  Fetch and display the title of the current issue"
     echo "  s|standup [date] List issues with status changes (default: today)"
+    echo "  view            View the issue's title and body"
     exit 1;
 }
 
@@ -82,7 +83,39 @@ function issue_title() {
     fi
 }
 
-function standup() {
+function view() {
+    issueId=$(id)
+
+    if [ -z "$LINEAR_API_KEY" ]; then
+        echo "LINEAR_API_KEY environment variable is not set."
+        exit 1
+    fi
+
+    if [ "$issueId" ]; then
+        query='query($id: String!) { issue(id: $id) { title description } }'
+        variables=$(jo id="$issueId")
+        data=$(jo query="$query" variables="$variables")
+
+        response=$(curl -s -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: $LINEAR_API_KEY" \
+            --data "$data" \
+            https://api.linear.app/graphql)
+
+        title=$(echo $response | jq -r '.data.issue.title')
+        description=$(echo $response | jq -r '.data.issue.description')
+
+        if [ "$title" != "null" ] && [ "$description" != "null" ]; then
+            echo -e "$title\n$(printf '=%.0s' $(seq 1 ${#title}))\n\n$description"
+        else
+            echo "Failed to fetch issue details. Make sure the issue ID is correct and you have the necessary permissions."
+            exit 1
+        fi
+    else
+        echo "The current branch does not contain a valid linear issue id."
+        exit 1
+    fi
+}
     if [ -z "$LINEAR_API_KEY" ]; then
         echo "LINEAR_API_KEY environment variable is not set."
         exit 1
@@ -161,6 +194,9 @@ case $CMD in
     s | standup)
         shift
         standup "$@"
+        ;;
+    view)
+        view
         ;;
     *)
         usage
