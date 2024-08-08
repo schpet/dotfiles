@@ -105,7 +105,7 @@ function view() {
         description=$(echo $response | jq -r '.data.issue.description')
 
         if [ "$title" != "null" ] && [ "$description" != "null" ]; then
-            echo -e "# $title\n$(printf '=%.0s' $(seq 1 ${#title}))\n\n$description"
+            echo -e "# $title\n\n$description"
         else
             echo "Failed to fetch issue details. Make sure the issue ID is correct and you have the necessary permissions."
             exit 1
