@@ -10,11 +10,13 @@ if [ -z "${DATABASE_URL:-}" ]; then
     exit 1
 fi
 
+echo "connecting to $DATABASE_URL"
+
 # Create 'pgschema' directory if not exists
 [ ! -d "pgschema" ] && mkdir "pgschema"
 
 # Fetch all table names from the public schema
-TABLE_NAMES=$(psql "$DATABASE_URL" -t -c "SELECT table_name FROM information_schema.tables WHERE table_schema='public'")
+TABLE_NAMES=$(psql "$DATABASE_URL" -t  -c "SELECT table_name FROM information_schema.tables WHERE table_schema='public'" | grep -v "rows)" | grep -v "Time:")
 
 # Loop over each table name and dump its structure (\d) into a plaintext file inside 'pgschema' directory
 for TABLE_NAME in $TABLE_NAMES; do
