@@ -41,3 +41,4 @@ abbr --add uncolor gsed -e 's/\x1b\[[0-9;]*m//g'
 abbr --add unindent awk '{if (NR==1) {len=index($0, $1); }; print substr($0, len)}'
 abbr --add rgg rg --no-heading
 abbr --add llmq llm -s \"Answer in as few words as possible. Use a brief style with short replies.\"
+abbr --add aiderl 'aider --message="fix this issue:\\n$(linear view)"'
