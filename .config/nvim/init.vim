@@ -32,5 +32,8 @@ nmap <Leader>s <Cmd>call VSCodeCall('tromp.runCommandWithNearest')<CR>
 nmap <Leader>t <Cmd>call VSCodeCall('tromp.runCommandWithFile')<CR>
 nmap <Leader>a <Cmd>call VSCodeCall('tromp.runCommand')<CR>
 
+" write '/add <current relative file path>' into the vscode terminal
+nmap <Leader>q <Cmd>call VSCodeCall('workbench.action.terminal.sendSequence', { 'text': '/add ' . expand('%:p:.'). "\n" })<CR>
+
 " switch between code and tests (maybe switch to https://github.com/tpope/vim-projectionist ?)
 nmap <Leader>. <Cmd>call VSCodeCall('alternate.alternateFile')<CR>
