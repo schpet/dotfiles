@@ -9,7 +9,7 @@ function usage() {
     echo "  id              Print the issue id in the current git branch"
     echo "  t|team          Open the team page in Linear.app"
     echo "  it|issue-title  Fetch and display the title of the current issue"
-    echo "  view            View the issue's title and body"
+    echo "  ip|issue-print  Print the issue's title and body"
     exit 1;
 }
 
@@ -82,7 +82,7 @@ function issue_title() {
     fi
 }
 
-function view() {
+function issue_print() {
     issueId=$(id)
 
     if [ -z "$LINEAR_API_KEY" ]; then
@@ -130,8 +130,8 @@ case $CMD in
     it | issue-title)
         issue_title
         ;;
-    view)
-        view
+    ip | issue-print)
+        issue_print
         ;;
     *)
         usage
