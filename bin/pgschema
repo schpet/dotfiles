@@ -4,26 +4,22 @@ set -euo pipefail
 
 # dumps a schema description (postgres' \d) for every table into plaintext files
 
-
-# Check if DB_NAME was supplied as an argument
-if [ $# -eq 0 ]; then
-    echo "No arguments supplied. Please provide the database name."
+# Check if DATABASE_URL environment variable is set
+if [ -z "${DATABASE_URL:-}" ]; then
+    echo "DATABASE_URL environment variable is not set. Please set it before running this script."
     exit 1
 fi
-
-# Get the db name from the first argument
-DB_NAME=$1
 
 # Create 'pgschema' directory if not exists
 [ ! -d "pgschema" ] && mkdir "pgschema"
 
 # Fetch all table names from the public schema
-TABLE_NAMES=$(psql -d $DB_NAME -t -c "SELECT table_name FROM information_schema.tables WHERE table_schema='public'")
+TABLE_NAMES=$(psql "$DATABASE_URL" -t -c "SELECT table_name FROM information_schema.tables WHERE table_schema='public'")
 
 # Loop over each table name and dump its structure (\d) into a plaintext file inside 'pgschema' directory
 for TABLE_NAME in $TABLE_NAMES; do
-    psql -d $DB_NAME -c "\d $TABLE_NAME" > "pgschema/$TABLE_NAME.txt"
+    psql "$DATABASE_URL" -c "\d $TABLE_NAME" > "pgschema/$TABLE_NAME.txt"
 done
 
 # Dump the whole schema as well
-pg_dump -d $DB_NAME -s -f pgschema/schema.sql
+pg_dump "$DATABASE_URL" -s -f pgschema/schema.sql
