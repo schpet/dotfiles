@@ -24,4 +24,4 @@ fi
 next_date=$(gdate -I -d "$start_date + 1 day")
 
 # Run git log for the specified day
-git log --after="$start_date 00:00:00" --before="$next_date 00:00:00" --date=local --author="<$(git config user.email)>" --format="%ad %s"
+git log --after="$start_date 00:00:00" --before="$next_date 00:00:00" --date=local --author="<$(git config user.email)>" --format="%ad %s" --reverse
