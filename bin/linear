@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# this cli assumes
+# 1. you use linear's issue id in the branch name
+# 2. your repo directory name starts with the team prefix and a dash
+
 set -euo pipefail
 
 function usage() {
