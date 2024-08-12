@@ -20,10 +20,10 @@ TABLE_NAMES=$(psql "$DATABASE_URL" -t -c "SELECT table_name FROM information_sch
 
 # Loop over each table name and dump its CREATE TABLE statement and other relevant schema parts into an SQL file
 for TABLE_NAME in $TABLE_NAMES; do
-    pg_dump "$DATABASE_URL" -t "$TABLE_NAME" --schema-only | grep -v '^SET ' | grep -v '^--' | grep -v '^SELECT ' > "pgschema_sql/$TABLE_NAME.sql"
+    pg_dump "$DATABASE_URL" -t "$TABLE_NAME" --schema-only | grep -v '^SET ' | grep -v '^--' | grep -v '^SELECT ' | sed '/^$/N;/^\n$/D' > "pgschema_sql/$TABLE_NAME.sql"
 done
 
 # Dump the whole schema as well, excluding SET statements, comments, and SELECT statements
-pg_dump "$DATABASE_URL" -s | grep -v '^SET ' | grep -v '^--' | grep -v '^SELECT ' > pgschema_sql/full_schema.sql
+pg_dump "$DATABASE_URL" -s | grep -v '^SET ' | grep -v '^--' | grep -v '^SELECT ' | sed '/^$/N;/^\n$/D' > pgschema_sql/full_schema.sql
 
 echo "Schema dump completed. SQL files are stored in the 'pgschema_sql' directory."
