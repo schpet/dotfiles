@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# dumps CREATE TABLE statements and other relevant schema parts for every table into SQL files
+
+# Check if DATABASE_URL environment variable is set
+if [ -z "${DATABASE_URL:-}" ]; then
+    echo "DATABASE_URL environment variable is not set. Please set it before running this script."
+    exit 1
+fi
+
+echo "connecting to $DATABASE_URL"
+
+# Create 'pgschema_sql' directory if not exists
+[ ! -d "pgschema_sql" ] && mkdir "pgschema_sql"
+
+# Fetch all table names from the public schema
+TABLE_NAMES=$(psql "$DATABASE_URL" -t -c "SELECT table_name FROM information_schema.tables WHERE table_schema='public'" | grep -v "rows)" | grep -v "Time:")
+
+# Loop over each table name and dump its CREATE TABLE statement and other relevant schema parts into an SQL file
+for TABLE_NAME in $TABLE_NAMES; do
+    pg_dump "$DATABASE_URL" -t "$TABLE_NAME" --schema-only -f "pgschema_sql/$TABLE_NAME.sql"
+done
+
+# Dump the whole schema as well
+pg_dump "$DATABASE_URL" -s -f pgschema_sql/full_schema.sql
+
+echo "Schema dump completed. SQL files are stored in the 'pgschema_sql' directory."
