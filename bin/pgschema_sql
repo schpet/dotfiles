@@ -18,9 +18,32 @@ echo "connecting to $DATABASE_URL"
 # Fetch all table names from the public schema
 TABLE_NAMES=$(psql "$DATABASE_URL" -t -c "SELECT table_name FROM information_schema.tables WHERE table_schema='public'" | grep -v "rows)" | grep -v "Time:")
 
-# Loop over each table name and dump its CREATE TABLE statement and other relevant schema parts into an SQL file
+# Loop over each table name and dump its CREATE TABLE statement, other relevant schema parts, and foreign key information into an SQL file
 for TABLE_NAME in $TABLE_NAMES; do
-    pg_dump "$DATABASE_URL" -t "$TABLE_NAME" --schema-only | grep -v '^SET ' | grep -v '^--' | grep -v '^SELECT ' | sed '/^$/N;/^\n$/D' > "pgschema_sql/$TABLE_NAME.sql"
+    {
+        pg_dump "$DATABASE_URL" -t "$TABLE_NAME" --schema-only | grep -v '^SET ' | grep -v '^--' | grep -v '^SELECT ' | sed '/^$/N;/^\n$/D'
+        echo -e "\n-- Foreign keys referencing this table:"
+        psql "$DATABASE_URL" -c "SELECT
+            format(
+                'ALTER TABLE %I.%I ADD CONSTRAINT %I FOREIGN KEY (%I) REFERENCES %I.%I (%I);',
+                cl.relnamespace::regnamespace::text,
+                cl.relname,
+                con.conname,
+                array_to_string(array_agg(att.attname), ', '),
+                ct.relnamespace::regnamespace::text,
+                ct.relname,
+                array_to_string(array_agg(att2.attname), ', ')
+            ) AS foreign_key_definition
+        FROM pg_constraint con
+        JOIN pg_class cl ON con.conrelid = cl.oid
+        JOIN pg_class ct ON con.confrelid = ct.oid
+        JOIN pg_attribute att ON att.attrelid = cl.oid AND att.attnum = ANY(con.conkey)
+        JOIN pg_attribute att2 ON att2.attrelid = ct.oid AND att2.attnum = ANY(con.confkey)
+        WHERE con.contype = 'f'
+        AND ct.relname = '$TABLE_NAME'
+        GROUP BY cl.relnamespace, cl.relname, con.conname, ct.relnamespace, ct.relname
+        ORDER BY cl.relname, con.conname;" -t
+    } > "pgschema_sql/$TABLE_NAME.sql"
 done
 
 # Dump the whole schema as well, excluding SET statements, comments, and SELECT statements
