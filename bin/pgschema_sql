@@ -57,7 +57,7 @@ for TABLE_NAME in $TABLE_NAMES; do
         FROM pg_type t
         JOIN pg_enum e ON t.oid = e.enumtypid
         JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace
-        JOIN pg_attribute a ON (a.atttypid = t.oid OR (a.atttypid = 'pg_catalog.anyarray'::regtype AND a.attndims > 0 AND a.atttypid = (SELECT typarray FROM pg_type WHERE oid = t.oid)))
+        JOIN pg_attribute a ON (a.atttypid = t.oid OR (a.atttypid = 'pg_catalog.anyarray'::regtype AND a.atttypid = (SELECT typarray FROM pg_type WHERE oid = t.oid)))
         JOIN pg_class c ON c.oid = a.attrelid
         WHERE c.relname = '$TABLE_NAME'
         GROUP BY n.nspname, t.typname;" -t
