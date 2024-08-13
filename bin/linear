@@ -72,6 +72,12 @@ function issue_title() {
             --data "$data" \
             https://api.linear.app/graphql)
 
+        if [[ $(echo "$response" | jq 'has("errors")') == "true" ]]; then
+            echo "GraphQL Error:"
+            echo "$response" | jq
+            exit 1
+        fi
+
         title=$(echo $response | jq -r '.data.issue.title')
 
         if [ "$title" != "null" ]; then
@@ -104,6 +110,12 @@ function issue_print() {
             -H "Authorization: $LINEAR_API_KEY" \
             --data "$data" \
             https://api.linear.app/graphql)
+
+        if [[ $(echo "$response" | jq 'has("errors")') == "true" ]]; then
+            echo "GraphQL Error:"
+            echo "$response" | jq
+            exit 1
+        fi
 
         title=$(echo $response | jq -r '.data.issue.title')
         description=$(echo $response | jq -r '.data.issue.description')
