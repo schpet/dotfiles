@@ -18,10 +18,12 @@ echo "connecting to $DATABASE_URL"
 # Fetch all table names from the public schema
 TABLE_NAMES=$(psql "$DATABASE_URL" -t -c "SELECT table_name FROM information_schema.tables WHERE table_schema='public'" | grep -v "rows)" | grep -v "Time:")
 
-# Loop over each table name and dump its CREATE TABLE statement, other relevant schema parts, and foreign key information into an SQL file
+# Loop over each table name and dump its CREATE TABLE statement, other relevant schema parts, foreign key information, and enum types into an SQL file
 for TABLE_NAME in $TABLE_NAMES; do
     {
+        # Dump CREATE TABLE statement and other relevant schema parts
         pg_dump "$DATABASE_URL" -t "$TABLE_NAME" --schema-only | grep -v '^SET ' | grep -v '^--' | grep -v '^SELECT ' | sed '/^$/N;/^\n$/D'
+        
         echo -e "\n-- Foreign keys referencing this table:"
         psql "$DATABASE_URL" -c "SELECT
             format(
@@ -43,6 +45,22 @@ for TABLE_NAME in $TABLE_NAMES; do
         AND ct.relname = '$TABLE_NAME'
         GROUP BY cl.relnamespace, cl.relname, con.conname, ct.relnamespace, ct.relname
         ORDER BY cl.relname, con.conname;" -t
+        
+        echo -e "\n-- Enum types used in this table:"
+        psql "$DATABASE_URL" -c "SELECT DISTINCT
+            format(
+                'CREATE TYPE %I.%I AS ENUM (%s);',
+                n.nspname,
+                t.typname,
+                string_agg(quote_literal(e.enumlabel), ', ' ORDER BY e.enumsortorder)
+            ) AS enum_definition
+        FROM pg_type t
+        JOIN pg_enum e ON t.oid = e.enumtypid
+        JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace
+        JOIN pg_attribute a ON a.atttypid = t.oid
+        JOIN pg_class c ON c.oid = a.attrelid
+        WHERE c.relname = '$TABLE_NAME'
+        GROUP BY n.nspname, t.typname;" -t
     } > "pgschema_sql/$TABLE_NAME.sql"
 done
 
