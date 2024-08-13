@@ -123,7 +123,14 @@ function issue_print() {
         if [ "$title" != "null" ] && [ "$description" != "null" ]; then
             echo -e "# $title\n\n$description"
         else
-            echo "Failed to fetch issue details. Make sure the issue ID is correct and you have the necessary permissions."
+            echo "Error: Failed to fetch issue details for issue ID: $issueId"
+            echo "Please check the following:"
+            echo "1. The issue ID is correct"
+            echo "2. You have the necessary permissions to access this issue"
+            echo "3. Your LINEAR_API_KEY is valid and has the required scope"
+            echo ""
+            echo "Response body for debugging:"
+            echo "$response" | jq '.'
             exit 1
         fi
     else
