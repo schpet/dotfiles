@@ -28,6 +28,7 @@ nnoremap <Leader>f <Cmd>call VSCodeCall('copyRelativeFilePath')<CR>
 
 " aider: write '/add <current relative file path>' into the vscode terminal
 nmap <Leader>i <Cmd>call VSCodeCall('workbench.action.terminal.sendSequence', { 'text': '/add ' . expand('%:p:.'). "\n" })<CR>
+nmap <Leader>o <Cmd>call VSCodeCall('workbench.action.terminal.sendSequence', { 'text': '/read ' . expand('%:p:.'). "\n" })<CR>
 
 " vscode tromp extension
 nmap <Leader>r <Cmd>call VSCodeCall('tromp.runPreviousCommand')<CR>
