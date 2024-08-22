@@ -6,12 +6,20 @@ if [ -z "$input" ]; then
   echo "Input is empty. Exiting."
   exit 1
 fi
+prompt_prefix=$(cat <<EOF
+summarize the following git log tersely so that it fits into less than 300 characters, as a quick summary of a work done in a day in chronological order.
+exclude id references, such as (#123) or $(linear team-id)-123.
+separate items with a comma and write it as a single sentence.
+remove git semantic commit prefixes like fix:, feat:, and chore:.
 
-prompt_prefix="summarize the following git log tersely so that it fits into less than 300 characters, as a quick summary of a work done in a day in chronological order. don't include the name of the author, and exclude the numbers in parenthesis e.g. omit '(#123)'. separate items with a comma and write it as a single sentence. \n  git log:\n"
+git log:
+
+EOF
+)
 
 # prompt_prefix + stdin
 prompt="$prompt_prefix$input"
 
-llm "$prompt" -m 4o | tr '[:upper:]' '[:lower:]'
-
-
+output=$(llm "$prompt" -m 4o | tr '[:upper:]' '[:lower:]' | tr -d '.')
+echo "$output" | pbcopy
+echo "$output"
