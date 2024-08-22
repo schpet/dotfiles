@@ -4,6 +4,8 @@ fish_add_path /opt/homebrew/opt/libpq/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 
+chruby 3.3.4
+
 if status is-interactive
     starship init fish | source
     atuin init fish --disable-up-arrow | source
@@ -23,6 +25,7 @@ abbr --add cc cd ~/code
 abbr --add cw cd ~/tanooki
 
 abbr --add b bundle
+abbr --add be bundle exec
 abbr --add e code
 abbr --add f flyctl
 abbr --add g git
