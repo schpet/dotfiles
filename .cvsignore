@@ -22,3 +22,4 @@ todo.diff
 .foreman
 .config/timer-reminder.json
 .aider*
+/pgschema_sql
