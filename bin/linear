@@ -12,6 +12,7 @@ function usage() {
     echo "  i|issue         View the linear issue linked to the current git branch"
     echo "  id              Print the issue id in the current git branch"
     echo "  t|team          Open the team page in Linear.app"
+    echo "  tid|team-id     Print the team id derived from the repository name"
     echo "  it|issue-title  Fetch and display the title of the current issue"
     echo "  ip|issue-print  Print the issue's title and body"
     exit 1;
@@ -47,6 +48,18 @@ function team() {
         # filter is equivalent to
         # {"and":[{"assignee":{"or":[{"isMe":{"eq":true}}]}}]
         open -a /Applications/Linear.app "https://linear.app/$LINEAR_WORKSPACE/team/$teamId/active?filter=eyJhbmQiOlt7ImFzc2lnbmVlIjp7Im9yIjpbeyJpc01lIjp7ImVxIjp0cnVlfX1dfX1dfQ"
+    else
+        echo "Could not determine team id from directory name."
+        exit 1
+    fi
+}
+
+function team_id() {
+    dir=$(basename $(git rev-parse --show-toplevel))
+    teamId=$(echo $dir | ggrep -oP '^[a-zA-Z]{2,5}' | awk '{print toupper($0)}')
+
+    if [ "$teamId" ]; then
+        echo "$teamId"
     else
         echo "Could not determine team id from directory name."
         exit 1
@@ -152,6 +165,9 @@ case $CMD in
         ;;
     t | team)
         team
+        ;;
+    tid | team-id)
+        team_id
         ;;
     it | issue-title)
         issue_title
