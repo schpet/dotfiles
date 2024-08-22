@@ -288,5 +288,6 @@
   "workbench.preferredDarkColorTheme": "Default Dark+",
   "workbench.preferredHighContrastColorTheme": "Default Dark+",
   "terminal.integrated.macOptionIsMeta": true,
-  "continue.pauseTabAutocompleteOnBattery": true
+  "continue.pauseTabAutocompleteOnBattery": true,
+  "biome.enabled": false
 }
