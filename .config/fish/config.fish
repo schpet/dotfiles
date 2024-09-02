@@ -4,15 +4,13 @@ fish_add_path /opt/homebrew/opt/libpq/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 
-chruby 3.3.4
-
 if status is-interactive
     starship init fish | source
     atuin init fish --disable-up-arrow | source
 end
 
 
-set -gx EDITOR vim
+set -gx EDITOR nvim
 
 # pnpm
 set -gx PNPM_HOME "/Users/schpet/Library/pnpm"
@@ -36,6 +34,7 @@ abbr --add l linear
 abbr --add n npm
 abbr --add p pnpm
 abbr --add v nvim
+abbr --add vi nvim
 
 abbr --add json2ts quicktype --lang ts --just-types --no-enums
 abbr --add json2rs quicktype --lang rust --visibility public
@@ -45,3 +44,4 @@ abbr --add unindent awk '{if (NR==1) {len=index($0, $1); }; print substr($0, len
 abbr --add rgg rg --no-heading
 abbr --add llmq llm -s \"Answer in as few words as possible. Use a brief style with short replies.\"
 abbr --add aiderl 'aider --message="fix this issue:\\n$(linear view)"'
+abbr --add ls eza
