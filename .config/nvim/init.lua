@@ -36,4 +36,6 @@ vim.api.nvim_set_keymap('n', '<Leader>t', '<Cmd>call VSCodeCall("tromp.runComman
 vim.api.nvim_set_keymap('n', '<Leader>a', '<Cmd>call VSCodeCall("tromp.runCommand")<CR>', { noremap = true, silent = true })
 
 -- switch between code and tests (maybe switch to https://github.com/tpope/vim-projectionist ?)
-vim.api.nvim_set_keymap('n', '<Leader>.', '<Cmd>call VSCodeCall("alternate.alternateFile")<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<Leader>.', '<Cmd>call VSCodeCall("alternate.alternateFile")<CR>', { noremap = true, silent = true })
+
+require('solarized').set()
