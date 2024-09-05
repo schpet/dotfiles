@@ -26,8 +26,8 @@ vim.api.nvim_set_keymap('n', '<Leader>p', '<Cmd>call VSCodeCall("editor.action.f
 vim.api.nvim_set_keymap('n', '<Leader>f', '<Cmd>call VSCodeCall("copyRelativeFilePath")<CR>', { noremap = true, silent = true })
 
 -- aider: write '/add <current relative file path>' into the vscode terminal
-vim.api.nvim_set_keymap('n', '<Leader>i', '<Cmd>call VSCodeCall("workbench.action.terminal.sendSequence", { text = "/add " .. vim.fn.expand("%:p:.") .. "\\n" })<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>o', '<Cmd>call VSCodeCall("workbench.action.terminal.sendSequence", { text = "/read " .. vim.fn.expand("%:p:.") .. "\\n" })<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>i', [[<Cmd>call VSCodeCall('workbench.action.terminal.sendSequence', { 'text': '/add ' .. vim.fn.expand('%:p:.') .. '\n' })<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>o', [[<Cmd>call VSCodeCall('workbench.action.terminal.sendSequence', { 'text': '/read ' .. vim.fn.expand('%:p:.') .. '\n' })<CR>]], { noremap = true, silent = true })
 
 -- vscode tromp extension
 vim.api.nvim_set_keymap('n', '<Leader>r', '<Cmd>call VSCodeCall("tromp.runPreviousCommand")<CR>', { noremap = true, silent = true })
