@@ -36,6 +36,9 @@ vim.api.nvim_set_keymap('n', '<Leader>s', '<Cmd>call VSCodeCall("tromp.runComman
 vim.api.nvim_set_keymap('n', '<Leader>t', '<Cmd>call VSCodeCall("tromp.runCommandWithFile")<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>a', '<Cmd>call VSCodeCall("tromp.runCommand")<CR>', { noremap = true, silent = true })
 
+-- open new aider session with current file
+vim.api.nvim_set_keymap('n', '<Leader>u', "<Cmd>call VSCodeCall('workbench.action.terminal.sendSequence', { 'text': 'aider ' .. vim.fn.expand('%:p') .. \"\\n\" })<CR>", { noremap = true, silent = true })
+
 -- switch between code and tests (maybe switch to https://github.com/tpope/vim-projectionist ?)
 -- vim.api.nvim_set_keymap('n', '<Leader>.', '<Cmd>call VSCodeCall("alternate.alternateFile")<CR>', { noremap = true, silent = true })
 
