@@ -9,8 +9,8 @@ if status is-interactive
     atuin init fish --disable-up-arrow | source
 end
 
-
 set -gx EDITOR nvim
+set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/ripgreprc"
 
 # pnpm
 set -gx PNPM_HOME "/Users/schpet/Library/pnpm"

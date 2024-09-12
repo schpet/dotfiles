@@ -2,9 +2,9 @@ return {
   -- Alternate between files, such as foo.go and foo_test.go
   {
     "rgroli/other.nvim",
-  keys = {
-    { '<leader>.', '<cmd>Other<CR>', desc = 'Alternate file' },
-  },
+    keys = {
+      { '<leader>.', '<cmd>Other<CR>', desc = 'Alternate file' },
+    },
     config = function ()
       require("other-nvim").setup({
         mappings = {
