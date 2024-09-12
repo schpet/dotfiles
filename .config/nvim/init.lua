@@ -42,5 +42,7 @@ vim.api.nvim_set_keymap('n', '<Leader>u', "<Cmd>call VSCodeCall('workbench.actio
 -- switch between code and tests (maybe switch to https://github.com/tpope/vim-projectionist ?)
 -- vim.api.nvim_set_keymap('n', '<Leader>.', '<Cmd>call VSCodeCall("alternate.alternateFile")<CR>', { noremap = true, silent = true })
 
-
-require('solarized').set()
+-- Only load Solarized theme when not in VSCode
+if vim.fn.exists("g:vscode") ~= 1 then
+    require('solarized').set()
+end
