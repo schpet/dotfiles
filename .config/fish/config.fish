@@ -45,3 +45,6 @@ abbr --add rgg rg --no-heading
 abbr --add llmq llm -s \"Answer in as few words as possible. Use a brief style with short replies.\"
 abbr --add aiderl 'aider --message="fix this issue:\\n$(linear view)"'
 abbr --add ls eza
+
+# Added by `rbenv init` on Thu Sep 19 12:09:03 PDT 2024
+status --is-interactive; and rbenv init - --no-rehash fish | source
