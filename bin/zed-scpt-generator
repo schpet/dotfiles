@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+directories=$(find ~/{code,tanooki} -maxdepth 1 -mindepth 1 -type d)
+
+for dir in $directories
+do
+    bn=$(basename $dir)
+
+    # Generate AppleScript file to open Zed using bash command
+    zed_script="$dir/$bn.zed.scpt"
+    cat << EOF > "$zed_script"
+do shell script "/usr/local/bin/zed '$dir'"
+EOF
+done
