@@ -5,19 +5,17 @@ directories=$(find ~/{code,tanooki} -maxdepth 1 -mindepth 1 -type d)
 for dir in $directories
 do
     bn=$(basename $dir)
-    
+
     # Generate .code-workspace file for VS Code
     json=$(jo folders=$(jo -a $(jo path=".")) settings={})
     output_file="$dir/$bn.code-workspace"
     echo "$json" | jq > "$output_file"
-    
+
     # Generate AppleScript file to open Zed
     zed_script="$dir/$bn.zed.scpt"
     cat << EOF > "$zed_script"
 tell application "Zed"
-    activate
     open "$dir"
 end tell
 EOF
 done
-
