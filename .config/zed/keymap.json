@@ -1,0 +1,21 @@
+[
+  {
+    "bindings": {
+      "ctrl-j": "workspace::ActivateNextPane"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "space f": "editor::CopyRelativePath",
+      "space p": "editor::Format",
+      "space b": "editor::ToggleGitBlame"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-n": "workspace::NewTerminal"
+    }
+  }
+]
