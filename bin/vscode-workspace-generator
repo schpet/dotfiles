@@ -11,11 +11,9 @@ do
     output_file="$dir/$bn.code-workspace"
     echo "$json" | jq > "$output_file"
 
-    # Generate AppleScript file to open Zed
+    # Generate AppleScript file to open Zed using bash command
     zed_script="$dir/$bn.zed.scpt"
     cat << EOF > "$zed_script"
-tell application "Zed"
-    open "$dir"
-end tell
+do shell script "zed '$dir'"
 EOF
 done
