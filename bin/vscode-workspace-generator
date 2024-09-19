@@ -11,13 +11,13 @@ do
     output_file="$dir/$bn.code-workspace"
     echo "$json" | jq > "$output_file"
     
-    # Generate AppleScript to open Zed
+    # Generate AppleScript file to open Zed
     zed_script="$dir/$bn.zed.scpt"
-    osascript -e "
-    tell application \"Zed\"
-        activate
-        open \"$dir\"
-    end tell
-    " > "$zed_script"
+    cat << EOF > "$zed_script"
+tell application "Zed"
+    activate
+    open "$dir"
+end tell
+EOF
 done
 
