@@ -14,7 +14,11 @@
     },
     "version": "2"
   },
-  "theme": "Solarized Light",
+  "theme": {
+    "mode": "system",
+    "light": "Solarized Light",
+    "dark": "Solarized Dark"
+  },
   "buffer_font_size": 13,
   "vim_mode": true,
   "format_on_save": "off",
@@ -27,8 +31,21 @@
     "Markdown": ["markdown", "mdoc"]
   },
   "languages": {
+    "TSX": {
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.addMissingImports": true
+      }
+    },
+    "TS": {
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.addMissingImports": true
+      }
+    },
     "Ruby": {
-      "language_servers": ["ruby-lsp", "!solargraph", "!rubocop", "..."]
+      "language_servers": ["ruby-lsp", "!solargraph", "!rubocop", "..."],
+      "formatter": "language_server"
     }
   },
   "lsp": {
@@ -38,7 +55,8 @@
           // This disables diagnostics
           "diagnostics": false
         }
-      }
+      },
+      "formatter": "standard"
     }
   },
   "restore_on_startup": "none"

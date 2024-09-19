@@ -5,17 +5,12 @@
     }
   },
   {
-    "context": "Editor",
+    "context": "vim_mode == normal",
     "bindings": {
+      "shift-y": ["workspace::SendKeystrokes", "y $"],
       "space f": "editor::CopyRelativePath",
       "space p": "editor::Format",
       "space b": "editor::ToggleGitBlame"
-    }
-  },
-  {
-    "context": "vim_mode == normal",
-    "bindings": {
-      "shift-y": ["workspace::SendKeystrokes", "y $"]
     }
   },
   {
