@@ -13,6 +13,12 @@
     }
   },
   {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "shift-y": ["workspace::SendKeystrokes", "y $"]
+    }
+  },
+  {
     "context": "Terminal",
     "bindings": {
       "cmd-n": "workspace::NewTerminal"
