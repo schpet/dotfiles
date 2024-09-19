@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
 
-
 directories=$(find ~/{code,tanooki} -maxdepth 1 -mindepth 1 -type d)
 
 for dir in $directories
 do
-	bn=$(basename $dir)
-	json=$(jo folders=$(jo -a $(jo path=".")) settings={})
-
-	output_file="$dir/$bn.code-workspace"
-	echo "$json" | jq > "$dir/$bn.code-workspace"
+    bn=$(basename $dir)
+    
+    # Generate .code-workspace file for VS Code
+    json=$(jo folders=$(jo -a $(jo path=".")) settings={})
+    output_file="$dir/$bn.code-workspace"
+    echo "$json" | jq > "$output_file"
+    
+    # Generate script to open Zed
+    zed_script="$dir/open_in_zed.sh"
+    echo "#!/bin/sh" > "$zed_script"
+    echo "zed \"$dir\"" >> "$zed_script"
+    chmod +x "$zed_script"
 done
 
