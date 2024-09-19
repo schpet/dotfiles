@@ -10,10 +10,4 @@ do
     json=$(jo folders=$(jo -a $(jo path=".")) settings={})
     output_file="$dir/$bn.code-workspace"
     echo "$json" | jq > "$output_file"
-
-    # Generate AppleScript file to open Zed using bash command
-    zed_script="$dir/$bn.zed.scpt"
-    cat << EOF > "$zed_script"
-do shell script "zed '$dir'"
-EOF
 done
