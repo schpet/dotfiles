@@ -12,7 +12,7 @@ do
     echo "$json" | jq > "$output_file"
     
     # Generate script to open Zed
-    zed_script="$dir/open_in_zed.sh"
+    zed_script="$dir/$bn.zed.sh"
     echo "#!/bin/sh" > "$zed_script"
     echo "zed \"$dir\"" >> "$zed_script"
     chmod +x "$zed_script"
