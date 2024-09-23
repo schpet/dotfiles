@@ -2,3 +2,4 @@
 
 # default to dense grep style output
 --no-heading
+--smart-case
