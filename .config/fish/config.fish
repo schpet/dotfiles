@@ -24,7 +24,7 @@ abbr --add cw cd ~/tanooki
 
 abbr --add b bundle
 abbr --add be bundle exec
-abbr --add e code
+abbr --add e zed
 abbr --add f flyctl
 abbr --add g git
 abbr --add gs git status
@@ -35,13 +35,13 @@ abbr --add n npm
 abbr --add p pnpm
 abbr --add v nvim
 abbr --add vi nvim
+abbr --add rgg rg
 
 abbr --add json2ts quicktype --lang ts --just-types --no-enums
 abbr --add json2rs quicktype --lang rust --visibility public
 
 abbr --add uncolor gsed -e 's/\x1b\[[0-9;]*m//g'
 abbr --add unindent awk '{if (NR==1) {len=index($0, $1); }; print substr($0, len)}'
-abbr --add rgg rg --no-heading
 abbr --add llmq llm -s \"Answer in as few words as possible. Use a brief style with short replies.\"
 abbr --add aiderl 'aider --message="fix this issue:\\n$(linear view)"'
 abbr --add ls eza
