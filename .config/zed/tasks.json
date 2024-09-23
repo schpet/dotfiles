@@ -17,5 +17,9 @@
     "shell": "system",
     "reveal": "never",
     "hide": "on_success"
+  },
+  {
+    "label": "just",
+    "command": "just"
   }
 ]

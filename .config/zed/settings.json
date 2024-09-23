@@ -17,7 +17,9 @@
   "theme": {
     "mode": "system",
     "light": "Solarized Light",
-    "dark": "Solarized Dark"
+    "dark": "Solarized Light"
+    // TODO figure out the diff/delta theme for dark mode in terminal
+    // "dark": "Solarized Dark"
   },
   "buffer_font_size": 13,
   "vim_mode": true,
@@ -44,7 +46,7 @@
       }
     },
     "Ruby": {
-      "language_servers": ["ruby-lsp", "!solargraph", "!rubocop", "..."],
+      "language_servers": ["ruby-lsp", "!solargraph", "!rubocop"],
       "formatter": "language_server"
     }
   },
@@ -52,12 +54,15 @@
     "ruby-lsp": {
       "initialization_options": {
         "enabledFeatures": {
-          // This disables diagnostics
           "diagnostics": false
         }
-      },
-      "formatter": "standard"
+      }
     }
   },
-  "restore_on_startup": "none"
+  "terminal": {
+    "option_as_meta": true,
+    "font_family": "Fira Code",
+    "alternate_scroll": "on",
+    "button": false
+  }
 }
