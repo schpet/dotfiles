@@ -21,6 +21,7 @@ end
 
 abbr --add cc cd ~/code
 abbr --add cw cd ~/tanooki
+abbr --add fly flyctl
 
 abbr --add b bundle
 abbr --add be bundle exec
@@ -36,6 +37,7 @@ abbr --add p pnpm
 abbr --add v nvim
 abbr --add vi nvim
 abbr --add rgg rg
+abbr --add c cargo
 
 abbr --add json2ts quicktype --lang ts --just-types --no-enums
 abbr --add json2rs quicktype --lang rust --visibility public
