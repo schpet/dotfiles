@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+rsync --exclude "Library.musiclibrary" --exclude "Music" -av ~/Music/ schpet@ssh.pi.schpet.com:/mnt/cooldisk/music/
