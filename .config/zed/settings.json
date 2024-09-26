@@ -14,6 +14,10 @@
     },
     "version": "2"
   },
+  "tabs": {
+    "git_status": true,
+    "file_icons": true
+  },
   "theme": {
     "mode": "system",
     "light": "Solarized Light",

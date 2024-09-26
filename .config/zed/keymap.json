@@ -12,13 +12,15 @@
       "space p": "editor::Format",
       "space b": "editor::ToggleGitBlame",
       "space r": ["task::Rerun", { "reevaluate_context": false }],
-      "space s": ["task::Spawn", { "task_name": "rspec" }]
+      "space s": ["task::Spawn", { "task_name": "rspec" }],
+      "space j": ["task::Spawn", { "task_name": "just" }]
     }
   },
   {
     "context": "Terminal",
     "bindings": {
-      "cmd-n": "workspace::NewTerminal"
+      "cmd-n": "workspace::NewTerminal",
+      // "alt-enter": ["terminal::SendKeystroke", "alt-enter"]
     }
   }
 ]
