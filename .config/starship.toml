@@ -1,3 +1,9 @@
 
 [nodejs]
 symbol = "⬢ "
+
+[username]
+disabled = true
+
+[gcloud]
+disabled = true
