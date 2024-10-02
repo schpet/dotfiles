@@ -1,1 +1,19 @@
 #!/bin/bash
+
+# Script to kill Puma web server processes on macOS
+
+# Find Puma processes
+puma_pids=$(pgrep -f puma)
+
+if [ -z "$puma_pids" ]; then
+    echo "No Puma processes found."
+    exit 0
+fi
+
+# Kill Puma processes
+for pid in $puma_pids; do
+    echo "Killing Puma process with PID: $pid"
+    kill -9 $pid
+done
+
+echo "All Puma processes have been terminated."
