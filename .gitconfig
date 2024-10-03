@@ -78,6 +78,7 @@
 [core]
 	excludesfile = ~/.cvsignore
 	editor = vim
+	; editor = zed --new --wait
 	ignorecase = false
 	pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)" --tabs 2
 
@@ -88,7 +89,6 @@
 [delta]
 	features = line-numbers
 	line-numbers = false
-	light = true
 [delta "light-mode"]
 	light = true
 [delta "dark-mode"]
