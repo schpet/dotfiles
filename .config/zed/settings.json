@@ -7,6 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "use_autoclose": false,
   "assistant": {
     "default_model": {
       "provider": "anthropic",
@@ -21,9 +22,9 @@
   "theme": {
     "mode": "system",
     "light": "Solarized Light",
-    "dark": "Solarized Light"
+    // "dark": "Solarized Light"
     // TODO figure out the diff/delta theme for dark mode in terminal
-    // "dark": "Solarized Dark"
+    "dark": "Solarized Dark"
   },
   "buffer_font_size": 13,
   "vim_mode": true,
@@ -37,6 +38,9 @@
     "Markdown": ["markdown", "mdoc"]
   },
   "languages": {
+    "Markdown": {
+      "show_inline_completions": false
+    },
     "TSX": {
       "code_actions_on_format": {
         "source.organizeImports": true,
@@ -67,6 +71,7 @@
     "option_as_meta": true,
     "font_family": "Fira Code",
     "alternate_scroll": "on",
-    "button": false
+    "button": false,
+    "blinking": "on"
   }
 }

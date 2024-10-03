@@ -20,7 +20,7 @@
     "context": "Terminal",
     "bindings": {
       "cmd-n": "workspace::NewTerminal",
-      // "alt-enter": ["terminal::SendKeystroke", "alt-enter"]
+      "ctrl-enter": ["terminal::SendKeystroke", "ctrl-enter"]
     }
   }
 ]
