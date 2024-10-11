@@ -4,21 +4,25 @@
 # @raycast.title Generate zed raycast shortcuts
 # @raycast.mode inline
 
-directories=$(find ~/{code,tanooki} -maxdepth 1 -mindepth 1 -type d)
-
-for dir in $directories
+for category in code tanooki
 do
-    bn=$(basename $dir)
-    shortcut_path="$HOME/shortcuts/zed/$bn"
-    cat << EOF > "$shortcut_path"
+    directories=$(find ~/$category -maxdepth 1 -mindepth 1 -type d)
+
+    for dir in $directories
+    do
+        bn=$(basename $dir)
+        shortcut_path="$HOME/shortcuts/zed/$category/$bn"
+        mkdir -p "$(dirname "$shortcut_path")"
+        cat << EOF > "$shortcut_path"
 #!/usr/bin/env bash
 
 # generated from zed-shortcut-generator
 
 # @raycast.schemaVersion 1
-# @raycast.title $bn
+# @raycast.title $category/$bn
 # @raycast.mode silent
 
 open -a 'Zed Preview' $dir
 EOF
+    done
 done
