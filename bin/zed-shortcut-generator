@@ -24,5 +24,6 @@ do
 
 open -a 'Zed Preview' $dir
 EOF
+        chmod +x "$shortcut_path"
     done
 done
