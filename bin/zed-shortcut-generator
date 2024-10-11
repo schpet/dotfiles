@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# @raycast.schemaVersion 1
+# @raycast.title Generate zed raycast shortcuts
+# @raycast.mode inline
+
+directories=$(find ~/{code,tanooki} -maxdepth 1 -mindepth 1 -type d)
+
+for dir in $directories
+do
+    bn=$(basename $dir)
+    shortcut_path="$HOME/shortcuts/zed/$bn"
+    cat << EOF > "$shortcut_path"
+#!/usr/bin/env bash
+
+# generated from zed-shortcut-generator
+
+# @raycast.schemaVersion 1
+# @raycast.title $bn
+# @raycast.mode silent
+
+open -a 'Zed Preview' $dir
+EOF
+done
