@@ -129,7 +129,9 @@ function reactions() {
                     state {
                         name
                     }
-                    reactionCountByEmoji
+                    reactions {
+                        emoji
+                    }
                 }
             }
         }
@@ -158,10 +160,11 @@ function reactions() {
         map(
             .title + 
             (
-                if (.reactions.nodes | length) > 0 then
+                if (.reactions | length) > 0 then
                     " " + (
-                        to_entries | 
-                        map(.key + " " + (.value | tostring)) |
+                        .reactions | 
+                        group_by(.emoji) | 
+                        map(.[0].emoji + " " + (length | tostring)) |
                         join(" ")
                     )
                 else 
