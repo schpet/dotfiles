@@ -120,17 +120,16 @@ function reactions() {
     teamId="$1"
     query='query($teamId: String!) {
         team(id: $teamId) {
-            issues(filter: {state: {type: {in: ["started", "unstarted", "backlog"]}}, first: 100}) {
+            issues(
+                filter: {state: {type: {in: ["started", "unstarted", "backlog"]}}}
+                first: 100
+            ) {
                 nodes {
                     title
                     state {
                         name
                     }
-                    reactions {
-                        nodes {
-                            emoji
-                        }
-                    }
+                    reactionCountByEmoji
                 }
             }
         }
@@ -161,9 +160,8 @@ function reactions() {
             (
                 if (.reactions.nodes | length) > 0 then
                     " " + (
-                        .reactions.nodes | 
-                        group_by(.emoji) | 
-                        map(.[0].emoji + " " + (length | tostring)) |
+                        to_entries | 
+                        map(.key + " " + (.value | tostring)) |
                         join(" ")
                     )
                 else 
