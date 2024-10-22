@@ -158,7 +158,7 @@ function reactions() {
         group_by(.state.name)[] |
         (["", "## " + .[0].state.name, ""] + 
         (sort_by(-(.reactions | length)) | map(
-            .title + 
+            "- [" + ((.reactions | length) | tostring) + "] " + .title + 
             (
                 if (.reactions | length) > 0 then
                     " " + (
