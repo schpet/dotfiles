@@ -15,6 +15,7 @@ function usage() {
     echo "  tid|team-id     Print the team id derived from the repository name"
     echo "  it|issue-title  Fetch and display the title of the current issue"
     echo "  ip|issue-print  Print the issue's title and body"
+    echo "  r|reactions     List active issues with reactions for a team"
     exit 1;
 }
 
@@ -105,6 +106,73 @@ function issue_title() {
     fi
 }
 
+function reactions() {
+    if [ -z "$LINEAR_API_KEY" ]; then
+        echo "LINEAR_API_KEY environment variable is not set."
+        exit 1
+    fi
+
+    if [ -z "$1" ]; then
+        echo "Please provide a team ID"
+        exit 1
+    fi
+
+    teamId="$1"
+    query='query($teamId: String!) {
+        team(id: $teamId) {
+            issues(filter: {state: {type: {in: ["started", "unstarted", "backlog"]}}, first: 100}) {
+                nodes {
+                    title
+                    state {
+                        name
+                    }
+                    reactions {
+                        nodes {
+                            emoji
+                        }
+                    }
+                }
+            }
+        }
+    }'
+    
+    variables=$(jo teamId="$teamId")
+    data=$(jo query="$query" variables="$variables")
+
+    response=$(curl -s -X POST \
+        -H "Content-Type: application/json" \
+        -H "Authorization: $LINEAR_API_KEY" \
+        --data "$data" \
+        https://api.linear.app/graphql)
+
+    if [[ $(echo "$response" | jq 'has("errors")') == "true" ]]; then
+        echo "GraphQL Error:"
+        echo "$response" | jq
+        exit 1
+    fi
+
+    # Process and group issues by state
+    echo "$response" | jq -r '
+        .data.team.issues.nodes | 
+        group_by(.state.name)[] | 
+        ["", "## " + .[0].state.name, ""] + 
+        map(
+            .title + 
+            (
+                if (.reactions.nodes | length) > 0 then
+                    " " + (
+                        .reactions.nodes | 
+                        group_by(.emoji) | 
+                        map(.[0].emoji + " " + (length | tostring)) |
+                        join(" ")
+                    )
+                else 
+                    ""
+                end
+            )
+        )[]'
+}
+
 function issue_print() {
     issueId=$(id)
 
@@ -174,6 +242,9 @@ case $CMD in
         ;;
     ip | issue-print)
         issue_print
+        ;;
+    r | reactions)
+        reactions "${2:-}"
         ;;
     *)
         usage
