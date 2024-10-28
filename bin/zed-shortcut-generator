@@ -7,12 +7,15 @@
 for category in code tanooki
 do
     directories=$(find ~/$category -maxdepth 1 -mindepth 1 -type d)
+    shortcut_dir="$HOME/shortcuts/zed/$category"
+    rm -r "$shortcut_dir"
+    mkdir -p "$shortcut_dir"
 
     for dir in $directories
     do
         bn=$(basename $dir)
-        shortcut_path="$HOME/shortcuts/zed/$category/$bn"
-        mkdir -p "$(dirname "$shortcut_path")"
+        shortcut_path="$shortcut_dir/$bn"
+        shortcut_dir=$(dirname "$shortcut_path")
         cat << EOF > "$shortcut_path"
 #!/usr/bin/env bash
 
@@ -21,6 +24,7 @@ do
 # @raycast.schemaVersion 1
 # @raycast.title $category/$bn
 # @raycast.mode silent
+# @raycast.icon $HOME/shortcuts/zed/zed_logo.svg
 
 open -a 'Zed Preview' $dir
 EOF
