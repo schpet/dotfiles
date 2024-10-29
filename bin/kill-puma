@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# Script to kill Puma web server processes on macOS
+# @raycast.schemaVersion 1
+# @raycast.title Kill puma processes
+# @raycast.mode fullOutput
 
 # Find Puma processes
 puma_pids=$(pgrep -f puma)
