@@ -1,7 +1,8 @@
 [
   {
     "bindings": {
-      "ctrl-j": "workspace::ActivateNextPane"
+      "ctrl-j": "workspace::ActivateNextPane",
+      "cmd-shift-a": ["task::Spawn", { "task_name": "git commit all" }]
     }
   },
   {
@@ -13,14 +14,26 @@
       "space b": "editor::ToggleGitBlame",
       "space r": ["task::Rerun", { "reevaluate_context": false }],
       "space s": ["task::Spawn", { "task_name": "rspec" }],
-      "space j": ["task::Spawn", { "task_name": "just" }]
+      "space a": ["task::Spawn", { "task_name": "git commit all empty" }],
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": [
+        "vim::PushOperator",
+        {
+          "AddSurrounds": {}
+        }
+      ]
     }
   },
   {
     "context": "Terminal",
     "bindings": {
       "cmd-n": "workspace::NewTerminal",
-      "ctrl-enter": ["terminal::SendKeystroke", "ctrl-enter"]
+      "ctrl-enter": ["terminal::SendKeystroke", "ctrl-enter"],
+      "alt-enter": ["terminal::SendKeystroke", "alt-enter"]
     }
   }
 ]

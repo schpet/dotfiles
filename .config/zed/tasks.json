@@ -21,5 +21,24 @@
   {
     "label": "just",
     "command": "just"
+  },
+  {
+    "label": "git commit all empty",
+    "command": "git add . && git commit -a --allow-empty-message -m \"\"",
+    "reveal": "never",
+    "hide": "on_success"
+  },
+  {
+    "label": "git commit all",
+    "command": "git add . && git commit -a -v",
+    "reveal": "always",
+    "hide": "on_success"
+  },
+  {
+    "label": "Task journal entry",
+    "command": "zed-preview ~/journal/ && zed-preview ~/journal/$(date +'%Y/%m/%d').md",
+    "shell": {
+      "program": "bash"
+    }
   }
 ]

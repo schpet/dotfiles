@@ -25,7 +25,7 @@ abbr --add fly flyctl
 
 abbr --add b bundle
 abbr --add be bundle exec
-abbr --add e zed
+abbr --add e zed-preview
 abbr --add f flyctl
 abbr --add g git
 abbr --add gs git status
@@ -47,6 +47,9 @@ abbr --add unindent awk '{if (NR==1) {len=index($0, $1); }; print substr($0, len
 abbr --add llmq llm -s \"Answer in as few words as possible. Use a brief style with short replies.\"
 abbr --add aiderl 'aider --message="fix this issue:\\n$(linear view)"'
 abbr --add ls eza
+abbr --add trurlparams "trurl --url-file - --json | jq -r '.[0].params | map(\"\\(.key)=\\(.value)\")[]'"
 
 # Added by `rbenv init` on Thu Sep 19 12:09:03 PDT 2024
 status --is-interactive; and rbenv init - --no-rehash fish | source
+
+zoxide init fish | source

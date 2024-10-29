@@ -13,8 +13,8 @@
 
 	c = commit
 	ca = commit --all
-	cc = commit --allow-empty-message -m ""
-	cce = commit  --allow-empty --allow-empty-message -m ""
+	cc = commit --allow-empty-message -m ''
+	cce = commit  --allow-empty --allow-empty-message -m ''
 	cs = !aider --commit
 
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' - # used by PS1

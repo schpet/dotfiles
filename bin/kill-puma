@@ -13,7 +13,7 @@ fi
 # Kill Puma processes
 for pid in $puma_pids; do
     echo "Killing Puma process with PID: $pid"
-    kill -9 $pid
+    kill $pid
 done
 
 echo "All Puma processes have been terminated."
