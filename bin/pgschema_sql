@@ -4,12 +4,14 @@ set -euo pipefail
 
 # dumps CREATE TABLE statements and other relevant schema parts for every table into SQL files
 
-# Check if DATABASE_URL environment variable is set
-if [ -z "${DATABASE_URL:-}" ]; then
-    echo "DATABASE_URL environment variable is not set. Please set it before running this script."
+# Check if DATABASE_URL argument is provided
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <database-url>"
+    echo "Example: $0 postgres://user:pass@localhost:5432/dbname"
     exit 1
 fi
 
+DATABASE_URL="$1"
 echo "connecting to $DATABASE_URL"
 
 # Create 'pgschema_sql' directory if not exists
