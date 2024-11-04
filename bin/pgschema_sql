@@ -11,7 +11,12 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-DATABASE_URL="$1"
+# If input doesn't start with postgres://, assume it's just a database name
+if [[ "$1" != postgres://* ]]; then
+    DATABASE_URL="postgres://localhost/$1"
+else
+    DATABASE_URL="$1"
+fi
 echo "connecting to $DATABASE_URL"
 
 # Create 'pgschema_sql' directory if not exists
