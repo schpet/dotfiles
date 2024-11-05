@@ -34,7 +34,7 @@ function issue() {
 
  function id() {
     gitBranch=$(git symbolic-ref --short HEAD)
-    issueId=$(echo $gitBranch | ggrep -oP '[a-zA-Z]{2,5}-[1-9][0-9]*' | tail -n 1)
+    issueId=$(echo $gitBranch | ggrep -oP '[a-zA-Z]{2,5}-[1-9][0-9]*' | head -n 1)
 
     if [ "$issueId" ]; then
         echo $issueId | awk '{print toupper($0)}'
