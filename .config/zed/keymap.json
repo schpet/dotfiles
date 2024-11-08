@@ -13,7 +13,7 @@
       "space p": "editor::Format",
       "space b": "editor::ToggleGitBlame",
       "space r": ["task::Rerun", { "reevaluate_context": false }],
-      "space s": ["task::Spawn", { "task_name": "rspec" }],
+      "space s": ["editor::SpawnNearestTask", { "reveal": "no_focus" }],
       "space a": ["task::Spawn", { "task_name": "git commit all empty" }],
     }
   },
