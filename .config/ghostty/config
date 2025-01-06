@@ -1,2 +1,3 @@
 cursor-style = block
 shell-integration-features = no-cursor
+theme = dark:Builtin Solarized Dark,light:Builtin Solarized Light
