@@ -11,6 +11,7 @@ end
 
 set -gx EDITOR nvim
 set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/ripgreprc"
+set -gx HOMEBREW_BUNDLE_FILE "$HOME/.config/brew/Brewfile"
 
 # pnpm
 set -gx PNPM_HOME "/Users/schpet/Library/pnpm"
@@ -38,6 +39,7 @@ abbr --add v nvim
 abbr --add vi nvim
 abbr --add rgg rg
 abbr --add c cargo
+abbr --add r bin/rails
 
 abbr --add json2ts quicktype --lang ts --just-types --no-enums
 abbr --add json2rs quicktype --lang rust --visibility public
@@ -51,5 +53,3 @@ abbr --add trurlparams "trurl --url-file - --json | jq -r '.[0].params | map(\"\
 
 # Added by `rbenv init` on Thu Sep 19 12:09:03 PDT 2024
 status --is-interactive; and rbenv init - --no-rehash fish | source
-
-zoxide init fish | source
