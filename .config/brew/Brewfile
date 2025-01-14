@@ -1,7 +1,7 @@
 # commands
 # - brew bundle install         # install everything in this file
-# - brew bundle cleanup         # see stuff installed that's not in this file
-# - brew bundle cleanup --force # to remove that stuff
+# - brew bundle cleanup         # list installed apps that are not in this file
+# - brew bundle cleanup --force # remove installed apps that are not in this file
 
 tap "homebrew/bundle"
 tap "homebrew/services"
@@ -33,18 +33,19 @@ brew "rubyfmt" # ruby formatter extraordinaire
 # mac os odds and ends
 brew "cdrtools" # burn a cd from the cli
 brew "switchaudio-osx" # lets you switch audio input/output from the command line
+brew "pngpaste" # paste an image from the clipboard
 
 # basics
 brew "coreutils" # real variants of sed, grep, etc
-brew "curl" # use up-to-date curl
-brew "ffmpeg" # convert my media
-brew "git" # use up-to-date git
-brew "libpq" # postgresql stuff?
-brew "neovim" # vim replacement
+brew "curl"
+brew "ffmpeg"
+brew "git"
+brew "libpq" # postgresql
+brew "neovim"
 brew "redis"
-brew "sqlite" # a great database
-brew "tmux" # not much of a reason to run this locally
-brew "vips" # image processing library
+brew "sqlite"
+brew "tmux"
+brew "vips"
 brew "rsync"
 
 # 3rd party services
@@ -61,4 +62,5 @@ cask "ghostty" # terminal emulator
 cask "musicbrainz-picard" # music tagger and organizer
 cask "raycast" # spotlight replacement
 cask "rectangle" # window manager
+cask "submariner" # navidrome client
 cask "zed@preview" # text editor
