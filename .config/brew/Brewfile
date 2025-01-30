@@ -22,6 +22,7 @@ brew "schpet/tap/envset" # updates .env files
 brew "sd" # sed replacement
 brew "starship" # shell prompt PS1 thing
 brew "stow" # symlink manager, for dotfiles
+brew "trurl"
 brew "yazi" # file browser
 
 # programming
@@ -64,3 +65,5 @@ cask "raycast" # spotlight replacement
 cask "rectangle" # window manager
 cask "submariner" # navidrome client
 cask "zed@preview" # text editor
+cask "burn" # burn dvds
+cask "vlc" # video player
