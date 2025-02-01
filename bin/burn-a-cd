@@ -16,7 +16,7 @@ fi
 for file in "${dir}"/*.flac
 do
     fname=$(basename "$file" .flac)
-    ffmpeg -i "$file" "${temp_dir}/${fname}.wav"
+    ffmpeg -i "$file" -ar 44100 -ac 2 -sample_fmt s16 "${temp_dir}/${fname}.wav"
 done
 
 # burns files to a CD as audio tracks
