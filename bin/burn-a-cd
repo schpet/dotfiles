@@ -50,3 +50,4 @@ echo "Burning audio tracks to CD..."
 cdrecord -v dev=1,0,0 -audio -pad "${temp_dir}"/*.wav
 
 echo "Done. Burned the audio tracks to a CD."
+drutil eject
