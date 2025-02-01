@@ -1,28 +1,52 @@
 #!/bin/bash
 set -euxo pipefail
 
-# directory provided as an argument
+# Usage check
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <directory-with-flac-files>"
+    exit 1
+fi
+
 dir="$1"
 
-# creates a temp directory for wav files
-temp_dir=$(mktemp -d)
+if [ ! -d "$dir" ]; then
+    echo "Error: $dir is not a directory."
+    exit 1
+fi
 
+# Check if required commands are available.
+for cmd in ffmpeg cdrecord; do
+    if ! command -v "$cmd" >/dev/null; then
+        echo "Error: $cmd is not installed or not in PATH."
+        exit 1
+    fi
+done
+
+# Create a temporary directory for wav files.
+temp_dir=$(mktemp -d)
 if [[ ! -d "${temp_dir}" ]]; then
     echo "Could not create temp directory"
     exit 1
 fi
 
-# converts flac files to wav
-for file in "${dir}"/*.flac
-do
+# Ensure that the temporary directory is removed even on error.
+trap 'rm -rf "${temp_dir}"' EXIT
+
+# Convert flac files to wav with CD-quality settings.
+shopt -s nullglob
+flac_files=("${dir}"/*.flac)
+if [ ${#flac_files[@]} -eq 0 ]; then
+    echo "No .flac files found in $dir"
+    exit 1
+fi
+
+for file in "${flac_files[@]}"; do
     fname=$(basename "$file" .flac)
     ffmpeg -i "$file" -ar 44100 -ac 2 -sample_fmt s16 "${temp_dir}/${fname}.wav"
 done
 
-# burns files to a CD as audio tracks
+echo "Burning audio tracks to CD..."
+# Burns files to a CD as audio tracks (consider parameterizing 'dev' if needed).
 cdrecord -v dev=1,0,0 -audio -pad "${temp_dir}"/*.wav
-
-# remove temp directory
-rm -r "${temp_dir}"
 
 echo "Done. Burned the audio tracks to a CD."
