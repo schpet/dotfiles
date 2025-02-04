@@ -8,6 +8,7 @@ tap "homebrew/services"
 
 # tools
 brew "eza" # ls replacement
+brew "dasel"
 brew "fd" # find replacement
 brew "fish" # shell
 brew "fzf" # fuzzy finder
