@@ -8,7 +8,7 @@ if [ -z "$input" ]; then
 fi
 prompt_prefix=$(cat <<EOF
 summarize the following git log tersely so that it fits into less than 300 characters, as a quick summary of a work done in a day in chronological order.
-exclude id references, such as (#123) or $(linear team-id)-123.
+exclude id references, such as (#123) or $(linear team id)-123.
 separate items with a comma and write it as a single sentence.
 remove git semantic commit prefixes like fix:, feat:, and chore:.
 
