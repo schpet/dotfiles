@@ -8,7 +8,7 @@ for category in code tanooki
 do
     directories=$(find ~/$category -maxdepth 1 -mindepth 1 -type d)
     shortcut_dir="$HOME/shortcuts/zed/$category"
-    rm -r "$shortcut_dir"
+    rm -rf "$shortcut_dir"
     mkdir -p "$shortcut_dir"
 
     for dir in $directories
