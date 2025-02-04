@@ -72,7 +72,7 @@
 [web]
 	browser = open
 [merge]
-	tool = vimdiff
+	tool = nvimdiff
 	summary = true
 	conflictstyle = zdiff3
 [core]
@@ -95,6 +95,7 @@
 	light = false
 [pretty]
 	summary = - %C(yellow)%an%Creset %s
+	simple = - %C(yellow)%an%Creset %s
 	info = - %ad %C(yellow)%an%Creset %d %s
 [diff "exif"]
 	textconv = exiftool
