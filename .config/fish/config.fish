@@ -40,6 +40,7 @@ abbr --add vi nvim
 abbr --add rgg rg
 abbr --add c cargo
 abbr --add r bin/rails
+abbr --add o open
 
 abbr --add json2ts quicktype --lang ts --just-types --no-enums
 abbr --add json2rs quicktype --lang rust --visibility public
@@ -53,3 +54,5 @@ abbr --add trurlparams "trurl --url-file - --json | jq -r '.[0].params | map(\"\
 
 # Added by `rbenv init` on Thu Sep 19 12:09:03 PDT 2024
 status --is-interactive; and rbenv init - --no-rehash fish | source
+
+source (linear completions fish | psub)
