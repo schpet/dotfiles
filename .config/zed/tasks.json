@@ -3,9 +3,16 @@
 // Example:
 [
   {
-    "label": "rspec",
+    "label": "rspec_line",
     "command": "bundle exec rspec",
     "args": ["\"$ZED_RELATIVE_FILE:$ZED_ROW\""],
+    "tags": ["ruby-test"],
+    "shell": "system"
+  },
+  {
+    "label": "rspec_file",
+    "command": "bundle exec rspec",
+    "args": ["\"$ZED_RELATIVE_FILE\""],
     "tags": ["ruby-test"],
     "shell": "system"
   },
@@ -40,5 +47,26 @@
     "shell": {
       "program": "bash"
     }
+  },
+  {
+    "label": "aider_watch_rb",
+    "command": "aider -c .config/aider.conf.rb.yml --no-detect-urls --watch-files",
+    "hide": "on_success",
+    "allow_concurrent_runs": false,
+    "reveal_target": "dock",
+    "use_new_terminal": false,
+    "tags": ["aider-rb"]
+  },
+  {
+    "label": "aider_watch_js",
+    "command": "aider -c .config/aider.conf.js.yml --no-detect-urls --watch-files",
+    "hide": "on_success",
+    "allow_concurrent_runs": false,
+    "reveal_target": "dock",
+    "tags": ["aider-js"]
+  },
+  {
+    "label": "start lazygit",
+    "command": "lazygit -p $ZED_WORKTREE_ROOT"
   }
 ]

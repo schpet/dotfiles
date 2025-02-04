@@ -1,8 +1,23 @@
 [
   {
+    "context": "Terminal",
     "bindings": {
-      "ctrl-j": "workspace::ActivateNextPane",
-      "cmd-shift-a": ["task::Spawn", { "task_name": "git commit all" }]
+      "cmd-k": "terminal::Clear"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-shift-j": ["task::Spawn", { "task_name": "aider_watch_js", "reveal_target": "dock" }],
+      "cmd-shift-k": ["task::Spawn", { "task_name": "aider_watch_rb", "reveal_target": "dock" }]
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-g": [
+        "task::Spawn",
+        { "task_name": "start lazygit", "reveal_target": "center" }
+      ]
     }
   },
   {
@@ -12,9 +27,22 @@
       "space f": "editor::CopyRelativePath",
       "space p": "editor::Format",
       "space b": "editor::ToggleGitBlame",
-      "space r": ["task::Rerun", { "reevaluate_context": false }],
-      "space s": ["editor::SpawnNearestTask", { "reveal": "no_focus" }],
-      "space a": ["task::Spawn", { "task_name": "git commit all empty" }],
+      "space r": [
+        "task::Rerun",
+        { "reevaluate_context": false, "target": "center" }
+      ],
+      "space s": [
+        "editor::SpawnNearestTask",
+        { "reveal": "no_focus", "target": "center" }
+      ],
+      "space t": [
+        "task::Spawn",
+        { "task_name": "rspec_file", "reveal": "no_focus", "target": "center" }
+      ],
+      "space a": [
+        "task::Spawn",
+        { "task_name": "git commit all empty", "reveal_target": "center" }
+      ]
     }
   },
   {
@@ -33,7 +61,10 @@
     "bindings": {
       "cmd-n": "workspace::NewTerminal",
       "ctrl-enter": ["terminal::SendKeystroke", "ctrl-enter"],
-      "alt-enter": ["terminal::SendKeystroke", "alt-enter"]
+      "alt-enter": ["terminal::SendKeystroke", "alt-enter"],
+
+      // remove delay on ctrl-k
+      "ctrl-k": ["terminal::SendKeystroke", "ctrl-k"]
     }
   }
 ]
