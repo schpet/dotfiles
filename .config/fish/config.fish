@@ -33,6 +33,7 @@ abbr --add fly flyctl
 
 abbr --add b bundle
 abbr --add be bundle exec
+abbr --add br brew
 abbr --add e zed-preview
 abbr --add f flyctl
 abbr --add g git
@@ -57,9 +58,9 @@ abbr --add uncolor gsed -e 's/\x1b\[[0-9;]*m//g'
 abbr --add unindent awk '{if (NR==1) {len=index($0, $1); }; print substr($0, len)}'
 abbr --add llmq llm -s \"Answer in as few words as possible. Use a brief style with short replies.\"
 abbr --add aiderl 'aider --message="fix this issue:\\n$(linear view)"'
-abbr --add ls eza
 abbr --add trurlparams "trurl --url-file - --json | jq -r '.[0].params | map(\"\\(.key)=\\(.value)\")[]'"
 
+alias ls eza
 
 # `g co`, etc. subcommand expansion with `abbr`.
 # thx paulirish: https://github.com/paulirish/dotfiles/blob/457f8d0ac13927a190aed6e050d9c0496aa6118b/fish/aliases.fish#L43
@@ -95,10 +96,15 @@ subcommand_abbr git amend "commit --amend"
 subcommand_abbr git cp "cherry-pick"
 subcommand_abbr git cherrypick "cherry-pick"
 
-subcommand_abbr git da "diff head"
+subcommand_abbr git da "diff HEAD"
 subcommand_abbr git dc "diff --cached"
 subcommand_abbr git d "diff"
 subcommand_abbr git di "diff"
 subcommand_abbr git dif "diff"
 
+subcommand_abbr git cce "commit --allow-empty --allow-empty-message -m"
+
 subcommand_abbr linear i "issue"
+
+subcommand_abbr brew b "bundle"
+subcommand_abbr bundle e "exec"
