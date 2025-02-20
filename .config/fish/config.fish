@@ -68,6 +68,7 @@ function subcommand_abbr
   set -l short "$argv[2]"
   set -l long "$argv[3]"
 
+  # have this be case-insensitive so uppercase doesn't trigger the warning ai!
   # Check that these strings are safe, since we're going to eval. 👺
   if not string match --regex --quiet '^[a-z]*$' "$short"
     or not string match --regex --quiet '^[a-z- ]*$' "$long"
@@ -88,11 +89,17 @@ function subcommand_abbr
   eval "$abbr_temp_fn"
 end
 
+subcommand_abbr git c "commit"
 subcommand_abbr git ca "commit -a"
 subcommand_abbr git s "status"
 subcommand_abbr git amend "commit --amend"
 subcommand_abbr git cp "cherry-pick"
 subcommand_abbr git cherrypick "cherry-pick"
+
+subcommand_abbr git da "diff head"
+subcommand_abbr git dc "diff --cached"
+subcommand_abbr git d "diff"
+subcommand_abbr git di "diff"
 subcommand_abbr git dif "diff"
 
 subcommand_abbr linear i "issue"
