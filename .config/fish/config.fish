@@ -68,10 +68,9 @@ function subcommand_abbr
   set -l short "$argv[2]"
   set -l long "$argv[3]"
 
-  # have this be case-insensitive so uppercase doesn't trigger the warning ai!
   # Check that these strings are safe, since we're going to eval. 👺
-  if not string match --regex --quiet '^[a-z]*$' "$short"
-    or not string match --regex --quiet '^[a-z- ]*$' "$long"
+  if not string match --regex --quiet '^[a-zA-Z]*$' "$short"
+    or not string match --regex --quiet '^[a-zA-Z- ]*$' "$long"
     echo "Scary unsupported alias or expansion $short $long"; exit 1;
   end
 
