@@ -56,12 +56,12 @@ abbr --add json2rs quicktype --lang rust --visibility public
 
 abbr --add uncolor gsed -e 's/\x1b\[[0-9;]*m//g'
 abbr --add unindent awk '{if (NR==1) {len=index($0, $1); }; print substr($0, len)}'
-abbr --add llmq llm -s \"Answer in as few words as possible. Use a brief style with short replies.\"
-abbr --add aiderl 'aider --message="fix this issue:\\n$(linear view)"'
+abbr --add oneshot 'aider --message="fix this issue:\\n$(linear issue view)"'
 abbr --add trurlparams "trurl --url-file - --json | jq -r '.[0].params | map(\"\\(.key)=\\(.value)\")[]'"
 
 alias ls eza
 
+source $HOME/.config/fish/abbr.fish
 
 abbr_subcommand git c "commit"
 abbr_subcommand git ca "commit -a"
@@ -69,22 +69,17 @@ abbr_subcommand git s "status"
 abbr_subcommand git amend "commit --amend"
 abbr_subcommand git cp "cherry-pick"
 abbr_subcommand git cherrypick "cherry-pick"
-
 abbr_subcommand git da "diff HEAD"
 abbr_subcommand git dc "diff --cached"
 abbr_subcommand git d "diff"
 abbr_subcommand git di "diff"
 abbr_subcommand git dif "diff"
-
-abbr_subcommand git cce "commit --allow-empty --allow-empty-message -m"
-
+abbr_subcommand git cce "commit --allow-empty --allow-empty-message -m ''"
 
 abbr_subcommand brew b "bundle"
-# abbr_subcommand bundle e "exec"
+abbr_subcommand bundle e "exec"
 
-# abbr_subcommand gh i "issue"
-# abbr_subcommand gh p "pr"
-
-source $HOME/.config/fish/abbr.fish
 abbr_subcommand brew i install
 abbr_subcommand linear i issue
+abbr_subcommand gh i issue
+abbr_subcommand gh p "pr"
