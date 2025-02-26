@@ -62,54 +62,28 @@ abbr --add trurlparams "trurl --url-file - --json | jq -r '.[0].params | map(\"\
 
 alias ls eza
 
-# `g co`, etc. subcommand expansion with `abbr`.
-# thx paulirish: https://github.com/paulirish/dotfiles/blob/457f8d0ac13927a190aed6e050d9c0496aa6118b/fish/aliases.fish#L43
-function subcommand_abbr
-  set -l cmd "$argv[1]"
-  set -l short "$argv[2]"
-  set -l long "$argv[3]"
 
-  # Check that these strings are safe, since we're going to eval. 👺
-  if not string match --regex --quiet '^[a-zA-Z]*$' "$short"
-    or not string match --regex --quiet '^[a-zA-Z- ]*$' "$long"
-    echo "Scary unsupported alias or expansion $short $long"; exit 1;
-  end
+abbr_subcommand git c "commit"
+abbr_subcommand git ca "commit -a"
+abbr_subcommand git s "status"
+abbr_subcommand git amend "commit --amend"
+abbr_subcommand git cp "cherry-pick"
+abbr_subcommand git cherrypick "cherry-pick"
 
-  set -l abbr_temp_fn_name (string join "_" "abbr" "$cmd" "$short")
+abbr_subcommand git da "diff HEAD"
+abbr_subcommand git dc "diff --cached"
+abbr_subcommand git d "diff"
+abbr_subcommand git di "diff"
+abbr_subcommand git dif "diff"
 
-  set -l abbr_temp_fn "function $abbr_temp_fn_name
-    set --local tokens (commandline --tokenize)
-    if test \$tokens[1] = \"$cmd\"
-      echo $long
-    else
-      echo $short
-    end;
-  end;
-  abbr --add $short --position anywhere --function $abbr_temp_fn_name"
-  eval "$abbr_temp_fn"
-end
-
-subcommand_abbr git c "commit"
-subcommand_abbr git ca "commit -a"
-subcommand_abbr git s "status"
-subcommand_abbr git amend "commit --amend"
-subcommand_abbr git cp "cherry-pick"
-subcommand_abbr git cherrypick "cherry-pick"
-
-subcommand_abbr git da "diff HEAD"
-subcommand_abbr git dc "diff --cached"
-subcommand_abbr git d "diff"
-subcommand_abbr git di "diff"
-subcommand_abbr git dif "diff"
-
-subcommand_abbr git cce "commit --allow-empty --allow-empty-message -m"
+abbr_subcommand git cce "commit --allow-empty --allow-empty-message -m"
 
 
-subcommand_abbr brew b "bundle"
-# subcommand_abbr bundle e "exec"
+abbr_subcommand brew b "bundle"
+# abbr_subcommand bundle e "exec"
 
-# subcommand_abbr gh i "issue"
-# subcommand_abbr gh p "pr"
+# abbr_subcommand gh i "issue"
+# abbr_subcommand gh p "pr"
 
 source $HOME/.config/fish/abbr.fish
 abbr_subcommand brew i install
