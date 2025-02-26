@@ -61,11 +61,16 @@
 	hs = log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --graph --date=format:'%a %Y-%m-%d' --date-order
 	res = restore
 [push]
-	default = current
+	default = simple
+	autoSetupRemote = true
+	followTags = true
 [diff]
 	algorithm = histogram
 	noprefix = true
 	; external = difft
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [grep]
 	extendRegexp = true
 	lineNumber = true
@@ -109,8 +114,25 @@
 	verbose = true
 [rerere]
 	enabled = true
+	autoupdate = true
 [pull]
 	ff = only
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[help]
+	autocorrect = prompt
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
 [init]
 	defaultBranch = main
 ; [sequence]
