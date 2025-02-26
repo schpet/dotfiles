@@ -104,10 +104,13 @@ subcommand_abbr git dif "diff"
 
 subcommand_abbr git cce "commit --allow-empty --allow-empty-message -m"
 
-subcommand_abbr linear i "issue"
 
 subcommand_abbr brew b "bundle"
 # subcommand_abbr bundle e "exec"
 
 # subcommand_abbr gh i "issue"
 # subcommand_abbr gh p "pr"
+
+source $HOME/.config/fish/abbr.fish
+abbr_subcommand brew i install
+abbr_subcommand linear i issue
