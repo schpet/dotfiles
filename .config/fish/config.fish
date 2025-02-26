@@ -107,4 +107,7 @@ subcommand_abbr git cce "commit --allow-empty --allow-empty-message -m"
 subcommand_abbr linear i "issue"
 
 subcommand_abbr brew b "bundle"
-subcommand_abbr bundle e "exec"
+# subcommand_abbr bundle e "exec"
+
+# subcommand_abbr gh i "issue"
+# subcommand_abbr gh p "pr"
