@@ -25,6 +25,7 @@ brew "starship" # shell prompt PS1 thing
 brew "stow" # symlink manager, for dotfiles
 brew "trurl"
 brew "yazi" # file browser
+brew "gron"
 
 # programming
 brew "deno" # imagine if node was fun
