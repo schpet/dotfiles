@@ -2,5 +2,4 @@
 .config/gh/hosts.yml
 .config/fish/fish_variables
 
-.config/zed/conversations
-.config/zed/prompts
+.config/zed
