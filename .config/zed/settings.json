@@ -33,7 +33,7 @@
   "theme": {
     "mode": "system",
     "light": "Zed Legacy: Solarized Light",
-    "dark": "Zed Legacy: Atelier Forest Dark"
+    "dark": "Zed Legacy: Solarized Dark"
   },
   "buffer_font_size": 13,
   "vim_mode": true,
