@@ -7,8 +7,14 @@
   },
   {
     "bindings": {
-      "cmd-shift-j": ["task::Spawn", { "task_name": "aider_watch_js", "reveal_target": "dock" }],
-      "cmd-shift-k": ["task::Spawn", { "task_name": "aider_watch_rb", "reveal_target": "dock" }]
+      "cmd-shift-j": [
+        "task::Spawn",
+        { "task_name": "aider_watch_js", "reveal_target": "dock" }
+      ],
+      "cmd-shift-k": [
+        "task::Spawn",
+        { "task_name": "aider_watch_rb", "reveal_target": "dock" }
+      ]
     }
   },
   {
@@ -24,17 +30,11 @@
     "context": "EmptyPane || SharedScreen || vim_operator == none && !VimWaiting && vim_mode != insert",
     "bindings": {
       "shift-y": ["workspace::SendKeystrokes", "y $"],
-      "space f": "editor::CopyRelativePath",
+      "space f": "workspace::CopyRelativePath",
       "space p": "editor::Format",
       "space b": "editor::ToggleGitBlame",
-      "space r": [
-        "task::Rerun",
-        { "reevaluate_context": false, "target": "center" }
-      ],
-      "space s": [
-        "editor::SpawnNearestTask",
-        { "reveal": "no_focus", "target": "center" }
-      ],
+      "space r": ["task::Rerun", { "reevaluate_context": false }],
+      "space s": ["editor::SpawnNearestTask", { "reveal": "no_focus" }],
       "space t": [
         "task::Spawn",
         { "task_name": "rspec_file", "reveal": "no_focus", "target": "center" }
@@ -42,17 +42,6 @@
       "space a": [
         "task::Spawn",
         { "task_name": "git commit all empty", "reveal_target": "center" }
-      ]
-    }
-  },
-  {
-    "context": "vim_mode == visual",
-    "bindings": {
-      "shift-s": [
-        "vim::PushOperator",
-        {
-          "AddSurrounds": {}
-        }
       ]
     }
   },
