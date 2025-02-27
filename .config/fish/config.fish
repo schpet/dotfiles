@@ -34,6 +34,7 @@ abbr --add fly flyctl
 abbr --add b bundle
 abbr --add be bundle exec
 abbr --add br brew
+abbr --add bbi brew bundle install
 abbr --add e zed-preview
 abbr --add f flyctl
 abbr --add g git
@@ -83,3 +84,6 @@ abbr_subcommand brew i install
 abbr_subcommand linear i issue
 abbr_subcommand gh i issue
 abbr_subcommand gh p "pr"
+
+# try and stop using git reset --hard
+abbr_subcommand git reset "reset --keep"

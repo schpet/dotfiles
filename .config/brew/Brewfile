@@ -26,6 +26,7 @@ brew "stow" # symlink manager, for dotfiles
 brew "trurl"
 brew "yazi" # file browser
 brew "gron"
+brew "quicktype"
 
 # programming
 brew "deno" # imagine if node was fun
