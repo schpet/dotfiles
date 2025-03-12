@@ -10,7 +10,6 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
-  "git_panel": {},
   "show_edit_predictions": true,
   "use_autoclose": false,
   "active_pane_modifiers": {
@@ -33,7 +32,7 @@
   "theme": {
     "mode": "system",
     "light": "Zed Legacy: Solarized Light",
-    "dark": "Zed Legacy: Solarized Dark"
+    "dark": "Gruvbox Dark"
   },
   "buffer_font_size": 13,
   "vim_mode": true,
