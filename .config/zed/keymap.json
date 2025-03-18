@@ -39,10 +39,6 @@
       "space t": [
         "task::Spawn",
         { "task_name": "rspec_file", "reveal": "no_focus", "target": "center" }
-      ],
-      "space a": [
-        "task::Spawn",
-        { "task_name": "git commit all empty", "reveal_target": "center" }
       ]
     }
   },
