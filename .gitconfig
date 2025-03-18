@@ -85,7 +85,7 @@
 	editor = vim
 	; editor = zed --new --wait
 	ignorecase = false
-	pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)" --tabs 2
+	pager = delta --dark --tabs 2
 
 	quotePath = false
 	precomposeunicode = true

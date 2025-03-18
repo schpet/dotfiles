@@ -8,19 +8,9 @@ untracked
 .vscode
 
 .env
+.envrc
 
-*.code-workspace
-tromp.json
-.projections.json
-stories.json
-justfile
 .obsidian
-clockhand.json
 /.yardoc
-todo.markdown
-todo.diff
-.foreman
-.config/timer-reminder.json
-.aider*
 /pgschema_sql
 *.zed.scpt

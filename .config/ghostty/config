@@ -1,5 +1,5 @@
 cursor-style = block
 shell-integration-features = no-cursor
-theme = dark:GruvboxDarkHard,light:Builtin Solarized Light
+theme = GruvboxDarkHard
 font-family = Zed Mono Extended
 mouse-hide-while-typing = true
