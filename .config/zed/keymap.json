@@ -14,7 +14,8 @@
       "cmd-shift-k": [
         "task::Spawn",
         { "task_name": "aider_watch_rb", "reveal_target": "dock" }
-      ]
+      ],
+      "cmd-shift-l": ["task::Spawn", { "task_name": "linear issue view -a" }]
     }
   },
   {

@@ -68,5 +68,14 @@
   {
     "label": "start lazygit",
     "command": "lazygit -p $ZED_WORKTREE_ROOT"
+  },
+  {
+    "label": "linear issue view -a",
+    "command": "linear issue view -a",
+    "hide": "on_success",
+    "reveal": "never",
+    "show_summary": false,
+    "show_command": false,
+    "tags": ["linear"]
   }
 ]

@@ -13,7 +13,7 @@
   "show_edit_predictions": true,
   "use_autoclose": false,
   "active_pane_modifiers": {
-    "inactive_opacity": 0.8
+    "inactive_opacity": 0.7
   },
   "tabs": {
     "git_status": true,
@@ -35,6 +35,8 @@
     "Markdown": ["markdown", "mdoc"],
     "Shell Script": [".env.*"]
   },
+  "soft_wrap": "bounded",
+  "preferred_line_length": 100,
   "languages": {
     "Markdown": {
       "show_edit_predictions": false,
