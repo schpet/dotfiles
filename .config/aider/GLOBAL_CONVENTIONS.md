@@ -1,0 +1,1 @@
+- Do not add comments to the code you write, unless the user asks you to, or the code is complex and requires additional context.

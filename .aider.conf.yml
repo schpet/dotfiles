@@ -1,0 +1,5 @@
+attribute-commit-message-author: true
+dark-mode: true
+code-theme: solarized-dark
+watch-files: true
+read: ~/.config/aider/GLOBAL_CONVENTIONS.md
