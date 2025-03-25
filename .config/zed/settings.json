@@ -7,6 +7,14 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "edit_predictions": {
+    "mode": "subtle",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_assistant": false
+  },
   "features": {
     "edit_prediction_provider": "zed"
   },
@@ -35,8 +43,8 @@
     "Markdown": ["markdown", "mdoc"],
     "Shell Script": [".env.*"]
   },
-  "soft_wrap": "bounded",
-  "preferred_line_length": 100,
+  // "soft_wrap": "bounded",
+  // "preferred_line_length": 100,
   "languages": {
     "Markdown": {
       "show_edit_predictions": false,
@@ -79,7 +87,10 @@
     "font_family": "Zed Mono Extended",
     "alternate_scroll": "on",
     "button": false,
-    "blinking": "on"
+    "blinking": "on",
+    "toolbar": {
+      "breadcrumbs": false
+    }
   },
   "indent_guides": {
     "enabled": true,
