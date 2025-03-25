@@ -87,3 +87,9 @@ abbr_subcommand gh p "pr"
 
 # try and stop using git reset --hard
 abbr_subcommand git reset "reset --keep"
+
+
+# by default fish clears the command after ctrl-c, this change preserves the content
+# - https://github.com/fish-shell/fish-shell/issues/2904
+# - https://github.com/fish-shell/fish-shell/pull/4713
+bind -s \cc __fish_cancel_commandline
