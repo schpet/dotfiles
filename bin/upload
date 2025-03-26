@@ -4,18 +4,18 @@ set -euo pipefail
 
 # Check if a file path was provided
 if [ $# -eq 0 ]; then
-  echo "Error: No file specified"
-  echo "Usage: $(basename "$0") <file_path>"
+  echo "Error: No files specified"
+  echo "Usage: $(basename "$0") <file_path> [<file_path> ...]"
   exit 1
 fi
 
-FILE_PATH="$1"
-
-# Check if the file exists
-if [ ! -f "$FILE_PATH" ]; then
-  echo "Error: File '$FILE_PATH' does not exist"
-  exit 1
-fi
+# Check if all files exist
+for file in "$@"; do
+  if [ ! -f "$file" ]; then
+    echo "Error: File '$file' does not exist"
+    exit 1
+  fi
+done
 
 # Define the alphabet used for Nanoid generation
 ALPHABET="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
@@ -34,32 +34,49 @@ generate_nanoid() {
   echo "$nanoid"
 }
 
-# Generate the Nanoid
+# Generate a single Nanoid for all files
 nanoid=$(generate_nanoid)
-
-# Get the filename from the path
-filename=$(basename "$FILE_PATH")
-
-# URL encode the filename
-encoded_filename=$(printf %s "$filename" | jq -sRr @uri)
 
 # Create the destination path with nanoid
 destination_dir="uploads/${nanoid}"
 
-# Upload the file using rclone
-echo "Uploading file to ${destination_dir}..."
-rclone copy "$FILE_PATH" "$UPLOAD_RCLONE_REMOTE/${destination_dir}"
+# Array to store all URLs
+urls=()
 
-# Create the final URL
-if [[ "$filename" == "index.html" ]]; then
-  final_url="$UPLOAD_R2_ORIGIN/${destination_dir}/index.html"
+# Process each file
+for file_path in "$@"; do
+  # Get the filename from the path
+  filename=$(basename "$file_path")
+  
+  # URL encode the filename
+  encoded_filename=$(printf %s "$filename" | jq -sRr @uri)
+  
+  # Upload the file using rclone
+  echo "Uploading $filename to ${destination_dir}..."
+  rclone copy "$file_path" "$UPLOAD_RCLONE_REMOTE/${destination_dir}"
+  
+  # Create the final URL
+  if [[ "$filename" == "index.html" ]]; then
+    final_url="$UPLOAD_R2_ORIGIN/${destination_dir}/index.html"
+  else
+    final_url="$UPLOAD_R2_ORIGIN/${destination_dir}/${encoded_filename}"
+  fi
+  
+  # Add URL to array
+  urls+=("$final_url")
+done
+
+# Print all URLs
+echo "Uploaded files:"
+for url in "${urls[@]}"; do
+  echo "$url"
+done
+
+# Copy the first URL to clipboard (or all URLs if there are multiple)
+if [ ${#urls[@]} -eq 1 ]; then
+  echo "${urls[0]}" | pbcopy
+  echo "(URL copied to clipboard)"
 else
-  final_url="$UPLOAD_R2_ORIGIN/${destination_dir}/${encoded_filename}"
+  printf "%s\n" "${urls[@]}" | pbcopy
+  echo "(All URLs copied to clipboard)"
 fi
-
-# Copy the URL to clipboard
-echo "$final_url" | pbcopy
-
-# Print the URL with the encoded filename
-echo "$final_url"
-echo "(URL copied to clipboard)"
