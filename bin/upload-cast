@@ -52,15 +52,11 @@ cat > "$HTML_FILE" << EOF
             display: flex;
             flex-direction: column;
         }
-        h1 {
-            margin-bottom: 20px;
-            color: #fff;
-        }
         .player-container {
             width: 100%;
             margin: 20px 0;
             flex: 1;
-            max-height: calc(100vh - 200px); /* Ensure player doesn't exceed viewport */
+            max-height: calc(100vh - 100px); /* Ensure player doesn't exceed viewport */
             overflow: hidden;
         }
         .download-btn {
@@ -77,8 +73,6 @@ cat > "$HTML_FILE" << EOF
     </style>
 </head>
 <body>
-    <h1>Asciinema Cast: ${FILENAME_NO_EXT}</h1>
-    
     <div class="player-container" id="player-container">
         <!-- Player will be inserted here by JavaScript -->
     </div>
