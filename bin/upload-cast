@@ -29,7 +29,7 @@ FILENAME_NO_EXT="${FILENAME%.*}"
 cp "$FILE_PATH" "${TEMP_DIR}/${FILENAME}"
 
 # Create HTML file with asciinema player
-HTML_FILE="${TEMP_DIR}/index.html"
+HTML_FILE="${TEMP_DIR}/cast.html"
 cat > "$HTML_FILE" << EOF
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +118,7 @@ rclone copy "$HTML_FILE" "$UPLOAD_RCLONE_REMOTE/${destination_dir}"
 
 # Create the URLs
 CAST_URL="$UPLOAD_R2_ORIGIN/${destination_dir}/${encoded_cast_filename}"
-HTML_URL="$UPLOAD_R2_ORIGIN/${destination_dir}/index.html"
+HTML_URL="$UPLOAD_R2_ORIGIN/${destination_dir}/cast.html"
 
 # Copy the HTML URL to clipboard
 echo "$HTML_URL" | pbcopy
