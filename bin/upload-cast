@@ -69,18 +69,38 @@ cat > "$HTML_FILE" << EOF
             border: 2px solid #fff;
             margin-top: 20px;
         }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #aaa;
+        }
     </style>
 </head>
 <body>
     <h1>Asciinema Cast: ${FILENAME_NO_EXT}</h1>
     
-    <div class="player-container">
-        <asciinema-player src="${FILENAME}" cols="80" rows="24" theme="monokai"></asciinema-player>
+    <div class="player-container" id="player-container">
+        <!-- Player will be inserted here by JavaScript -->
     </div>
     
     <a href="${FILENAME}" download class="download-btn">Download Cast File</a>
 
+    <div class="footer">
+        <p>Powered by <a href="https://asciinema.org/" style="color: #ddd;">asciinema</a></p>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.6.3/dist/bundle/asciinema-player.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create player after page loads
+            AsciinemaPlayer.create('${FILENAME}', document.getElementById('player-container'), {
+                cols: 80,
+                rows: 24,
+                theme: 'monokai',
+                fit: 'width'
+            });
+        });
+    </script>
 </body>
 </html>
 EOF
