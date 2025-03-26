@@ -28,11 +28,13 @@ brew "yazi" # file browser
 brew "gron"
 brew "quicktype"
 brew "duckdb"
+brew "rclone"
 
 # programming
 brew "deno" # imagine if node was fun
 brew "fnm" # node version manager
 brew "rbenv" # ruby version manager
+brew "ruby-build" # rbenv uses this to build rubies
 brew "rubyfmt" # ruby formatter extraordinaire
 
 # mac os odds and ends
