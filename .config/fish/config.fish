@@ -16,6 +16,7 @@ end
 set -gx EDITOR nvim
 set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/ripgreprc"
 set -gx HOMEBREW_BUNDLE_FILE "$HOME/.config/brew/Brewfile"
+set -gx DELTA_PAGER "less --mouse"
 
 # pnpm
 set -gx PNPM_HOME "/Users/schpet/Library/pnpm"
