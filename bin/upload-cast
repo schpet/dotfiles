@@ -59,25 +59,12 @@ cat > "$HTML_FILE" << EOF
             max-height: calc(100vh - 100px); /* Ensure player doesn't exceed viewport */
             overflow: hidden;
         }
-        .download-btn {
-            display: inline-block;
-            background-color: transparent;
-            color: #fff;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            border: 2px solid #fff;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
     <div class="player-container" id="player-container">
         <!-- Player will be inserted here by JavaScript -->
     </div>
-    
-    <a href="${FILENAME}" download class="download-btn">Download Cast File</a>
 
 
     <script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.6.3/dist/bundle/asciinema-player.min.js"></script>
