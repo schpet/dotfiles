@@ -32,7 +32,7 @@ fi
 # Ensure that the temporary directory is removed even on error.
 trap 'rm -rf "${temp_dir}"' EXIT
 
-# Convert flac files to wav with CD-quality settings.
+# Find all flac files and sort them by track number
 shopt -s nullglob
 flac_files=("${dir}"/*.flac)
 if [ ${#flac_files[@]} -eq 0 ]; then
@@ -40,14 +40,43 @@ if [ ${#flac_files[@]} -eq 0 ]; then
     exit 1
 fi
 
+# Create an array of files sorted by track number
+declare -a sorted_files
 for file in "${flac_files[@]}"; do
+    # Extract track number from filename (assumes format like "1. Track Name.flac")
+    track_num=$(basename "$file" | grep -o '^[0-9]*' | sed 's/^0*//')
+    if [ -z "$track_num" ]; then
+        echo "Warning: Could not extract track number from $(basename "$file"), skipping"
+        continue
+    fi
+    # Store as "track_number:full_path" for sorting
+    sorted_files+=("$track_num:$file")
+done
+
+# Sort the files by track number
+IFS=$'\n' sorted_files=($(sort -n -t: -k1 <<<"${sorted_files[*]}"))
+unset IFS
+
+echo "Converting files to WAV in track order:"
+# Convert flac files to wav with CD-quality settings in the correct order
+for entry in "${sorted_files[@]}"; do
+    file="${entry#*:}"  # Remove track number prefix
     fname=$(basename "$file" .flac)
+    echo "Processing track: $fname"
     ffmpeg -i "$file" -ar 44100 -ac 2 -sample_fmt s16 "${temp_dir}/${fname}.wav"
 done
 
-echo "Burning audio tracks to CD..."
-# Burns files to a CD as audio tracks (consider parameterizing 'dev' if needed).
-cdrecord -v dev=1,0,0 -audio -pad "${temp_dir}"/*.wav
+echo "Burning audio tracks to CD in track order..."
+# Create a list of wav files in the correct order
+wav_files=()
+for entry in "${sorted_files[@]}"; do
+    file="${entry#*:}"
+    fname=$(basename "$file" .flac)
+    wav_files+=("${temp_dir}/${fname}.wav")
+done
+
+# Burns files to a CD as audio tracks in the correct order
+cdrecord -v dev=1,0,0 -audio -pad "${wav_files[@]}"
 
 echo "Done. Burned the audio tracks to a CD."
 drutil eject
