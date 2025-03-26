@@ -43,7 +43,6 @@ cat > "$HTML_FILE" << EOF
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             line-height: 1.6;
@@ -69,11 +68,6 @@ cat > "$HTML_FILE" << EOF
             border: 2px solid #fff;
             margin-top: 20px;
         }
-        .footer {
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #aaa;
-        }
     </style>
 </head>
 <body>
@@ -85,9 +79,6 @@ cat > "$HTML_FILE" << EOF
     
     <a href="${FILENAME}" download class="download-btn">Download Cast File</a>
 
-    <div class="footer">
-        <p>Powered by <a href="https://asciinema.org/" style="color: #ddd;">asciinema</a></p>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.6.3/dist/bundle/asciinema-player.min.js"></script>
     <script>
