@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Check if a file path was provided
+if [ $# -eq 0 ]; then
+  echo "Error: No cast file specified"
+  echo "Usage: $(basename "$0") <cast_file_path>"
+  exit 1
+fi
+
+FILE_PATH="$1"
+
+# Check if the file exists
+if [ ! -f "$FILE_PATH" ]; then
+  echo "Error: File '$FILE_PATH' does not exist"
+  exit 1
+fi
+
+# Create a temporary directory
+TEMP_DIR=$(mktemp -d)
+trap 'rm -rf "$TEMP_DIR"' EXIT
+
+# Get the filename without extension
+FILENAME=$(basename "$FILE_PATH")
+FILENAME_NO_EXT="${FILENAME%.*}"
+
+# Copy the cast file to the temp directory
+cp "$FILE_PATH" "${TEMP_DIR}/${FILENAME}"
+
+# Create HTML file with asciinema player
+HTML_FILE="${TEMP_DIR}/index.html"
+cat > "$HTML_FILE" << EOF
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>Asciinema Cast: ${FILENAME_NO_EXT}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/asciinema-player@3.6.3/dist/bundle/asciinema-player.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #222;
+            color: #eee;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .player-container {
+            width: 100%;
+            margin: 20px 0;
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: transparent;
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            border: 2px solid #fff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Asciinema Cast: ${FILENAME_NO_EXT}</h1>
+    
+    <div class="player-container">
+        <asciinema-player src="${FILENAME}" cols="80" rows="24" theme="monokai"></asciinema-player>
+    </div>
+    
+    <a href="${FILENAME}" download class="download-btn">Download Cast File</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.6.3/dist/bundle/asciinema-player.min.js"></script>
+</body>
+</html>
+EOF
+
+# Define the alphabet used for Nanoid generation
+ALPHABET="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+
+# Define the length of the Nanoid
+LENGTH=21
+
+# Function to generate a Nanoid
+generate_nanoid() {
+  local nanoid=""
+  for _ in $(seq 1 $LENGTH); do
+    # Generate a random index between 0 and 61 (length of alphabet - 1)
+    local index=$(( RANDOM % 62 ))
+    nanoid="${nanoid}${ALPHABET:$index:1}"
+  done
+  echo "$nanoid"
+}
+
+# Generate the Nanoid
+nanoid=$(generate_nanoid)
+
+# Create the destination path with nanoid
+destination_dir="uploads/${nanoid}"
+
+# URL encode the cast filename
+cast_filename=$(basename "$FILE_PATH")
+encoded_cast_filename=$(printf %s "$cast_filename" | jq -sRr @uri)
+
+# Upload the cast file using rclone
+echo "Uploading cast file to ${destination_dir}..."
+rclone copy "${TEMP_DIR}/${FILENAME}" "$UPLOAD_RCLONE_REMOTE/${destination_dir}"
+
+# Upload the HTML file using rclone
+echo "Uploading HTML player page to ${destination_dir}..."
+rclone copy "$HTML_FILE" "$UPLOAD_RCLONE_REMOTE/${destination_dir}"
+
+# Create the URLs
+CAST_URL="$UPLOAD_R2_ORIGIN/${destination_dir}/${encoded_cast_filename}"
+HTML_URL="$UPLOAD_R2_ORIGIN/${destination_dir}/index.html"
+
+# Copy the HTML URL to clipboard
+echo "$HTML_URL" | pbcopy
+
+echo "Upload complete!"
+echo "Cast URL: $CAST_URL"
+echo "Player URL: $HTML_URL"
+echo "(Player URL copied to clipboard)"
