@@ -1,0 +1,164 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Check if a file path was provided
+if [ $# -eq 0 ]; then
+  echo "Error: No file specified"
+  echo "Usage: $(basename "$0") <music_file_path>"
+  exit 1
+fi
+
+FILE_PATH="$1"
+
+# Check if the file exists
+if [ ! -f "$FILE_PATH" ]; then
+  echo "Error: File '$FILE_PATH' does not exist"
+  exit 1
+fi
+
+# Check if ffmpeg is installed
+if ! command -v ffmpeg &> /dev/null; then
+  echo "Error: ffmpeg is not installed. Please install it first."
+  echo "You can install it with: brew install ffmpeg"
+  exit 1
+fi
+
+# Create a temporary directory
+TEMP_DIR=$(mktemp -d)
+trap 'rm -rf "$TEMP_DIR"' EXIT
+
+# Get the filename without extension
+FILENAME=$(basename "$FILE_PATH")
+FILENAME_NO_EXT="${FILENAME%.*}"
+
+# Create the output MP3 file path
+MP3_FILE="${TEMP_DIR}/${FILENAME_NO_EXT}.mp3"
+
+# Extract metadata using ffprobe
+echo "Extracting metadata..."
+TITLE=$(ffprobe -v quiet -show_entries format_tags=title -of default=noprint_wrappers=1:nokey=1 "$FILE_PATH" | tr -d '\n')
+ARTIST=$(ffprobe -v quiet -show_entries format_tags=artist -of default=noprint_wrappers=1:nokey=1 "$FILE_PATH" | tr -d '\n')
+ALBUM=$(ffprobe -v quiet -show_entries format_tags=album -of default=noprint_wrappers=1:nokey=1 "$FILE_PATH" | tr -d '\n')
+YEAR=$(ffprobe -v quiet -show_entries format_tags=date -of default=noprint_wrappers=1:nokey=1 "$FILE_PATH" | tr -d '\n')
+
+# Set defaults for empty metadata
+TITLE=${TITLE:-"$FILENAME_NO_EXT"}
+ARTIST=${ARTIST:-"Unknown Artist"}
+ALBUM=${ALBUM:-"Unknown Album"}
+YEAR=${YEAR:-"Unknown Year"}
+
+echo "Converting to MP3..."
+ffmpeg -i "$FILE_PATH" -codec:a libmp3lame -qscale:a 2 "$MP3_FILE" -loglevel error
+
+# Create HTML file
+HTML_FILE="${TEMP_DIR}/index.html"
+cat > "$HTML_FILE" << EOF
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${TITLE} - ${ARTIST}</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #222;
+            color: #eee;
+        }
+        h1 {
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        .metadata {
+            margin-bottom: 20px;
+            color: #bbb;
+        }
+        .player {
+            width: 100%;
+            margin: 20px 0;
+        }
+        audio {
+            width: 100%;
+            background-color: #333;
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: transparent;
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            border: 2px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>${TITLE}</h1>
+    <div class="metadata">
+        <p><strong>Artist:</strong> ${ARTIST}</p>
+        <p><strong>Album:</strong> ${ALBUM}</p>
+        <p><strong>Year:</strong> ${YEAR}</p>
+    </div>
+    
+    <div class="player">
+        <audio controls>
+            <source src="${FILENAME_NO_EXT}.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    
+    <a href="${FILENAME_NO_EXT}.mp3" download class="download-btn">Download MP3</a>
+</body>
+</html>
+EOF
+
+# Generate a nanoid for both files
+# Define the alphabet used for Nanoid generation
+ALPHABET="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+# Define the length of the Nanoid
+LENGTH=21
+# Function to generate a Nanoid
+generate_nanoid() {
+  local nanoid=""
+  for _ in $(seq 1 $LENGTH); do
+    # Generate a random index between 0 and 61 (length of alphabet - 1)
+    local index=$(( RANDOM % 62 ))
+    nanoid="${nanoid}${ALPHABET:$index:1}"
+  done
+  echo "$nanoid"
+}
+# Generate the Nanoid
+nanoid=$(generate_nanoid)
+
+# Create the destination path with nanoid
+destination_dir="uploads/${nanoid}"
+
+# URL encode the MP3 filename
+mp3_filename=$(basename "$MP3_FILE")
+encoded_mp3_filename=$(printf %s "$mp3_filename" | jq -sRr @uri)
+
+# Upload the MP3 file using rclone
+echo "Uploading MP3 file to ${destination_dir}..."
+rclone copy "$MP3_FILE" "$UPLOAD_RCLONE_REMOTE/${destination_dir}"
+
+# Upload the HTML file using rclone
+echo "Uploading HTML player page to ${destination_dir}..."
+rclone copy "$HTML_FILE" "$UPLOAD_RCLONE_REMOTE/${destination_dir}"
+
+# Create the URLs
+MP3_URL="$UPLOAD_R2_ORIGIN/${destination_dir}/${encoded_mp3_filename}"
+HTML_URL="$UPLOAD_R2_ORIGIN/${destination_dir}/index.html"
+
+# Copy the HTML URL to clipboard
+echo "$HTML_URL" | pbcopy
+
+echo "Upload complete!"
+echo "MP3 URL: $MP3_URL"
+echo "Player URL: $HTML_URL"
+echo "(Player URL copied to clipboard)"

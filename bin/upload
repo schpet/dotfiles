@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Check if a file path was provided
+if [ $# -eq 0 ]; then
+  echo "Error: No file specified"
+  echo "Usage: $(basename "$0") <file_path>"
+  exit 1
+fi
+
+FILE_PATH="$1"
+
+# Check if the file exists
+if [ ! -f "$FILE_PATH" ]; then
+  echo "Error: File '$FILE_PATH' does not exist"
+  exit 1
+fi
+
+# Define the alphabet used for Nanoid generation
+ALPHABET="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+
+# Define the length of the Nanoid
+LENGTH=21
+
+# Function to generate a Nanoid
+generate_nanoid() {
+  local nanoid=""
+  for _ in $(seq 1 $LENGTH); do
+    # Generate a random index between 0 and 61 (length of alphabet - 1)
+    local index=$(( RANDOM % 62 ))
+    nanoid="${nanoid}${ALPHABET:$index:1}"
+  done
+  echo "$nanoid"
+}
+
+# Generate the Nanoid
+nanoid=$(generate_nanoid)
+
+# Get the filename from the path
+filename=$(basename "$FILE_PATH")
+
+# URL encode the filename
+encoded_filename=$(printf %s "$filename" | jq -sRr @uri)
+
+# Create the destination path with nanoid
+destination_dir="uploads/${nanoid}"
+
+# Upload the file using rclone
+echo "Uploading file to ${destination_dir}..."
+rclone copy "$FILE_PATH" "$UPLOAD_RCLONE_REMOTE/${destination_dir}"
+
+# Create the final URL
+if [[ "$filename" == "index.html" ]]; then
+  final_url="$UPLOAD_R2_ORIGIN/${destination_dir}/index.html"
+else
+  final_url="$UPLOAD_R2_ORIGIN/${destination_dir}/${encoded_filename}"
+fi
+
+# Copy the URL to clipboard
+echo "$final_url" | pbcopy
+
+# Print the URL with the encoded filename
+echo "$final_url"
+echo "(URL copied to clipboard)"
