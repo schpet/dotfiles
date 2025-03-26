@@ -94,8 +94,6 @@ cat > "$HTML_FILE" << EOF
         document.addEventListener('DOMContentLoaded', function() {
             // Create player after page loads
             AsciinemaPlayer.create('${FILENAME}', document.getElementById('player-container'), {
-                cols: 80,
-                rows: 24,
                 theme: 'monokai',
                 fit: 'width'
             });
