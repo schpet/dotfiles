@@ -48,6 +48,9 @@ cat > "$HTML_FILE" << EOF
             line-height: 1.6;
             background-color: #222;
             color: #eee;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         h1 {
             margin-bottom: 20px;
@@ -56,6 +59,9 @@ cat > "$HTML_FILE" << EOF
         .player-container {
             width: 100%;
             margin: 20px 0;
+            flex: 1;
+            max-height: calc(100vh - 200px); /* Ensure player doesn't exceed viewport */
+            overflow: hidden;
         }
         .download-btn {
             display: inline-block;
@@ -86,7 +92,7 @@ cat > "$HTML_FILE" << EOF
             // Create player after page loads
             AsciinemaPlayer.create('${FILENAME}', document.getElementById('player-container'), {
                 theme: 'monokai',
-                fit: 'width'
+                fit: 'both'
             });
         });
     </script>
