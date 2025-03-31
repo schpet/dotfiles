@@ -8,6 +8,15 @@
 
 ## mac setup
 
+### keybindings
+
+symlinks do not work for `DefaultKeyBinding.dict`
+
+```bash
+mkdir -p ~/Library/KeyBindings
+cp Library/KeyBindings/DefaultKeyBinding.dict ~/Library/KeyBindings/
+```
+
 ### faster key repeat
 
 ```bash

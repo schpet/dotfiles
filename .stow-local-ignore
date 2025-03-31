@@ -5,3 +5,7 @@
 \setup
 install.sh
 toolbox
+
+Library
+Library/KeyBindings/
+Library/KeyBindings/DefaultKeyBinding.dict
