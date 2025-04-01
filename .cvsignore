@@ -14,3 +14,4 @@ untracked
 /.yardoc
 /pgschema_sql
 *.zed.scpt
+.aider*
