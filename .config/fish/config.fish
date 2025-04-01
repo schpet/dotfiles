@@ -77,6 +77,8 @@ abbr_subcommand git d "diff"
 abbr_subcommand git di "diff"
 abbr_subcommand git dif "diff"
 abbr_subcommand git cce "commit --allow-empty --allow-empty-message -m ''"
+abbr_subcommand git reset "reset --keep" # try and stop using git reset --hard
+abbr_subcommand git r "restore"
 
 abbr_subcommand brew b "bundle"
 abbr_subcommand bundle e "exec"
@@ -86,8 +88,6 @@ abbr_subcommand linear i issue
 abbr_subcommand gh i issue
 abbr_subcommand gh p "pr"
 
-# try and stop using git reset --hard
-abbr_subcommand git reset "reset --keep"
 
 
 # by default fish clears the command after ctrl-c, this change preserves the content

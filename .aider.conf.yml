@@ -1,9 +1,16 @@
+# https://aider.chat/docs/config/aider_conf.html
+
 attribute-commit-message-author: true
 dark-mode: true
 code-theme: solarized-dark
 watch-files: true
 read: ~/.config/aider/GLOBAL_CONVENTIONS.md
 
-model: sonnet
+# model: sonnet
 # model: openrouter/google/gemini-2.5-pro-exp-03-25:free
 # model: gemini/gemini-2.5-pro-exp-03-25
+
+model: gemini/gemini-2.5-pro-exp-03-25
+architect: true
+editor-model: anthropic/claude-3-7-sonnet-20250219
+weak-model: anthropic/claude-3-5-haiku-20241022
