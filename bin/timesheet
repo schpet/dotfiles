@@ -22,3 +22,4 @@ prompt="$prompt_prefix$input"
 
 output=$(llm "$prompt" -m 4o | tr '[:upper:]' '[:lower:]' | tr -d '.')
 echo "$output" | pbcopy
+echo "$output"
