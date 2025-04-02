@@ -82,19 +82,17 @@
 	editor = vim
 	; editor = zed --new --wait
 	ignorecase = false
-	pager = delta --dark --tabs 2
-
+	pager = delta
 	quotePath = false
 	precomposeunicode = true
 [interactive]
 	diffFilter = delta --color-only
 [delta]
-	features = line-numbers
-	line-numbers = false
-[delta "light-mode"]
-	light = true
-[delta "dark-mode"]
-	light = false
+    dark = true
+    detect-dark-light = never
+    navigate = true
+    tabs = 2
+    features = colibri
 [pretty]
 	summary = - %C(yellow)%an%Creset %s
 	simple = - %C(yellow)%an%Creset %s
@@ -137,3 +135,6 @@
 	showUntrackedFiles = all
 [includeIf "gitdir:~/tanooki/"]
 	path = ~/tanooki/.gitconfig-tanooki
+
+[include]
+    path = ~/.config/delta/themes.gitconfig

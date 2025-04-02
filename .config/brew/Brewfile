@@ -29,6 +29,7 @@ brew "gron"
 brew "quicktype"
 brew "duckdb"
 brew "rclone"
+brew "tre-command" # better tree
 
 # programming
 brew "deno" # imagine if node was fun

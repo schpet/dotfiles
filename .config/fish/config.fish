@@ -16,7 +16,7 @@ end
 set -gx EDITOR nvim
 set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/ripgreprc"
 set -gx HOMEBREW_BUNDLE_FILE "$HOME/.config/brew/Brewfile"
-set -gx DELTA_PAGER "less --mouse"
+# set -gx DELTA_PAGER "less --mouse"
 
 # pnpm
 set -gx PNPM_HOME "/Users/schpet/Library/pnpm"
@@ -31,6 +31,7 @@ status --is-interactive; and rbenv init - --no-rehash fish | source
 abbr --add cc cd ~/code
 abbr --add cw cd ~/tanooki
 abbr --add fly flyctl
+abbr --add fd 'fd --hidden'
 
 abbr --add b bundle
 abbr --add be bundle exec
