@@ -12,10 +12,45 @@ calculate_date() {
     fi
 }
 
-# If no argument is provided, use today's date. Else use the provided date.
+# Check if fzf is installed
+if ! command -v fzf &> /dev/null
+then
+    echo "fzf command could not be found. Please install fzf." >&2
+    exit 1
+fi
+
+
+# If no argument is provided, prompt user to select a date. Else use the provided date.
 if [ $# -ne 1 ]
 then
-    start_date=$(date '+%Y-%m-%d')
+    # Generate date options for the last 10 days
+    options=""
+    for i in {0..9}
+    do
+        current_date=$(gdate -d "$i days ago" '+%Y-%m-%d')
+        day_name=$(gdate -d "$i days ago" '+%A')
+        relative_desc=""
+        if [ $i -eq 0 ]; then
+            relative_desc="today"
+        elif [ $i -eq 1 ]; then
+            relative_desc="yesterday"
+        else
+            relative_desc="$i days ago"
+        fi
+        options+=$(printf "[ ] %s %s (%s)\n" "$day_name" "$current_date" "$relative_desc")
+    done
+
+    # Use fzf to select a date, showing newest first
+    selected_option=$(echo -e "${options%\\n}" | fzf --tac --height 12 --reverse --prompt="Select a date> ")
+
+    # Exit if fzf was cancelled (no selection)
+    if [ -z "$selected_option" ]; then
+        echo "No date selected." >&2
+        exit 1
+    fi
+
+    # Extract the date (YYYY-MM-DD) from the selection
+    start_date=$(echo "$selected_option" | awk '{print $3}')
 else
     start_date=$(calculate_date "$1")
 fi
