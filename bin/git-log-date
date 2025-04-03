@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# ANSI Color Codes
+GREEN='\033[0;32m'
+RESET='\033[0m'
+
 # Function to calculate date
 calculate_date() {
     local input=$1
@@ -52,10 +56,10 @@ fi
 # Calculate the next day
 next_date=$(gdate -I -d "$start_date + 1 day")
 
-# Print status info to stderr
+# Print status info to stderr (in green)
 day_of_week=$(gdate '+%a' -d "$start_date" | tr '[:upper:]' '[:lower:]')
 git_show_output=$(git show -s --format=%D)
-echo "$start_date ($day_of_week) :: $git_show_output" >&2
+echo -e "${GREEN}$start_date ($day_of_week) :: $git_show_output${RESET}" >&2
 
 # Run git log for the specified day
 git log --after="$start_date 00:00:00" --before="$next_date 00:00:00" --date=local --author="<$(git config user.email)>" --format="%ad %s" --reverse
