@@ -2,7 +2,8 @@
   {
     "context": "Terminal",
     "bindings": {
-      "cmd-k": "terminal::Clear"
+      "cmd-k": "terminal::Clear",
+      "alt-shift-p": "pane::TogglePinTab"
     }
   },
   {
@@ -27,6 +28,8 @@
       ]
     }
   },
+
+  // vim normal mode
   {
     "context": "EmptyPane || SharedScreen || vim_operator == none && !VimWaiting && vim_mode != insert",
     "bindings": {
@@ -35,6 +38,8 @@
       "space F": "workspace::CopyPath",
       "space p": "editor::Format",
       "space b": "editor::ToggleGitBlame",
+      "space c": ["workspace::SendKeystrokes", "m x [ [ w y w ' x"],
+      "space m": ["workspace::SendKeystrokes", "m x [ m w y w ' x"],
       "space r": ["task::Rerun", { "reevaluate_context": false }],
       "space s": ["editor::SpawnNearestTask", { "reveal": "no_focus" }],
       "space t": [
