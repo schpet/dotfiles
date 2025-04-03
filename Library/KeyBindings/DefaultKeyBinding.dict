@@ -1,7 +1,5 @@
 {
     "~f" = "moveWordForward:";
     "~b" = "moveWordBackward:";
-    "^U" = (uppercaseWord:, moveWordForward:, moveWordBackward:);
-    "~U" = (uppercaseWord:, moveWordForward:, moveWordBackward:);
-    "~w" = (selectWord:);
+    "^y" = (yankAndSelect:);
 }
