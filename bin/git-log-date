@@ -24,8 +24,9 @@ fi
 next_date=$(gdate -I -d "$start_date + 1 day")
 
 # Print status info to stderr
+day_of_week=$(gdate '+%a' -d "$start_date" | tr '[:upper:]' '[:lower:]')
 git_show_output=$(git show -s --format=%D)
-echo "$start_date :: $git_show_output" >&2
+echo "$start_date ($day_of_week) :: $git_show_output" >&2
 
 # Run git log for the specified day
 git log --after="$start_date 00:00:00" --before="$next_date 00:00:00" --date=local --author="<$(git config user.email)>" --format="%ad %s" --reverse
