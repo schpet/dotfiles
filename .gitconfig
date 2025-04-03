@@ -92,7 +92,7 @@
     detect-dark-light = never
     navigate = true
     tabs = 2
-    features = colibri
+    features = schpet
 [pretty]
 	summary = - %C(yellow)%an%Creset %s
 	simple = - %C(yellow)%an%Creset %s
