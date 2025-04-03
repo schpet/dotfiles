@@ -38,7 +38,7 @@ then
                 relative_desc="$i days ago"
             fi
             printf "[ ] %s %s (%s)\n" "$day_name" "$current_date" "$relative_desc"
-        done | fzf --tac --height 12 --reverse --prompt="Select a date> "
+        done | fzf --height 12 --reverse --prompt="Select a date> "
     )
 
     # Exit if fzf was cancelled (no selection or empty output)
