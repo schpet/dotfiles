@@ -28,16 +28,12 @@ then
         for i in {0..9}
         do
             current_date=$(gdate -d "$i days ago" '+%Y-%m-%d')
-            day_name=$(gdate -d "$i days ago" '+%A')
-            relative_desc=""
+            day_name_short=$(gdate -d "$i days ago" '+%a')
             if [ $i -eq 0 ]; then
-                relative_desc="today"
-            elif [ $i -eq 1 ]; then
-                relative_desc="yesterday"
+                printf "%s %s (today)\n" "$current_date" "$day_name_short"
             else
-                relative_desc="$i days ago"
+                printf "%s %s\n" "$current_date" "$day_name_short"
             fi
-            printf "[ ] %s %s (%s)\n" "$day_name" "$current_date" "$relative_desc"
         done | fzf --height 12 --reverse --prompt="Select a date> "
     )
 
@@ -48,7 +44,7 @@ then
     fi
 
     # Extract the date (YYYY-MM-DD) from the selection
-    start_date=$(echo "$selected_option" | awk '{print $4}')
+    start_date=$(echo "$selected_option" | awk '{print $1}')
 else
     start_date=$(calculate_date "$1")
 fi
