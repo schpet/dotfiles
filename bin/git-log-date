@@ -23,27 +23,25 @@ fi
 # If no argument is provided, prompt user to select a date. Else use the provided date.
 if [ $# -ne 1 ]
 then
-    # Generate date options for the last 10 days
-    options=""
-    for i in {0..9}
-    do
-        current_date=$(gdate -d "$i days ago" '+%Y-%m-%d')
-        day_name=$(gdate -d "$i days ago" '+%A')
-        relative_desc=""
-        if [ $i -eq 0 ]; then
-            relative_desc="today"
-        elif [ $i -eq 1 ]; then
-            relative_desc="yesterday"
-        else
-            relative_desc="$i days ago"
-        fi
-        options+=$(printf "[ ] %s %s (%s)\n" "$day_name" "$current_date" "$relative_desc")
-    done
+    # Generate date options for the last 10 days and pipe to fzf
+    selected_option=$(
+        for i in {0..9}
+        do
+            current_date=$(gdate -d "$i days ago" '+%Y-%m-%d')
+            day_name=$(gdate -d "$i days ago" '+%A')
+            relative_desc=""
+            if [ $i -eq 0 ]; then
+                relative_desc="today"
+            elif [ $i -eq 1 ]; then
+                relative_desc="yesterday"
+            else
+                relative_desc="$i days ago"
+            fi
+            printf "[ ] %s %s (%s)\n" "$day_name" "$current_date" "$relative_desc"
+        done | fzf --tac --height 12 --reverse --prompt="Select a date> "
+    )
 
-    # Use fzf to select a date, showing newest first
-    selected_option=$(echo -e "${options%\\n}" | fzf --tac --height 12 --reverse --prompt="Select a date> ")
-
-    # Exit if fzf was cancelled (no selection)
+    # Exit if fzf was cancelled (no selection or empty output)
     if [ -z "$selected_option" ]; then
         echo "No date selected." >&2
         exit 1
