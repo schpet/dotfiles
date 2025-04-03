@@ -48,7 +48,7 @@ then
     fi
 
     # Extract the date (YYYY-MM-DD) from the selection
-    start_date=$(echo "$selected_option" | awk '{print $3}')
+    start_date=$(echo "$selected_option" | awk '{print $4}')
 else
     start_date=$(calculate_date "$1")
 fi
