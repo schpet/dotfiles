@@ -2,5 +2,7 @@
 .config/gh/hosts.yml
 .config/fish/fish_variables
 
-.config/zed
+.config/zed/*
+!.config/zed/themes
+
 .aider*
