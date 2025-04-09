@@ -1,0 +1,6 @@
+
+help:
+    just -g -l -u
+
+heroku-deploy-staging:
+    git push -f staging $(git branch --show-current):main
