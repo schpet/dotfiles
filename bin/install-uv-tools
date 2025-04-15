@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+uv tool install llm --with llm-claude-3 --with llm-sort --with llm-gemini --reinstall
