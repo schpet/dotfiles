@@ -9,10 +9,5 @@ read: ~/.config/aider/GLOBAL_CONVENTIONS.md
 # model: sonnet
 # model: openrouter/google/gemini-2.5-pro-exp-03-25:free
 # model: gemini/gemini-2.5-pro-exp-03-25
-# hmmm
 
 model: gemini/gemini-2.5-pro-exp-03-25
-editor-model: anthropic/claude-3-7-sonnet-20250219
-
-
-# one
