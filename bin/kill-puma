@@ -12,10 +12,69 @@ if [ -z "$puma_pids" ]; then
     exit 0
 fi
 
-# Kill Puma processes
-for pid in $puma_pids; do
-    echo "Killing Puma process with PID: $pid"
-    kill $pid
-done
+# Kill Puma processes with increasing severity
+kill_with_signal() {
+    local signal=$1
+    local timeout=$2
+    local signal_name=$3
+    
+    echo "Attempting to kill Puma processes with $signal_name signal..."
+    
+    for pid in $puma_pids; do
+        echo "Sending $signal_name signal to Puma process with PID: $pid"
+        kill $signal $pid
+    done
+    
+    # Poll to check if processes are still running
+    local seconds=0
+    while [ $seconds -lt $timeout ]; do
+        still_running=false
+        
+        for pid in $puma_pids; do
+            if ps -p $pid > /dev/null; then
+                still_running=true
+                break
+            fi
+        done
+        
+        if [ "$still_running" = false ]; then
+            echo "All Puma processes have been terminated with $signal_name signal."
+            return 0
+        fi
+        
+        sleep 1
+        seconds=$((seconds + 1))
+        echo "Waiting for processes to terminate... ($seconds/$timeout seconds)"
+    done
+    
+    return 1
+}
 
-echo "All Puma processes have been terminated."
+# Try progressively stronger signals
+if kill_with_signal "" 5 "TERM (default)"; then
+    exit 0
+fi
+
+if kill_with_signal "-TERM" 5 "TERM (explicit)"; then
+    exit 0
+fi
+
+if kill_with_signal "-INT" 5 "INT"; then
+    exit 0
+fi
+
+if kill_with_signal "-QUIT" 5 "QUIT"; then
+    exit 0
+fi
+
+if kill_with_signal "-KILL" 5 "KILL"; then
+    exit 0
+fi
+
+# If we get here, even SIGKILL failed
+echo "WARNING: Some Puma processes could not be terminated even with SIGKILL!"
+for pid in $puma_pids; do
+    if ps -p $pid > /dev/null; then
+        echo "Process $pid is still running!"
+    fi
+done
