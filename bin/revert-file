@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# revert-file - Undo the most recent change to a specific file using git restore
+# Usage: revert-file <file_path>
+
+# Check if a file path was provided
+if [ $# -ne 1 ]; then
+    echo "Usage: revert-file <file_path>"
+    echo "Reverts the file to its state before the most recent change."
+    exit 1
+fi
+
+FILE_PATH="$1"
+
+# Check if the file exists
+if [ ! -e "$FILE_PATH" ]; then
+    echo "Error: File '$FILE_PATH' does not exist."
+    exit 1
+fi
+
+# Check if we're in a git repository
+if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    echo "Error: Not in a git repository."
+    exit 1
+fi
+
+# Find the most recent commit that affected the file
+LAST_COMMIT=$(git rev-list -n 1 HEAD -- "$FILE_PATH")
+
+if [ -z "$LAST_COMMIT" ]; then
+    echo "Error: File '$FILE_PATH' has no commit history."
+    exit 1
+fi
+
+# Get the parent commit (version before the change)
+PARENT_COMMIT="${LAST_COMMIT}^"
+
+# Restore the file to its previous state
+if git restore --source="$PARENT_COMMIT" "$FILE_PATH"; then
+    echo "Successfully reverted '$FILE_PATH' from commit $LAST_COMMIT to commit $PARENT_COMMIT."
+    echo "Changes applied:"
+    git diff HEAD -- "$FILE_PATH"
+else
+    echo "Error: Failed to revert file."
+    exit 1
+fi
+
+
+exit 0
