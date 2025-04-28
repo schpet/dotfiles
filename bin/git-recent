@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Get current git user's name
+current_user=$(git config user.name)
+if [ -z "$current_user" ]; then
+  echo "Error: Git user name not configured." >&2
+  echo "Please set it using 'git config --global user.name \"Your Name\"'" >&2
+  exit 1
+fi
+
+# Variable to keep track of the current date header being processed
+current_date_header=""
+
+# Process git log output line by line
+# Use Tab (%x09) as a separator for reliable parsing with `read`
+# Format: DateHeader<TAB>Hour<TAB>AmPm<TAB>Subject
+# DateHeader: YYYY-MM-DD Day (e.g., 2025-04-03 Mon)
+# Hour: Hour (12-hour format, 01-12)
+# AmPm: am or pm (lowercase)
+# Subject: First line of commit message
+git log --author="$current_user" --date=local --pretty=format:'%ad%x09%ad%x09%ad%x09%s' --date=format:'%Y-%m-%d %a' --date=format:'%I' --date=format:'%P' | while IFS=$'\t' read -r date_header hour ampm subject; do
+  # Check if the date header has changed since the last commit processed
+  if [ "$date_header" != "$current_date_header" ]; then
+    # Print a newline before the new date header for separation,
+    # but not before the very first header.
+    if [ -n "$current_date_header" ]; then
+      echo
+    fi
+    # Print the new date header
+    echo "$date_header"
+    # Update the current date header
+    current_date_header="$date_header"
+  fi
+
+  # Print the formatted commit line, indented with two spaces
+  # Format: HHam/pm Subject (e.g., 11am An example commit)
+  printf "  %s%s %s\n" "$hour" "$ampm" "$subject"
+
+done
+
+# Check if any commits were processed
+if [ -z "$current_date_header" ]; then
+  echo "No commits found for user: $current_user" >&2
+fi
+
+exit 0
