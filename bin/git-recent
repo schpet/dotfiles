@@ -10,12 +10,18 @@ fi
 
 # Define the main logic as a function so its output can be piped
 main() {
-  # Variable to keep track of the current date header being processed
-  local current_date_header=""
+  # Create a temporary directory for storing commit data per day
+  local temp_dir
+  temp_dir=$(mktemp -d)
+  # Ensure cleanup on exit or interrupt
+  trap 'rm -rf -- "$temp_dir"' EXIT INT TERM HUP
+
+  # File to store the order of date headers and their timestamps (newest first)
+  local index_file="$temp_dir/index.txt"
   # Get today's date as seconds since epoch for comparison
   local today_ts=$(date +%s)
 
-  # Process git log output line by line
+  # Process git log output line by line (newest first)
 # Use Tab (%x09) as a separator for reliable parsing with `read`
 # Format: CombinedDateInfo<TAB>CommitTimestamp<TAB>Subject
 # CombinedDateInfo: YYYY-MM-DD Day#HH#AM/PM (e.g., 2025-04-03 Mon#11#AM)
@@ -28,20 +34,47 @@ while IFS=$'\t' read -r date_info commit_ts subject; do
   hour=$(echo "$date_info" | cut -d'#' -f2)
   ampm=$(echo "$date_info" | cut -d'#' -f3)
 
-  # Check if the date header has changed since the last commit processed
-  if [ "$date_header" != "$current_date_header" ]; then
-    # Print a newline before the new date header for separation,
-    # but not before the very first header.
-    if [ -n "$current_date_header" ]; then
+  # Sanitize date_header for use as a filename (replace space with underscore)
+  sanitized_header=$(echo "$date_header" | tr ' ' '_')
+  commit_file="$temp_dir/$sanitized_header.txt"
+
+  # If this is the first commit for this date, add the date header and timestamp to the index
+  if [ ! -f "$commit_file" ]; then
+    # Use tab as separator in index file
+    echo -e "$date_header\t$commit_ts" >> "$index_file"
+  fi
+
+  # Format the commit line
+  ampm_lower=$(echo "$ampm" | tr '[:upper:]' '[:lower:]')
+  commit_line="- ${hour}${ampm_lower} ${subject}"
+
+  # Append the formatted commit line to the file for this date
+  # Commits are added newest-first within the file
+  echo "$commit_line" >> "$commit_file"
+
+done < <(git log --author="$current_user" --since="2 weeks ago" --date=local --pretty=format:'%ad%x09%at%x09%s' --date=format:'%Y-%m-%d %a#%I#%p')
+
+  # Check if any commits were found by checking if the index file was created and is not empty
+  if [ ! -s "$index_file" ]; then
+    echo "No commits found for user: $current_user" >&2
+    # Cleanup is handled by trap
+    exit 0
+  fi
+
+  # Process the index file to print days (newest first) and commits (oldest first)
+  local first_day=true
+  while IFS=$'\t' read -r header ts; do
+    # Print a newline before subsequent day headers
+    if [ "$first_day" = true ]; then
+      first_day=false
+    else
       echo
     fi
-    # Calculate difference in days between commit date and today
-    local diff_seconds=$((today_ts - commit_ts))
-    # Integer division for days (86400 seconds in a day)
-    local diff_days=$((diff_seconds / 86400))
 
-    # Construct relative date string
-    local relative_date_str=""
+    # Calculate relative date string
+    diff_seconds=$((today_ts - ts))
+    diff_days=$((diff_seconds / 86400))
+    relative_date_str=""
     if [ "$diff_days" -eq 0 ]; then
       relative_date_str="(today)"
     elif [ "$diff_days" -eq 1 ]; then
@@ -50,28 +83,18 @@ while IFS=$'\t' read -r date_info commit_ts subject; do
       relative_date_str="($diff_days days ago)"
     fi
 
-    # Print the new date header with the relative string, prefixed with '## '
-    echo "## $date_header $relative_date_str"
-    # Add a blank line after the header
-    echo
-    # Update the current date header
-    current_date_header="$date_header"
-  fi
+    # Print the header
+    echo "## $header $relative_date_str"
+    echo # Blank line after header
 
-  # Print the formatted commit line, indented with two spaces
-  # Format: HH[am|pm] Subject (e.g., 08am, 11am)
-  # Keep the leading zero for the hour (%I format from git log)
-  # Convert AM/PM to lowercase using tr for portability
-  ampm_lower=$(echo "$ampm" | tr '[:upper:]' '[:lower:]')
-  # Print the formatted commit line, prefixed with '- ' using echo for portability
-  echo "- ${hour}${ampm_lower} ${subject}"
+    # Print the commits for this day in chronological order (oldest first)
+    # by reversing the lines in the commit file using tac
+    sanitized_header=$(echo "$header" | tr ' ' '_')
+    tac "$temp_dir/$sanitized_header.txt"
 
-done < <(git log --author="$current_user" --since="2 weeks ago" --reverse --date=local --pretty=format:'%ad%x09%at%x09%s' --date=format:'%Y-%m-%d %a#%I#%p')
+  done < "$index_file"
 
-# Check if any commits were processed (now works because loop is not in subshell)
-if [ -z "$current_date_header" ]; then
-    echo "No commits found for user: $current_user" >&2
-  fi
+  # Cleanup is handled by trap
 }
 
 # Determine the pager command
