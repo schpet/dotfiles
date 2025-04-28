@@ -66,7 +66,7 @@ while IFS=$'\t' read -r date_info commit_ts subject; do
   # Print the formatted commit line, prefixed with '- ' using echo for portability
   echo "- ${hour}${ampm_lower} ${subject}"
 
-done < <(git log --author="$current_user" --since="2 weeks ago" --date=local --pretty=format:'%ad%x09%at%x09%s' --date=format:'%Y-%m-%d %a#%I#%p')
+done < <(git log --author="$current_user" --since="2 weeks ago" --reverse --date=local --pretty=format:'%ad%x09%at%x09%s' --date=format:'%Y-%m-%d %a#%I#%p')
 
 # Check if any commits were processed (now works because loop is not in subshell)
 if [ -z "$current_date_header" ]; then
