@@ -12,18 +12,17 @@ fi
 main() {
   # Variable to keep track of the current date header being processed
   local current_date_header=""
-  # Get today's date in YYYY-MM-DD format for comparison
-  local today_date=$(date +'%Y-%m-%d')
+  # Get today's date as seconds since epoch for comparison
+  local today_ts=$(date +%s)
 
   # Process git log output line by line
 # Use Tab (%x09) as a separator for reliable parsing with `read`
-# Format: DateHeader<TAB>Hour<TAB>AmPm<TAB>Subject
-# DateHeader: YYYY-MM-DD Day (e.g., 2025-04-03 Mon)
-# Format: CombinedDateInfo<TAB>Subject
+# Format: CombinedDateInfo<TAB>CommitTimestamp<TAB>Subject
 # CombinedDateInfo: YYYY-MM-DD Day#HH#AM/PM (e.g., 2025-04-03 Mon#11#AM)
+# CommitTimestamp: Unix timestamp (seconds since epoch)
 # Subject: First line of commit message
 # Use process substitution <(...) instead of pipe | to run loop in current shell
-while IFS=$'\t' read -r date_info subject; do
+while IFS=$'\t' read -r date_info commit_ts subject; do
   # Parse the combined date_info string
   date_header=$(echo "$date_info" | cut -d'#' -f1)
   hour=$(echo "$date_info" | cut -d'#' -f2)
@@ -36,14 +35,23 @@ while IFS=$'\t' read -r date_info subject; do
     if [ -n "$current_date_header" ]; then
       echo
     fi
-    # Extract the YYYY-MM-DD part from the header (e.g., "2025-04-28 Mon" -> "2025-04-28")
-    local commit_date=$(echo "$date_header" | cut -d' ' -f1)
-    # Print the new date header, adding "(today)" if it matches today's date
-    if [ "$commit_date" = "$today_date" ]; then
-      echo "$date_header (today)"
+    # Calculate difference in days between commit date and today
+    local diff_seconds=$((today_ts - commit_ts))
+    # Integer division for days (86400 seconds in a day)
+    local diff_days=$((diff_seconds / 86400))
+
+    # Construct relative date string
+    local relative_date_str=""
+    if [ "$diff_days" -eq 0 ]; then
+      relative_date_str="(today)"
+    elif [ "$diff_days" -eq 1 ]; then
+      relative_date_str="(1 day ago)"
     else
-      echo "$date_header"
+      relative_date_str="($diff_days days ago)"
     fi
+
+    # Print the new date header with the relative string
+    echo "$date_header $relative_date_str"
     # Update the current date header
     current_date_header="$date_header"
   fi
@@ -55,7 +63,7 @@ while IFS=$'\t' read -r date_info subject; do
   ampm_lower=$(echo "$ampm" | tr '[:upper:]' '[:lower:]')
   printf "  %s%s %s\n" "${hour#0}" "$ampm_lower" "$subject"
 
-done < <(git log --author="$current_user" --since="2 weeks ago" --date=local --pretty=format:'%ad%x09%s' --date=format:'%Y-%m-%d %a#%I#%p')
+done < <(git log --author="$current_user" --since="2 weeks ago" --date=local --pretty=format:'%ad%x09%at%x09%s' --date=format:'%Y-%m-%d %a#%I#%p')
 
 # Check if any commits were processed (now works because loop is not in subshell)
 if [ -z "$current_date_header" ]; then
