@@ -30,6 +30,8 @@ brew "quicktype"
 brew "duckdb"
 brew "rclone"
 brew "tre-command" # better tree
+brew "tig"
+brew "pandoc"
 
 # programming
 brew "deno" # imagine if node was fun
