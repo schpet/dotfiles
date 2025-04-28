@@ -57,11 +57,11 @@ while IFS=$'\t' read -r date_info commit_ts subject; do
   fi
 
   # Print the formatted commit line, indented with two spaces
-  # Format: HHam/pm Subject (e.g., 11am An example commit)
-  # Use ${hour#0} to remove leading zero from hour (e.g., 03 -> 3)
+  # Format: HH[am|pm] Subject (e.g., 08am, 11am)
+  # Keep the leading zero for the hour (%I format from git log)
   # Convert AM/PM to lowercase using tr for portability
   ampm_lower=$(echo "$ampm" | tr '[:upper:]' '[:lower:]')
-  printf "  %s%s %s\n" "${hour#0}" "$ampm_lower" "$subject"
+  printf "  %s%s %s\n" "$hour" "$ampm_lower" "$subject"
 
 done < <(git log --author="$current_user" --since="2 weeks ago" --date=local --pretty=format:'%ad%x09%at%x09%s' --date=format:'%Y-%m-%d %a#%I#%p')
 
