@@ -40,8 +40,9 @@ git log --author="$current_user" --since="2 weeks ago" --date=local --pretty=for
   # Print the formatted commit line, indented with two spaces
   # Format: HHam/pm Subject (e.g., 11am An example commit)
   # Use ${hour#0} to remove leading zero from hour (e.g., 03 -> 3)
-  # Use ${ampm,,} to convert AM/PM to lowercase am/pm
-  printf "  %s%s %s\n" "${hour#0}" "${ampm,,}" "$subject"
+  # Convert AM/PM to lowercase using tr for portability
+  ampm_lower=$(echo "$ampm" | tr '[:upper:]' '[:lower:]')
+  printf "  %s%s %s\n" "${hour#0}" "$ampm_lower" "$subject"
 
 done
 
