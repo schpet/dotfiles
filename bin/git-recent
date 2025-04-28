@@ -39,7 +39,8 @@ git log --author="$current_user" --since="2 weeks ago" --date=local --pretty=for
 
   # Print the formatted commit line, indented with two spaces
   # Format: HHam/pm Subject (e.g., 11am An example commit)
-  printf "  %s%s %s\n" "$hour" "$ampm" "$subject"
+  # Use ${hour#0} to remove leading zero from hour (e.g., 03 -> 3)
+  printf "  %s%s %s\n" "${hour#0}" "$ampm" "$subject"
 
 done
 
