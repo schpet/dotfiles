@@ -52,6 +52,8 @@ while IFS=$'\t' read -r date_info commit_ts subject; do
 
     # Print the new date header with the relative string, prefixed with '## '
     echo "## $date_header $relative_date_str"
+    # Add a blank line after the header
+    echo
     # Update the current date header
     current_date_header="$date_header"
   fi
