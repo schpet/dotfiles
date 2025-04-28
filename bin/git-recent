@@ -18,8 +18,11 @@ main() {
 
   # File to store the order of date headers and their timestamps (newest first)
   local index_file="$temp_dir/index.txt"
-  # Get today's date as seconds since epoch for comparison
-  local today_ts=$(date +%s)
+  # Get today's date at midnight as seconds since epoch for comparison
+  # Use macOS compatible date flags (-j -f)
+  local today_midnight_ts
+  today_midnight_ts=$(date -j -f "%Y-%m-%d" "$(date +%Y-%m-%d)" +%s)
+
 
   # Process git log output line by line (newest first)
 # Use Tab (%x09) as a separator for reliable parsing with `read`
@@ -71,10 +74,17 @@ done < <(git log --author="$current_user" --since="2 weeks ago" --date=local --p
       echo
     fi
 
-    # Calculate relative date string
-    diff_seconds=$((today_ts - ts))
-    diff_days=$((diff_seconds / 86400))
-    relative_date_str=""
+    # Calculate relative date string based on midnight timestamps
+    # Extract YYYY-MM-DD from header (e.g., "2025-04-25 Fri")
+    local commit_date_str
+    commit_date_str=$(echo "$header" | cut -d' ' -f1)
+    # Convert commit date to midnight timestamp (macOS compatible)
+    local commit_midnight_ts
+    commit_midnight_ts=$(date -j -f "%Y-%m-%d" "$commit_date_str" +%s)
+
+    local diff_seconds=$((today_midnight_ts - commit_midnight_ts))
+    local diff_days=$((diff_seconds / 86400))
+    local relative_date_str=""
     if [ "$diff_days" -eq 0 ]; then
       relative_date_str="*(today)*"
     elif [ "$diff_days" -eq 1 ]; then
