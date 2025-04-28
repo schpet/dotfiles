@@ -76,11 +76,11 @@ done < <(git log --author="$current_user" --since="2 weeks ago" --date=local --p
     diff_days=$((diff_seconds / 86400))
     relative_date_str=""
     if [ "$diff_days" -eq 0 ]; then
-      relative_date_str="(today)"
+      relative_date_str="*(today)*"
     elif [ "$diff_days" -eq 1 ]; then
-      relative_date_str="(1 day ago)"
+      relative_date_str="*(1 day ago)*"
     else
-      relative_date_str="($diff_days days ago)"
+      relative_date_str="*($diff_days days ago)*"
     fi
 
     # Print the header
