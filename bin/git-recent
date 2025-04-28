@@ -8,10 +8,12 @@ if [ -z "$current_user" ]; then
   exit 1
 fi
 
-# Variable to keep track of the current date header being processed
-current_date_header=""
+# Define the main logic as a function so its output can be piped
+main() {
+  # Variable to keep track of the current date header being processed
+  local current_date_header=""
 
-# Process git log output line by line
+  # Process git log output line by line
 # Use Tab (%x09) as a separator for reliable parsing with `read`
 # Format: DateHeader<TAB>Hour<TAB>AmPm<TAB>Subject
 # DateHeader: YYYY-MM-DD Day (e.g., 2025-04-03 Mon)
@@ -49,7 +51,16 @@ done < <(git log --author="$current_user" --since="2 weeks ago" --date=local --p
 
 # Check if any commits were processed (now works because loop is not in subshell)
 if [ -z "$current_date_header" ]; then
-  echo "No commits found for user: $current_user" >&2
-fi
+    echo "No commits found for user: $current_user" >&2
+  fi
+}
 
-exit 0
+# Determine the pager command
+# Use PAGER environment variable if set, otherwise default to less
+# -R: Raw control chars (for color, though we don't add color here yet)
+# -F: Exit if output fits on one screen
+# -X: Don't clear screen on exit
+pager_cmd="${PAGER:-less -RFX}"
+
+# Call the main function and pipe its output to the pager
+main | $pager_cmd
