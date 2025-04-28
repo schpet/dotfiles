@@ -98,10 +98,10 @@ done < <(git log --author="$current_user" --since="2 weeks ago" --date=local --p
 }
 
 # Determine the pager command
-# Use PAGER environment variable if set, otherwise default to less
-# Use PAGER environment variable if set, otherwise default to glow -p
+# Use PAGER environment variable if set, otherwise default to glow -p -w 100
 # glow -p uses the pager, which is better for long output
-pager_cmd="${PAGER:-glow -p}"
+# -w 100 sets the wrap width
+pager_cmd="${PAGER:-glow -p -w 100}"
 
 # Call the main function and pipe its output to the pager
 main | $pager_cmd
