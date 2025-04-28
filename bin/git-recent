@@ -18,7 +18,7 @@ current_date_header=""
 # Format: CombinedDateInfo<TAB>Subject
 # CombinedDateInfo: YYYY-MM-DD Day#HH#am/pm (e.g., 2025-04-03 Mon#11#am)
 # Subject: First line of commit message
-git log --author="$current_user" --date=local --pretty=format:'%ad%x09%s' --date=format:'%Y-%m-%d %a#%I#%P' | while IFS=$'\t' read -r date_info subject; do
+git log --author="$current_user" --since="2 weeks ago" --date=local --pretty=format:'%ad%x09%s' --date=format:'%Y-%m-%d %a#%I#%P' | while IFS=$'\t' read -r date_info subject; do
   # Parse the combined date_info string
   date_header=$(echo "$date_info" | cut -d'#' -f1)
   hour=$(echo "$date_info" | cut -d'#' -f2)
