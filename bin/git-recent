@@ -12,6 +12,8 @@ fi
 main() {
   # Variable to keep track of the current date header being processed
   local current_date_header=""
+  # Get today's date in YYYY-MM-DD format for comparison
+  local today_date=$(date +'%Y-%m-%d')
 
   # Process git log output line by line
 # Use Tab (%x09) as a separator for reliable parsing with `read`
@@ -34,8 +36,14 @@ while IFS=$'\t' read -r date_info subject; do
     if [ -n "$current_date_header" ]; then
       echo
     fi
-    # Print the new date header
-    echo "$date_header"
+    # Extract the YYYY-MM-DD part from the header (e.g., "2025-04-28 Mon" -> "2025-04-28")
+    local commit_date=$(echo "$date_header" | cut -d' ' -f1)
+    # Print the new date header, adding "(today)" if it matches today's date
+    if [ "$commit_date" = "$today_date" ]; then
+      echo "$date_header (today)"
+    else
+      echo "$date_header"
+    fi
     # Update the current date header
     current_date_header="$date_header"
   fi
