@@ -15,10 +15,15 @@ current_date_header=""
 # Use Tab (%x09) as a separator for reliable parsing with `read`
 # Format: DateHeader<TAB>Hour<TAB>AmPm<TAB>Subject
 # DateHeader: YYYY-MM-DD Day (e.g., 2025-04-03 Mon)
-# Hour: Hour (12-hour format, 01-12)
-# AmPm: am or pm (lowercase)
+# Format: CombinedDateInfo<TAB>Subject
+# CombinedDateInfo: YYYY-MM-DD Day#HH#am/pm (e.g., 2025-04-03 Mon#11#am)
 # Subject: First line of commit message
-git log --author="$current_user" --date=local --pretty=format:'%ad%x09%ad%x09%ad%x09%s' --date=format:'%Y-%m-%d %a' --date=format:'%I' --date=format:'%P' | while IFS=$'\t' read -r date_header hour ampm subject; do
+git log --author="$current_user" --date=local --pretty=format:'%ad%x09%s' --date=format:'%Y-%m-%d %a#%I#%P' | while IFS=$'\t' read -r date_info subject; do
+  # Parse the combined date_info string
+  date_header=$(echo "$date_info" | cut -d'#' -f1)
+  hour=$(echo "$date_info" | cut -d'#' -f2)
+  ampm=$(echo "$date_info" | cut -d'#' -f3)
+
   # Check if the date header has changed since the last commit processed
   if [ "$date_header" != "$current_date_header" ]; then
     # Print a newline before the new date header for separation,
