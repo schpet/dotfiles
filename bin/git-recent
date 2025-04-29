@@ -10,6 +10,12 @@ fi
 
 # Define the main logic as a function so its output can be piped
 main() {
+  # Get branch name from argument or use current branch
+  local branch_name="$1"
+  local branch_arg=""
+  if [ -n "$branch_name" ]; then
+    branch_arg="$branch_name"
+  fi
   # Create a temporary directory for storing commit data per day
   local temp_dir
   temp_dir=$(mktemp -d)
@@ -55,7 +61,7 @@ while IFS=$'\t' read -r date_info commit_ts subject; do
   # Commits are added newest-first within the file
   echo "$commit_line" >> "$commit_file"
 
-done < <(git log --author="$current_user" --since="2 weeks ago" --date=local --pretty=format:'%ad%x09%at%x09%s' --date=format:'%Y-%m-%d %a#%I#%p')
+done < <(git log $branch_arg --author="$current_user" --since="2 weeks ago" --date=local --pretty=format:'%ad%x09%at%x09%s' --date=format:'%Y-%m-%d %a#%I#%p')
 
   # Check if any commits were found by checking if the index file was created and is not empty
   if [ ! -s "$index_file" ]; then
@@ -113,5 +119,5 @@ done < <(git log --author="$current_user" --since="2 weeks ago" --date=local --p
 # -w 100 sets the wrap width
 pager_cmd="${PAGER:-glow -p -w 0}"
 
-# Call the main function and pipe its output to the pager
-main | $pager_cmd
+# Call the main function with the first argument (branch name) and pipe its output to the pager
+main "$1" | $pager_cmd
