@@ -32,12 +32,13 @@ main() {
 
   # Process git log output line by line (newest first)
 # Use Tab (%x09) as a separator for reliable parsing with `read`
-# Format: CombinedDateInfo<TAB>CommitTimestamp<TAB>Subject
+# Format: CombinedDateInfo<TAB>CommitTimestamp<TAB>ShortHash<TAB>Subject
 # CombinedDateInfo: YYYY-MM-DD Day#HH#AM/PM (e.g., 2025-04-03 Mon#11#AM)
 # CommitTimestamp: Unix timestamp (seconds since epoch)
+# ShortHash: Abbreviated commit hash (%h)
 # Subject: First line of commit message
 # Use process substitution <(...) instead of pipe | to run loop in current shell
-while IFS=$'\t' read -r date_info commit_ts subject; do
+while IFS=$'\t' read -r date_info commit_ts commit_hash subject; do
   # Parse the combined date_info string
   date_header=$(echo "$date_info" | cut -d'#' -f1)
   hour=$(echo "$date_info" | cut -d'#' -f2)
@@ -55,13 +56,13 @@ while IFS=$'\t' read -r date_info commit_ts subject; do
 
   # Format the commit line
   ampm_lower=$(echo "$ampm" | tr '[:upper:]' '[:lower:]')
-  commit_line="- ${hour}${ampm_lower} ${subject}"
+  commit_line="- ${commit_hash} ${hour}${ampm_lower} ${subject}"
 
   # Append the formatted commit line to the file for this date
   # Commits are added newest-first within the file
   echo "$commit_line" >> "$commit_file"
 
-done < <(git log $branch_arg --author="$current_user" --since="2 weeks ago" --date=local --pretty=format:'%ad%x09%at%x09%s' --date=format:'%Y-%m-%d %a#%I#%p')
+done < <(git log $branch_arg --author="$current_user" --since="2 weeks ago" --date=local --pretty=format:'%ad%x09%at%x09%h%x09%s' --date=format:'%Y-%m-%d %a#%I#%p')
 
   # Check if any commits were found by checking if the index file was created and is not empty
   if [ ! -s "$index_file" ]; then
