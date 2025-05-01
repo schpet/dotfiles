@@ -25,9 +25,9 @@ main() {
   # File to store the order of date headers and their timestamps (newest first)
   local index_file="$temp_dir/index.txt"
   # Get today's date at midnight as seconds since epoch for comparison
-  # Use macOS compatible date flags (-j -f)
+  # Use macOS compatible date flags (-j -f), explicitly setting time to 00:00:00
   local today_midnight_ts
-  today_midnight_ts=$(date -j -f "%Y-%m-%d" "$(date +%Y-%m-%d)" +%s)
+  today_midnight_ts=$(date -j -f "%Y-%m-%d %H:%M:%S" "$(date +%Y-%m-%d) 00:00:00" +%s)
 
 
   # Process git log output line by line (newest first)
@@ -84,11 +84,12 @@ done < <(git log $branch_arg --author="$current_user" --since="2 weeks ago" --da
     # Extract YYYY-MM-DD from header (e.g., "2025-04-25 Fri")
     local commit_date_str
     commit_date_str=$(echo "$header" | cut -d' ' -f1)
-    # Convert commit date to midnight timestamp (macOS compatible)
+    # Convert commit date to midnight timestamp (macOS compatible), explicitly setting time to 00:00:00
     local commit_midnight_ts
-    commit_midnight_ts=$(date -j -f "%Y-%m-%d" "$commit_date_str" +%s)
+    commit_midnight_ts=$(date -j -f "%Y-%m-%d %H:%M:%S" "$commit_date_str 00:00:00" +%s)
 
     local diff_seconds=$((today_midnight_ts - commit_midnight_ts))
+    # Ensure integer division rounds down correctly for days calculation
     local diff_days=$((diff_seconds / 86400))
     local relative_date_str=""
     if [ "$diff_days" -eq 0 ]; then
