@@ -75,7 +75,7 @@ while IFS=$'\t' read -r date_info commit_ts commit_hash subject; do
     # Use printf for reliable escape sequence handling
     linked_hash=$(printf '\e]8;;%s/commit/%s\a%s\e]8;;\a' "$github_base_url" "$commit_hash" "$commit_hash")
   fi
-  commit_line="- ${linked_hash} ${hour}${ampm_lower} ${subject}"
+  commit_line="- ${linked_hash} ${hour}${ampm_lower} :: ${subject}"
 
   # Append the formatted commit line to the file for this date
   # Commits are added newest-first within the file
