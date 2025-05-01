@@ -22,6 +22,19 @@ main() {
   # Ensure cleanup on exit or interrupt
   trap 'rm -rf -- "$temp_dir"' EXIT INT TERM HUP
 
+  # Get the GitHub repository URL base
+  local github_base_url=""
+  local remote_url
+  remote_url=$(git remote get-url origin 2>/dev/null)
+  if [ $? -eq 0 ] && [ -n "$remote_url" ]; then
+    # Handle https://github.com/user/repo.git or git@github.com:user/repo.git
+    if [[ "$remote_url" =~ ^https://github.com/([^/]+/[^/]+) ]] || [[ "$remote_url" =~ ^git@github.com:([^/]+/[^/]+) ]]; then
+      github_base_url="https://github.com/${BASH_REMATCH[1]}"
+      # Remove trailing .git if present
+      github_base_url=${github_base_url%.git}
+    fi
+  fi
+
   # File to store the order of date headers and their timestamps (newest first)
   local index_file="$temp_dir/index.txt"
   # Get today's date at midnight as seconds since epoch for comparison
@@ -54,9 +67,15 @@ while IFS=$'\t' read -r date_info commit_ts commit_hash subject; do
     echo -e "$date_header\t$commit_ts" >> "$index_file"
   fi
 
-  # Format the commit line
+  # Format the commit line, adding a hyperlink if possible
   ampm_lower=$(echo "$ampm" | tr '[:upper:]' '[:lower:]')
-  commit_line="- ${commit_hash} ${hour}${ampm_lower} ${subject}"
+  local linked_hash="$commit_hash"
+  if [ -n "$github_base_url" ]; then
+    # OSC 8 hyperlink format: \e]8;;URL\aTEXT\e]8;;\a
+    # Use printf for reliable escape sequence handling
+    linked_hash=$(printf '\e]8;;%s/commit/%s\a%s\e]8;;\a' "$github_base_url" "$commit_hash" "$commit_hash")
+  fi
+  commit_line="- ${linked_hash} ${hour}${ampm_lower} ${subject}"
 
   # Append the formatted commit line to the file for this date
   # Commits are added newest-first within the file
