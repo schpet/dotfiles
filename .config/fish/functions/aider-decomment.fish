@@ -1,3 +1,19 @@
 function aider-decomment
-	aider --model o4-mini --message "remove any comments added or updated in this branch: $(git diff origin/main..HEAD -- . ':(exclude)package.json' ':(exclude)yarn.lock' ':(exclude)Gemfile.lock' ':(exclude)schema.graphql')"
+    set -l model "o4-mini"
+    set -l base_ref "origin/main"
+    set -l head_ref "HEAD"
+
+    set -l diff_target_path "."
+    set -l diff_exclude_patterns \
+        ':(exclude)package.json' \
+        ':(exclude)yarn.lock' \
+        ':(exclude)Gemfile.lock' \
+        ':(exclude)schema.graphql'
+
+    set -l diff_context (git diff $base_ref..$head_ref -- $diff_target_path $diff_exclude_patterns)
+    set -l prompt_text "remove any comments added or updated in this branch: "
+
+    set -l aider_message "$prompt_text$diff_context"
+
+    aider --model $model --message $aider_message
 end
