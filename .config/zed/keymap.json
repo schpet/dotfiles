@@ -1,35 +1,25 @@
 [
   {
-    "context": "Terminal",
     "bindings": {
-      "cmd-k": "terminal::Clear",
       "alt-shift-p": "pane::TogglePinTab",
-      "alt-shift-g": "git::Diff"
-    }
-  },
-  {
-    "bindings": {
-      "cmd-shift-j": [
+      "alt-shift-r": ["task::Rerun", { "reevaluate_context": false }],
+      "alt-shift-t": [
         "task::Spawn",
-        { "task_name": "aider_watch_js", "reveal_target": "dock" }
-      ],
-      "cmd-shift-k": [
-        "task::Spawn",
-        { "task_name": "aider_watch_rb", "reveal_target": "dock" }
-      ],
-      "cmd-shift-l": ["task::Spawn", { "task_name": "linear issue view -a" }]
-    }
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "alt-g": [
-        "task::Spawn",
-        { "task_name": "start lazygit", "reveal_target": "center" }
+        { "task_name": "rspec_file", "reveal": "no_focus", "target": "center" }
       ]
     }
   },
-
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-k": "terminal::Clear"
+    }
+  },
+  {
+    "bindings": {
+      "alt-shift-l": ["task::Spawn", { "task_name": "linear issue view -a" }]
+    }
+  },
   // vim normal mode
   {
     "context": "EmptyPane || SharedScreen || vim_operator == none && !VimWaiting && vim_mode != insert",
@@ -41,7 +31,7 @@
       "space b": "editor::ToggleGitBlame",
       "space c": ["workspace::SendKeystrokes", "m x [ [ w y w ' x"],
       "space m": ["workspace::SendKeystrokes", "m x [ m w y w ' x"],
-      "space r": ["task::Rerun", { "reevaluate_context": false }],
+      // "space r": ["task::Rerun", { "reevaluate_context": false }],
       "space s": ["editor::SpawnNearestTask", { "reveal": "no_focus" }],
       "space t": [
         "task::Spawn",

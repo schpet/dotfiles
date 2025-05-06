@@ -9,7 +9,7 @@
 {
   "assistant": {
     "always_allow_tool_actions": true,
-    "default_profile": "ask",
+    "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-3-7-sonnet-latest"

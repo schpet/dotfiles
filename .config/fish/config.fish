@@ -59,8 +59,11 @@ abbr --add json2rs quicktype --lang rust --visibility public
 
 abbr --add uncolor gsed -e 's/\x1b\[[0-9;]*m//g'
 abbr --add unindent awk '{if (NR==1) {len=index($0, $1); }; print substr($0, len)}'
-abbr --add oneshot 'aider --message="fix this issue:\\n$(linear issue view)"'
 abbr --add trurlparams "trurl --url-file - --json | jq -r '.[0].params | map(\"\\(.key)=\\(.value)\")[]'"
+abbr --add aider-oneshot 'aider --message="fix this issue:\\n$(linear issue view)"'
+abbr --add aider-branch 'aider $(git diff --name-only main.. | checkthrough)'
+
+
 
 alias ls eza
 

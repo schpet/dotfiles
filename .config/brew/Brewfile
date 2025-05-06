@@ -76,3 +76,4 @@ cask "submariner" # navidrome client
 cask "zed@preview" # text editor
 cask "burn" # burn dvds
 cask "vlc" # video player
+cask "obsidian"
