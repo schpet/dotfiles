@@ -16,5 +16,14 @@ function aider-decomment
 
     set -l aider_message "$prompt_text$diff_context"
 
+    echo "DEBUG: Model: $model"
+    echo "DEBUG: Changed Files:"
+    for file in $changed_files
+        echo "  - $file"
+    end
+    echo "DEBUG: Aider Message (Prompt + Diff Context):"
+    echo "$aider_message"
+    echo "--- End of Debug Output ---"
+
     aider --model $model --no-detect-urls --message $aider_message $changed_files
 end
