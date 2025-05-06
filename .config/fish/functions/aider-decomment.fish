@@ -15,5 +15,5 @@ function aider-decomment
 
     set -l aider_message "$prompt_text$diff_context"
 
-    aider --model $model --message $aider_message
+    aider --model $model --no-detect-urls --message $aider_message
 end
