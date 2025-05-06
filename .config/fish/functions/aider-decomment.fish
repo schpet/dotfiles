@@ -1,5 +1,6 @@
 function aider-decomment
-    set -l model "o4-mini"
+    # set -l model "o4-mini"
+    set -l model "sonnet"
     set -l base_ref "origin/main"
     set -l head_ref "HEAD"
 
