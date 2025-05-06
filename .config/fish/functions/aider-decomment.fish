@@ -5,11 +5,17 @@ function aider-decomment
     set -l head_ref "HEAD"
 
     set -l diff_target_path "."
-    set -l diff_exclude_patterns \
-        ':(exclude)package.json' \
-        ':(exclude)yarn.lock' \
-        ':(exclude)Gemfile.lock' \
-        ':(exclude)schema.graphql'
+
+    set -l plain_exclude_files \
+        package.json \
+        yarn.lock \
+        Gemfile.lock \
+        schema.graphql
+
+    set -l diff_exclude_patterns
+    for file in $plain_exclude_files
+        set -a diff_exclude_patterns ":(exclude)$file"
+    end
 
     set -l diff_context (git diff $base_ref..$head_ref -- $diff_target_path $diff_exclude_patterns)
     set -l changed_files (git diff --name-only $base_ref..$head_ref -- $diff_target_path $diff_exclude_patterns)
