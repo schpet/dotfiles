@@ -11,7 +11,7 @@ function aider-decomment
         ':(exclude)schema.graphql'
 
     set -l diff_context (git diff $base_ref..$head_ref -- $diff_target_path $diff_exclude_patterns)
-    set -l prompt_text "remove any comments added or updated in this branch: "
+    set -l prompt_text "remove any comments added or updated in this diff: "
 
     set -l aider_message "$prompt_text$diff_context"
 
