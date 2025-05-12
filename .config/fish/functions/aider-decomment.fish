@@ -21,7 +21,7 @@ function aider-decomment
     set -l changed_files (git diff --name-only $base_ref..$head_ref -- $diff_target_path $diff_exclude_patterns)
     set -l prompt_text "remove any comments added or updated in this diff: "
 
-    set -l aider_message "$prompt_text"(string join \n $diff_context)
+    set -l aider_message "$prompt_text"(string join \n "$diff_context")
 
     echo "DEBUG: Model: $model"
     echo "DEBUG: Changed Files:"
