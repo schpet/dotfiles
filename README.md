@@ -47,3 +47,10 @@ System settings Keyboard Keyboard shortcuts... Input sources > uncheck them if t
 ## port 5000
 
 turn off airplay receiver in `System Settings > General > AirDrop & Handoff > AirPlay Receiver`
+
+## turn off click desktop
+
+```bash
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+killall WindowManager
+```
