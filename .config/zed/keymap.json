@@ -49,5 +49,13 @@
       // remove delay on ctrl-k
       "ctrl-k": ["terminal::SendKeystroke", "ctrl-k"]
     }
+  },
+  {
+    "context": "Workspace",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-j": "terminal_panel::ToggleFocus",
+      "cmd-shift-j": "workspace::ToggleRightDock"
+    }
   }
 ]
