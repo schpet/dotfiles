@@ -18,19 +18,15 @@
   },
   "edit_predictions": {
     "mode": "subtle",
-    "copilot": {
-      "proxy": null,
-      "proxy_no_verify": null
-    },
     "enabled_in_assistant": false
   },
   "features": {
-    "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "copilot"
   },
   "show_edit_predictions": true,
   "use_autoclose": false,
   "active_pane_modifiers": {
-    "inactive_opacity": 0.7
+    "inactive_opacity": 0.85
   },
   "tabs": {
     "git_status": true,
@@ -91,11 +87,11 @@
     }
   },
   "terminal": {
+    "dock": "right",
     "option_as_meta": true,
     "font_fallbacks": ["Iosevka Nerd Font Mono"],
     "font_family": "Zed Mono Extended",
     "alternate_scroll": "on",
-    "button": false,
     "blinking": "on",
     "toolbar": {
       "breadcrumbs": false
