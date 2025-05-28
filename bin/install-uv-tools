@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-uv tool install llm --with llm-claude-3 --with llm-sort --with llm-gemini --reinstall
+uv tool install llm --with llm-claude-3 --with llm-sort --with llm-cmd --with llm-gemini --reinstall
 uv tool install openai-whisper --reinstall --python python3.11
 uv tool install --force --python python3.12 aider-chat@latest --with playwright --reinstall
