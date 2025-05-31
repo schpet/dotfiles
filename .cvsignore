@@ -16,3 +16,5 @@ untracked
 /pgschema_sql
 *.zed.scpt
 .aider*
+
+/.claude
