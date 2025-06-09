@@ -96,4 +96,4 @@ if [ -z "$author_filter" ]; then
 fi
 
 # Run git log for the specified day
-eval "git log --after=\"$start_date 00:00:00 $timezone_offset\" --before=\"$next_date 00:00:00 $timezone_offset\" --date=local $author_filter --format=\"%ad %s\" --reverse"
+git log --after="$start_date 00:00:00 $timezone_offset" --before="$next_date 00:00:00 $timezone_offset" --date=local $author_filter --format="%ad %s" --reverse
