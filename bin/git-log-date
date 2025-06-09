@@ -67,5 +67,33 @@ timezone_offset=$(gdate '+%z')
 # Debug: show the exact timestamps being used
 echo -e "${GREEN}DEBUG: --after=\"$start_date 00:00:00 $timezone_offset\" --before=\"$next_date 00:00:00 $timezone_offset\"${RESET}" >&2
 
+# Build author filter
+author_filter=""
+git_email=$(git config user.email)
+
+if [ -n "$GIT_LOG_DATE_EMAILS" ]; then
+    # Split the environment variable by comma and build multiple --author flags
+    IFS=',' read -ra EMAILS <<< "$GIT_LOG_DATE_EMAILS"
+    for email in "${EMAILS[@]}"; do
+        # Trim whitespace
+        email=$(echo "$email" | xargs)
+        if [ -n "$email" ]; then
+            author_filter="$author_filter --author=<$email>"
+        fi
+    done
+fi
+
+# Always include the git config email if it's not already in the list
+if [ -n "$git_email" ]; then
+    if [[ "$GIT_LOG_DATE_EMAILS" != *"$git_email"* ]]; then
+        author_filter="$author_filter --author=<$git_email>"
+    fi
+fi
+
+# If no author filter was built, fall back to git config email
+if [ -z "$author_filter" ]; then
+    author_filter="--author=<$git_email>"
+fi
+
 # Run git log for the specified day
-git log --after="$start_date 00:00:00 $timezone_offset" --before="$next_date 00:00:00 $timezone_offset" --date=local --author="<$(git config user.email)>" --format="%ad %s" --reverse
+eval "git log --after=\"$start_date 00:00:00 $timezone_offset\" --before=\"$next_date 00:00:00 $timezone_offset\" --date=local $author_filter --format=\"%ad %s\" --reverse"
