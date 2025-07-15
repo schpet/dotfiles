@@ -40,7 +40,6 @@
       "provider": "anthropic",
       "model": "claude-sonnet-4-latest"
     },
-    "version": "2"
   },
   "edit_predictions": {
     "mode": "subtle",
@@ -142,6 +141,7 @@
     //   "settings": {}
     // },
     "mcp-server-context7": {
+      "source": "extension",
       "settings": {
         "default_minimum_tokens": "10000"
       }

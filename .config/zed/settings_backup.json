@@ -7,22 +7,47 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "assistant": {
+  "load_direnv": "direct",
+  "agent": {
+    "profiles": {
+      "write-test": {
+        "name": "Write test",
+        "tools": {
+          "copy_path": true,
+          "create_directory": true,
+          "delete_path": true,
+          "diagnostics": true,
+          "edit_file": true,
+          "fetch": true,
+          "list_directory": true,
+          "move_path": true,
+          "now": true,
+          "find_path": true,
+          "read_file": true,
+          "grep": true,
+          "terminal": true,
+          "thinking": true,
+          "web_search": true
+        },
+        "enable_all_context_servers": true,
+        "context_servers": {}
+      }
+    },
     "play_sound_when_agent_done": true,
     "always_allow_tool_actions": true,
     "default_profile": "write",
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-latest"
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-latest"
     },
     "version": "2"
   },
   "edit_predictions": {
     "mode": "subtle",
-    "enabled_in_assistant": false
+    "enabled_in_text_threads": false
   },
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "zed"
   },
   "show_edit_predictions": true,
   "use_autoclose": false,
@@ -85,6 +110,11 @@
       "settings": {
         "use_bundler": true
       }
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "classFunctions": ["cva", "cx"]
+      }
     }
   },
   "terminal": {
@@ -101,5 +131,28 @@
   "indent_guides": {
     "enabled": true,
     "coloring": "indent_aware"
+  },
+  "context_servers": {
+    // "figma": {
+    //   "command": {
+    //     "path": "npx",
+    //     "args": ["-y", "mcp-remote", "http://127.0.0.1:3845/sse"],
+    //     "env": null
+    //   },
+    //   "settings": {}
+    // },
+    "mcp-server-context7": {
+      "settings": {
+        "default_minimum_tokens": "10000"
+      }
+    }
+    // "linear-tool": {
+    //   "command": {
+    //     "path": "npx",
+    //     "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"],
+    //     "env": null
+    //   },
+    //   "settings": {}
+    // }
   }
 }
