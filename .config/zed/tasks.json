@@ -77,5 +77,14 @@
     "show_summary": false,
     "show_command": false,
     "tags": ["linear"]
+  },
+  {
+    "label": "linear issue view",
+    "command": "linear issue view | awk 'BEGIN{print \"<linearIssue>\"} {print} END{print \"\\n</linearIssue>\"}' | pbcopy",
+    "hide": "on_success",
+    "reveal": "never",
+    "show_summary": false,
+    "show_command": false,
+    "tags": ["linear"]
   }
 ]

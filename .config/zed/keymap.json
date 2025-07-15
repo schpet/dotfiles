@@ -17,7 +17,8 @@
   },
   {
     "bindings": {
-      "alt-shift-l": ["task::Spawn", { "task_name": "linear issue view -a" }]
+      "alt-shift-l": ["task::Spawn", { "task_name": "linear issue view -a" }],
+      "alt-shift-i": ["task::Spawn", { "task_name": "linear issue view" }]
     }
   },
   // vim normal mode
@@ -55,7 +56,9 @@
     "use_key_equivalents": true,
     "bindings": {
       "cmd-j": "terminal_panel::ToggleFocus",
-      "cmd-shift-j": "workspace::ToggleRightDock"
+      // "alt-l": "agent::ToggleFocus",
+      "cmd-shift-l": "workspace::ToggleRightDock",
+      "cmd-shift-j": "workspace::ToggleBottomDock"
     }
   }
 ]
