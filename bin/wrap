@@ -7,5 +7,7 @@ else
 fi
 
 echo "<$tag>"
+echo
 cat
+echo
 echo "</$tag>"
