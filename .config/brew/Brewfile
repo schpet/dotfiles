@@ -10,6 +10,7 @@ tap "homebrew/services"
 brew "eza" # ls replacement
 brew "dasel"
 brew "fd" # find replacement
+brew "fx" # like jq, but uses js
 brew "fish" # shell
 brew "fzf" # fuzzy finder
 brew "gh" # github cli
@@ -32,6 +33,7 @@ brew "rclone"
 brew "tre-command" # better tree
 brew "tig"
 brew "pandoc"
+brew "serpl" # fancy tui find/replace
 
 # programming
 brew "deno" # imagine if node was fun
@@ -39,6 +41,8 @@ brew "fnm" # node version manager
 brew "rbenv" # ruby version manager
 brew "ruby-build" # rbenv uses this to build rubies
 brew "rubyfmt" # ruby formatter extraordinaire
+brew "restatedev/tap/restate-server"
+brew "restatedev/tap/restate"
 
 # mac os odds and ends
 brew "cdrtools" # burn a cd from the cli
@@ -59,6 +63,7 @@ brew "vips"
 brew "rsync"
 
 # 3rd party services
+brew "1password-cli"
 brew "awscli" # script aws so i don't have to use their website
 brew "flyctl" # fly.io cli
 brew "heroku/brew/heroku" # heroku cli
