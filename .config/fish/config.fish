@@ -18,6 +18,10 @@ set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/ripgreprc"
 set -gx HOMEBREW_BUNDLE_FILE "$HOME/.config/brew/Brewfile"
 # set -gx DELTA_PAGER "less --mouse"
 
+set -gx ANDROID_HOME $HOME/Library/Android/sdk
+fish_add_path $ANDROID_HOME/emulator
+fish_add_path $ANDROID_HOME/platform-tools
+
 # pnpm
 set -gx PNPM_HOME "/Users/schpet/Library/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
@@ -53,6 +57,7 @@ abbr --add c cargo
 abbr --add r bin/rails
 abbr --add o open
 abbr --add cl changelog
+abbr --add claude-yolo claude --dangerously-skip-permissions
 
 abbr --add json2ts quicktype --lang ts --just-types --no-enums
 abbr --add json2rs quicktype --lang rust --visibility public
@@ -83,6 +88,7 @@ abbr_subcommand git dif "diff"
 abbr_subcommand git cce "commit --allow-empty --allow-empty-message -m ''"
 abbr_subcommand git reset "reset --keep" # try and stop using git reset --hard
 abbr_subcommand git r "restore"
+abbr_subcommand git dls "diff main.. --name-only"
 
 abbr_subcommand brew b "bundle"
 abbr_subcommand bundle e "exec"
