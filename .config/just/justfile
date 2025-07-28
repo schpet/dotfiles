@@ -2,5 +2,8 @@
 help:
     just -g -l -u
 
-heroku-deploy-staging:
+heroku-deploy-branch-staging:
     git push -f staging $(git branch --show-current):main
+
+heroku-deploy-branch-production:
+    git push -f production $(git branch --show-current):main
