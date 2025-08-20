@@ -96,8 +96,6 @@ https://www.figma.com/design/FILE_ID/DESIGN_NAME?node-id=NODE_ID&t=HASH
 - if asked to implement the current issue or simply 'go', see the current issue details, implement it, and explain any caveats or possible improvements
 - if asked to create a pr, first run diagnostics then create the pr with `linear issue pr`
 
-## linear cli
-
 ### usage
 
 linear cli provides commands to manage linear issues, teams, and projects from
