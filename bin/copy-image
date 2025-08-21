@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+  echo "usage: copy-image path/to/image.png" >&2
+  exit 1
+fi
+
+if [[ "${OSTYPE:-}" != darwin* ]]; then
+  echo "Clipboard copying is only supported on macOS. Image saved to: $1"
+  exit 0
+fi
+
+image="$1"
+if [[ ! -f "$image" ]]; then
+  echo "File not found: $image" >&2
+  exit 1
+fi
+
+esc="${image//\\/\\\\}"
+esc="${esc//\"/\\\"}"
+
+if ! output=$(/usr/bin/osascript -e "set the clipboard to (read (POSIX file \"$esc\") as «class PNGf»)" 2>&1 >/dev/null); then
+  echo "Failed to copy image to clipboard: $output" >&2
+  exit 1
+fi
