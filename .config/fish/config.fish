@@ -9,7 +9,11 @@ fish_add_path ~/.cargo/bin
 fish_add_path ~/.deno/bin # note - this is already on my path but no idea how deno puts it there?
 
 if status is-interactive
-    starship init fish | source
+    if not set -q ASCIINEMA_REC
+        starship init fish | source
+    else
+        function fish_prompt; set_color green; echo -n "❯ "; set_color normal; end
+    end
     atuin init fish --disable-up-arrow | source
 end
 
