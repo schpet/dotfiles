@@ -8,11 +8,10 @@ prompt: enabled
 pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
-    co: pr checkout
-    autolink-linear: api repos/{owner}/{repo}/autolinks -f key_prefix="$1-" -f url_template="https://linear.app/tanookilabs/issue/$1-<num>"
-    squash: pr merge -sd
-    cw: '!gh pr checks --watch -i 2 && say ''Tests passed'' || say ''Tests failed'''
     configure-repo: api repos/{owner}/{repo} --method PATCH -f allow_squash_merge=true -f allow_merge_commit=false -f allow_rebase_merge=false -f delete_branch_on_merge=true -f squash_merge_commit_title=PR_TITLE -f squash_merge_commit_message=PR_BODY
+    cw: '!gh pr checks --watch -i 2 && say ''Tests passed'' || say ''Tests failed'''
+    s: "pr view --json state --jq '.state'"
+    squash: pr merge -sd
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.

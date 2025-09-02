@@ -39,7 +39,7 @@
     "default_model": {
       "provider": "anthropic",
       "model": "claude-sonnet-4-latest"
-    },
+    }
   },
   "edit_predictions": {
     "mode": "subtle",
@@ -154,5 +154,19 @@
     //   },
     //   "settings": {}
     // }
+  },
+
+  "language_models": {
+    "openai": {
+      "available_models": [
+        {
+          "name": "gpt-5",
+          "display_name": "gpt-5 low",
+          "reasoning_effort": "low",
+          "max_tokens": 272000,
+          "max_completion_tokens": 20000
+        }
+      ]
+    }
   }
 }
