@@ -121,8 +121,6 @@
 [fetch]
 	prune = true
 	pruneTags = true
-[help]
-	autocorrect = prompt
 [rebase]
 	autoSquash = true
 	autoStash = true
