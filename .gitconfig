@@ -79,7 +79,7 @@
 	conflictstyle = zdiff3
 [core]
 	excludesfile = ~/.cvsignore
-	editor = vim
+	editor = nvim
 	; editor = zed --new --wait
 	ignorecase = false
 	pager = delta
