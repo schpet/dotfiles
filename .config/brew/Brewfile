@@ -22,7 +22,6 @@ brew "pgcli" # auto-complete for psql
 brew "ripgrep" # grep replacement
 brew "schpet/tap/envset" # updates .env files
 brew "sd" # sed replacement
-brew "starship" # shell prompt PS1 thing
 brew "stow" # symlink manager, for dotfiles
 brew "trurl"
 brew "yazi" # file browser
@@ -50,6 +49,7 @@ brew "switchaudio-osx" # lets you switch audio input/output from the command lin
 brew "pngpaste" # paste an image from the clipboard
 
 # basics
+brew "starship" # shell prompt PS1 thing
 brew "coreutils" # real variants of sed, grep, etc
 brew "curl"
 brew "ffmpeg"
