@@ -3,3 +3,4 @@ shell-integration-features = no-cursor
 theme = GruvboxDarkHard
 font-family = Zed Mono Extended
 mouse-hide-while-typing = true
+keybind = shift+enter=text:\n
