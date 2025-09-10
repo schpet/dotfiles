@@ -15,6 +15,7 @@ brew "fish" # shell
 brew "fzf" # fuzzy finder
 brew "gh" # github cli
 brew "git-delta" # git diff viewer
+brew "bfg" # repo cleaner
 brew "jo" # write json from the command line
 brew "jq" # json selector
 brew "just" # task runner
