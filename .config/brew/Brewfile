@@ -54,6 +54,7 @@ brew "starship" # shell prompt PS1 thing
 brew "coreutils" # real variants of sed, grep, etc
 brew "curl"
 brew "ffmpeg"
+brew "jj"
 brew "git"
 brew "libpq" # postgresql
 brew "neovim"
