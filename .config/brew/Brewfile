@@ -35,6 +35,7 @@ brew "tre-command" # better tree
 brew "tig"
 brew "pandoc"
 brew "serpl" # fancy tui find/replace
+brew "qsv" # csv
 
 # programming
 brew "deno" # imagine if node was fun
@@ -51,6 +52,7 @@ brew "switchaudio-osx" # lets you switch audio input/output from the command lin
 brew "pngpaste" # paste an image from the clipboard
 
 # basics
+brew "watchman"
 brew "starship" # shell prompt PS1 thing
 brew "coreutils" # real variants of sed, grep, etc
 brew "curl"
@@ -65,6 +67,7 @@ brew "tmux"
 brew "vips"
 brew "rsync"
 
+
 # 3rd party services
 brew "1password-cli"
 brew "awscli" # script aws so i don't have to use their website
@@ -75,7 +78,7 @@ brew "stripe/stripe-cli/stripe" # stripe cli
 # gui apps
 cask "alt-tab" # prefer this over mac os's command-tab (shows a vertical list with window titles)
 cask "cog" # plays flac files
-cask "docker" # container stuff
+# cask "docker" # container stuff
 cask "ghostty" # terminal emulator
 cask "musicbrainz-picard" # music tagger and organizer
 cask "raycast" # spotlight replacement
