@@ -18,6 +18,7 @@ brew "git-delta" # git diff viewer
 brew "bfg" # repo cleaner
 brew "jo" # write json from the command line
 brew "jq" # json selector
+brew "starkandwayne/cf/spruce" # merge json
 brew "just" # task runner
 brew "pgcli" # auto-complete for psql
 brew "ripgrep" # grep replacement
