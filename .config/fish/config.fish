@@ -108,3 +108,4 @@ abbr_subcommand gh p "pr"
 # - https://github.com/fish-shell/fish-shell/issues/2904
 # - https://github.com/fish-shell/fish-shell/pull/4713
 bind -s \cc __fish_cancel_commandline
+eval "$(~/bin/try.rb init ~/src/tries | string collect)"
