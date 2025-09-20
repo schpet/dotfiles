@@ -136,3 +136,9 @@
 
 [include]
     path = ~/.config/delta/themes.gitconfig
+[gitbutler]
+	aiOpenAIKeyOption = bringYourOwn
+	aiModelProvider = openai
+	aiAnthropicKeyOption = bringYourOwn
+	aiAnthropicModelName = claude-3-7-sonnet-20250219
+	aiOpenAIModelName = gpt-4.1-mini
