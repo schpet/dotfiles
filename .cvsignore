@@ -17,4 +17,4 @@ untracked
 *.zed.scpt
 .aider*
 
-/.claude
+.claude/settings.local.json
