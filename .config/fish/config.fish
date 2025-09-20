@@ -50,7 +50,7 @@ abbr --add f flyctl
 abbr --add g git
 abbr --add gs git status
 abbr --add h heroku
-abbr --add j just
+# abbr --add j just
 abbr --add l linear
 abbr --add n npm
 abbr --add p pnpm
@@ -93,6 +93,8 @@ abbr_subcommand git cce "commit --allow-empty --allow-empty-message -m ''"
 abbr_subcommand git reset "reset --keep" # try and stop using git reset --hard
 abbr_subcommand git r "restore"
 abbr_subcommand git dls "diff main.. --name-only"
+
+abbr_subcommand jj d "describe"
 
 abbr_subcommand brew b "bundle"
 abbr_subcommand bundle e "exec"
