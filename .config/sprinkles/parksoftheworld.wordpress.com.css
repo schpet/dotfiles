@@ -1,0 +1,27 @@
+:global {
+    --layout-bar-height: 0px !important;
+}
+body.has-marketing-bar .site-header {
+    top: 0 !important;
+}
+body.has-marketing-bar {
+    margin-top: 0 !important;
+}
+.marketing-bar {
+    display: none !important;
+}
+
+.sidebar-toggle {
+    height: 84px !important;
+}
+
+
+.site-branding {
+    display: flex;
+}
+.site-logo-link {
+}
+.site-logo-link img {
+    width: 36px !important;
+    height: 36px !important;
+}
