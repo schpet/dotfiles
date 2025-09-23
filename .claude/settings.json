@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "claude-code-hooks-jj UserPromptSubmit"
+            "command": "jjcc hooks UserPromptSubmit"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "claude-code-hooks-jj PreToolUse"
+            "command": "jjcc hooks PreToolUse"
           }
         ]
       }
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "claude-code-hooks-jj PostToolUse"
+            "command": "jjcc hooks PostToolUse"
           }
         ]
       }
@@ -39,7 +39,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "claude-code-hooks-jj Stop"
+            "command": "jjcc hooks Stop"
           }
         ]
       }
@@ -50,7 +50,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "claude-code-hooks-jj SessionEnd"
+            "command": "jjcc hooks SessionEnd"
           }
         ]
       }

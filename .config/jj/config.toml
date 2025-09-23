@@ -4,8 +4,8 @@
 name = "Peter Schilling"
 email = "jj@schpet.com"
 
-[fsmonitor]
-backend = "watchman"
+# [fsmonitor]
+# backend = "watchman"
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
@@ -13,6 +13,7 @@ backend = "watchman"
 
 [aliases]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
+
 [template-aliases]
 'evolog_detailed' = '''
 separate("\n",
