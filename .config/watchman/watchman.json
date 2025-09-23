@@ -1,3 +1,6 @@
 {
-  "ignore_dirs": ["node_modules", ".jj"]
+  "ignore_dirs": ["node_modules", ".jj", "dist", "build"],
+  "root_restrict_files": [".watchmanconfig", "package.json", ".git", ".jj"],
+  "enforce_root_files": true,
+  "settle": 1000
 }

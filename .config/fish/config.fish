@@ -50,7 +50,7 @@ abbr --add f flyctl
 abbr --add g git
 abbr --add gs git status
 abbr --add h heroku
-# abbr --add j just
+abbr --add ju just
 abbr --add l linear
 abbr --add n npm
 abbr --add p pnpm
