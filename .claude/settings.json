@@ -2,57 +2,32 @@
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "jjcc hooks UserPromptSubmit"
-          }
-        ]
+        "type": "command",
+        "command": "jjcc hooks UserPromptSubmit"
       }
     ],
     "PreToolUse": [
       {
-        "matcher": "Edit|MultiEdit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "jjcc hooks PreToolUse"
-          }
-        ]
+        "type": "command",
+        "command": "jjcc hooks PreToolUse"
       }
     ],
     "PostToolUse": [
       {
-        "matcher": "Edit|MultiEdit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "jjcc hooks PostToolUse"
-          }
-        ]
+        "type": "command",
+        "command": "jjcc hooks PostToolUse"
       }
     ],
     "Stop": [
       {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "jjcc hooks Stop"
-          }
-        ]
+        "type": "command",
+        "command": "jjcc hooks Stop"
       }
     ],
     "SessionEnd": [
       {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "jjcc hooks SessionEnd"
-          }
-        ]
+        "type": "command",
+        "command": "jjcc hooks SessionEnd"
       }
     ]
   }
