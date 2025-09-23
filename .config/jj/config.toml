@@ -4,8 +4,11 @@
 name = "Peter Schilling"
 email = "jj@schpet.com"
 
-# [fsmonitor]
-# backend = "watchman"
+[fsmonitor]
+backend = "watchman"
+
+[fsmonitor.watchman]
+register-snapshot-trigger = true
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
