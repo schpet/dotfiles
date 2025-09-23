@@ -13,3 +13,24 @@ backend = "watchman"
 
 [aliases]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
+[template-aliases]
+'evolog_detailed' = '''
+separate("\n",
+  label("commit_id", commit.change_id().shortest(8) ++ " ") ++
+  if(commit.hidden(), label("hidden", "hidden ")) ++
+  commit.author().name() ++ " " ++
+  commit.author().timestamp().local().format("%Y-%m-%d %H:%M:%S") ++ " " ++
+  label("commit_id", commit.commit_id().short()),
+  if(commit.description(),
+    indent("  ", commit.description()),
+    label("description placeholder", indent("  ", "(no description set)")),
+  ),
+  if(operation,
+    indent("  ",
+      label("separator", "--") ++ " operation " ++
+      operation.id().short() ++ " " ++
+      operation.description()
+    ),
+  ),
+)
+'''
