@@ -26,6 +26,9 @@ set -gx ANDROID_HOME $HOME/Library/Android/sdk
 fish_add_path $ANDROID_HOME/emulator
 fish_add_path $ANDROID_HOME/platform-tools
 
+# prevent claude code from rewriting terminal title
+set -gx CLAUDE_CODE_DISABLE_TERMINAL_TITLE 1
+
 # pnpm
 set -gx PNPM_HOME "/Users/schpet/Library/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
