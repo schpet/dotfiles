@@ -16,6 +16,21 @@ register-snapshot-trigger = true
 
 [aliases]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
+llm-describe = ["util", "exec", "--", "sh", "-c", '''
+REF="${1:-@}"
+DIFF=$(jj show --git "$REF")
+CURRENT_MSG=$(jj log -r "$REF" --no-graph -T description)
+TRAILERS=$(echo "$CURRENT_MSG" | git interpret-trailers --only-trailers 2>/dev/null || echo "")
+LLM_MSG=$(echo "$DIFF" | llm -o reasoning_effort minimal "suggest a commit message for this change. write it in imperative mood (e.g. Fix, Add, Update). First line: 50 chars max. Focus on WHAT changed and WHY, not how. No markdown formatting. respond with just the commit message.")
+if [ -n "$TRAILERS" ]; then
+    FULL_MSG=$(printf "%s\n\n%s" "$LLM_MSG" "$TRAILERS")
+else
+    FULL_MSG="$LLM_MSG"
+fi
+jj describe "$REF" -m "$FULL_MSG"
+echo "Updated description for $REF:"
+echo "$FULL_MSG"
+''', "sh"]
 
 [template-aliases]
 'evolog_detailed' = '''
