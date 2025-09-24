@@ -74,7 +74,7 @@ abbr --add unindent awk '{if (NR==1) {len=index($0, $1); }; print substr($0, len
 abbr --add trurlparams "trurl --url-file - --json | jq -r '.[0].params | map(\"\\(.key)=\\(.value)\")[]'"
 abbr --add aider-oneshot 'aider --message="fix this issue:\\n$(linear issue view)"'
 abbr --add aider-branch 'aider $(git diff --name-only main.. | checkthrough)'
-
+abbr --add watchjj watch -t -n 0.5 --color 'jj log --ignore-working-copy --color=always'
 
 
 alias ls eza
