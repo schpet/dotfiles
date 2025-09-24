@@ -1,33 +1,63 @@
 {
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:raw.githubusercontent.com)"
+    ]
+  },
   "hooks": {
     "UserPromptSubmit": [
       {
-        "type": "command",
-        "command": "jjcc hooks UserPromptSubmit"
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jjcc hooks UserPromptSubmit"
+          }
+        ]
       }
     ],
     "PreToolUse": [
       {
-        "type": "command",
-        "command": "jjcc hooks PreToolUse"
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jjcc hooks PreToolUse"
+          }
+        ]
       }
     ],
     "PostToolUse": [
       {
-        "type": "command",
-        "command": "jjcc hooks PostToolUse"
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jjcc hooks PostToolUse"
+          }
+        ]
       }
     ],
     "Stop": [
       {
-        "type": "command",
-        "command": "jjcc hooks Stop"
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jjcc hooks Stop"
+          }
+        ]
       }
     ],
     "SessionEnd": [
       {
-        "type": "command",
-        "command": "jjcc hooks SessionEnd"
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jjcc hooks SessionEnd"
+          }
+        ]
       }
     ]
   }

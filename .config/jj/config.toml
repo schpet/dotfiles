@@ -28,8 +28,6 @@ else
     FULL_MSG="$LLM_MSG"
 fi
 jj describe "$REF" -m "$FULL_MSG"
-echo "Updated description for $REF:"
-echo "$FULL_MSG"
 ''', "sh"]
 
 [template-aliases]
