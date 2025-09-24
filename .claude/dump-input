@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Read the entire input
+input=$(cat)
+
+# Create the output with the hook payload
+cat <<EOF
+{
+  "hookSpecificOutput": {
+    "hookEventName": "UserPromptSubmit",
+    "additionalContext": "Hook payload: $input"
+  }
+}
+EOF
+
+exit 0
