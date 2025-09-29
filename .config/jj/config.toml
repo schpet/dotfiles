@@ -6,7 +6,7 @@ email = "code@schpet.com"
 
 [ui]
 diff-editor = "meld"
-merge-editor = "mergiraf"
+merge-editor = "meld"
 
 [fsmonitor]
 backend = "watchman"
