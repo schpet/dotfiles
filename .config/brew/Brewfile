@@ -69,7 +69,7 @@ brew "rsync"
 
 
 # 3rd party services
-brew "1password-cli"
+# brew "1password-cli"
 brew "awscli" # script aws so i don't have to use their website
 brew "flyctl" # fly.io cli
 brew "heroku/brew/heroku" # heroku cli
@@ -88,3 +88,4 @@ cask "zed@preview" # text editor
 cask "burn" # burn dvds
 cask "vlc" # video player
 cask "obsidian"
+cask "hammerspoon"
