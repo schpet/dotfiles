@@ -45,6 +45,6 @@
       }
     ]
   },
-  "alwaysThinkingEnabled": false,
+  "alwaysThinkingEnabled": true,
   "defaultMode": "edit"
 }

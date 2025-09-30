@@ -22,11 +22,11 @@ do
 # generated from ghostty-proj-shortcut-generator
 
 # @raycast.schemaVersion 1
-# @raycast.title ghostty: $category/$bn
+# @raycast.title $category/$bn
 # @raycast.mode silent
+# @raycast.icon $HOME/shortcuts/ghostty_logo.svg
 
-export PATH="\$HOME/.cargo/bin:\$PATH"
-ghostty-proj $dir
+hs -c "ghostty.openAtPath('$dir')"
 EOF
         chmod +x "$shortcut_path"
     done
