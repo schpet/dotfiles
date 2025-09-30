@@ -8,6 +8,12 @@ email = "code@schpet.com"
 diff-editor = "meld"
 merge-editor = "meld"
 
+[[--scope]]
+--when.commands = ["diff", "show"]
+[--scope.ui]
+pager = "delta"
+diff-formatter = ":git"
+
 [fsmonitor]
 backend = "watchman"
 
