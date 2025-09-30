@@ -4,6 +4,10 @@
 name = "Peter Schilling"
 email = "jj@schpet.com"
 
+[ui]
+diff-editor = "meld"
+merge-editor = "mergiraf"
+
 [fsmonitor]
 backend = "watchman"
 
