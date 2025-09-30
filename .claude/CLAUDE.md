@@ -1,1 +1,2 @@
 - to learn more about jj commands, use `man jj`
+- do not make commits with git
