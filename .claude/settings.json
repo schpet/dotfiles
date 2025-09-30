@@ -1,39 +1,23 @@
 {
-  "permissions": {
-    "allow": [
-      "WebFetch(domain:raw.githubusercontent.com)"
-    ]
-  },
   "hooks": {
-    "UserPromptSubmit": [
+    "PostToolUse": [
       {
         "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "jjcc hooks UserPromptSubmit"
+            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks PostToolUse"
           }
         ]
       }
     ],
     "PreToolUse": [
       {
-        "matcher": "Edit|MultiEdit|Write|Bash",
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "jjcc hooks PreToolUse"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Edit|MultiEdit|Write|Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "jjcc hooks PostToolUse"
+            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks PreToolUse"
           }
         ]
       }
@@ -44,10 +28,23 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jjcc hooks SessionEnd"
+            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks SessionEnd"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks UserPromptSubmit"
           }
         ]
       }
     ]
-  }
+  },
+  "alwaysThinkingEnabled": false,
+  "defaultMode": "edit"
 }
