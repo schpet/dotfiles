@@ -5,8 +5,9 @@ name = "Peter Schilling"
 email = "code@schpet.com"
 
 [ui]
-diff-editor = "meld"
 merge-editor = "meld"
+# diff-editor = "meld"
+# diff-editor = "zed --wait --diff $MERGED"
 
 [[--scope]]
 --when.commands = ["diff", "show"]
