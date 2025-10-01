@@ -53,6 +53,7 @@ abbr --add f flyctl
 abbr --add g git
 abbr --add gs git status
 abbr --add h heroku
+abbr --add j jj
 abbr --add ju just
 abbr --add l linear
 abbr --add n npm
@@ -78,6 +79,7 @@ abbr --add trurlparams "trurl --url-file - --json | jq -r '.[0].params | map(\"\
 abbr --add aider-oneshot 'aider --message="fix this issue:\\n$(linear issue view)"'
 abbr --add aider-branch 'aider $(git diff --name-only main.. | checkthrough)'
 abbr --add watchjj watch -t -n 0.5 --color 'jj log --ignore-working-copy --color=always'
+abbr --add jjw watch -t -n 0.5 --color 'jj log --ignore-working-copy --color=always'
 
 
 alias ls eza
@@ -101,6 +103,8 @@ abbr_subcommand git r "restore"
 abbr_subcommand git dls "diff main.. --name-only"
 
 abbr_subcommand jj d "describe"
+abbr_subcommand jj dm "describe -m"
+abbr_subcommand jj g "git"
 
 abbr_subcommand brew b "bundle"
 abbr_subcommand bundle e "exec"
