@@ -14,10 +14,12 @@ merge-editor = "meld"
 pager = "delta"
 diff-formatter = ":git"
 
-[fsmonitor]
+[[--scope]]
+--when.repositories = ["/Users/schpet/tanooki/**", "/Users/schpet/code/**"]
+[--scope.fsmonitor]
 backend = "watchman"
 
-[fsmonitor.watchman]
+[--scope.fsmonitor.watchman]
 register-snapshot-trigger = true
 
 [revset-aliases]
