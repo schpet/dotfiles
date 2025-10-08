@@ -2,7 +2,7 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "",
+        "matcher": "Edit|MultiEdit|Write",
         "hooks": [
           {
             "type": "command",
@@ -13,38 +13,39 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "",
+        "matcher": "Edit|MultiEdit|Write",
         "hooks": [
           {
             "type": "command",
             "command": "/Users/schpet/.cargo/bin/jjagent claude hooks PreToolUse"
           }
         ]
-      }
-    ],
-    "SessionEnd": [
+      },
       {
-        "matcher": "",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks SessionEnd"
+            "command": "/Users/schpet/code/dotfiles/.claude/block-git-writes.sh"
           }
         ]
       }
     ],
-    "UserPromptSubmit": [
+    "Stop": [
       {
-        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks UserPromptSubmit"
+            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks Stop"
           }
         ]
       }
     ]
   },
-  "alwaysThinkingEnabled": true,
+  "statusLine": {
+    "type": "command",
+    "command": "/Users/schpet/code/dotfiles/.claude/statusline.sh"
+  },
+  "alwaysThinkingEnabled": false,
   "defaultMode": "edit"
 }

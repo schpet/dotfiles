@@ -9,19 +9,20 @@ merge-editor = "meld"
 # diff-editor = "meld"
 # diff-editor = "zed --wait --diff $MERGED"
 
+[fsmonitor]
+backend = "watchman"
+
+[fsmonitor.watchman]
+register-snapshot-trigger = true
+
 [[--scope]]
 --when.commands = ["diff", "show"]
+
 [--scope.ui]
 pager = "delta"
 diff-formatter = ":git"
 
-[[--scope]]
---when.repositories = ["/Users/schpet/tanooki/**", "/Users/schpet/code/**"]
-[--scope.fsmonitor]
-backend = "watchman"
 
-[--scope.fsmonitor.watchman]
-register-snapshot-trigger = true
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'

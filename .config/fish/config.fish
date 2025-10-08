@@ -78,8 +78,12 @@ abbr --add unindent awk '{if (NR==1) {len=index($0, $1); }; print substr($0, len
 abbr --add trurlparams "trurl --url-file - --json | jq -r '.[0].params | map(\"\\(.key)=\\(.value)\")[]'"
 abbr --add aider-oneshot 'aider --message="fix this issue:\\n$(linear issue view)"'
 abbr --add aider-branch 'aider $(git diff --name-only main.. | checkthrough)'
+
+
+# :-)
 abbr --add watchjj watch -t -n 0.5 --color 'jj log --ignore-working-copy --color=always'
 abbr --add jjw watch -t -n 0.5 --color 'jj log --ignore-working-copy --color=always'
+abbr --add jjwatch watch -t -n 0.5 --color 'jj log --ignore-working-copy --color=always'
 
 
 alias ls eza
@@ -105,6 +109,7 @@ abbr_subcommand git dls "diff main.. --name-only"
 abbr_subcommand jj d "describe"
 abbr_subcommand jj dm "describe -m"
 abbr_subcommand jj g "git"
+abbr_subcommand jj sq "squash"
 
 abbr_subcommand brew b "bundle"
 abbr_subcommand bundle e "exec"
@@ -120,4 +125,3 @@ abbr_subcommand gh p "pr"
 # - https://github.com/fish-shell/fish-shell/issues/2904
 # - https://github.com/fish-shell/fish-shell/pull/4713
 bind -s \cc __fish_cancel_commandline
-eval "$(~/bin/try.rb init ~/src/tries | string collect)"

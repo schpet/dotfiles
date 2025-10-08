@@ -168,5 +168,10 @@
         }
       ]
     }
+  },
+  "random_test_field": {
+    "enabled": true,
+    "magic_number": 42,
+    "test_array": ["hello", "world", 123]
   }
 }

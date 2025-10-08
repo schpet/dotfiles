@@ -1,1 +1,1 @@
-eval "$(~/bin/try.rb init ~/src/tries)"
+alias e="zed-preview"
