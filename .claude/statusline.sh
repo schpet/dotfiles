@@ -2,11 +2,10 @@
 
 input=$(cat)
 
-# Extract session ID, cwd, model, and transcript path
+# Extract session ID, cwd, and model
 session_id=$(echo "$input" | jq -r '.session_id')
 cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 model=$(echo "$input" | jq -r '.model.display_name')
-transcript_path=$(echo "$input" | jq -r '.transcript_path // empty')
 
 
 # Display directory with ~ for home
@@ -33,12 +32,6 @@ if [ -z "$jj_info" ] && git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
     fi
 fi
 
-# Transcript path display
-transcript_display=""
-if [ -n "$transcript_path" ]; then
-    transcript_display=" $(printf '\033[90m')${transcript_path/#$HOME/~}$(printf '\033[0m')"
-fi
-
-# Output: directory + jj/git info + ✴ model + session + transcript
-# Colors: cyan for directory, jj has its own colors, magenta for git, green for ✴ and model, yellow for session, gray for transcript
-printf "$(printf '\033[36m')%s$(printf '\033[0m')%s%s $(printf '\033[32m')✻$(printf '\033[0m') $(printf '\033[32m')%s$(printf '\033[0m') $(printf '\033[33m')[%s]$(printf '\033[0m')%s" "$display_dir" "$jj_info" "$git_info" "$model" "$session_short" "$transcript_display"
+# Output: directory + jj/git info + ✴ model + session
+# Colors: cyan for directory, jj has its own colors, magenta for git, green for ✴ and model, yellow for session
+printf "$(printf '\033[36m')%s$(printf '\033[0m')%s%s $(printf '\033[32m')✻$(printf '\033[0m') $(printf '\033[32m')%s$(printf '\033[0m') $(printf '\033[33m')[%s]$(printf '\033[0m')" "$display_dir" "$jj_info" "$git_info" "$model" "$session_short"
