@@ -3,3 +3,6 @@
 # default to dense grep style output
 --no-heading
 --smart-case
+
+# https://github.com/ghostty-org/ghostty/issues/1972#issuecomment-3340618452
+--hyperlink-format=file

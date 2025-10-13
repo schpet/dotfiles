@@ -6,8 +6,7 @@ email = "code@schpet.com"
 
 [ui]
 merge-editor = "meld"
-# diff-editor = "meld"
-# diff-editor = "zed --wait --diff $MERGED"
+default-command = "log"
 
 [fsmonitor]
 backend = "watchman"
@@ -22,7 +21,8 @@ register-snapshot-trigger = true
 pager = "delta"
 diff-formatter = ":git"
 
-
+# [snapshot]
+# auto-update-stale = true
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
