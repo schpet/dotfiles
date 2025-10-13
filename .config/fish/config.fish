@@ -81,9 +81,7 @@ abbr --add aider-branch 'aider $(git diff --name-only main.. | checkthrough)'
 
 
 # :-)
-abbr --add watchjj watch -t -n 0.5 --color 'jj log --ignore-working-copy --color=always'
-abbr --add jjw watch -t -n 0.5 --color 'jj log --ignore-working-copy --color=always'
-abbr --add jjwatch watch -t -n 0.5 --color 'jj log --ignore-working-copy --color=always'
+abbr --add jjw watch -t -n 0.75 --color 'jj --config "git.auto-import=false" log --at-operation=@ --color=always --ignore-working-copy'
 
 
 alias ls eza
