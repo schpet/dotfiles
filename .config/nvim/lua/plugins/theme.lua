@@ -1,3 +1,0 @@
-return {
-	{ "shaunsingh/solarized.nvim" }
-}
