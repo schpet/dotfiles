@@ -34,6 +34,11 @@ patterns = ["*.rs"]
 
 [aliases]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
+gh-clone = ["util", "exec", "--", "sh", "-c", '''
+REPO="${1}"
+SSH_URL=$(gh repo view "$REPO" --json sshUrl -q .sshUrl)
+jj git clone --colocate "$SSH_URL"
+''', "sh"]
 llm-describe = ["util", "exec", "--", "sh", "-c", '''
 REF="${1:-@}"
 DIFF=$(jj show --git "$REF")
