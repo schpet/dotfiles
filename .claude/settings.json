@@ -20,15 +20,6 @@
             "command": "/Users/schpet/.cargo/bin/jjagent claude hooks PreToolUse"
           }
         ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/schpet/code/dotfiles/.claude/block-git-writes.sh"
-          }
-        ]
       }
     ],
     "Stop": [
