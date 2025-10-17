@@ -26,8 +26,6 @@ set -gx ANDROID_HOME $HOME/Library/Android/sdk
 fish_add_path $ANDROID_HOME/emulator
 fish_add_path $ANDROID_HOME/platform-tools
 
-# prevent claude code from rewriting terminal title
-set -gx CLAUDE_CODE_DISABLE_TERMINAL_TITLE 1
 
 # pnpm
 set -gx PNPM_HOME "/Users/schpet/Library/pnpm"
@@ -35,6 +33,14 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# claude code
+
+set -gx CLAUDE_CODE_DISABLE_TERMINAL_TITLE 1       # prevent claude code from rewriting terminal title
+set -gx CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC 1 # don't ask me how you're doing etc
+set -gx CLAUDE_CODE_FORCE_FULL_LOGO 1              # doesn't seem to work... but i want it to.
+
+# CLAUDE_CONFIG_DIR: todo move claude stuff to ~/.config/claude, currently it's at ~/.claude
 
 # Added by `rbenv init` on Thu Sep 19 12:09:03 PDT 2024
 status --is-interactive; and rbenv init - --no-rehash fish | source
@@ -54,6 +60,7 @@ abbr --add g git
 abbr --add gs git status
 abbr --add h heroku
 abbr --add j jj
+abbr --add jja jjagent
 abbr --add ju just
 abbr --add l linear
 abbr --add n npm

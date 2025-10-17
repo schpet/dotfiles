@@ -1,41 +1,14 @@
 {
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit|MultiEdit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks PostToolUse"
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "Edit|MultiEdit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks PreToolUse"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks Stop"
-          }
-        ]
-      }
-    ]
-  },
+  "model": "haiku",
+  "hooks": {},
   "statusLine": {
     "type": "command",
     "command": "/Users/schpet/code/dotfiles/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "jjagent@jjagent": true,
+    "example-skills@anthropic-agent-skills": true,
+    "document-skills@anthropic-agent-skills": true
   },
   "alwaysThinkingEnabled": false,
   "defaultMode": "edit"
