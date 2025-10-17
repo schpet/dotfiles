@@ -1,6 +1,27 @@
 {
   "model": "haiku",
-  "hooks": {},
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/schpet/code/dotfiles/.claude/debug-hook.sh SessionStart",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/schpet/code/dotfiles/.claude/debug-hook.sh UserPromptSubmit",
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "/Users/schpet/code/dotfiles/.claude/statusline.sh"
