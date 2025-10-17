@@ -8,7 +8,8 @@ prompt: enabled
 pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
-    configure-repo: api repos/{owner}/{repo} --method PATCH -f allow_squash_merge=true -f allow_merge_commit=false -f allow_rebase_merge=false -f delete_branch_on_merge=true -f squash_merge_commit_title=PR_TITLE -f squash_merge_commit_message=PR_BODY
+    configure-repo: api repos/{owner}/{repo} --method PATCH -f allow_squash_merge=true -f allow_merge_commit=false -f allow_rebase_merge=true -f delete_branch_on_merge=true -f squash_merge_commit_title=PR_TITLE -f squash_merge_commit_message=PR_BODY
+    configure-repo-squash: api repos/{owner}/{repo} --method PATCH -f allow_squash_merge=true -f allow_merge_commit=false -f allow_rebase_merge=false -f delete_branch_on_merge=true -f squash_merge_commit_title=PR_TITLE -f squash_merge_commit_message=PR_BODY
     cw: '!gh pr checks --watch -i 2 && say ''Tests passed'' || say ''Tests failed'''
     s: "pr view --json state --jq '.state'"
     squash: pr merge -sd
