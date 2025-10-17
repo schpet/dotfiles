@@ -5,8 +5,8 @@
       {
         "hooks": [
           {
-            "command": "/Users/schpet/code/dotfiles/.claude/debug-hook.sh SessionStart",
-            "type": "command"
+            "type": "command",
+            "command": "/Users/schpet/code/dotfiles/.claude/debug-hook.sh SessionStart"
           }
         ]
       }
@@ -15,8 +15,8 @@
       {
         "hooks": [
           {
-            "command": "/Users/schpet/code/dotfiles/.claude/debug-hook.sh UserPromptSubmit",
-            "type": "command"
+            "type": "command",
+            "command": "/Users/schpet/code/dotfiles/.claude/debug-hook.sh UserPromptSubmit"
           }
         ]
       }
@@ -31,6 +31,6 @@
     "example-skills@anthropic-agent-skills": true,
     "document-skills@anthropic-agent-skills": true
   },
-  "alwaysThinkingEnabled": false,
+  "alwaysThinkingEnabled": true,
   "defaultMode": "edit"
 }

@@ -74,6 +74,7 @@ abbr --add o open
 abbr --add cl changelog
 abbr --add claude-yolo claude --dangerously-skip-permissions
 abbr --add cc claude --dangerously-skip-permissions
+abbr --add ce claude --permission-mode acceptEdits
 abbr --add llmm llm -o reasoning_effort minimal
 abbr --add pwg open -a ghostty "$(pwd)"
 
