@@ -35,12 +35,14 @@ end
 # pnpm end
 
 # claude code
-
 set -gx CLAUDE_CODE_DISABLE_TERMINAL_TITLE 1       # prevent claude code from rewriting terminal title
 set -gx CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC 1 # don't ask me how you're doing etc
 set -gx CLAUDE_CODE_FORCE_FULL_LOGO 1              # doesn't seem to work... but i want it to.
+# todo: CLAUDE_CONFIG_DIR: todo move claude stuff to ~/.config/claude, currently it's at ~/.claude
 
-# CLAUDE_CONFIG_DIR: todo move claude stuff to ~/.config/claude, currently it's at ~/.claude
+
+# use jj with https://github.com/schpet/linear-cli
+set LINEAR_VCS jj
 
 # Added by `rbenv init` on Thu Sep 19 12:09:03 PDT 2024
 status --is-interactive; and rbenv init - --no-rehash fish | source
