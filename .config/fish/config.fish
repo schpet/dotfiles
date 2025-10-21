@@ -42,13 +42,11 @@ set -gx CLAUDE_CODE_FORCE_FULL_LOGO 1              # doesn't seem to work... but
 
 
 # use jj with https://github.com/schpet/linear-cli
-set LINEAR_VCS jj
+set -gx LINEAR_VCS jj
 
 # Added by `rbenv init` on Thu Sep 19 12:09:03 PDT 2024
 status --is-interactive; and rbenv init - --no-rehash fish | source
 
-abbr --add cc cd ~/code
-abbr --add cw cd ~/tanooki
 abbr --add fly flyctl
 abbr --add fd 'fd --hidden'
 
@@ -91,7 +89,7 @@ abbr --add aider-branch 'aider $(git diff --name-only main.. | checkthrough)'
 
 
 # :-)
-abbr --add jjw watch -t -n 0.75 --color 'jj --config "git.auto-import=false" log --at-operation=@ --color=always --ignore-working-copy'
+abbr --add jjw watch -t -n 0.75 --color 'jj log --ignore-working-copy --color=always'
 
 
 alias ls eza

@@ -33,6 +33,7 @@ command = ["rustfmt", "--emit", "stdout"]
 patterns = ["*.rs"]
 
 [aliases]
+s = ["util", "exec", "--", "sh", "-c", "jj status && jj log -r '@-- | @-' --no-graph"]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
 gh-clone = ["util", "exec", "--", "sh", "-c", '''
 REPO="${1}"
