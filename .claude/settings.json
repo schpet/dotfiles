@@ -1,5 +1,4 @@
 {
-  "model": "haiku",
   "hooks": {
     "SessionStart": [
       {
@@ -29,8 +28,9 @@
   "enabledPlugins": {
     "jjagent@jjagent": true,
     "example-skills@anthropic-agent-skills": true,
-    "document-skills@anthropic-agent-skills": true
+    "document-skills@anthropic-agent-skills": true,
+    "playwright-skill@playwright-skill": false
   },
-  "alwaysThinkingEnabled": true,
+  "alwaysThinkingEnabled": false,
   "defaultMode": "edit"
 }
