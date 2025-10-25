@@ -6,7 +6,7 @@ email = "code@schpet.com"
 
 [ui]
 merge-editor = "meld"
-default-command = "log"
+default-command = "sl"
 
 [fsmonitor]
 backend = "watchman"
@@ -33,6 +33,7 @@ command = ["rustfmt", "--emit", "stdout"]
 patterns = ["*.rs"]
 
 [aliases]
+sl = ["util", "exec", "--", "sh", "-c", "jj status && echo && jj log"]
 s = ["util", "exec", "--", "sh", "-c", "jj status && jj log --ignore-working-copy -r '@--' --no-graph -T '\"Grandparent   (@--) \" ++ format_commit_summary_with_refs(self, bookmarks) ++ \"\\n\"'"]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
 gh-clone = ["util", "exec", "--", "sh", "-c", '''
