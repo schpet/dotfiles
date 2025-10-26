@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # @raycast.schemaVersion 1
-# @raycast.title New temp jj repo
+# @raycast.title tempy
 # @raycast.mode silent
 # @raycast.description Creates a temp directory with jj repo and opens Ghostty to it
 

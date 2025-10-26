@@ -24,6 +24,7 @@
       "mcp__plugin_beads_beads__debug_env"
     ]
   },
+  "model": "sonnet",
   "hooks": {
     "SessionStart": [
       {
@@ -56,8 +57,10 @@
     "document-skills@anthropic-agent-skills": true,
     "playwright-skill@playwright-skill": false,
     "beads@beads-marketplace": true,
-    "timers-skill@timers-skill": true
+    "timers-skill@timers-skill": true,
+    "suit@suit": false,
+    "tanooki-suit@tanooki-suit": true
   },
-  "alwaysThinkingEnabled": false,
+  "alwaysThinkingEnabled": true,
   "defaultMode": "edit"
 }
