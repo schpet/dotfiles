@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# @raycast.schemaVersion 1
+# @raycast.title New temp jj repo
+# @raycast.mode silent
+# @raycast.description Creates a temp directory with jj repo and opens Ghostty to it
+
+# Run tempy and capture the output to get the directory path
+output=$(tempy)
+tmpdir=$(echo "$output" | grep "Created temporary jj repository at:" | sed 's/Created temporary jj repository at: //')
+
+# Open Ghostty to the directory
+open -a ghostty "$tmpdir"

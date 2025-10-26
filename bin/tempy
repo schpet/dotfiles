@@ -11,11 +11,8 @@ mkdir -p "$tmpdir"
 cd "$tmpdir"
 jj git init --colocate
 
-# Print instructions
-echo "Created temporary jj repository at: $tmpdir"
-echo ""
-echo "To start working:"
-echo "  cd $tmpdir"
+# Print path only
+echo "$tmpdir"
 
-# Open in Ghostty
-open -a ghostty "$tmpdir"
+# Change to the directory
+cd "$tmpdir"
