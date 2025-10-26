@@ -8,11 +8,7 @@ tmpdir="/tmp/tempy/tempy-${timestamp}"
 mkdir -p "$tmpdir"
 
 # Initialize jj with git colocated repo
-cd "$tmpdir"
-jj git init --colocate
+jj git init --colocate $tmpdir
 
 # Print path only
 echo "$tmpdir"
-
-# Change to the directory
-cd "$tmpdir"
