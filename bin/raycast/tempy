@@ -5,9 +5,15 @@
 # @raycast.mode silent
 # @raycast.description Creates a temp directory with jj repo and opens Ghostty to it
 
-# Run tempy and capture the output to get the directory path
-output=$(tempy)
-tmpdir=$(echo "$output" | grep "Created temporary jj repository at:" | sed 's/Created temporary jj repository at: //')
+# Create timestamp
+timestamp=$(date +%Y%m%d-%H%M%S)
+
+# Create temp directory
+tmpdir="/tmp/tempy/tempy-${timestamp}"
+mkdir -p "$tmpdir"
+
+# Initialize jj with git colocated repo
+jj git init --colocate "$tmpdir"
 
 # Open Ghostty to the directory
 open -a ghostty "$tmpdir"
