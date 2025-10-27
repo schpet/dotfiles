@@ -3,6 +3,7 @@
 # @raycast.schemaVersion 1
 # @raycast.title tempy
 # @raycast.mode silent
+# @raycast.icon $HOME/shortcuts/ghostty_logo.svg
 # @raycast.description Creates a temp directory with jj repo and opens Ghostty to it
 
 # Create timestamp
