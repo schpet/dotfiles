@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+pr_ref="${1:-}"
+base="${2:-main}"
+
+if [ -z "$pr_ref" ]; then
+  echo "Usage: review-pr <pr-ref> [base]"
+  echo "  pr-ref: PR number, URL, or branch (passed to gh pr view)"
+  echo "  base: base branch (default: main)"
+  exit 1
+fi
+
+echo "==> Fetching latest changes..."
+jj git fetch
+
+echo "==> Getting PR branch name..."
+pr_branch=$(gh pr view "$pr_ref" --json headRefName --jq ".headRefName")
+echo "    PR branch: $pr_branch"
+
+echo "==> Creating squashed review commit on top of $base..."
+
+echo "    Duplicating commits from $base..$pr_branch@origin..."
+jj duplicate "$base..$pr_branch@origin" --destination "$base"
+
+echo "    Moving to top of duplicated commits..."
+top_commit=$(jj log -r "heads(descendants(roots($base..)) & ~$base)" --no-graph -T 'change_id' --limit 1)
+jj new "$top_commit"
+
+message="pr review: $pr_ref ($base)"
+echo "    Squashing commits with message: $message"
+jj squash --from "$base..@- & ~roots($base..@-)" --into "roots($base..@-)" -m "$message"
+
+echo "==> Switching to the squashed review commit..."
+jj edit "@-"
+
+change_id=$(jj log -r @ --no-graph -T 'change_id' --limit 1)
+
+echo ""
+echo "✓ PR review commit ready!"
+echo "  Branch: $pr_branch"
+echo "  Base: $base"
+echo "  Change ID: $change_id"
+echo "  Working copy is now on the squashed review commit"
