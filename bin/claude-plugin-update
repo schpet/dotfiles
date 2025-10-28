@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Update Claude Code marketplaces and reinstall beads plugin
+
+set -e
+
+echo "Updating Claude plugin marketplaces..."
+claude plugin marketplace update
+
+echo ""
+echo "Reinstalling beads plugin..."
+# todo: see if this actually updates it
+claude plugin install beads@beads-marketplace
+
+echo ""
+echo "Done!"
