@@ -17,9 +17,14 @@ session_short="${session_id:0:8}"
 # Check if we're in a jj repo
 jj_info=""
 if (cd "$cwd" && jj --ignore-working-copy root > /dev/null 2>&1); then
-    change_id=$(cd "$cwd" && jj log --ignore-working-copy --color=always --no-graph -r "@" -T "change_id.shortest()" 2>/dev/null)
-    if [ -n "$change_id" ]; then
-        jj_info=" $(printf '\033[1m\033[38;5;5m') $(printf '\033[0m')$change_id"
+    # Try to get the change ID for this session
+    session_change=$(jjagent change-id "$session_id" 2>/dev/null)
+    if [ -n "$session_change" ]; then
+        # Get formatted summary with refs for the session's change ID
+        change_info=$(cd "$cwd" && jj log --ignore-working-copy --color=always --no-graph -r "$session_change" -T "format_commit_summary_with_refs(self, bookmarks)" 2>/dev/null)
+        if [ -n "$change_info" ]; then
+            jj_info="$(printf '\033[1m\033[38;5;5m') $(printf '\033[0m')$change_info"
+        fi
     fi
 fi
 
@@ -32,6 +37,6 @@ if [ -z "$jj_info" ] && git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
     fi
 fi
 
-# Output: directory + jj/git info + ✴ model + session
-# Colors: cyan for directory, jj has its own colors, magenta for git, green for ✴ and model, yellow for session
-printf "$(printf '\033[36m')%s$(printf '\033[0m')%s%s $(printf '\033[32m')✻$(printf '\033[0m') $(printf '\033[32m')%s$(printf '\033[0m') $(printf '\033[33m')[%s]$(printf '\033[0m')" "$display_dir" "$jj_info" "$git_info" "$model" "$session_short"
+# Output: directory + model ✴ + jj/git info
+# Colors: cyan for directory, green for model and ✴, jj has its own colors, magenta for git
+printf "$(printf '\033[36m')%s$(printf '\033[0m') $(printf '\033[32m')%s$(printf '\033[0m') $(printf '\033[32m')✻$(printf '\033[0m')%s%s" "$display_dir" "$model" "$jj_info" "$git_info"
