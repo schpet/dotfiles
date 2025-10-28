@@ -8,23 +8,19 @@ cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 model=$(echo "$input" | jq -r '.model.display_name')
 
 
-# Display directory with ~ for home
-display_dir="${cwd/#$HOME/~}"
+# Display directory using fish's prompt_pwd for nice formatting
+display_dir=$(cd "$cwd" && fish -c "prompt_pwd")
 
 # Session ID (first 8 chars)
 session_short="${session_id:0:8}"
 
-# Check if we're in a jj repo
+# Check if we're in a jj repo and get session change info
 jj_info=""
 if (cd "$cwd" && jj --ignore-working-copy root > /dev/null 2>&1); then
-    # Try to get the change ID for this session
-    session_change=$(jjagent change-id "$session_id" 2>/dev/null)
-    if [ -n "$session_change" ]; then
-        # Get formatted summary with refs for the session's change ID
-        change_info=$(cd "$cwd" && jj log --ignore-working-copy --color=always --no-graph -r "$session_change" -T "format_commit_summary_with_refs(self, bookmarks)" 2>/dev/null)
-        if [ -n "$change_info" ]; then
-            jj_info="$(printf '\033[1m\033[38;5;5m') $(printf '\033[0m')$change_info"
-        fi
+    jj_info=$(echo "$input" | jjagent claude statusline 2>/dev/null)
+    # Add leading space if we got output
+    if [ -n "$jj_info" ]; then
+        jj_info=" $jj_info"
     fi
 fi
 
