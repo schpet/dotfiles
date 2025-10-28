@@ -61,6 +61,6 @@
     "suit@suit": false,
     "tanooki-suit@tanooki-suit": true
   },
-  "alwaysThinkingEnabled": true,
+  "alwaysThinkingEnabled": false,
   "defaultMode": "edit"
 }

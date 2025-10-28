@@ -4,7 +4,7 @@ description: A test to trigger the selection ui
 
 ## instructions
 
-have the user choose one of the following with the selection interface:
+use the askquestion tool to have the user choose one of the following with the selection interface:
 
 1. apples
 2. oranges
