@@ -1,3 +1,8 @@
+# Fall back to xterm-256color if TERM is not in terminfo database (e.g., ghostty)
+if not infocmp $TERM >/dev/null 2>&1
+    set -gx TERM xterm-256color
+end
+
 source (changelog completions fish | psub)
 direnv hook fish | source
 
