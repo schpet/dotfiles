@@ -80,6 +80,7 @@ abbr --add cl changelog
 abbr --add claude-yolo claude --dangerously-skip-permissions
 abbr --add cc claude --dangerously-skip-permissions
 abbr --add ce claude --permission-mode acceptEdits
+abbr --add claude-dev claude --plugin-dir ~/code/toolbox/plugins/chores --plugin-dir ~/code/toolbox/plugins/changelog --plugin-dir ~/code/toolbox/plugins/jj-vcs --plugin-dir ~/code/toolbox/plugins/svbump
 abbr --add llmm llm -o reasoning_effort minimal
 abbr --add pwg open -a ghostty "$(pwd)"
 

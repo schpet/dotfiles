@@ -8,24 +8,45 @@
       "Bash(jjagent:*)",
       "Bash(bd:*)",
       "Bash(cargo:*)",
-      "mcp__plugin_beads_beads__set_context",
-      "mcp__plugin_beads_beads__where_am_i",
-      "mcp__plugin_beads_beads__ready",
-      "mcp__plugin_beads_beads__list",
-      "mcp__plugin_beads_beads__show",
-      "mcp__plugin_beads_beads__create",
-      "mcp__plugin_beads_beads__update",
-      "mcp__plugin_beads_beads__close",
-      "mcp__plugin_beads_beads__reopen",
-      "mcp__plugin_beads_beads__dep",
-      "mcp__plugin_beads_beads__stats",
-      "mcp__plugin_beads_beads__blocked",
-      "mcp__plugin_beads_beads__init",
-      "mcp__plugin_beads_beads__debug_env"
+      "Bash(gh run:*)",
+      "Bash(gh pr:*)",
+      "Bash(npx tsc:*)",
+      "Bash(linear issue view:*)"
     ]
   },
-  "model": "sonnet",
   "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks PostToolUse"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks PreToolUse"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks Stop"
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "hooks": [
@@ -51,8 +72,9 @@
     "type": "command",
     "command": "/Users/schpet/code/dotfiles/.claude/statusline.sh"
   },
-  "enabledPlugins": {
-    "jjagent@jjagent": true,
+  "alwaysThinkingEnabled": false,
+  "plugins": {
+    "changelog@toolbox": true,
     "example-skills@anthropic-agent-skills": true,
     "document-skills@anthropic-agent-skills": true,
     "playwright-skill@playwright-skill": false,
@@ -61,6 +83,5 @@
     "suit@suit": false,
     "tanooki-suit@tanooki-suit": true
   },
-  "alwaysThinkingEnabled": false,
   "defaultMode": "edit"
 }

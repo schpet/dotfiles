@@ -7,6 +7,23 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "ssh_connections": [
+    {
+      "host": "allsparkdev.exe.xyz",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/exedev/allspark-builder"
+          ]
+        }
+      ]
+    }
+  ],
+  "sticky_scroll": {
+    "enabled": true
+  },
+  "colorize_brackets": true,
   "load_direnv": "direct",
   "agent": {
     "profiles": {

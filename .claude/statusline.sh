@@ -9,18 +9,17 @@ model=$(echo "$input" | jq -r '.model.display_name')
 
 
 # Display directory using fish's prompt_pwd for nice formatting
-display_dir=$(cd "$cwd" && fish -c "prompt_pwd")
+display_dir=$(fish -c "set -g fish_prompt_pwd_dir_length 3; prompt_pwd --dir-length=3 --full-length-dirs=2 '$cwd'" 2>/dev/null || echo "${cwd/#$HOME/~}")
 
 # Session ID (first 8 chars)
 session_short="${session_id:0:8}"
 
-# Check if we're in a jj repo and get session change info
+# Check if we're in a jj repo
 jj_info=""
 if (cd "$cwd" && jj --ignore-working-copy root > /dev/null 2>&1); then
-    jj_info=$(echo "$input" | jjagent claude statusline 2>/dev/null)
-    # Add leading space if we got output
-    if [ -n "$jj_info" ]; then
-        jj_info=" $jj_info"
+    change_id=$(cd "$cwd" && jj log --color=always --no-graph -r "@" -T "change_id.shortest()" 2>/dev/null)
+    if [ -n "$change_id" ]; then
+        jj_info=" $(printf '\033[1m\033[38;5;5m') $(printf '\033[0m')$change_id"
     fi
 fi
 

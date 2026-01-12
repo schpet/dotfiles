@@ -1,0 +1,1 @@
+- do not run version control commands unless explicitly requested
