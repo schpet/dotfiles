@@ -15,38 +15,6 @@
     ]
   },
   "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit|MultiEdit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks PostToolUse"
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "Edit|MultiEdit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks PreToolUse"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/schpet/.cargo/bin/jjagent claude hooks Stop"
-          }
-        ]
-      }
-    ],
     "SessionStart": [
       {
         "hooks": [
