@@ -50,7 +50,9 @@ set -gx CLAUDE_CODE_FORCE_FULL_LOGO 1              # doesn't seem to work... but
 set -gx LINEAR_VCS jj
 
 # Added by `rbenv init` on Thu Sep 19 12:09:03 PDT 2024
-status --is-interactive; and rbenv init - --no-rehash fish | source
+if type -q rbenv
+    status --is-interactive; and rbenv init - --no-rehash fish | source
+end
 
 abbr --add fly flyctl
 abbr --add fd 'fd --hidden'

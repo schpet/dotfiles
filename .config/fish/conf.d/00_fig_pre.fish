@@ -1,1 +1,0 @@
-/Users/schpet/.fig/shell/pre.fish
