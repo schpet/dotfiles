@@ -1,0 +1,3 @@
+// Start in locked mode (unlock-first)
+// Press Ctrl+g to unlock and access zellij keybindings
+default_mode "locked"
