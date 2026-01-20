@@ -18,6 +18,19 @@ untracked
 .aider*
 
 .claude/settings.local.json
+CLAUDE.local.md
 
 # keep jj workspaces in the repo, in a 'work/' dir
 /work
+
+
+/.playwright-mcp
+
+# Beads stealth mode configuration (added by bd init --stealth)
+**/.beads/
+**/.claude/settings.local.json
+
+*.local.md
+
+# exclude db dumps
+*.dump

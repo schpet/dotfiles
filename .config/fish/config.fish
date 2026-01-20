@@ -61,7 +61,11 @@ abbr --add b bundle
 abbr --add be bundle exec
 abbr --add br brew
 abbr --add bbi brew bundle install
-abbr --add e zed-preview
+if command -q zed-preview
+    abbr --add e zed-preview
+else
+    abbr --add e nvim
+end
 abbr --add f flyctl
 abbr --add g git
 abbr --add gs git status
@@ -73,6 +77,7 @@ abbr --add l linear
 abbr --add n npm
 abbr --add p pnpm
 abbr --add v nvim
+abbr --add z zellij
 abbr --add vi nvim
 abbr --add rgg rg
 abbr --add c cargo

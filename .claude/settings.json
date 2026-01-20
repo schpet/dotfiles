@@ -1,55 +1,56 @@
 {
+  "env": {},
   "permissions": {
     "allow": [
       "Bash(bd:*)",
       "Bash(rg:*)",
       "Bash(grep:*)",
       "Bash(ls:*)",
+      "Bash(jj:*)",
       "Bash(jjagent:*)",
       "Bash(bd:*)",
+      "Bash(cat:*)",
       "Bash(cargo:*)",
       "Bash(gh run:*)",
       "Bash(gh pr:*)",
       "Bash(npx tsc:*)",
-      "Bash(linear issue view:*)"
+      "Bash(linear issue view:*)",
+      "mcp__plugin_beads_beads__set_context",
+      "mcp__plugin_beads_beads__where_am_i",
+      "mcp__plugin_beads_beads__ready",
+      "mcp__plugin_beads_beads__list",
+      "mcp__plugin_beads_beads__show",
+      "mcp__plugin_beads_beads__create",
+      "mcp__plugin_beads_beads__update",
+      "mcp__plugin_beads_beads__close",
+      "mcp__plugin_beads_beads__reopen",
+      "mcp__plugin_beads_beads__dep",
+      "mcp__plugin_beads_beads__stats",
+      "mcp__plugin_beads_beads__blocked",
+      "mcp__plugin_beads_beads__init",
+      "mcp__plugin_beads_beads__debug_env"
     ]
   },
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/schpet/code/dotfiles/.claude/debug-hook.sh SessionStart"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/schpet/code/dotfiles/.claude/debug-hook.sh UserPromptSubmit"
-          }
-        ]
-      }
-    ]
-  },
+  "hooks": {},
   "statusLine": {
     "type": "command",
     "command": "/Users/schpet/code/dotfiles/.claude/statusline.sh"
   },
-  "alwaysThinkingEnabled": false,
-  "plugins": {
-    "changelog@toolbox": true,
-    "example-skills@anthropic-agent-skills": true,
-    "document-skills@anthropic-agent-skills": true,
-    "playwright-skill@playwright-skill": false,
+  "enabledPlugins": {
     "beads@beads-marketplace": true,
+    "document-skills@anthropic-agent-skills": true,
+    "example-skills@anthropic-agent-skills": true,
+    "jjagent@jjagent": true,
+    "linear-cli@linear-cli": true,
+    "tanooki-suit@tanooki-suit": true,
     "timers-skill@timers-skill": true,
-    "suit@suit": false,
-    "tanooki-suit@tanooki-suit": true
+    "ralph-wiggum@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "jj-vcs@toolbox": true,
+    "changelog@toolbox": true,
+    "svbump@toolbox": true,
+    "chores@toolbox": true,
+    "speccer@toolbox": true
   },
-  "defaultMode": "edit"
+  "alwaysThinkingEnabled": true
 }
