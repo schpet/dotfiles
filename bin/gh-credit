@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# gh-credit: Generate GitHub PR credit message for a commit
-# Usage: gh-credit [commit] (defaults to HEAD if no commit provided)
+# gh-credit: Generate GitHub PR credit message for a commit or PR
+# Usage: gh-credit <commit|pr_number>
+#        If a number is provided, it's treated as a PR number
 
 set -e
 
@@ -11,34 +12,55 @@ if ! command -v gh >/dev/null 2>&1; then
   exit 1
 fi
 
-# Get the commit hash (default to HEAD if not provided)
-COMMIT=${1:-HEAD}
+# Show help if no arguments provided
+if [ $# -eq 0 ]; then
+  echo "Usage: gh-credit <commit|pr_number>"
+  echo ""
+  echo "Generate a GitHub PR credit message in markdown format."
+  echo ""
+  echo "Arguments:"
+  echo "  commit     A commit SHA or ref (e.g., HEAD, abc123)"
+  echo "  pr_number  A PR number (e.g., 123)"
+  echo ""
+  echo "If a number is provided, it's treated as a PR number."
+  exit 0
+fi
 
-# Get the full commit hash
-COMMIT_HASH=$(git rev-parse "$COMMIT")
+ARG="$1"
 
-# Try to find the PR number from the commit message first
-PR_NUMBER=$(git show --format="%s" -s "$COMMIT_HASH" | grep -oE '\(#[0-9]+\)' | grep -oE '[0-9]+' | head -1)
+# Check if the argument is a number (PR number)
+if [[ "$ARG" =~ ^[0-9]+$ ]]; then
+  PR_NUMBER="$ARG"
+else
+  # Treat as a commit reference
+  COMMIT="$ARG"
 
-# If we didn't find a PR number in the commit message, try to find it via GitHub CLI
-if [ -z "$PR_NUMBER" ]; then
-  # Get the merge commit that contains this commit
-  MERGE_COMMIT=$(git log --merges --ancestry-path --reverse "$COMMIT_HASH"..HEAD | head -1 | cut -d' ' -f2)
-  
-  if [ -n "$MERGE_COMMIT" ]; then
-    PR_NUMBER=$(git show --format="%s" -s "$MERGE_COMMIT" | grep -oE '\(#[0-9]+\)' | grep -oE '[0-9]+' | head -1)
+  # Get the full commit hash
+  COMMIT_HASH=$(git rev-parse "$COMMIT")
+
+  # Try to find the PR number from the commit message first
+  PR_NUMBER=$(git show --format="%s" -s "$COMMIT_HASH" | grep -oE '\(#[0-9]+\)' | grep -oE '[0-9]+' | head -1)
+
+  # If we didn't find a PR number in the commit message, try to find it via GitHub CLI
+  if [ -z "$PR_NUMBER" ]; then
+    # Get the merge commit that contains this commit
+    MERGE_COMMIT=$(git log --merges --ancestry-path --reverse "$COMMIT_HASH"..HEAD | head -1 | cut -d' ' -f2)
+
+    if [ -n "$MERGE_COMMIT" ]; then
+      PR_NUMBER=$(git show --format="%s" -s "$MERGE_COMMIT" | grep -oE '\(#[0-9]+\)' | grep -oE '[0-9]+' | head -1)
+    fi
   fi
-fi
 
-# If we still don't have a PR number, try using gh CLI to search
-if [ -z "$PR_NUMBER" ] && command -v gh >/dev/null 2>&1; then
-  PR_NUMBER=$(gh pr list --search "$COMMIT_HASH" --state merged --json number --jq '.[0].number' 2>/dev/null)
-fi
+  # If we still don't have a PR number, try using gh CLI to search
+  if [ -z "$PR_NUMBER" ] && command -v gh >/dev/null 2>&1; then
+    PR_NUMBER=$(gh pr list --search "$COMMIT_HASH" --state merged --json number --jq '.[0].number' 2>/dev/null)
+  fi
 
-# If we still can't find a PR number, exit with error
-if [ -z "$PR_NUMBER" ] || [ "$PR_NUMBER" = "null" ]; then
-  echo "Error: Could not find PR number for commit $COMMIT_HASH" >&2
-  exit 1
+  # If we still can't find a PR number, exit with error
+  if [ -z "$PR_NUMBER" ] || [ "$PR_NUMBER" = "null" ]; then
+    echo "Error: Could not find PR number for commit $COMMIT_HASH" >&2
+    exit 1
+  fi
 fi
 
 # Get the repository URL
@@ -49,4 +71,4 @@ PR_AUTHOR=$(gh pr view "$PR_NUMBER" --json author --jq '.author.login' 2>/dev/nu
 PR_URL="$REPO_URL/pull/$PR_NUMBER"
 
 # Generate the credit message
-echo "([#$PR_NUMBER]($PR_URL); thanks [@$PR_AUTHOR](https://github.com/$PR_AUTHOR))"
+echo "([#$PR_NUMBER]($PR_URL); thanks @$PR_AUTHOR)"
