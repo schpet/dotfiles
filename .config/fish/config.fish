@@ -12,6 +12,7 @@ fish_add_path /opt/homebrew/opt/libpq/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.deno/bin # note - this is already on my path but no idea how deno puts it there?
+fish_add_path ~/.rbenv/bin
 
 if status is-interactive
     if not set -q ASCIINEMA_REC
@@ -31,13 +32,6 @@ set -gx ANDROID_HOME $HOME/Library/Android/sdk
 fish_add_path $ANDROID_HOME/emulator
 fish_add_path $ANDROID_HOME/platform-tools
 
-
-# pnpm
-set -gx PNPM_HOME "/Users/schpet/Library/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
-end
-# pnpm end
 
 # claude code
 set -gx CLAUDE_CODE_DISABLE_TERMINAL_TITLE 1       # prevent claude code from rewriting terminal title
