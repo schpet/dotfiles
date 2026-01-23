@@ -53,8 +53,6 @@ abbr --add fd 'fd --hidden'
 
 abbr --add b bundle
 abbr --add be bundle exec
-abbr --add br brew
-abbr --add bbi brew bundle install
 if command -q zed-preview
     abbr --add e zed-preview
 else
