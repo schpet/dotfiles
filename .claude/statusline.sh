@@ -17,7 +17,7 @@ session_short="${session_id:0:8}"
 # Check if we're in a jj repo
 jj_info=""
 if (cd "$cwd" && jj --ignore-working-copy root > /dev/null 2>&1); then
-    change_id=$(cd "$cwd" && jj log --color=always --no-graph -r "@" -T "change_id.shortest()" 2>/dev/null)
+    change_id=$(cd "$cwd" && jj --ignore-working-copy log --color=always --no-graph -r "@" -T "change_id.shortest()" 2>/dev/null)
     if [ -n "$change_id" ]; then
         jj_info=" $(printf '\033[1m\033[38;5;5m') $(printf '\033[0m')$change_id"
     fi
