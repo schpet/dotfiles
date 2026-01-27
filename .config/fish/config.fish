@@ -3,7 +3,9 @@ if not infocmp $TERM >/dev/null 2>&1
     set -gx TERM xterm-256color
 end
 
-source (changelog completions fish | psub)
+if command -q changelog
+    source (changelog completions fish | psub)
+end
 direnv hook fish | source
 
 fish_add_path ~/bin
