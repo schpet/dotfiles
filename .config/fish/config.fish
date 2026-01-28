@@ -75,7 +75,7 @@ abbr --add z zellij
 abbr --add vi nvim
 abbr --add rgg rg
 abbr --add c cargo
-abbr --add r bin/rails
+abbr --add r repoman
 abbr --add o open
 abbr --add cl changelog
 abbr --add claude-yolo claude --dangerously-skip-permissions
@@ -131,6 +131,9 @@ abbr_subcommand brew i install
 abbr_subcommand linear i issue
 abbr_subcommand gh i issue
 abbr_subcommand gh p "pr"
+
+abbr_subcommand repoman c "computer"
+abbr_subcommand repoman r "repo"
 
 
 
