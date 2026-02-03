@@ -142,3 +142,9 @@
 	aiAnthropicKeyOption = bringYourOwn
 	aiAnthropicModelName = claude-3-7-sonnet-20250219
 	aiOpenAIModelName = gpt-4.1-mini
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
