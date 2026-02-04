@@ -32,4 +32,6 @@ require("lazy").setup({
   install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
   checker = { enabled = true, notify = false },
+  -- disable news popup
+  news = { lazyvim = false, neovim = false },
 })
