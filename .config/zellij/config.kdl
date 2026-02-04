@@ -1,1 +1,8 @@
+keybinds {
+    // unbind to allow readline/emacs shortcuts
+    unbind "Alt f" // forward word
+    unbind "Alt b" // backward word
+    unbind "Alt n" // new pane conflicts with some configs
+}
+
 // defaults
