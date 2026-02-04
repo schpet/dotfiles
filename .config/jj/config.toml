@@ -40,8 +40,12 @@ ws = ["util", "exec", "--", "fish", "-c", "jj-workspace-switcher"]
 wsrm = ["util", "exec", "--", "fish", "-c", "jj-workspace-remover"]
 gh-clone = ["util", "exec", "--", "sh", "-c", '''
 REPO="${1}"
-SSH_URL=$(gh repo view "$REPO" --json sshUrl -q .sshUrl)
-jj git clone --colocate "$SSH_URL"
+REPO_NAME=$(gh repo view "$REPO" --json name -q .name)
+DEFAULT_BRANCH=$(gh repo view "$REPO" --json defaultBranchRef -q .defaultBranchRef.name)
+gh repo clone "$REPO" && \
+cd "$REPO_NAME" && \
+jj git init --colocate && \
+jj bookmark track "$DEFAULT_BRANCH" --remote=origin
 ''', "sh"]
 llm-describe = ["util", "exec", "--", "sh", "-c", '''
 REF="${1:-@}"
