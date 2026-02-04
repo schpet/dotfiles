@@ -1,1 +1,1 @@
-for all version control operations use jj (jj-vcs) instead of git. note for read only operations, use `--ignore-working-copy`. when reviewing diffs with jj, use the `--git` flag for easier to understand output. when committing work, always use `jj ci` or `jj describe ... && jj new` to ensure future work is on a new commit. squash things into previous commits as appropriate.
+use jj instead of git for source control. if a repo isn't using jj yet, initialize it. reference the jj skill if you are having trouble with commands.
