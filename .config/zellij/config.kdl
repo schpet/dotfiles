@@ -5,4 +5,6 @@ keybinds {
     unbind "Alt n" // new pane conflicts with some configs
 }
 
+show_release_notes false
+
 // defaults
