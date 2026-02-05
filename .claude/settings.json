@@ -51,13 +51,13 @@
     "ralph-wiggum@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
     "jj-vcs@toolbox": true,
     "jjwf@toolbox": true,
     "changelog@toolbox": true,
     "svbump@toolbox": true,
     "chores@toolbox": true,
-    "speccer@toolbox": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "speccer@toolbox": true
   },
   "alwaysThinkingEnabled": true
 }
