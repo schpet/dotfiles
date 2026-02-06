@@ -45,11 +45,8 @@
     "document-skills@anthropic-agent-skills": true,
     "example-skills@anthropic-agent-skills": true,
     "jjagent@jjagent": true,
-    "linear-cli@linear-cli": true,
     "tanooki-suit@tanooki-suit": true,
     "timers-skill@timers-skill": true,
-    "ralph-wiggum@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "jj-vcs@toolbox": true,
@@ -58,7 +55,11 @@
     "svbump@toolbox": true,
     "chores@toolbox": true,
     "speccer@toolbox": true,
-    "restate@toolbox": true
+    "restate@toolbox": true,
+    "linear-cli@linear-cli": true,
+    "ralph-loop@claude-plugins-official": true
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "effortLevel": "medium"
 }

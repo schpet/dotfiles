@@ -4,6 +4,10 @@ symbol = "⬢ "
 [username]
 disabled = true
 
+[hostname]
+ssh_only = false
+format = "[$hostname]($style) "
+
 [gcloud]
 disabled = true
 

@@ -16,8 +16,23 @@
           "paths": [
             "/home/exedev/allspark-builder"
           ]
+        },
+        {
+          "paths": [
+            "/home/exedev/repoman"
+          ]
         }
       ]
+    },
+    {
+      "host": "repoman.exe.xyz",
+      "args": [],
+      "projects": []
+    },
+    {
+      "host": "repoman-server.tail575c.ts.net",
+      "args": [],
+      "projects": []
     }
   ],
   "sticky_scroll": {

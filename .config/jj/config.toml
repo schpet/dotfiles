@@ -21,8 +21,8 @@ register-snapshot-trigger = true
 pager = "delta"
 diff-formatter = ":git"
 
-# [snapshot]
-# auto-update-stale = true
+[snapshot]
+auto-update-stale = true
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
@@ -82,6 +82,3 @@ separate("\n",
   ),
 )
 '''
-
-[snapshot]
-auto-update-stale = true
