@@ -100,6 +100,7 @@ abbr --add jjw watch -t -n 0.75 --color 'jj log --ignore-working-copy --color=al
 
 
 alias ls eza
+alias bd br
 
 source $HOME/.config/fish/abbr.fish
 

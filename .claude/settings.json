@@ -57,7 +57,8 @@
     "changelog@toolbox": true,
     "svbump@toolbox": true,
     "chores@toolbox": true,
-    "speccer@toolbox": true
+    "speccer@toolbox": true,
+    "restate@toolbox": true
   },
   "alwaysThinkingEnabled": true
 }

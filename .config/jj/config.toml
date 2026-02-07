@@ -82,3 +82,6 @@ separate("\n",
   ),
 )
 '''
+
+[snapshot]
+auto-update-stale = true
