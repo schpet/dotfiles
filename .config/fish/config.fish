@@ -12,6 +12,7 @@ fish_add_path ~/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/opt/libpq/bin
 fish_add_path ~/.local/bin
+fish_add_path ~/.local/share/mise/shims
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.deno/bin # note - this is already on my path but no idea how deno puts it there?
 fish_add_path ~/.rbenv/bin
