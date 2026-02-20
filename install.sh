@@ -41,7 +41,7 @@ done
 # Then restore the repo's committed versions, which flow through the symlinks
 # — making the dotfiles repo the source of truth.
 stow --adopt . -t $HOME -v 2
-if command -v jj &> /dev/null; then
+if [ -d .jj ]; then
 	jj restore
 else
 	git checkout .
