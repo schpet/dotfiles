@@ -11,6 +11,9 @@ model=$(echo "$input" | jq -r '.model.display_name')
 # Display directory using fish's prompt_pwd for nice formatting
 display_dir=$(fish -c "set -g fish_prompt_pwd_dir_length 3; prompt_pwd --dir-length=3 --full-length-dirs=2 '$cwd'" 2>/dev/null || echo "${cwd/#$HOME/~}")
 
+# Hostname
+hostname_short=$(hostname -s)
+
 # Session ID (first 8 chars)
 session_short="${session_id:0:8}"
 
@@ -32,6 +35,6 @@ if [ -z "$jj_info" ] && git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
     fi
 fi
 
-# Output: directory + model ✴ + jj/git info
-# Colors: cyan for directory, green for model and ✴, jj has its own colors, magenta for git
-printf "$(printf '\033[36m')%s$(printf '\033[0m') $(printf '\033[32m')%s$(printf '\033[0m') $(printf '\033[32m')✻$(printf '\033[0m')%s%s" "$display_dir" "$model" "$jj_info" "$git_info"
+# Output: hostname + directory + model ✴ + jj/git info
+# Colors: yellow for hostname, cyan for directory, green for model and ✴, jj has its own colors, magenta for git
+printf "$(printf '\033[33m')%s$(printf '\033[0m') $(printf '\033[36m')%s$(printf '\033[0m') $(printf '\033[32m')%s$(printf '\033[0m') $(printf '\033[32m')✻$(printf '\033[0m')%s%s" "$hostname_short" "$display_dir" "$model" "$jj_info" "$git_info"
