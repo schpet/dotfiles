@@ -38,7 +38,7 @@
   "hooks": {},
   "statusLine": {
     "type": "command",
-    "command": "/Users/schpet/code/dotfiles/.claude/statusline.sh"
+    "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
     "beads@beads-marketplace": true,
@@ -60,6 +60,5 @@
     "ralph-loop@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": true,
-  "effortLevel": "medium"
+  "skipDangerousModePermissionPrompt": true
 }

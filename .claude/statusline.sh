@@ -9,7 +9,8 @@ model=$(echo "$input" | jq -r '.model.display_name')
 
 
 # Display directory using fish's prompt_pwd for nice formatting
-display_dir=$(fish -c "set -g fish_prompt_pwd_dir_length 3; prompt_pwd --dir-length=3 --full-length-dirs=2 '$cwd'" 2>/dev/null || echo "${cwd/#$HOME/~}")
+display_dir=$(fish -c "set -g fish_prompt_pwd_dir_length 3; prompt_pwd --dir-length=3 --full-length-dirs=2 '$cwd'" 2>/dev/null)
+[ -z "$display_dir" ] && display_dir="${cwd/#$HOME/~}"
 
 # Hostname
 hostname_short=$(hostname -s)
