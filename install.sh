@@ -35,4 +35,8 @@ for file in ${files_to_backup[@]}; do
 done
 
 
-stow . -t $HOME -v 2
+# --adopt moves conflicting target files into the repo, creating symlinks.
+# jj restore then restores the repo's committed versions, which flow through
+# the symlinks — making the dotfiles repo the source of truth.
+stow --adopt . -t $HOME -v 2
+jj restore
