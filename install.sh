@@ -36,7 +36,11 @@ done
 
 
 # --adopt moves conflicting target files into the repo, creating symlinks.
-# jj restore then restores the repo's committed versions, which flow through
-# the symlinks — making the dotfiles repo the source of truth.
+# Then restore the repo's committed versions, which flow through the symlinks
+# — making the dotfiles repo the source of truth.
 stow --adopt . -t $HOME -v 2
-jj restore
+if command -v jj &> /dev/null; then
+	jj restore
+else
+	git checkout .
+fi
