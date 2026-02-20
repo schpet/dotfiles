@@ -10,7 +10,9 @@ case "$(uname -s)" in
 		;;
 
 	Linux)
-		echo 'todo: linux setup'
+		if ! command -v stow &> /dev/null; then
+			sudo apt-get update -qq && sudo apt-get install -y -qq stow
+		fi
 		;;
 
    CYGWIN*|MINGW32*|MSYS*|MINGW*)
