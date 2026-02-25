@@ -1,4 +1,5 @@
 alias e="zed-preview"
+alias bd="br"
 
 eval "$(atuin init zsh)"
 
