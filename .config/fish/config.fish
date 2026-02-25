@@ -24,6 +24,8 @@ if status is-interactive
         function fish_prompt; set_color green; echo -n "❯ "; set_color normal; end
     end
     atuin init fish --disable-up-arrow | source
+    set ZELLIJ_AUTO_ATTACH true
+    eval (zellij setup --generate-auto-start fish | string collect)
 end
 
 set -gx EDITOR nvim
