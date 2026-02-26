@@ -1,0 +1,53 @@
+#!/bin/bash
+# Start Google Chrome headless with remote debugging for chrome-devtools-mcp
+# Usage: start-chrome-headless [--kill] [--status]
+
+if [[ "$1" == "--kill" ]]; then
+    pkill -f "remote-debugging-port=9222" 2>/dev/null && echo "Killed Chrome" || echo "No Chrome running"
+    exit 0
+fi
+
+if [[ "$1" == "--status" ]]; then
+    if curl -s http://127.0.0.1:9222/json/version >/dev/null 2>&1; then
+        echo "Chrome running on port 9222"
+        curl -s http://127.0.0.1:9222/json/version | jq -r '.Browser' 2>/dev/null || true
+        exit 0
+    else
+        echo "No Chrome running on port 9222"
+        exit 1
+    fi
+fi
+
+# Kill any existing instance
+pkill -f "remote-debugging-port=9222" 2>/dev/null || true
+sleep 1
+
+BROWSER=/usr/bin/google-chrome-stable
+if [[ ! -x "$BROWSER" ]]; then
+    echo "Error: google-chrome-stable not found at $BROWSER"
+    echo "Install with: sudo apt-get install -y google-chrome-stable"
+    exit 1
+fi
+
+echo "Starting Google Chrome headless..."
+
+"$BROWSER" \
+    --headless=new \
+    --no-sandbox \
+    --disable-gpu \
+    --disable-dev-shm-usage \
+    --remote-debugging-port=9222 \
+    --remote-debugging-address=127.0.0.1 \
+    >/dev/null 2>&1 &
+
+for i in {1..10}; do
+    if curl -s http://127.0.0.1:9222/json/version >/dev/null 2>&1; then
+        echo "Chrome started with remote debugging on port 9222"
+        curl -s http://127.0.0.1:9222/json/version | jq -r '.Browser' 2>/dev/null || true
+        exit 0
+    fi
+    sleep 0.5
+done
+
+echo "Error: Chrome failed to start"
+exit 1

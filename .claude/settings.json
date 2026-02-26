@@ -35,7 +35,6 @@
       "mcp__plugin_beads_beads__debug_env"
     ]
   },
-  "model": "opus",
   "hooks": {},
   "statusLine": {
     "type": "command",
