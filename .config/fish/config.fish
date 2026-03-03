@@ -17,6 +17,10 @@ fish_add_path ~/.cargo/bin
 fish_add_path ~/.deno/bin # note - this is already on my path but no idea how deno puts it there?
 fish_add_path ~/.rbenv/bin
 
+if command -q fnm
+    fnm env | source
+end
+
 if status is-interactive
     if not set -q ASCIINEMA_REC
         starship init fish | source
