@@ -85,6 +85,8 @@ abbr --add vi nvim
 abbr --add rgg rg
 abbr --add c cargo
 abbr --add r repoman
+abbr --add te 'direnv exec ~/tanooki repoman'
+abbr --add re 'direnv exec / repoman'
 abbr --add o open
 abbr --add cl changelog
 abbr --add claude-yolo claude --dangerously-skip-permissions
