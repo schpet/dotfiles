@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Copy stdin to the host clipboard using OSC 52 escape sequence.
+# Works over SSH, tmux, and most modern terminals.
+
+if [ -t 0 ] && [ $# -eq 0 ]; then
+  echo "usage: echo 'text' | yoink" >&2
+  echo "       yoink < file.txt" >&2
+  exit 1
+fi
+
+data=$(base64 | tr -d '\n')
+
+# Determine the right escape wrapper for tmux/screen
+if [ -n "${TMUX:-}" ]; then
+  # tmux requires wrapping OSC sequences in a passthrough escape
+  printf '\ePtmux;\e\e]52;c;%s\a\e\\' "$data"
+elif [ "${TERM:-}" = screen ]; then
+  # GNU screen DCS passthrough
+  printf '\eP\e]52;c;%s\a\e\\' "$data"
+else
+  printf '\e]52;c;%s\a' "$data"
+fi
