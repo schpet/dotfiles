@@ -36,6 +36,15 @@ echo "Starting Google Chrome headless..."
     --no-sandbox \
     --disable-gpu \
     --disable-dev-shm-usage \
+    --single-process \
+    --no-zygote \
+    --disable-extensions \
+    --disable-background-networking \
+    --disable-sync \
+    --disable-translate \
+    --no-first-run \
+    --disk-cache-size=1 \
+    --js-flags=--max-old-space-size=512 \
     --remote-debugging-port=9222 \
     --remote-debugging-address=127.0.0.1 \
     >/dev/null 2>&1 &
