@@ -61,6 +61,9 @@ fi
 jj describe "$REF" -m "$FULL_MSG"
 ''', "sh"]
 
+[templates]
+git_push_bookmark = '"schpet-push-" ++ change_id.short()'
+
 [template-aliases]
 'evolog_detailed' = '''
 separate("\n",
