@@ -27,12 +27,23 @@ auto-update-stale = true
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 'closest_pushable(to)' = 'heads(::to & ~description(exact:"") & (~empty() | merges()))'
+# via https://github.com/thoughtpolice
+'megamerge()' = '''coalesce(
+  present(megamerge),
+  reachable(stack(), merges())
+)'''
+'private()' = 'description(glob-i:"private:*")'
+'stack()' = 'stack(@)'
+'stack(x)' = 'stack(x, 2)'
+'stack(x, n)' = 'ancestors(reachable(x, mutable()), n)'
 
 [fix.tools.rustfmt]
 command = ["rustfmt", "--emit", "stdout"]
 patterns = ["*.rs"]
 
 [aliases]
+# via https://github.com/thoughtpolice
+sandwich = ["rebase", "-B", "megamerge()", "-A", "trunk()", "-r"]
 sl = ["util", "exec", "--", "sh", "-c", "jj status && echo && jj log"]
 s = ["util", "exec", "--", "sh", "-c", "jj status && jj log --ignore-working-copy -r '@--' --no-graph -T '\"Grandparent   (@--) \" ++ format_commit_summary_with_refs(self, bookmarks) ++ \"\\n\"'"]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
