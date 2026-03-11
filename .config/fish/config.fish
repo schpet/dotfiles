@@ -28,9 +28,6 @@ if status is-interactive
         function fish_prompt; set_color green; echo -n "❯ "; set_color normal; end
     end
     atuin init fish --disable-up-arrow | source
-    if set -q SSH_TTY; and not set -q ZELLIJ
-        zellij
-    end
 end
 
 set -gx EDITOR nvim
