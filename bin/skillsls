@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CLAUDE_DIR="$HOME/.claude"
+
+# Local skills (~/.claude/skills/*)
+if [ -d "$CLAUDE_DIR/skills" ]; then
+  echo "Skills"
+  echo "------"
+  for d in "$CLAUDE_DIR/skills"/*/; do
+    [ -d "$d" ] && echo "  $(basename "$d")"
+  done
+  echo
+fi
+
+# Slash commands (~/.claude/commands/*.md)
+if [ -d "$CLAUDE_DIR/commands" ]; then
+  echo "Commands"
+  echo "--------"
+  for f in "$CLAUDE_DIR/commands"/*.md; do
+    [ -f "$f" ] && echo "  /$(basename "$f" .md)"
+  done
+  echo
+fi
+
+# Installed plugins (from installed_plugins.json)
+plugins_json="$CLAUDE_DIR/plugins/installed_plugins.json"
+if [ -f "$plugins_json" ]; then
+  echo "Plugins"
+  echo "-------"
+  jq -r '.plugins | keys[] | split("@")[0]' "$plugins_json" | while read -r name; do
+    echo "  $name"
+  done
+
+  # Sub-skills from cached plugins (cache/marketplace/plugin/version/skills/*)
+  for cache_dir in "$CLAUDE_DIR/plugins/cache"/*/*/*/skills/*/; do
+    if [ -d "$cache_dir" ]; then
+      plugin=$(basename "$(dirname "$(dirname "$(dirname "$cache_dir")")")")
+      skill=$(basename "$cache_dir")
+      echo "  $plugin:$skill"
+    fi
+  done
+  echo
+fi
