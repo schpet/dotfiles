@@ -4,6 +4,13 @@
 - if a repo isn't using jj yet, initialize it and track the default bookmark
 - reference the jj skill if you are having trouble with commands
 
+### squash workflow
+
+- before starting work, check `@` is mutable: `jj log -r '@' --no-graph -T 'if(immutable, "IMMUTABLE", "ok")'`
+- if `@` is immutable or non-empty, run `jj new` to create a fresh change
+- never modify an immutable change — always create a new one on top
+- do work in `@`, then `jj commit -m "msg"` to snapshot and get a fresh change
+
 ### avoid interactive jj commands (they hang agents)
 
 - always pass `-m "msg"` to `describe`, `commit`, `squash` (without it they open `$EDITOR`)
@@ -11,6 +18,10 @@
 - `split` opens a diff editor by default, so always pass explicit file paths
 - never use `-i`/`--interactive` on any command
 - never run `diffedit`, `resolve`, `config edit`, `sparse edit`. use `config set`/`sparse set` instead
+
+## tools
+
+- duckdb and jq are available for reviewing data
 
 ## coding values
 
