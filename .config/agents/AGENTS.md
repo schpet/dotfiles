@@ -9,7 +9,8 @@
 - before starting work, check `@` is mutable: `jj log -r '@' --no-graph -T 'if(immutable, "IMMUTABLE", "ok")'`
 - if `@` is immutable or non-empty, run `jj new` to create a fresh change
 - never modify an immutable change — always create a new one on top
-- do work in `@`, then `jj commit -m "msg"` to snapshot and get a fresh change
+- work in `@`, then `jj commit -m "msg"` to snapshot and get a fresh change
+- if you describe a commit, always jj new after decribing
 
 ### avoid interactive jj commands (they hang agents)
 
