@@ -36,8 +36,6 @@ echo "Starting Google Chrome headless..."
     --no-sandbox \
     --disable-gpu \
     --disable-dev-shm-usage \
-    --single-process \
-    --no-zygote \
     --disable-extensions \
     --disable-background-networking \
     --disable-sync \
