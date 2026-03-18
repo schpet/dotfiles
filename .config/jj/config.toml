@@ -5,7 +5,7 @@ name = "Peter Schilling"
 email = "code@schpet.com"
 
 [ui]
-merge-editor = "meld"
+merge-editor = ":builtin"
 default-command = "sl"
 
 [fsmonitor]

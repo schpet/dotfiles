@@ -28,7 +28,7 @@ if status is-interactive
         function fish_prompt; set_color green; echo -n "❯ "; set_color normal; end
     end
     atuin init fish --disable-up-arrow | source
-    if not set -q ZELLIJ; and not set -q TMUX
+    if not set -q ZELLIJ; and not set -q TMUX; and test (uname) != Darwin
         zellij
     end
 end
