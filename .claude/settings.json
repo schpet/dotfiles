@@ -60,6 +60,7 @@
     "ralph-loop@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true,
-  "effortLevel": "high"
+  "model": "opus"
 }
