@@ -36,6 +36,17 @@ for file in ${files_to_backup[@]}; do
 	fi
 done
 
+# directories that other tools create before we get to stow them
+dirs_to_backup=(".codex")
+for dir in ${dirs_to_backup[@]}; do
+	original_path="$HOME/$dir"
+	if test -d "$original_path" && ! test -L "$original_path"; then
+		new_destination="$HOME/$dir.bak"
+		echo "moving existing $original_path to $new_destination"
+		mv "$original_path" "$new_destination"
+	fi
+done
+
 
 # --adopt moves conflicting target files into the repo, creating symlinks.
 # Then restore the repo's committed versions, which flow through the symlinks
