@@ -29,7 +29,7 @@ esac
 files_to_backup=(".gitconfig" ".zshrc")
 for file in ${files_to_backup[@]}; do
 	original_path="$HOME/$file"
-	if test -f $original_path; then
+	if test -f "$original_path" && ! test -L "$original_path"; then
 		new_destination="$HOME/$file.orig"
 		echo "moving existing $original_path to $new_destination"
 		mv "$original_path" "$new_destination"
@@ -42,6 +42,7 @@ for dir in ${dirs_to_backup[@]}; do
 	original_path="$HOME/$dir"
 	if test -d "$original_path" && ! test -L "$original_path"; then
 		new_destination="$HOME/$dir.bak"
+		rm -rf "$new_destination"
 		echo "moving existing $original_path to $new_destination"
 		mv "$original_path" "$new_destination"
 	fi
