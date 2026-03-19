@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://docs.anthropic.com/en/docs/claude-code/statusline
 
 input=$(cat)
 
@@ -6,7 +7,7 @@ input=$(cat)
 session_id=$(echo "$input" | jq -r '.session_id')
 cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 model=$(echo "$input" | jq -r '.model.display_name')
-
+context_pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 
 # Display directory using fish's prompt_pwd for nice formatting
 display_dir=$(fish -c "set -g fish_prompt_pwd_dir_length 3; prompt_pwd --dir-length=3 --full-length-dirs=2 '$cwd'" 2>/dev/null)
@@ -41,6 +42,14 @@ if [ -z "$jj_info" ] && git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
     fi
 fi
 
-# Output: hostname + directory + model ✴ + jj/git info
-# Colors: yellow for hostname, cyan for directory, green for model and ✴, jj has its own colors, magenta for git
-printf "$(printf '\033[33m')%s$(printf '\033[0m') $(printf '\033[36m')%s$(printf '\033[0m') $(printf '\033[32m')%s$(printf '\033[0m') $(printf '\033[32m')✻$(printf '\033[0m')%s%s" "$hostname_short" "$display_dir" "$model" "$jj_info" "$git_info"
+# Color context percentage: green < 50, yellow 50-79, red >= 80
+if [ "$context_pct" -ge 80 ] 2>/dev/null; then
+    ctx_color='\033[31m'
+elif [ "$context_pct" -ge 50 ] 2>/dev/null; then
+    ctx_color='\033[33m'
+else
+    ctx_color='\033[32m'
+fi
+
+# Output: hostname + directory + model ✴ + context% + jj/git info
+printf "$(printf '\033[33m')%s$(printf '\033[0m') $(printf '\033[36m')%s$(printf '\033[0m') $(printf '\033[32m')%s$(printf '\033[0m') $(printf '\033[32m')✻$(printf '\033[0m') $(printf "$ctx_color")%s%%$(printf '\033[0m')%s%s" "$hostname_short" "$display_dir" "$model" "$context_pct" "$jj_info" "$git_info"
