@@ -8,3 +8,5 @@
 
 .aider*
 .config/jj/repos/
+.codex/*
+!.codex/AGENTS.md

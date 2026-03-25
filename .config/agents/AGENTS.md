@@ -23,6 +23,7 @@
 ## tools
 
 - duckdb and jq are available for reviewing data
+- prefer installing new tools with mise when its an option
 
 ## coding values
 

@@ -41,7 +41,6 @@
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "beads@beads-marketplace": true,
     "document-skills@anthropic-agent-skills": true,
     "example-skills@anthropic-agent-skills": true,
     "jjagent@jjagent": true,
@@ -62,5 +61,5 @@
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true,
-  "model": "opus"
+  "voiceEnabled": true
 }

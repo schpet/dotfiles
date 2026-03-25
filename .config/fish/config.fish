@@ -12,8 +12,8 @@ fish_add_path ~/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/opt/libpq/bin
 fish_add_path ~/.local/bin
-fish_add_path ~/.local/share/mise/shims
 fish_add_path ~/.cargo/bin
+fish_add_path ~/.bun/bin
 fish_add_path ~/.deno/bin # note - this is already on my path but no idea how deno puts it there?
 fish_add_path ~/.rbenv/bin
 
@@ -45,8 +45,6 @@ fish_add_path $ANDROID_HOME/platform-tools
 
 # claude code
 set -gx CLAUDE_CODE_DISABLE_TERMINAL_TITLE 1       # prevent claude code from rewriting terminal title
-set -gx CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC 1 # don't ask me how you're doing etc
-set -gx CLAUDE_CODE_FORCE_FULL_LOGO 1              # doesn't seem to work... but i want it to.
 # todo: CLAUDE_CONFIG_DIR: todo move claude stuff to ~/.config/claude, currently it's at ~/.claude
 
 
@@ -57,6 +55,9 @@ set -gx LINEAR_VCS jj
 if type -q rbenv
     status --is-interactive; and rbenv init - --no-rehash fish | source
 end
+
+# mise shims must come after rbenv init, which does a hard PATH prepend
+fish_add_path --move --path ~/.local/share/mise/shims
 
 abbr --add fly flyctl
 abbr --add fd 'fd --hidden'
