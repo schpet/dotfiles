@@ -10,6 +10,9 @@ end
 if command -q changelog
     source (changelog completions fish | psub)
 end
+if command -q linear
+    source (linear completions fish | psub)
+end
 direnv hook fish | source
 
 fish_add_path ~/bin

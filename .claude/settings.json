@@ -18,23 +18,10 @@
       "Bash(gh run:*)",
       "Bash(gh pr:*)",
       "Bash(npx tsc:*)",
-      "Bash(linear issue view:*)",
-      "mcp__plugin_beads_beads__set_context",
-      "mcp__plugin_beads_beads__where_am_i",
-      "mcp__plugin_beads_beads__ready",
-      "mcp__plugin_beads_beads__list",
-      "mcp__plugin_beads_beads__show",
-      "mcp__plugin_beads_beads__create",
-      "mcp__plugin_beads_beads__update",
-      "mcp__plugin_beads_beads__close",
-      "mcp__plugin_beads_beads__reopen",
-      "mcp__plugin_beads_beads__dep",
-      "mcp__plugin_beads_beads__stats",
-      "mcp__plugin_beads_beads__blocked",
-      "mcp__plugin_beads_beads__init",
-      "mcp__plugin_beads_beads__debug_env"
+      "Bash(linear issue view:*)"
     ]
   },
+  "model": "sonnet",
   "hooks": {},
   "statusLine": {
     "type": "command",
@@ -60,6 +47,14 @@
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
+  "voiceEnabled": true,
   "skipDangerousModePermissionPrompt": true,
-  "voiceEnabled": true
+  "extraKnownMarketplaces": {
+    "linear-cli": {
+      "source": {
+        "source": "github",
+        "repo": "schpet/linear-cli"
+      }
+    }
+  }
 }

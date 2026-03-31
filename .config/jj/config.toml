@@ -26,13 +26,21 @@ auto-update-stale = true
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
-'closest_pushable(to)' = 'heads(::to & ~description(exact:"") & (~empty() | merges()))'
+'closest_pushable(to)' = '''heads(
+  ::to
+  & mutable()
+  & ~description(exact:"")
+  & ~descendants(blacklist())
+  & (~empty() | merges()))
+'''
 # via https://github.com/thoughtpolice
 'megamerge()' = '''coalesce(
   present(megamerge),
   reachable(stack(), merges())
 )'''
-'private()' = 'description(glob-i:"private:*")'
+'wip()' = 'description(glob-i:"wip:*") | description(glob-i:"[[]WIP[]]*")'
+'private()' = 'description(glob-i:"private:*") | description(glob-i:"[[]PRIVATE[]]*")'
+'blacklist()' = 'wip() | private()'
 'stack()' = 'stack(@)'
 'stack(x)' = 'stack(x, 2)'
 'stack(x, n)' = 'ancestors(reachable(x, mutable()), n)'
