@@ -3,6 +3,10 @@ if not infocmp $TERM >/dev/null 2>&1
     set -gx TERM xterm-256color
 end
 
+if command -q mise
+    mise activate fish | source
+end
+
 if command -q changelog
     source (changelog completions fish | psub)
 end
