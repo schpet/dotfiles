@@ -1,6 +1,7 @@
 \.git
 \.gitignore
 ^/README.*
+^/AGENTS.md
 .DS_Store
 \setup
 install.sh
