@@ -1,5 +1,8 @@
 {
-  "env": {},
+  "env": {
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "attribution": {
     "commit": "",
     "pr": ""
@@ -42,13 +45,9 @@
     "chores@toolbox": true,
     "speccer@toolbox": true,
     "restate@toolbox": true,
-    "linear-cli@linear-cli": true,
-    "ralph-loop@claude-plugins-official": true
+    "ralph-loop@claude-plugins-official": true,
+    "linear-cli@linear-cli": true
   },
-  "alwaysThinkingEnabled": true,
-  "effortLevel": "high",
-  "voiceEnabled": true,
-  "skipDangerousModePermissionPrompt": true,
   "extraKnownMarketplaces": {
     "linear-cli": {
       "source": {
@@ -56,5 +55,9 @@
         "repo": "schpet/linear-cli"
       }
     }
-  }
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "voiceEnabled": true,
+  "skipDangerousModePermissionPrompt": true
 }

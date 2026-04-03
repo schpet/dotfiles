@@ -7,6 +7,18 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
   "ssh_connections": [
     {
       "host": "allsparkdev.exe.xyz",
@@ -41,6 +53,7 @@
   "colorize_brackets": true,
   "load_direnv": "direct",
   "agent": {
+    "dock": "right",
     "profiles": {
       "write-test": {
         "name": "Write test",
