@@ -7,25 +7,6 @@
     "commit": "",
     "pr": ""
   },
-  "permissions": {
-    "allow": [
-      "Bash(bd:*)",
-      "Bash(rg:*)",
-      "Bash(grep:*)",
-      "Bash(ls:*)",
-      "Bash(jj:*)",
-      "Bash(jjagent:*)",
-      "Bash(bd:*)",
-      "Bash(cat:*)",
-      "Bash(cargo:*)",
-      "Bash(gh run:*)",
-      "Bash(gh pr:*)",
-      "Bash(npx tsc:*)",
-      "Bash(linear issue view:*)"
-    ]
-  },
-  "model": "sonnet",
-  "hooks": {},
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -33,7 +14,6 @@
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true,
     "example-skills@anthropic-agent-skills": true,
-    "jjagent@jjagent": true,
     "tanooki-suit@tanooki-suit": true,
     "timers-skill@timers-skill": true,
     "plugin-dev@claude-plugins-official": true,
@@ -43,21 +23,10 @@
     "changelog@toolbox": true,
     "svbump@toolbox": true,
     "chores@toolbox": true,
-    "speccer@toolbox": true,
     "restate@toolbox": true,
-    "ralph-loop@claude-plugins-official": true,
     "linear-cli@linear-cli": true
-  },
-  "extraKnownMarketplaces": {
-    "linear-cli": {
-      "source": {
-        "source": "github",
-        "repo": "schpet/linear-cli"
-      }
-    }
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
-  "voiceEnabled": true,
   "skipDangerousModePermissionPrompt": true
 }
